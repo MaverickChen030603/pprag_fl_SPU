@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -236,4 +237,157 @@ def write_suite_report(suite_name: str, configs: Iterable[UpstreamConfig]) -> Pa
             "final_artifacts.json",
         ]:
             _copy_if_exists(run_dir / name, target_dir / name)
+    return md_path
+
+
+DOWNSTREAM_METRICS = [
+    "cos_1",
+    "cos_3",
+    "cos_5",
+    "cos_10",
+    "recall_1",
+    "recall_3",
+    "recall_5",
+    "recall_10",
+    "precision",
+    "precision_3",
+    "precision_5",
+    "precision_10",
+    "hit_2",
+    "hit_4",
+    "hit_8",
+    "F1",
+    "em",
+    "mrr",
+    "hit1",
+    "hit10",
+    "MAP",
+    "NDCG",
+    "DCG",
+    "IDCG",
+]
+
+
+def _read_text(path: Path) -> str:
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8", errors="ignore")
+
+
+def _extract_last_float(text: str, metric: str):
+    matches = re.findall(rf"^{re.escape(metric)}:\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)\s*$", text, flags=re.MULTILINE)
+    if not matches:
+        return None
+    try:
+        return float(matches[-1])
+    except ValueError:
+        return None
+
+
+def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = None) -> Dict:
+    stdout_text = _read_text(output_dir / "rag_eval_stdout.log")
+    stderr_text = _read_text(output_dir / "rag_eval_stderr.log")
+    has_traceback = "Traceback" in stderr_text
+    metrics = {}
+    for key in DOWNSTREAM_METRICS:
+        value = _extract_last_float(stdout_text, key)
+        if value is not None:
+            metrics[key] = round(value, 4)
+    return {
+        "run_name": output_dir.name,
+        "output_dir": str(output_dir),
+        "upstream_run_dir": str(upstream_run_dir) if upstream_run_dir else "",
+        "status": "failed" if has_traceback else ("completed" if stdout_text else "missing"),
+        "has_traceback": has_traceback,
+        "stdout_bytes": len(stdout_text.encode("utf-8")),
+        "stderr_bytes": len(stderr_text.encode("utf-8")),
+        "metrics": metrics,
+    }
+
+
+def build_full_pipeline_report(suite_name: str, upstream_root: Path, downstream_root: Path) -> Dict:
+    upstream_runs = []
+    downstream_runs = []
+    for run_dir in sorted(path for path in upstream_root.glob("*") if path.is_dir()):
+        summary = summarize_run(run_dir)
+        if summary:
+            upstream_runs.append(summary)
+    for output_dir in sorted(path for path in downstream_root.glob("*") if path.is_dir()):
+        upstream_run_dir = upstream_root / output_dir.name
+        downstream_runs.append(summarize_downstream_run(output_dir, upstream_run_dir if upstream_run_dir.exists() else None))
+    downstream_map = {item["run_name"]: item for item in downstream_runs}
+    merged_runs = []
+    for upstream in upstream_runs:
+        downstream = downstream_map.get(Path(upstream["run_dir"]).name, {})
+        merged_runs.append({
+            **upstream,
+            "downstream_status": downstream.get("status", "missing"),
+            "downstream_metrics": downstream.get("metrics", {}),
+            "downstream_output_dir": downstream.get("output_dir", ""),
+        })
+    return {
+        "report_type": "full_pipeline",
+        "suite_name": suite_name,
+        "created_at": datetime.now().isoformat(timespec="seconds"),
+        "upstream_root": str(upstream_root),
+        "downstream_root": str(downstream_root),
+        "upstream_runs": upstream_runs,
+        "downstream_runs": downstream_runs,
+        "merged_runs": merged_runs,
+        "completed_upstream": sum(1 for item in upstream_runs if item),
+        "completed_downstream": sum(1 for item in downstream_runs if item.get("status") == "completed"),
+    }
+
+
+def render_full_pipeline_markdown(report: Dict) -> str:
+    lines = [
+        f"# 全流程实验归档报告：{report['suite_name']}",
+        "",
+        "## 1. 运行概况",
+        "",
+        f"- 生成时间：{report['created_at']}",
+        f"- 上游结果目录：`{report['upstream_root']}`",
+        f"- 下游结果目录：`{report['downstream_root']}`",
+        f"- 已完成上游实验数：{report['completed_upstream']}",
+        f"- 已完成下游实验数：{report['completed_downstream']}",
+        "",
+        "## 2. 上下游对照",
+        "",
+    ]
+    for item in report.get("merged_runs", []):
+        metrics = item.get("downstream_metrics", {})
+        metric_text = ", ".join(
+            f"{key}={value}" for key, value in metrics.items() if key in ("cos_1", "cos_3", "recall_3", "mrr", "NDCG")
+        )
+        lines.append(
+            f"- `{Path(item['run_dir']).name}`: strategy={item['strategy']}, overall_payload={item['overall_payload_ratio']:.4f}, reduction={1.0 - item['overall_payload_ratio']:.4f}, downstream={item['downstream_status']}"
+            + (f", {metric_text}" if metric_text else "")
+        )
+    lines.extend([
+        "",
+        "## 3. 自动分析",
+        "",
+        "本报告同时归档上游联邦训练与下游 RAG 检索评测结果，用于判断通信压缩是否换来了可接受的下游性能保持。",
+        "优先关注上游 overall_payload_ratio 与下游 cos_1、cos_3、recall_3、mrr、NDCG 的联合变化。",
+        "如果某一策略在显著降低 payload ratio 的同时仍保持稳定的下游命中率与排序指标，则说明该策略更适合作为通信高效的联邦检索方案。",
+    ])
+    return "\n".join(lines) + "\n"
+
+
+def write_full_pipeline_report(suite_name: str, upstream_root: Path, downstream_root: Path) -> Path:
+    report = build_full_pipeline_report(suite_name, upstream_root, downstream_root)
+    bundle_dir = ensure_dir(_report_dir() / f"full_pipeline_{suite_name}_{_timestamp()}")
+    data_dir = ensure_dir(bundle_dir / "data")
+    json_path = bundle_dir / "report.json"
+    md_path = bundle_dir / "report.md"
+    write_json(json_path, report)
+    md_path.write_text(render_full_pipeline_markdown(report), encoding="utf-8")
+    _copy_if_exists(upstream_root / "summary.json", data_dir / "upstream_summary.json")
+    _copy_if_exists(upstream_root / "summary.csv", data_dir / "upstream_summary.csv")
+    _copy_if_exists(downstream_root / "rag_eval_all_summary.json", data_dir / "downstream_summary.json")
+    for item in report.get("merged_runs", []):
+        run_name = Path(item["run_dir"]).name
+        _copy_if_exists(Path(item["run_dir"]), data_dir / "upstream" / run_name)
+        if item.get("downstream_output_dir"):
+            _copy_if_exists(Path(item["downstream_output_dir"]), data_dir / "downstream" / run_name)
     return md_path

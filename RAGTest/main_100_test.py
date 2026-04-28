@@ -2,23 +2,19 @@ import os
 
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 
-from llama_index.core import Settings, PromptTemplate
-from llms.llm import get_llm
+from llama_index.core import Settings
 from index import get_index
-from eval.evaluate_rag import EvaluationResult, NLGEvaluate
 from embs.embedding import get_embedding
 from data.qa_loader import get_qa_dataset
 from config import Config
 from retriever import *
 from eval.evaluate_TRT import EvaluationResult_TRT
-from eval.evaluate_TGT import evaluating_TGT
 from eval.evaluate_TRT import evaluating_TRT
-from eval.EvalModelAgent import EvalModelAgent
 from process.postprocess_rerank import get_postprocessor
-from process.query_transform import transform_and_query
 import random
 import numpy as np
 import torch
+import warnings
 
 
 def seed_everything(seed):
@@ -30,9 +26,6 @@ def seed_everything(seed):
 
 
 seed_everything(42)
-
-name = "Your LLM api"
-auth_token = "Your api key"
 
 cfg = Config()
 import argparse
@@ -51,15 +44,10 @@ qa_dataset = get_qa_dataset(cfg.dataset)
 print("dataset")
 print(last_dir)
 
-llm = get_llm(cfg.llm)
-print("llm")
-
-# Create and dl embeddings instance
-
 
 Settings.chunk_size = cfg.chunk_size
-Settings.llm = llm
 Settings.embed_model = embeddings
+Settings.llm = None
 # pip install llama-index-embeddings-langchain
 # test_50_1
 # 100_6066
@@ -72,9 +60,7 @@ index, hierarchical_storage_context = get_index(qa_dataset, cfg.persist_dir, spl
 print("index")
 
 query_engine = RetrieverQueryEngine(
-    retriever=get_retriver(cfg.retriever, index, hierarchical_storage_context=hierarchical_storage_context),
-    # todo: cfg.retriever
-    response_synthesizer=response_synthesizer(0),
+    retriever=get_retriver(cfg.retriever, index, hierarchical_storage_context=hierarchical_storage_context, cfg=cfg),
     node_postprocessors=[get_postprocessor(cfg)]
 )
 
@@ -116,24 +102,6 @@ def precision(retrieved_ids, expected_ids, k=1):
     return Precision
 
 
-text_qa_template_str = (
-    "Below is the context information.\n"
-    "---------------------\n"
-    "{context_str}\n"
-    "---------------------\n"
-    "Based solely on the above context, not prior knowledge, please answer the following question: {query_str}\n"
-    "Instructions: Keep your answer extremely brief. Focus only on the most essential information from the context."
-)
-text_qa_template = PromptTemplate(text_qa_template_str)
-
-# Setup index query engine using LLM
-# query_engine = index.as_query_engine(response_mode="compact")
-
-query_engine.update_prompts({"response_synthesizer:text_qa_template": text_qa_template})
-# query_engine = query_expansion([query_engine], query_number=4, similarity_top_k=10)
-# query_engine = RetrieverQueryEngine.from_args(query_engine)
-
-
 # question = "Which team does the player named 2015 Diamond Head Classic’s MVP play for?"
 # answer = "Sacramento Kings"
 # golden_source = "The 2015 Diamond Head Classic was a college:    basketball tournament ... Buddy Hield was named the tournament’s MVP. Chavano Rainier ”Buddy” Hield is a Bahamian professional basketball player for the Sacramento Kings of the NBA..."
@@ -141,35 +109,12 @@ true_num = 0
 all_num = 0
 evaluateResults_TRT = EvaluationResult_TRT()
 
-evalAgent = EvalModelAgent(cfg)
 if cfg.experiment_1:
     if len(qa_dataset) < cfg.test_init_total_number_documents:
         warnings.filterwarnings('default')
         warnings.warn("使用的数据集长度大于数据集本身的最大长度，请修改。 本轮代码无法运行", UserWarning)
 else:
     cfg.test_init_total_number_documents = cfg.n
-
-"""
-hzt todo
-"""
-evaluateResults_TGT = EvaluationResult(metrics=[
-    "NLG_chrf", "NLG_bleu", "NLG_meteor", "NLG_wer", "NLG_cer", "NLG_chrf_pp",
-    "NLG_mauve", "NLG_perplexity",
-    "NLG_rouge_rouge1", "NLG_rouge_rouge2", "NLG_rouge_rougeL", "NLG_rouge_rougeLsum"
-    # "Llama_retrieval_Faithfulness", "Llama_retrieval_Relevancy", "Llama_response_correctness",
-    #                           "Llama_response_semanticSimilarity", "Llama_response_answerRelevancy","Llama_retrieval_RelevancyG",
-    #                           "Llama_retrieval_FaithfulnessG",
-    #                           "DeepEval_retrieval_contextualPrecision","DeepEval_retrieval_contextualRecall",
-    #                           "DeepEval_retrieval_contextualRelevancy","DeepEval_retrieval_faithfulness",
-    #                           "DeepEval_response_answerRelevancy","DeepEval_response_hallucination",
-    #                           "DeepEval_response_bias","DeepEval_response_toxicity",
-    #                           "UpTrain_Response_Completeness","UpTrain_Response_Conciseness","UpTrain_Response_Relevance",
-    #                           "UpTrain_Response_Valid","UpTrain_Response_Consistency","UpTrain_Response_Response_Matching",
-    #                           "UpTrain_Retrieval_Context_Relevance","UpTrain_Retrieval_Context_Utilization",
-    #                           "UpTrain_Retrieval_Factual_Accuracy","UpTrain_Retrieval_Context_Conciseness",
-    #                           "UpTrain_Retrieval_Code_Hallucination",
-
-])
 
 # 初始化全局字典和计数器
 global_evaluation_scores = {}
@@ -271,4 +216,3 @@ f.close()
 # python main.py --evaluateApiName="gpt-3.5-turbo" --evaluateApiKey="sk-FDMbb0bnifWopAgv4501226dEa4c45E5Ac81841123Eb80B0"
 if __name__ == '__main__':
     print('Success')
-

@@ -52,6 +52,23 @@ def discover_runs(root: Path, include_pattern: str) -> list[Path]:
     return runs
 
 
+def should_skip_existing(output_dir: Path, force: bool) -> bool:
+    if force:
+        return False
+    stdout_log = output_dir / "rag_eval_stdout.log"
+    if not stdout_log.exists():
+        return False
+    stderr_log = output_dir / "rag_eval_stderr.log"
+    if stderr_log.exists():
+        try:
+            stderr_text = stderr_log.read_text(encoding="utf-8", errors="ignore")
+        except OSError:
+            stderr_text = ""
+        if "Traceback" in stderr_text:
+            return False
+    return True
+
+
 def run_eval(args: argparse.Namespace, run_dir: Path) -> dict:
     model_dir = latest_hf_model(run_dir)
     if model_dir is None:
@@ -70,7 +87,7 @@ def run_eval(args: argparse.Namespace, run_dir: Path) -> dict:
         "--python",
         args.python,
     ]
-    if done_flag.exists() and not args.force:
+    if should_skip_existing(output_dir, args.force):
         return {
             "run_dir": str(run_dir),
             "model_dir": str(model_dir),

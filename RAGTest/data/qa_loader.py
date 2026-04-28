@@ -1,9 +1,13 @@
 import json
 import os
 import re
+from pathlib import Path
 
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 from datasets import load_dataset
+
+
+DATA_DIR = Path(__file__).resolve().parent
 
 
 def build_split(answers, questions, supporting_facts, title2id, title2sentences):
@@ -124,7 +128,7 @@ def get_qa_dataset(dataset_name: str):
 
     elif dataset_name == "json_download":
         # with open("data/data_100.json", 'r', encoding='utf-8') as file:
-        with open("data/data_50.json", 'r', encoding='utf-8') as file:
+        with (DATA_DIR / "data_50.json").open('r', encoding='utf-8') as file:
             data = json.load(file)
         questions = []
         answers = []

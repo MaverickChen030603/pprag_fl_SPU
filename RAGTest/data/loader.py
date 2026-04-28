@@ -1,60 +1,55 @@
-import os
 import json
-from llama_index.core import Document
-from config import Config
+from pathlib import Path
 
-cfg = Config()
+from llama_index.core import Document
+
+
+DATA_DIR = Path(__file__).resolve().parent
+
+
+def _load_optional_test_corpus(documents):
+    test_corpus_path = DATA_DIR / "test_corpus.json"
+    if not test_corpus_path.exists():
+        return
+    with test_corpus_path.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    count = 0
+    for _, entry in data.items():
+        for _, passage in entry.items():
+            text = passage["page_content"]
+            doc_id = passage["index"]
+            document = Document(text=text, metadata={"title": "", "id": doc_id}, doc_id=str(doc_id))
+            documents.append(document)
+            count += 1
+            if count == 6066:
+                return
+
+
+def _load_reference_dataset(documents):
+    for candidate in ("data_50.json", "data_100.json"):
+        path = DATA_DIR / candidate
+        if not path.exists():
+            continue
+        with path.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        for entry in data:
+            title = entry["other_info"]["doc_name"]
+            for reference, ref_id in zip(entry["key_content"]["reference"], entry["key_content"]["reference_idx"]):
+                document = Document(text=reference, metadata={"title": title, "id": ref_id}, doc_id=str(ref_id))
+                documents.append(document)
+        return
+    raise FileNotFoundError("No reference dataset found in RAGTest/data. Expected data_50.json or data_100.json.")
 
 
 def get_documents():
     documents = []
-    with open("data/test_corpus.json", 'r', encoding='utf-8') as file:
-        data = json.load(file)
-        
-    for _, entry in data.items():
-        for _, passage in entry.items():
-            title = ""
-            text = "" + passage['page_content']
-            id = passage['index']
-            ducument = Document(text=text, metadata={'title': title, 'id': id}, doc_id=str(id))
-            documents.append(ducument)
-            if len(documents) == 6066:
-                break
-        if len(documents) == 6066:
-            break
-    print("len(B):", len(documents))
-    # with open("data/data_100.json", 'r', encoding='utf-8') as file:
-    with open("data/data_50.json", 'r', encoding='utf-8') as file:
-        data = json.load(file)
-        for entry in data:
-            title = entry["other_info"]["doc_name"]
-            for reference, ids in zip(entry["key_content"]["reference"], entry["key_content"]["reference_idx"]):
-                text = reference
-                id = ids
-                ducument = Document(text=text, metadata={'title': title, 'id': id}, doc_id=str(id))
-                documents.append(ducument)
-    return documents
-    # dirs = os.listdir(path)
-    # documents = []
-    # for dir in dirs:
-    #     files = os.listdir(os.path.join(path,dir))
-    #     for file in files:
-    #         # read json file
-    #         with open(os.path.join(path,dir,file),'r',encoding='utf-8') as f:
-    #             for line in f.readlines():
-    #                 raw = json.loads(line)
-    #                 ducument = Document(text=raw['text'],metadata={'title':raw['title']},doc_id=raw['id'])
-    #                 documents.append(ducument)
-    # return documents
-    title2sentenses = sources['title2sentences']
-    title2id = sources['title2id']
-    documents = [Document(text=' '.join(sentence_list), metadata={'title': title, 'id': title2id[title]},
-                          doc_id=str(title2id[title])) for title, sentence_list in title2sentenses.items()]
-    if cfg.experiment_1:
-        documents = documents[:cfg.test_all_number_documents]
+    _load_optional_test_corpus(documents)
+    _load_reference_dataset(documents)
+    print("len(documents):", len(documents))
     return documents
 
 
-if __name__ == '__main__':
-    documents = get_documents('../wiki')
+if __name__ == "__main__":
+    documents = get_documents()
     print(documents)

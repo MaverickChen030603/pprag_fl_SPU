@@ -301,7 +301,9 @@ def custom_retriever(index, retriver_type_CUSTOM='bm25_and'):
 # accumulate：给定一组文本块和查询，将查询应用于每个文本 块，同时将响应累积到数组中。返回 all 的串联字符串。当您需要对每个文本分别运行相同查询时，非常有用
 # compact_accumulate：与 accumulate 相同，但会“压缩”每个类似于 的 LLM 提示符，并对每个文本块运行相同查询。compact
 def response_synthesizer(responce_synthsizer='refine'):
-    if responce_synthsizer.lower()=='refine':
+    if isinstance(responce_synthsizer, int):
+        mode = responce_synthsizer
+    elif responce_synthsizer.lower()=='refine':
         mode=0
     elif responce_synthsizer.lower()=='compact':
         mode=1
@@ -340,24 +342,45 @@ def response_synthesizer(responce_synthsizer='refine'):
 # mode: 1,2,3,0 对应 TreeAllLeafRetriever TreeSelectLeafRetriever TreeSelectLeafEmbeddingRetriever TreeRootRetriever
 # mode确定检索器的模式
 def get_retriver(type: str, index, mode: int = 0, node = None, hierarchical_storage_context = None,cfg=None):
+    cfg = cfg or object()
     if type == "BM25":
-        retriever = bm25_retriever(index,cfg.similarity_top_k_BM25)
+        retriever = bm25_retriever(index, getattr(cfg, "similarity_top_k_BM25", 3))
     elif type == "Vector":
-        retriever = vector_retriever(index,cfg.similarity_top_k_VECTOR,cfg.show_progress_VECTOR,cfg.shore_nodes_override_VECTOR)
+        retriever = vector_retriever(
+            index,
+            getattr(cfg, "similarity_top_k_VECTOR", 3),
+            getattr(cfg, "show_progress_VECTOR", True),
+            getattr(cfg, "shore_nodes_override_VECTOR", True),
+        )
     elif type == "Summary":
-        retriever = summary_retriever(index,cfg.retriver_type_SUMMARY,cfg.similarity_top_k_SUMMARY)
+        retriever = summary_retriever(
+            index,
+            getattr(cfg, "retriver_type_SUMMARY", "normal"),
+            getattr(cfg, "similarity_top_k_SUMMARY", 3),
+        )
     elif type == "Tree":
-        retriever = tree_retriever(index, cfg.retriver_type_TREE)
+        retriever = tree_retriever(index, getattr(cfg, "retriver_type_TREE", "root"))
     elif type == "Keyword":
         retriever = keyword_retriever(index)
     elif type == "Custom":
-        retriever = custom_retriever(index, cfg.retriver_type_CUSTOM)
+        retriever = custom_retriever(index, getattr(cfg, "retriver_type_CUSTOM", "OR"))
     elif type == "QueryFusion":
-        retriever = query_fusion_retriever(index, cfg.num_quries_QUERYFUSION,cfg.similarity_top_k_QUERYFUSION,cfg.retriver_type_QUERYFUSION,cfg.retriever_weight_QUERYFUSION)
+        retriever = query_fusion_retriever(
+            index,
+            getattr(cfg, "num_quries_QUERYFUSION", 4),
+            getattr(cfg, "similarity_top_k_QUERYFUSION", 3),
+            getattr(cfg, "retriver_type_QUERYFUSION", "normal"),
+            getattr(cfg, "retriever_weight_QUERYFUSION", None),
+        )
     elif type == "AutoMerging":
-        retriever = auto_merging_retriever(index, hierarchical_storage_context,cfg.similarity_top_k_AUTOMERGING)
+        retriever = auto_merging_retriever(index, hierarchical_storage_context, getattr(cfg, "similarity_top_k_AUTOMERGING", 3))
     elif type == "Recursive":
-        retriever = recursive_retriever(node,cfg.sub_chunk_sizes_RECURSIVE,cfg.chunk_overlap_RECURSIVE,cfg.similarity_top_k_RECURSIVE)
+        retriever = recursive_retriever(
+            node,
+            getattr(cfg, "sub_chunk_sizes_RECURSIVE", [128, 256, 512]),
+            getattr(cfg, "chunk_overlap_RECURSIVE", 20),
+            getattr(cfg, "similarity_top_k_RECURSIVE", 3),
+        )
     elif type == "SentenceWindow":
         retriever = sentence_window_retriever(index)
     else:

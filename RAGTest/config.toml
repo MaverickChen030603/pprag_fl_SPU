@@ -1,13 +1,13 @@
 [api_keys]
-api_key = 
+api_key = ""
 api_base = "https://api.gpt.ge/v1/"
 api_name = "deepseek-r1:7b"
-auth_token = 
+auth_token = ""
 
 
 [settings]
 llm = "deepseek-r1:7b"
-embeddings = {embedding path}
+embeddings = ""
 split_type = "sentence"
 chunk_size = 2048
 dataset = "json_download"
