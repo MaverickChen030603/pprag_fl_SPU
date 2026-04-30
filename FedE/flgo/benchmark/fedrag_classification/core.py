@@ -10,6 +10,7 @@ import collections
 import re
 import os
 import os.path
+from pathlib import Path
 
 from flgo.benchmark.toolkits.nlp.classification import GeneralCalculator
 
@@ -22,6 +23,10 @@ import os.path
 import torch
 
 from torch import nn
+
+
+FEDE_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_SELECT_DATA = FEDE_ROOT / "select_data.json"
 
 
 def collate_batch(batch):
@@ -49,10 +54,10 @@ def cos_sim(a, b):
 
 
 class FEDRAG(Dataset):
-    def __init__(self, train=True):
+    def __init__(self, train=True, rawdata_path=None):
         self.train = train
-        # TODO 加载数据集
-        with open("./select_data.json", 'r', encoding='utf-8') as f:
+        data_path = Path(rawdata_path) if rawdata_path else DEFAULT_SELECT_DATA
+        with data_path.open('r', encoding='utf-8') as f:
             data = json.load(f)
 
         self.questions = []
@@ -76,13 +81,13 @@ class FEDRAG(Dataset):
 
 class TaskGenerator(BasicTaskGenerator):
     # TODO 加载数据集
-    def __init__(self, rawdata_path="./select_data.json"):
+    def __init__(self, rawdata_path=str(DEFAULT_SELECT_DATA)):
         super(TaskGenerator, self).__init__(benchmark='fedrag_classification', rawdata_path=rawdata_path)
         # Regular expression to capture an actors name, and line continuation
 
     def load_data(self):
-        self.train_data = FEDRAG(train=True)
-        self.test_data = FEDRAG(train=False)
+        self.train_data = FEDRAG(train=True, rawdata_path=self.rawdata_path)
+        self.test_data = FEDRAG(train=False, rawdata_path=self.rawdata_path)
         return
 
     def partition(self):
@@ -101,6 +106,9 @@ class TaskPipe(BasicTaskPipe):
                 return self.dataset[[self.indices[i] for i in idx]]
             return self.dataset[self.indices[idx]]
 
+        def __getitems__(self, indices):
+            return [self.__getitem__(idx) for idx in indices]
+
     def save_task(self, generator):
         client_names = self.gen_client_names(len(generator.local_datas))
         feddata = {'client_names': client_names, 'server_data': list(range(len(generator.test_data))),
@@ -112,8 +120,8 @@ class TaskPipe(BasicTaskPipe):
 
     def load_data(self, running_time_option) -> dict:
         # load the datasets
-        train_data = FEDRAG(train=True)
-        test_data = FEDRAG(train=False)
+        train_data = FEDRAG(train=True, rawdata_path=self.feddata.get('rawdata_path', DEFAULT_SELECT_DATA))
+        test_data = FEDRAG(train=False, rawdata_path=self.feddata.get('rawdata_path', DEFAULT_SELECT_DATA))
         # rearrange data for server
         server_data_test, server_data_val = self.split_dataset(test_data, running_time_option['test_holdout'])
         task_data = {'server': {'test': server_data_test, 'val': server_data_val}}

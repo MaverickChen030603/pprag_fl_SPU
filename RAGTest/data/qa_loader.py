@@ -4,8 +4,6 @@ import re
 from pathlib import Path
 
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-from datasets import load_dataset
-
 
 DATA_DIR = Path(__file__).resolve().parent
 
@@ -53,6 +51,8 @@ def extract_law_name(input_str):
 
 def get_qa_dataset(dataset_name: str):
     if dataset_name == "hotpot_qa":
+        from datasets import load_dataset
+
         dataset = load_dataset("hotpot_qa", "fullwiki")
         questions = dataset['train']['question'] + dataset['test']['question'] + dataset['validation']['question']
         answers = dataset['train']['answer'] + dataset['test']['answer'] + dataset['validation']['answer']
@@ -198,4 +198,3 @@ def get_qa_dataset(dataset_name: str):
 if __name__ == '__main__':
     name = 'json_download'  # drop, natural_questions, hotpot_qa
     data = get_qa_dataset(name)
-

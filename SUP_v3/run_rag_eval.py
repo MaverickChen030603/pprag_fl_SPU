@@ -13,7 +13,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run downstream RAGTest evaluation for a trained retriever.")
     parser.add_argument("--model", required=True, help="Path to retriever model directory or checkpoint accepted by RAGTest.")
     parser.add_argument("--script", default="main_100_test.py", help="RAGTest script name, e.g. main_100_test.py or main_response.py.")
-    parser.add_argument("--output-dir", default="SUP_v2/outputs/rag_eval")
+    parser.add_argument("--output-dir", default="SUP_v3/outputs/rag_eval")
     parser.add_argument("--python", default=sys.executable)
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
