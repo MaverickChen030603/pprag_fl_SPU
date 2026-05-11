@@ -7,10 +7,12 @@ __pycache__/
 
 SUP_v2/outputs/
 SUP_v3/outputs/
+V3/outputs/
 实验分析报告/
 
 FedE/num5_*_sup_v2/
 FedE/num5_*_sup_v3/
+FedE/num5_*_v3/
 
 RAGTest/storage-*/
 RAGTest/*.txt
