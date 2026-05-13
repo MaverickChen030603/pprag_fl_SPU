@@ -183,7 +183,10 @@ class UploadSelector:
             blocks = ["__ALL__"]
         else:
             chosen = self._apply_layerwise_budget(ranked, budget_topk)
-            blocks = select_topk(chosen, budget_topk, self.always_upload)
+            blocks = list(chosen[:budget_topk])
+            for block in self.always_upload:
+                if block in self.block_names and block not in blocks:
+                    blocks.append(block)
         return SelectionResult(
             "hypernet_v3",
             blocks,

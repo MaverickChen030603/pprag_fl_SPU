@@ -225,6 +225,20 @@ def build_suite(args: argparse.Namespace) -> List[UpstreamConfig]:
     return deduplicate(configs)
 
 
+def is_completed(config: UpstreamConfig) -> bool:
+    output_dir = config.output_dir
+    if not (output_dir / "run_metadata.json").exists():
+        return False
+    if (output_dir / "final_artifacts.json").exists():
+        return True
+    round_log = output_dir / "round_logs.jsonl"
+    if not round_log.exists():
+        return False
+    with round_log.open("r", encoding="utf-8") as handle:
+        rounds = sum(1 for line in handle if line.strip())
+    return rounds >= int(config.num_rounds)
+
+
 def main() -> None:
     args = parse_args()
     configs = build_suite(args)
@@ -237,6 +251,13 @@ def main() -> None:
             print(f"[{index}/{len(configs)}] {config.to_dict()}")
         return
     for index, config in enumerate(configs, start=1):
+        if is_completed(config):
+            print(
+                f"[{index}/{len(configs)}] Skipping completed {config.selection_strategy} seed={config.seed} "
+                f"topk={config.topk_blocks} warmup={config.warmup_rounds} task={config.task_name} "
+                f"score={config.score_mode} budget={config.budget_mode}"
+            )
+            continue
         print(
             f"[{index}/{len(configs)}] Running {config.selection_strategy} seed={config.seed} "
             f"topk={config.topk_blocks} warmup={config.warmup_rounds} task={config.task_name} "
