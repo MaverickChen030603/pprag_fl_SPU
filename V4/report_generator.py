@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import shutil
+import math
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Iterable, List
@@ -45,6 +46,55 @@ def _copy_if_exists(src: Path, dst: Path) -> None:
         shutil.copy2(src, dst)
 
 
+RUN_METADATA_FILES = [
+    "upstream_config.json",
+    "run_metadata.json",
+    "round_logs.json",
+    "round_logs.jsonl",
+    "round_logs.csv",
+    "final_artifacts.json",
+    "explain_summary.json",
+    "explain_client_block_counts.csv",
+]
+
+HF_METADATA_FILES = [
+    "config.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "vocab.txt",
+    "tokenizer.json",
+]
+
+DOWNSTREAM_ARTIFACT_FILES = [
+    "rag_eval_command.json",
+    "rag_eval_stdout.log",
+    "rag_eval_stderr.log",
+]
+
+
+def _copy_hf_metadata(run_dir: Path, dst_root: Path) -> None:
+    hf_model_dir = _find_hf_model_dir(run_dir)
+    if not hf_model_dir:
+        return
+    src_dir = Path(hf_model_dir)
+    dst_dir = ensure_dir(dst_root / src_dir.name)
+    for name in HF_METADATA_FILES:
+        _copy_if_exists(src_dir / name, dst_dir / name)
+
+
+def _copy_run_snapshot(run_dir: Path, dst_root: Path) -> None:
+    ensure_dir(dst_root)
+    for name in RUN_METADATA_FILES:
+        _copy_if_exists(run_dir / name, dst_root / name)
+    _copy_hf_metadata(run_dir, dst_root)
+
+
+def _copy_downstream_snapshot(output_dir: Path, dst_root: Path) -> None:
+    ensure_dir(dst_root)
+    for name in DOWNSTREAM_ARTIFACT_FILES:
+        _copy_if_exists(output_dir / name, dst_root / name)
+
+
 def _find_hf_model_dir(run_dir: Path) -> str:
     dirs = sorted(run_dir.glob("retriever_hf_*"))
     return str(dirs[-1]) if dirs else ""
@@ -58,11 +108,18 @@ def build_single_run_report(config: UpstreamConfig, run_dir: Path) -> Dict:
         "report_type": "single_run",
         "created_at": datetime.now().isoformat(timespec="seconds"),
         "experiment_name": config.experiment_name,
-        "run_name": run_dir.name,
+        "run_name": f"{config.task_name}/{run_dir.name}",
+        "suite_tag": config.suite_tag,
+        "task_name": config.task_name,
         "strategy": config.selection_strategy,
         "topk_blocks": config.topk_blocks,
         "warmup_rounds": config.warmup_rounds,
         "estimate_encryption": config.estimate_encryption,
+        "score_mode": config.score_mode,
+        "budget_mode": config.budget_mode,
+        "use_client_embedding": config.use_client_embedding,
+        "use_history_features": config.use_history_features,
+        "layerwise_budget": config.layerwise_budget,
         "rounds": _safe_int(summary.get("rounds", config.num_rounds)),
         "avg_payload_ratio": _safe_float(summary.get("avg_payload_ratio", 0.0)),
         "overall_payload_ratio": _safe_float(summary.get("overall_payload_ratio", 0.0)),
@@ -71,6 +128,9 @@ def build_single_run_report(config: UpstreamConfig, run_dir: Path) -> Dict:
         "total_full_params": _safe_int(summary.get("total_full_params", 0)),
         "total_encrypted_bytes_est": _safe_float(summary.get("total_encrypted_bytes_est", 0.0), digits=2),
         "avg_hn_loss": _safe_float(summary.get("avg_hn_loss", 0.0)),
+        "avg_budget_topk": _safe_float(summary.get("avg_budget_topk", 0.0)),
+        "avg_predicted_budget_ratio": _safe_float(summary.get("avg_predicted_budget_ratio", 0.0)),
+        "utility_per_payload": _safe_float(summary.get("utility_per_payload", 0.0)),
         "run_dir": str(run_dir),
         "hf_model_dir": hf_model_dir,
     }
@@ -87,6 +147,11 @@ def render_single_run_markdown(report: Dict) -> str:
 - 上传策略：`{report['strategy']}`
 - Top-K 参数块：{report['topk_blocks']}
 - Warmup 轮数：{report['warmup_rounds']}
+- 打分模式：`{report['score_mode']}`
+- 预算模式：`{report['budget_mode']}`
+- 客户端条件特征：{report['use_client_embedding']}
+- 历史特征：{report['use_history_features']}
+- 分层预算：{report['layerwise_budget']}
 - 是否估算加密通信：{report['estimate_encryption']}
 
 ## 2. 核心结果
@@ -99,6 +164,9 @@ def render_single_run_markdown(report: Dict) -> str:
 - 全量上传参数量：{report['total_full_params']}
 - 估算加密通信字节数：{report['total_encrypted_bytes_est']}
 - 平均超网络损失：{report['avg_hn_loss']:.4f}
+- 平均实际预算 top-k：{report['avg_budget_topk']:.4f}
+- 平均预测预算比例：{report['avg_predicted_budget_ratio']:.4f}
+- 单位通信收益代理：{report['utility_per_payload']:.4f}
 
 ## 3. 自动分析
 
@@ -106,7 +174,7 @@ def render_single_run_markdown(report: Dict) -> str:
 
 从通信角度看，整体 payload ratio 为 {report['overall_payload_ratio']:.4f}，意味着相对于全量上传，通信保留比例约为 {report['overall_payload_ratio']:.4f}，通信压缩比例约为 {report['communication_reduction_ratio']:.4f}。如果该值明显低于 1，则说明选择性上传策略已经开始发挥作用；如果接近 1，则说明当前配置下上传压缩仍然有限，后续可优先从 `topk_blocks`、warmup 轮数和重要性学习效果继续优化。
 
-从方法行为看，本次策略为 `{report['strategy']}`。如果采用的是 `hypernet`，则平均超网络损失为 {report['avg_hn_loss']:.4f}，可以作为后续观察重要性学习是否逐步稳定的参考信号。
+从方法行为看，本次策略为 `{report['strategy']}`。如果采用的是 `hypernet_v4` 或 `hypernet_v3`，则需要同时关注 `score_mode={report['score_mode']}` 与 `budget_mode={report['budget_mode']}`：前者决定当前是按重要性、价值密度还是下游代理价值排序，后者决定预算是否会随客户端状态自适应变化。平均超网络损失为 {report['avg_hn_loss']:.4f}，单位通信收益代理为 {report['utility_per_payload']:.4f}，它们可以作为 V4 是否真正学到“更值的参数块”的辅助观察信号。
 
 ## 4. 下游衔接
 
@@ -126,18 +194,7 @@ def write_single_run_report(config: UpstreamConfig, run_dir: Path) -> Path:
     md_path = bundle_dir / "report.md"
     write_json(json_path, report)
     md_path.write_text(render_single_run_markdown(report), encoding="utf-8")
-    for name in [
-        "upstream_config.json",
-        "run_metadata.json",
-        "round_logs.json",
-        "round_logs.jsonl",
-        "round_logs.csv",
-        "final_artifacts.json",
-    ]:
-        _copy_if_exists(run_dir / name, data_dir / name)
-    hf_model_dir = _find_hf_model_dir(run_dir)
-    if hf_model_dir:
-        _copy_if_exists(Path(hf_model_dir), data_dir / Path(hf_model_dir).name)
+    _copy_run_snapshot(run_dir, data_dir)
     return md_path
 
 
@@ -196,8 +253,9 @@ def render_suite_markdown(report: Dict) -> str:
         )
         for item in report["runs"]:
             lines.append(
-                f"- `{item['run_name']}`: strategy={item['strategy']}, overall_payload={item['overall_payload_ratio']:.4f}, "
-                f"reduction={item['communication_reduction_ratio']:.4f}, uploaded={item['total_uploaded_params']}"
+                f"- `{item['run_name']}`: strategy={item['strategy']}, score={item['score_mode']}, budget={item['budget_mode']}, "
+                f"overall_payload={item['overall_payload_ratio']:.4f}, reduction={item['communication_reduction_ratio']:.4f}, "
+                f"uploaded={item['total_uploaded_params']}"
             )
         lines.extend(
             [
@@ -206,7 +264,7 @@ def render_suite_markdown(report: Dict) -> str:
                 "",
                 "该套件报告用于比较不同选择性上传策略或不同超参数设置下的通信效率差异。",
                 "优先关注 `overall_payload_ratio` 与 `communication_reduction_ratio`，前者越低表示上传占比越小，后者越高表示压缩越明显。",
-                "如果 `hypernet` 在保持较低 payload ratio 的同时没有明显异常的训练日志，则说明超网络在参数重要性评估上具备价值；如果 `random` 或 `static_top` 表现接近，则说明当前重要性学习优势仍需进一步放大。",
+                "如果 `hypernet_v4` 在保持较低 payload ratio 的同时还能带来更高的 `utility_per_payload`，说明 downstream-aware 排序开始发挥作用；如果 `budget_mode=adaptive_v4` 相对固定预算更优，则说明 V4 的客户端自适应预算设计是有效的。",
             ]
         )
     else:
@@ -227,16 +285,7 @@ def write_suite_report(suite_name: str, configs: Iterable[UpstreamConfig]) -> Pa
     for item in report.get("runs", []):
         run_dir = Path(item["run_dir"])
         target_dir = data_dir / run_dir.name
-        ensure_dir(target_dir)
-        for name in [
-            "upstream_config.json",
-            "run_metadata.json",
-            "round_logs.json",
-            "round_logs.jsonl",
-            "round_logs.csv",
-            "final_artifacts.json",
-        ]:
-            _copy_if_exists(run_dir / name, target_dir / name)
+        _copy_run_snapshot(run_dir, target_dir)
     return md_path
 
 
@@ -284,7 +333,18 @@ def _extract_last_float(text: str, metric: str) -> float | None:
         return None
 
 
-def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = None) -> Dict:
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def _std(values: list[float]) -> float:
+    if len(values) <= 1:
+        return 0.0
+    mu = _mean(values)
+    return math.sqrt(sum((value - mu) ** 2 for value in values) / len(values))
+
+
+def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = None, relative_run_name: str = "") -> Dict:
     stdout_text = _read_text(output_dir / "rag_eval_stdout.log")
     stderr_text = _read_text(output_dir / "rag_eval_stderr.log")
     has_traceback = "Traceback" in stderr_text
@@ -294,7 +354,7 @@ def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = N
         if value is not None:
             metrics[key] = round(value, 4)
     return {
-        "run_name": output_dir.name,
+        "run_name": relative_run_name or output_dir.name,
         "output_dir": str(output_dir),
         "upstream_run_dir": str(upstream_run_dir) if upstream_run_dir else "",
         "status": "failed" if has_traceback else ("completed" if stdout_text else "missing"),
@@ -305,6 +365,48 @@ def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = N
     }
 
 
+def build_grouped_pipeline_summary(merged_runs: List[Dict]) -> List[Dict]:
+    groups: dict[tuple, list[Dict]] = {}
+    for item in merged_runs:
+        key = (
+            item.get("suite_tag", ""),
+            item.get("task_name", ""),
+            item.get("strategy", ""),
+            item.get("topk_blocks", 0),
+            item.get("warmup_rounds", 0),
+            bool(item.get("estimate_encryption", False)),
+        )
+        groups.setdefault(key, []).append(item)
+
+    grouped: list[Dict] = []
+    for key, items in groups.items():
+        suite_tag, task_name, strategy, topk_blocks, warmup_rounds, estimate_encryption = key
+        record = {
+            "suite_tag": suite_tag,
+            "task_name": task_name,
+            "strategy": strategy,
+            "topk_blocks": topk_blocks,
+            "warmup_rounds": warmup_rounds,
+            "estimate_encryption": estimate_encryption,
+            "seed_count": len(items),
+            "overall_payload_ratio_mean": _mean([float(item.get("overall_payload_ratio", 0.0)) for item in items]),
+            "overall_payload_ratio_std": _std([float(item.get("overall_payload_ratio", 0.0)) for item in items]),
+            "communication_reduction_mean": _mean([1.0 - float(item.get("overall_payload_ratio", 0.0)) for item in items]),
+            "communication_reduction_std": _std([1.0 - float(item.get("overall_payload_ratio", 0.0)) for item in items]),
+        }
+        for metric in ("cos_3", "recall_3", "mrr", "NDCG", "F1", "em"):
+            values = [
+                float(item.get("downstream_metrics", {}).get(metric))
+                for item in items
+                if metric in item.get("downstream_metrics", {})
+            ]
+            if values:
+                record[f"{metric}_mean"] = _mean(values)
+                record[f"{metric}_std"] = _std(values)
+        grouped.append(record)
+    return grouped
+
+
 def build_full_pipeline_report(
     suite_name: str,
     upstream_root: Path,
@@ -312,18 +414,28 @@ def build_full_pipeline_report(
 ) -> Dict:
     upstream_runs = []
     downstream_runs = []
-    for run_dir in sorted(path for path in upstream_root.glob("*") if path.is_dir()):
+    for metadata_path in sorted(upstream_root.rglob("run_metadata.json")):
+        run_dir = metadata_path.parent
         summary = summarize_run(run_dir)
         if summary:
+            summary["relative_run_name"] = str(run_dir.relative_to(upstream_root))
             upstream_runs.append(summary)
-    for output_dir in sorted(path for path in downstream_root.glob("*") if path.is_dir()):
-        upstream_run_dir = upstream_root / output_dir.name
-        downstream_runs.append(summarize_downstream_run(output_dir, upstream_run_dir if upstream_run_dir.exists() else None))
+    for stdout_path in sorted(downstream_root.rglob("rag_eval_stdout.log")):
+        output_dir = stdout_path.parent
+        relative_run_name = str(output_dir.relative_to(downstream_root))
+        upstream_run_dir = upstream_root / relative_run_name
+        downstream_runs.append(
+            summarize_downstream_run(
+                output_dir,
+                upstream_run_dir if upstream_run_dir.exists() else None,
+                relative_run_name=relative_run_name,
+            )
+        )
 
     downstream_map = {item["run_name"]: item for item in downstream_runs}
     merged_runs = []
     for upstream in upstream_runs:
-        downstream = downstream_map.get(Path(upstream["run_dir"]).name, {})
+        downstream = downstream_map.get(upstream.get("relative_run_name", ""), {})
         merged_runs.append(
             {
                 **upstream,
@@ -332,6 +444,7 @@ def build_full_pipeline_report(
                 "downstream_output_dir": downstream.get("output_dir", ""),
             }
         )
+    grouped_runs = build_grouped_pipeline_summary(merged_runs)
 
     return {
         "report_type": "full_pipeline",
@@ -342,6 +455,7 @@ def build_full_pipeline_report(
         "upstream_runs": upstream_runs,
         "downstream_runs": downstream_runs,
         "merged_runs": merged_runs,
+        "grouped_runs": grouped_runs,
         "completed_upstream": sum(1 for item in upstream_runs if item),
         "completed_downstream": sum(1 for item in downstream_runs if item.get("status") == "completed"),
     }
@@ -370,10 +484,24 @@ def render_full_pipeline_markdown(report: Dict) -> str:
             f"reduction={1.0 - item['overall_payload_ratio']:.4f}, downstream={item['downstream_status']}"
             + (f", {metric_text}" if metric_text else "")
         )
+    if report.get("grouped_runs"):
+        lines.extend(["", "## 3. Seed 聚合统计", ""])
+        for item in report["grouped_runs"]:
+            metric_text = ", ".join(
+                f"{metric}={item[f'{metric}_mean']:.4f}±{item[f'{metric}_std']:.4f}"
+                for metric in ("cos_3", "recall_3", "mrr", "NDCG")
+                if f"{metric}_mean" in item
+            )
+            lines.append(
+                f"- `{item['suite_tag']}/{item['task_name']}/{item['strategy']}`: "
+                f"payload={item['overall_payload_ratio_mean']:.4f}±{item['overall_payload_ratio_std']:.4f}, "
+                f"reduction={item['communication_reduction_mean']:.4f}±{item['communication_reduction_std']:.4f}"
+                + (f", {metric_text}" if metric_text else "")
+            )
     lines.extend(
         [
             "",
-            "## 3. 自动分析",
+            "## 4. 自动分析",
             "",
             "本报告同时归档上游联邦训练与下游 RAG 检索评测结果，用于判断“通信压缩是否换来了可接受的下游性能保持”。",
             "优先关注上游 `overall_payload_ratio` 与下游 `cos_1/cos_3/recall_3/mrr/NDCG` 的联合变化。",
@@ -397,10 +525,12 @@ def write_full_pipeline_report(
     md_path.write_text(render_full_pipeline_markdown(report), encoding="utf-8")
     _copy_if_exists(upstream_root / "summary.json", data_dir / "upstream_summary.json")
     _copy_if_exists(upstream_root / "summary.csv", data_dir / "upstream_summary.csv")
+    _copy_if_exists(upstream_root / "summary_grouped.json", data_dir / "upstream_summary_grouped.json")
+    _copy_if_exists(upstream_root / "summary_grouped.csv", data_dir / "upstream_summary_grouped.csv")
     _copy_if_exists(downstream_root / "rag_eval_all_summary.json", data_dir / "downstream_summary.json")
     for item in report.get("merged_runs", []):
         run_name = Path(item["run_dir"]).name
-        _copy_if_exists(Path(item["run_dir"]), data_dir / "upstream" / run_name)
+        _copy_run_snapshot(Path(item["run_dir"]), data_dir / "upstream" / run_name)
         if item.get("downstream_output_dir"):
-            _copy_if_exists(Path(item["downstream_output_dir"]), data_dir / "downstream" / run_name)
+            _copy_downstream_snapshot(Path(item["downstream_output_dir"]), data_dir / "downstream" / run_name)
     return md_path

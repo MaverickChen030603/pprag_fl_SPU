@@ -1,0 +1,12 @@
+torch
+transformers
+requests
+tqdm
+pyyaml
+ujson
+prettytable
+sentencepiece
+datasets
+numpy<2
+llama-index
+langchain
