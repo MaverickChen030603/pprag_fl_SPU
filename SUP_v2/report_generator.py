@@ -274,7 +274,7 @@ def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="ignore")
 
 
-def _extract_last_float(text: str, metric: str) -> float | None:
+def _extract_last_float(text: str, metric: str):
     matches = re.findall(rf"^{re.escape(metric)}:\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)\s*$", text, flags=re.MULTILINE)
     if not matches:
         return None
@@ -305,11 +305,7 @@ def summarize_downstream_run(output_dir: Path, upstream_run_dir: Path | None = N
     }
 
 
-def build_full_pipeline_report(
-    suite_name: str,
-    upstream_root: Path,
-    downstream_root: Path,
-) -> Dict:
+def build_full_pipeline_report(suite_name: str, upstream_root: Path, downstream_root: Path) -> Dict:
     upstream_runs = []
     downstream_runs = []
     for run_dir in sorted(path for path in upstream_root.glob("*") if path.is_dir()):
@@ -319,20 +315,16 @@ def build_full_pipeline_report(
     for output_dir in sorted(path for path in downstream_root.glob("*") if path.is_dir()):
         upstream_run_dir = upstream_root / output_dir.name
         downstream_runs.append(summarize_downstream_run(output_dir, upstream_run_dir if upstream_run_dir.exists() else None))
-
     downstream_map = {item["run_name"]: item for item in downstream_runs}
     merged_runs = []
     for upstream in upstream_runs:
         downstream = downstream_map.get(Path(upstream["run_dir"]).name, {})
-        merged_runs.append(
-            {
-                **upstream,
-                "downstream_status": downstream.get("status", "missing"),
-                "downstream_metrics": downstream.get("metrics", {}),
-                "downstream_output_dir": downstream.get("output_dir", ""),
-            }
-        )
-
+        merged_runs.append({
+            **upstream,
+            "downstream_status": downstream.get("status", "missing"),
+            "downstream_metrics": downstream.get("metrics", {}),
+            "downstream_output_dir": downstream.get("output_dir", ""),
+        })
     return {
         "report_type": "full_pipeline",
         "suite_name": suite_name,
@@ -364,30 +356,25 @@ def render_full_pipeline_markdown(report: Dict) -> str:
     ]
     for item in report.get("merged_runs", []):
         metrics = item.get("downstream_metrics", {})
-        metric_text = ", ".join(f"{key}={value}" for key, value in metrics.items() if key in ("cos_1", "cos_3", "recall_3", "mrr", "NDCG"))
+        metric_text = ", ".join(
+            f"{key}={value}" for key, value in metrics.items() if key in ("cos_1", "cos_3", "recall_3", "mrr", "NDCG")
+        )
         lines.append(
-            f"- `{Path(item['run_dir']).name}`: strategy={item['strategy']}, overall_payload={item['overall_payload_ratio']:.4f}, "
-            f"reduction={1.0 - item['overall_payload_ratio']:.4f}, downstream={item['downstream_status']}"
+            f"- `{Path(item['run_dir']).name}`: strategy={item['strategy']}, overall_payload={item['overall_payload_ratio']:.4f}, reduction={1.0 - item['overall_payload_ratio']:.4f}, downstream={item['downstream_status']}"
             + (f", {metric_text}" if metric_text else "")
         )
-    lines.extend(
-        [
-            "",
-            "## 3. 自动分析",
-            "",
-            "本报告同时归档上游联邦训练与下游 RAG 检索评测结果，用于判断“通信压缩是否换来了可接受的下游性能保持”。",
-            "优先关注上游 `overall_payload_ratio` 与下游 `cos_1/cos_3/recall_3/mrr/NDCG` 的联合变化。",
-            "如果某一策略在显著降低 payload ratio 的同时仍保持稳定的下游命中率与排序指标，则说明该策略更适合作为通信高效的联邦检索方案。",
-        ]
-    )
+    lines.extend([
+        "",
+        "## 3. 自动分析",
+        "",
+        "本报告同时归档上游联邦训练与下游 RAG 检索评测结果，用于判断通信压缩是否换来了可接受的下游性能保持。",
+        "优先关注上游 overall_payload_ratio 与下游 cos_1、cos_3、recall_3、mrr、NDCG 的联合变化。",
+        "如果某一策略在显著降低 payload ratio 的同时仍保持稳定的下游命中率与排序指标，则说明该策略更适合作为通信高效的联邦检索方案。",
+    ])
     return "\n".join(lines) + "\n"
 
 
-def write_full_pipeline_report(
-    suite_name: str,
-    upstream_root: Path,
-    downstream_root: Path,
-) -> Path:
+def write_full_pipeline_report(suite_name: str, upstream_root: Path, downstream_root: Path) -> Path:
     report = build_full_pipeline_report(suite_name, upstream_root, downstream_root)
     bundle_dir = ensure_dir(_report_dir() / f"full_pipeline_{suite_name}_{_timestamp()}")
     data_dir = ensure_dir(bundle_dir / "data")

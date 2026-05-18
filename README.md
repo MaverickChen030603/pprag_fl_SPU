@@ -1,99 +1,144 @@
-# FedE4RAG
+# V3: Heterogeneity-Aware Value-Guided Selective Upload
 
-This is the repository of the paper ***Privacy-Preserving Federal Embedding Learning for Localized Retrieval-Augmented Generation***.
+`V3/` 是在现有 `SUP_v3` 基础上独立整理出来的新版实验目录，目标是把“超网络选择性上传”从 `V2` 的可行性验证，推进到：
 
-FedE4RAG addresses data scarcity and privacy challenges in private RAG systems. It uses federated learning (FL) to collaboratively train client-side RAG retrieval models, keeping raw data localized. The framework employs knowledge distillation for effective server-client communication and homomorphic encryption to enhance parameter privacy. FedE4RAG aims to boost the performance of localized RAG retrievers by leveraging diverse client insights securely, balancing data utility and confidentiality, particularly demonstrated in sensitive domains like finance.
+- 面向客户端异构性的条件化超网络
+- 面向通信性价比的 `value-aware` 打分
+- 面向动态预算的自适应选择
+- 保持上游 FL、下游 RAG 与报告归档的完整闭环
 
-## Updates
-- **2025-12.15: Add the fedavg.py for upstream tasks.**
+## 目录说明
 
-- **2025-11.18: Add the retriever.py for downstream tasks.**
+- `run_upstream.py`：单次上游实验入口
+- `run_experiment_suite.py`：V3 实验套件入口
+- `fedrag_selective_upload.py`：上游联邦训练主流程
+- `hypernetwork.py`：V3 超网络与特征编码
+- `history_memory.py`：客户端历史记忆
+- `budget_allocator.py`：自适应预算与价值密度分配
+- `explain_analyzer.py`：解释性分析
+- `run_all_rag_eval.py`：批量下游评测
+- `finalize_pipeline.py`：上下游汇总与总报告
+- `report_generator.py`：单实验 / suite / full pipeline 报告
 
-- **2025-11.05: Add the requirements.txt for downstream tasks.**
+## V3 的关键方法开关
 
-- **2025-11.04: Add FedE/flgo/algorithm/fedrag-CKKS as the code of CKKS encrypted version for upstream training. If you wish to use the CKKS encrypted version of fedrag, please replace the FedE/flgo/algorithm/fedrag.py with the content of FedE/flgo/algorithm/fedrag-CKKS.py.**
+- `selection_strategy`
+  - `full`
+  - `random`
+  - `static_top`
+  - `delta_norm`
+  - `hypernet_v2`
+  - `hypernet_v3`
+- `score_mode`
+  - `importance`
+  - `value`
+- `budget_mode`
+  - `fixed`
+  - `adaptive`
+- `use_client_embedding`
+- `use_history_features`
+- `layerwise_budget`
 
-## Hardware Requirements
+## 快速开始
 
-When training with a batch size of 16, a GPU with more than 80G of memory is required. However, in the federated training section of the paper, training was conducted using a single A40 GPU.
-
-## Environment
-
-#### Upstream Embedding Learning Environment
-
-Run command below to install all the environment in need.
-
-```
-cd FedE
-pip install -r requirements.txt
-```
-
-#### Downstream Question & Answer Environment
-
-Create a Virtual Environment via conda (Recommended)：
+### 1. dry-run 查看单次配置
 
 ```bash
-conda create -n Fedrag-test python=3.11
-conda install -r requirements
-conda install openai==1.55.3
+python V3/run_upstream.py \
+  --strategy hypernet_v3 \
+  --topk 3 \
+  --warmup 1 \
+  --score-mode value \
+  --budget-mode adaptive \
+  --dry-run
 ```
 
-Install via pip：
+### 2. smoke test
 
-```
-pip install -r requirements
-pip install openai==1.55.3
-pip install jury --no-deps
+```bash
+python V3/run_experiment_suite.py --suite smoke
 ```
 
-## Data
+### 3. 主实验
 
-We provide all datasets used in our experiments:
-
-- The all datasets used are [DocAILab/FedE4RAG_Dataset · Datasets at Hugging Face](https://huggingface.co/datasets/DocAILab/FedE4RAG_Dataset).
-- The datasets used for training are [train_data in DocAILab/FedE4RAG_Dataset](https://huggingface.co/datasets/DocAILab/FedE4RAG_Dataset/tree/main/FEDE4FIN)).
-- The downstream data for testing, specifically the test corpus file, is located on Hugging Face: [test_data in DocAILab/FedE4RAG_Dataset](https://huggingface.co/datasets/DocAILab/FedE4RAG_Dataset/tree/main/RAG4FIN).
-
-## Usage
-
-### Upstream Embedding Learning
-
-#### Step1	
-
-Change the model training hyperparameters in the [FedE/main.py](https://github.com/DocAILab/FedE4RAG/blob/main/FedE/main.py).
-
-#### Step2
-
-Select the appropriate training data and copy it to the [FedE/select_data.json](https://github.com/DocAILab/FedE4RAG/blob/main/FedE/select_data.json).
-
-#### Step3
-
-Generate the fine-tuned model by executing the following shell script. (Before running, change the "data_path" augument in the script and code as needed)
-
-```
-cd ./FedE/
-bash run.sh
+```bash
+python V3/run_experiment_suite.py --suite v3_main
 ```
 
-### Downstream Question & Answer
+### 4. 预算实验
 
-- "The `bash.sh` and `bash1.sh` files provide scripts for directly evaluating your model.  You can use them by correctly filling in the path to your model within the scripts. The difference between them is that `bash1` additionally includes tests for the model's generation capabilities."
-- "The `main_100_test.py`, `main_50_test.py`, and `response.py` are the specific evaluation files. You can customize the evaluation metrics and output files you need within them."
-
-## Citation
-
-```c
-@misc{mao2025privacypreservingfederatedembeddinglearning,
-      title={Privacy-Preserving Federated Embedding Learning for Localized Retrieval-Augmented Generation}, 
-      author={Qianren Mao and Qili Zhang and Hanwen Hao and Zhentao Han and Runhua Xu and Weifeng Jiang and Qi Hu and Zhijun Chen and Tyler Zhou and Bo Li and Yangqiu Song and Jin Dong and Jianxin Li and Philip S. Yu},
-      year={2025},
-      eprint={2504.19101},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2504.19101}, 
-}
+```bash
+python V3/run_experiment_suite.py --suite v3_budget
 ```
 
-## Acknowledgements
+### 5. 异构性实验
 
-This project draws inspiration from and incorporates code elements of the FLGo project (https://github.com/WwZzz/easyFL).  We are grateful for the contributions and insights provided by the FLGo development team, which have been instrumental in advancing our project's development in the federated learning domain.
+```bash
+python V3/run_experiment_suite.py --suite v3_heterogeneity
+```
+
+### 6. 消融实验
+
+```bash
+python V3/run_experiment_suite.py --suite v3_ablation_feature
+python V3/run_experiment_suite.py --suite v3_ablation_budget
+```
+
+### 7. 解释性实验
+
+```bash
+python V3/run_experiment_suite.py --suite v3_explain
+```
+
+### 8. 全量汇总
+
+```bash
+python V3/finalize_pipeline.py \
+  --suite-name all_v3 \
+  --upstream-root V3/outputs/pprag_fl_v3 \
+  --downstream-root V3/outputs/rag_eval_all_v3 \
+  --force-rag
+```
+
+### 9. 无人值守总控脚本
+
+如果希望整个 V3 流程自动串行执行，而不是每个 suite 手动接续，可以直接运行：
+
+```bash
+bash run_v3_all.sh
+```
+
+这个脚本会自动：
+
+1. 按顺序运行 `v3_main -> v3_budget -> v3_heterogeneity -> v3_ablation_feature -> v3_ablation_budget -> v3_explain`
+2. 每套 suite 完成后自动执行 `finalize_pipeline.py`
+3. 自动补下游 `RAGTest`
+4. 最后统一执行 `all_v3 finalize`
+
+常用环境变量：
+
+```bash
+GPU_ID=0 BATCH_SIZE=1 SEED_LIST=0,1,2 bash run_v3_all.sh
+```
+
+如果要强制重跑下游评测：
+
+```bash
+FORCE_RAG=1 bash run_v3_all.sh
+```
+
+## 输出位置
+
+- 上游输出：`V3/outputs/pprag_fl_v3/...`
+- 下游输出：`V3/outputs/rag_eval_all_v3/...`
+- 报告归档：`实验分析报告/V3/...`
+
+## 说明
+
+V3 默认保留 V2 的完整流程能力，但把方法核心升级成：
+
+1. 客户端条件特征驱动的 block 打分  
+2. 历史记忆辅助的重要性/价值判断  
+3. 按 `value density` 进行上传排序  
+4. 支持固定预算与自适应预算两种模式  
+5. 记录解释性分析文件，便于后续论文绘图与分析
