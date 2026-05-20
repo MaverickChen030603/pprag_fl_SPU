@@ -7,13 +7,24 @@ cd "$ROOT_DIR"
 GPU_ID="${GPU_ID:-0}"
 BATCH_SIZE="${BATCH_SIZE:-1}"
 SEED_LIST="${SEED_LIST:-0,1,2}"
-PYTHON_BIN="${PYTHON_BIN:-python3}"
+DEFAULT_SUPV2_PY="$HOME/anaconda3/envs/supv2/bin/python"
+if [[ -z "${PYTHON_BIN:-}" ]]; then
+  if [[ -x "$DEFAULT_SUPV2_PY" ]]; then
+    PYTHON_BIN="$DEFAULT_SUPV2_PY"
+  else
+    PYTHON_BIN="python3"
+  fi
+fi
 RAG_SCRIPT="${RAG_SCRIPT:-main_100_test.py}"
 FORCE_RAG="${FORCE_RAG:-0}"
 
 UPSTREAM_ROOT="$ROOT_DIR/V5/outputs/pprag_fl_v5"
 DOWNSTREAM_ROOT="$ROOT_DIR/V5/outputs/rag_eval_all_v5"
 REPORT_ROOT="$ROOT_DIR/实验分析报告/V5"
+
+echo "[env] ROOT_DIR=$ROOT_DIR"
+echo "[env] PYTHON_BIN=$PYTHON_BIN"
+echo "[env] GPU_ID=$GPU_ID BATCH_SIZE=$BATCH_SIZE SEED_LIST=$SEED_LIST"
 
 ensure_finalize() {
   local suite_name="$1"
