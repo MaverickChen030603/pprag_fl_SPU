@@ -10,6 +10,7 @@ SUP_v3/outputs/
 V3/outputs/
 V4/outputs/
 V5/outputs/
+V6/outputs/
 实验分析报告/
 
 FedE/num5_*_sup_v2/
@@ -17,6 +18,7 @@ FedE/num5_*_sup_v3/
 FedE/num5_*_v3/
 FedE/num5_*_v4/
 FedE/num5_*_v5/
+FedE/num5_*_v6/
 
 RAGTest/storage-*/
 RAGTest/*.txt
