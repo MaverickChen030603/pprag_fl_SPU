@@ -1,0 +1,11 @@
+torch
+transformers
+requests
+numpy
+tqdm
+ujson
+pyyaml
+prettytable
+scipy
+matplotlib
+
