@@ -332,9 +332,9 @@ def main() -> int:
         result = run(config)
         results.append(result)
 
-    summary_dir = write_suite_report(args.suite, results, manifest_root)
     write_json(manifest_root / "suite_results.json", results)
-    print(summary_dir)
+    report_path = write_suite_report(args.suite, suite_configs)
+    print(f"V6 suite analysis report written to {report_path}")
     return 0
 
 
