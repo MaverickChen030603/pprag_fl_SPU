@@ -18,13 +18,20 @@ run_suite() {
 
   if [ -f "$ROOT/V7/run_all_rag_eval.py" ]; then
     log "Starting downstream RAG eval: $suite"
-    "$PYTHON_BIN" "$ROOT/V7/run_all_rag_eval.py" --suite "$suite" 2>&1 | tee -a "$LOG"
+    "$PYTHON_BIN" "$ROOT/V7/run_all_rag_eval.py" \
+      --upstream-root "$ROOT/V7/outputs/pprag_fl_v7/$suite" \
+      --output-root "$ROOT/V7/outputs/rag_eval_all_v7/$suite" \
+      2>&1 | tee -a "$LOG"
     log "Finished downstream RAG eval: $suite"
   fi
 
   if [ -f "$ROOT/V7/finalize_pipeline.py" ]; then
     log "Finalizing suite: $suite"
-    "$PYTHON_BIN" "$ROOT/V7/finalize_pipeline.py" --suite "$suite" 2>&1 | tee -a "$LOG" || true
+    "$PYTHON_BIN" "$ROOT/V7/finalize_pipeline.py" \
+      --suite "$suite" \
+      --upstream-root "$ROOT/V7/outputs/pprag_fl_v7/$suite" \
+      --downstream-root "$ROOT/V7/outputs/rag_eval_all_v7/$suite" \
+      2>&1 | tee -a "$LOG" || true
   fi
 }
 
@@ -53,6 +60,9 @@ case "$MODE" in
   full_pass)
     SUITES=(v7_main v7_budget_aligned v7_heterogeneity v7_hardquery v7_ablation_signal v7_ablation_agent_level v7_cost_efficiency v7_explain)
     ;;
+  next)
+    SUITES=(v7_heterogeneity v7_ablation_signal v7_hardquery_strong)
+    ;;
   collect)
     collect_and_analyze
     log "V7 collection mode completed"
@@ -70,7 +80,11 @@ done
 
 if [ -f "$ROOT/V7/finalize_pipeline.py" ]; then
   log "Running all_v7 finalize"
-  "$PYTHON_BIN" "$ROOT/V7/finalize_pipeline.py" --suite all_v7 2>&1 | tee -a "$LOG" || true
+  "$PYTHON_BIN" "$ROOT/V7/finalize_pipeline.py" \
+    --suite all_v7 \
+    --upstream-root "$ROOT/V7/outputs/pprag_fl_v7" \
+    --downstream-root "$ROOT/V7/outputs/rag_eval_all_v7" \
+    2>&1 | tee -a "$LOG" || true
 fi
 
 collect_and_analyze

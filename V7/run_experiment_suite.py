@@ -26,6 +26,7 @@ def parse_args() -> argparse.Namespace:
             "v7_budget_aligned",
             "v7_heterogeneity",
             "v7_hardquery",
+            "v7_hardquery_strong",
             "v7_ablation_signal",
             "v7_ablation_agent_level",
             "v7_cost_efficiency",
@@ -104,9 +105,9 @@ def method_config(base: UpstreamConfig, seed: int, method: str, **overrides) -> 
     elif method == "agent_bandit_v7":
         common.update(selection_strategy="hypernet_v6", agent_profile="bandit_ucb_memory", history_window=7)
     elif method == "agent_policy_v7":
-        common.update(selection_strategy="hypernet_v6", agent_profile="policy_feature_selector", layerwise_budget=True)
+        common.update(selection_strategy="hypernet_v6", agent_profile="policy_feature_selector")
     elif method == "agent_llm_planner_v7":
-        common.update(selection_strategy="hypernet_v6", agent_profile="llm_planner_overlay", layerwise_budget=True)
+        common.update(selection_strategy="hypernet_v6", agent_profile="llm_planner_overlay")
     elif method == "full_upload":
         common.update(selection_strategy="full", agent_profile="baseline_full_upload", topk_blocks=0, score_mode="importance")
     else:
@@ -172,6 +173,27 @@ def v7_hardquery_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[Upstr
     methods = ["hypernet_v6", "adaptive_v6"] + AGENT_METHODS
     return [
         method_config(base, seed, method, use_hard_query_weighting=True, hard_query_scale=1.5)
+        for seed in seeds
+        for method in methods
+    ]
+
+
+def v7_hardquery_strong_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+    methods = ["hypernet_v6", "adaptive_v6"] + AGENT_METHODS
+    strong_base = replace(base, suite_tag="v7_hardquery_strong")
+    return [
+        method_config(
+            strong_base,
+            seed,
+            method,
+            use_hard_query_weighting=True,
+            hard_query_scale=4.0,
+            hard_client_threshold=0.50,
+            hard_client_bonus_topk=0,
+            adaptive_expand_threshold=0.90,
+            utility_expand_threshold=1.60,
+            hard_budget_only=True,
+        )
         for seed in seeds
         for method in methods
     ]
@@ -243,11 +265,13 @@ def deduplicate(configs: list[UpstreamConfig]) -> list[UpstreamConfig]:
             config.use_history_features,
             config.use_block_embedding,
             config.use_hard_query_weighting,
+            config.hard_query_scale,
             config.use_utility_memory,
             config.layerwise_budget,
             config.adaptive_expand_threshold,
             config.utility_expand_threshold,
             config.hard_client_threshold,
+            config.hard_client_bonus_topk,
             config.hard_budget_only,
         )
         dedup[key] = config
@@ -281,6 +305,7 @@ def build_suite(args: argparse.Namespace) -> list[UpstreamConfig]:
         "v7_budget_aligned": v7_budget_aligned_suite,
         "v7_heterogeneity": v7_heterogeneity_suite,
         "v7_hardquery": v7_hardquery_suite,
+        "v7_hardquery_strong": v7_hardquery_strong_suite,
         "v7_ablation_signal": v7_ablation_signal_suite,
         "v7_ablation_agent_level": v7_ablation_agent_level_suite,
         "v7_cost_efficiency": v7_cost_efficiency_suite,
@@ -293,6 +318,7 @@ def build_suite(args: argparse.Namespace) -> list[UpstreamConfig]:
             "v7_budget_aligned",
             "v7_heterogeneity",
             "v7_hardquery",
+            "v7_hardquery_strong",
             "v7_ablation_signal",
             "v7_ablation_agent_level",
             "v7_cost_efficiency",

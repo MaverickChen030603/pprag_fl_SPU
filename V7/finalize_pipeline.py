@@ -12,11 +12,11 @@ from report_generator import write_full_pipeline_report
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Finalize the V5 upstream + downstream experiment pipeline.")
-    parser.add_argument("--suite-name", default="all")
+    parser.add_argument("--suite-name", "--suite", dest="suite_name", default="all")
     parser.add_argument("--wait-pid", type=int, default=0)
     parser.add_argument("--poll-seconds", type=int, default=120)
-    parser.add_argument("--upstream-root", default=str(OUTPUT_ROOT / "pprag_fl_v6" / "v7_adhoc"))
-    parser.add_argument("--downstream-root", default=str(OUTPUT_ROOT / "rag_eval_all_v6" / "v7_adhoc"))
+    parser.add_argument("--upstream-root", default="")
+    parser.add_argument("--downstream-root", default="")
     parser.add_argument("--script", default="main_100_test.py")
     parser.add_argument("--python", default=sys.executable)
     parser.add_argument("--force-rag", action="store_true")
@@ -41,6 +41,11 @@ def run_command(command: list[str]) -> None:
 
 def main() -> None:
     args = parse_args()
+    suite = args.suite_name
+    if not args.upstream_root:
+        args.upstream_root = str(OUTPUT_ROOT / "pprag_fl_v7" / suite)
+    if not args.downstream_root:
+        args.downstream_root = str(OUTPUT_ROOT / "rag_eval_all_v7" / suite)
     while args.wait_pid > 0 and pid_alive(args.wait_pid):
         time.sleep(max(args.poll_seconds, 1))
 

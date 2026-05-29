@@ -25,27 +25,36 @@ def safe_load_json(path: Path) -> dict:
 def infer_fields(path: Path) -> dict:
     parts = path.relative_to(OUTPUT_ROOT).parts
     inferred = {"suite": "", "run_dir": str(path.parent)}
-    if parts:
+    if len(parts) >= 2 and parts[0] in {"pprag_fl_v7", "rag_eval_all_v7"}:
+        inferred["suite"] = parts[1]
+    elif parts:
         inferred["suite"] = parts[0]
     text = "/".join(parts)
-    for key in ("method", "seed", "topk"):
-        match = re.search(rf"{key}[_=-]([^/_.-]+)", text)
-        if match:
-            inferred[key] = match.group(1)
+    run_name = path.parent.name
+    match = re.search(r"^(?P<method>.+?)_k(?P<topk>\d+)_w\d+_s(?P<seed>\d+)_", run_name)
+    if match:
+        inferred.update(match.groupdict())
     return inferred
 
 
 def flatten_metadata(path: Path) -> dict:
     data = safe_load_json(path)
+    config_path = path.parent / "upstream_config.json"
+    config = safe_load_json(config_path) if config_path.exists() else {}
     row = infer_fields(path)
     row["metadata_path"] = str(path)
-    row["method"] = data.get("method", row.get("method", ""))
-    row["suite"] = data.get("suite", row.get("suite", ""))
-    row["seed"] = data.get("seed", row.get("seed", ""))
-    row["topk"] = data.get("topk", row.get("topk", ""))
-    row["avg_payload"] = data.get("avg_payload", data.get("payload_avg", ""))
-    row["total_payload"] = data.get("total_payload", data.get("payload_total", ""))
-    row["final_round"] = data.get("final_round", data.get("round", ""))
+    row["method"] = config.get("method_name", data.get("method", row.get("method", "")))
+    row["agent_profile"] = config.get("agent_profile", "")
+    row["suite"] = config.get("suite_tag", data.get("suite", row.get("suite", "")))
+    row["seed"] = config.get("seed", data.get("seed", row.get("seed", "")))
+    row["topk"] = config.get("topk_blocks", data.get("topk", row.get("topk", "")))
+    row["avg_payload"] = data.get("overall_payload_ratio", data.get("avg_payload", data.get("payload_avg", "")))
+    row["total_payload"] = data.get("total_uploaded", data.get("total_payload", data.get("payload_total", "")))
+    row["final_round"] = data.get("completed_rounds", data.get("final_round", data.get("round", "")))
+    row["score_mode"] = config.get("score_mode", "")
+    row["budget_mode"] = config.get("budget_mode", "")
+    row["hard_query_scale"] = config.get("hard_query_scale", "")
+    row["history_window"] = config.get("history_window", "")
     row["status"] = data.get("status", "completed" if "_json_error" not in data else "json_error")
     row["json_error"] = data.get("_json_error", "")
     return row
@@ -57,6 +66,9 @@ def summarize_downstream(log_path: Path) -> dict:
     row["rag_eval_log"] = str(log_path)
     row["has_traceback"] = "Traceback" in text or "ERROR" in text
     patterns = {
+        "cos_1": r"cos[_@ -]?1\s*[:=]\s*([0-9.]+)",
+        "cos_3": r"cos[_@ -]?3\s*[:=]\s*([0-9.]+)",
+        "recall_3": r"recall[_@ -]?3\s*[:=]\s*([0-9.]+)",
         "recall_at_5": r"Recall@5\s*[:=]\s*([0-9.]+)",
         "recall_at_10": r"Recall@10\s*[:=]\s*([0-9.]+)",
         "mrr": r"\bMRR\b\s*[:=]\s*([0-9.]+)",

@@ -64,6 +64,18 @@ suites:
     topk: [3]
     downstream_eval: true
 
+  v7_hardquery_strong:
+    description: "Stronger hard-query stress setting with fixed payload and no hard-client expansion."
+    methods: [hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+    constraints:
+      hard_query_scale: 4.0
+      hard_client_threshold: 0.50
+      hard_client_bonus_topk: 0
+      forbid_budget_expansion: true
+
   v7_ablation_signal:
     description: "Signal contribution ablation."
     variants:
@@ -123,6 +135,12 @@ full_pass:
     - v7_ablation_agent_level
     - v7_cost_efficiency
     - v7_explain
+
+next_pass:
+  description: "Post first-pass signal search after budget and collector fixes."
+  suites: [v7_heterogeneity, v7_ablation_signal, v7_hardquery_strong]
+  expected_upstream_runs: 135
+  expected_downstream_runs: 135
 
 expected_budget:
   first_pass_upstream_runs: 54

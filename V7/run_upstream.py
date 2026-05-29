@@ -52,7 +52,6 @@ AGENT_STRATEGY_OVERLAYS = {
         "use_block_embedding": True,
         "use_hard_query_weighting": True,
         "use_utility_memory": True,
-        "layerwise_budget": True,
         "hard_budget_only": True,
     },
     "agent_llm_planner_v7": {
@@ -65,7 +64,6 @@ AGENT_STRATEGY_OVERLAYS = {
         "use_block_embedding": True,
         "use_hard_query_weighting": True,
         "use_utility_memory": True,
-        "layerwise_budget": True,
         "hard_budget_only": True,
     },
 }
