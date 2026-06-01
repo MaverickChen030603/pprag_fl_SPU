@@ -15,6 +15,8 @@ import random
 import numpy as np
 import torch
 import warnings
+import json
+from pathlib import Path
 
 
 def seed_everything(seed):
@@ -32,6 +34,9 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str, default=None)
+parser.add_argument('--query-subset', type=str, default=None)
+parser.add_argument('--save-per-query', action='store_true')
+parser.add_argument('--per-query-output', type=str, default=None)
 args = parser.parse_args()
 if args.model is None:
     print("no model path, use default path——bge")
@@ -43,6 +48,43 @@ else:
 qa_dataset = get_qa_dataset(cfg.dataset)
 print("dataset")
 print(last_dir)
+
+
+def _as_list(value):
+    if hasattr(value, "tolist"):
+        value = value.tolist()
+    if isinstance(value, tuple):
+        return list(value)
+    return value
+
+
+def _load_query_subset(path):
+    if not path:
+        return None
+    subset_path = Path(path).expanduser().resolve()
+    payload = json.loads(subset_path.read_text(encoding="utf-8"))
+    queries = payload.get("queries", payload) if isinstance(payload, dict) else payload
+    query_ids = {str(item.get("query_id")) for item in queries if isinstance(item, dict) and item.get("query_id") is not None}
+    questions = {str(item.get("question")) for item in queries if isinstance(item, dict) and item.get("question") is not None}
+    return {"query_ids": query_ids, "questions": questions, "path": str(subset_path)}
+
+
+def _keep_query(index, question, subset):
+    if subset is None:
+        return True
+    return str(index) in subset["query_ids"] or str(question) in subset["questions"]
+
+
+query_subset = _load_query_subset(args.query_subset)
+if query_subset:
+    print(f"query_subset: {query_subset['path']}")
+
+per_query_f = None
+if args.save_per_query:
+    per_query_path = Path(args.per_query_output or "./per_query_results.jsonl").expanduser().resolve()
+    per_query_path.parent.mkdir(parents=True, exist_ok=True)
+    per_query_f = per_query_path.open("w", encoding="utf-8")
+    print(f"per_query_output: {per_query_path}")
 
 
 Settings.chunk_size = cfg.chunk_size
@@ -102,6 +144,19 @@ def precision(retrieved_ids, expected_ids, k=1):
     return Precision
 
 
+def gold_rank(retrieval_ids, golden_context_ids):
+    golden_set = set(golden_context_ids)
+    for idx, rid in enumerate(retrieval_ids, start=1):
+        if rid in golden_set:
+            return idx
+    return None
+
+
+def reciprocal_rank(retrieval_ids, golden_context_ids):
+    rank = gold_rank(retrieval_ids, golden_context_ids)
+    return 0.0 if rank is None else 1.0 / rank
+
+
 # question = "Which team does the player named 2015 Diamond Head Classic’s MVP play for?"
 # answer = "Sacramento Kings"
 # golden_source = "The 2015 Diamond Head Classic was a college:    basketball tournament ... Buddy Hield was named the tournament’s MVP. Chavano Rainier ”Buddy” Hield is a Bahamian professional basketball player for the Sacramento Kings of the NBA..."
@@ -146,12 +201,14 @@ def compute_and_format_averages():
     return formatted_output
 
 
-for question, expected_answer, golden_context, golden_context_ids in zip(
+for query_index, (question, expected_answer, golden_context, golden_context_ids) in enumerate(zip(
         qa_dataset['question'],
         qa_dataset['answers'],
         qa_dataset['golden_sentences'],
         qa_dataset['golden_ids']
-):
+)):
+    if not _keep_query(query_index, question, query_subset):
+        continue
 
     print(question)
     print(expected_answer)
@@ -180,6 +237,7 @@ for question, expected_answer, golden_context, golden_context_ids in zip(
     eval_result = evaluating_TRT(retrieval_ids, golden_context_ids)
     evaluateResults_TRT.add(eval_result)
 
+    current_gold_rank = gold_rank(retrieval_ids, golden_context_ids)
     score = {"cos_1": hit(retrieval_ids, golden_context_ids, 1), "cos_3": hit(retrieval_ids, golden_context_ids, 3),
              "cos_5": hit(retrieval_ids, golden_context_ids, 5), "cos_10": hit(retrieval_ids, golden_context_ids, 10),
              "recall_1": recall(retrieval_ids, golden_context_ids, 1),
@@ -191,7 +249,22 @@ for question, expected_answer, golden_context, golden_context_ids in zip(
                 "precision_5": precision(retrieval_ids, golden_context_ids, 5),
                 "precision_10": precision(retrieval_ids, golden_context_ids, 10),
              "hit_2": hit(retrieval_ids, golden_context_ids, 2), "hit_4": hit(retrieval_ids, golden_context_ids, 4),
-             "hit_8": hit(retrieval_ids, golden_context_ids, 8)}
+             "hit_8": hit(retrieval_ids, golden_context_ids, 8),
+             "gold_rank": current_gold_rank or 0,
+             "mrr_local": reciprocal_rank(retrieval_ids, golden_context_ids)}
+    if per_query_f is not None:
+        per_query_f.write(json.dumps({
+            "query_id": str(query_index),
+            "question": str(question),
+            "expected_answer": _as_list(expected_answer),
+            "golden_context": _as_list(golden_context),
+            "golden_ids": _as_list(golden_context_ids),
+            "retrieval_ids": _as_list(retrieval_ids),
+            "retrieval_context": _as_list(retrieval_context),
+            "metrics": score,
+            "model": last_dir,
+        }, ensure_ascii=False) + "\n")
+        per_query_f.flush()
     add_scores(score)
     print(compute_and_format_averages())
 
@@ -212,6 +285,8 @@ for metric, total_score in global_evaluation_scores.items():
     formatted_output += f"{metric}: {average_score:.4f}\n"
 f.write(formatted_output)
 f.close()
+if per_query_f is not None:
+    per_query_f.close()
 
 # python main.py --evaluateApiName="gpt-3.5-turbo" --evaluateApiKey="sk-FDMbb0bnifWopAgv4501226dEa4c45E5Ac81841123Eb80B0"
 if __name__ == '__main__':
