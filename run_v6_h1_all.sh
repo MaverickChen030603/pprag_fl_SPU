@@ -4,7 +4,6 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
-PYTHON_BIN="${PYTHON_BIN:-python}"
 GPU="${GPU:-0}"
 ROUNDS="${ROUNDS:-25}"
 CLIENTS="${CLIENTS:-5}"
@@ -16,6 +15,14 @@ DIR_ALPHA="${DIR_ALPHA:-0.3}"
 TASK_SEED="${TASK_SEED:-0}"
 EXPERIMENT_NAME="${EXPERIMENT_NAME:-pprag_fl_v6_h1}"
 LOG_DIR="${LOG_DIR:-V6-H1/outputs/logs}"
+DEFAULT_SUPV2_PY="$HOME/anaconda3/envs/supv2/bin/python"
+if [[ -z "${PYTHON_BIN:-}" ]]; then
+  if [[ -x "$DEFAULT_SUPV2_PY" ]]; then
+    PYTHON_BIN="$DEFAULT_SUPV2_PY"
+  else
+    PYTHON_BIN="python3"
+  fi
+fi
 
 mkdir -p "$LOG_DIR"
 MASTER_LOG="$LOG_DIR/v6_h1_all_$(date +%Y-%m-%d_%H-%M-%S).log"
