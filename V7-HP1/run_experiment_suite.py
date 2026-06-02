@@ -11,7 +11,8 @@ from report_generator import write_suite_report
 from run_upstream import run
 
 BASELINES = ["hypernet_v6", "adaptive_v6"]
-AGENTS = ["agent_tail_v7hp1", "agent_memory_v7hp1"]
+CORE_AGENTS = ["agent_rule_v7", "agent_bandit_v7"]
+AGENTS = CORE_AGENTS + ["agent_tail_v7hp1", "agent_memory_v7hp1"]
 ORACLE = ["agent_oracle_v7hp1"]
 
 
@@ -102,6 +103,10 @@ def method_config(base: UpstreamConfig, seed: int, method: str, **overrides) -> 
         common.update(selection_strategy="hypernet_v6", agent_profile="hp1_baseline_hypernet_v6")
     elif method == "adaptive_v6":
         common.update(selection_strategy="hypernet_v6", agent_profile="hp1_baseline_adaptive_v6", budget_mode="adaptive_v6")
+    elif method == "agent_rule_v7":
+        common.update(selection_strategy="agent_rule_v7", agent_profile="hp1_rule_memory_hardquery", agent_strategy_mode="hard_query_focused")
+    elif method == "agent_bandit_v7":
+        common.update(selection_strategy="agent_bandit_v7", agent_profile="hp1_bandit_ucb_memory", history_window=7, agent_strategy_mode="stability_focused")
     elif method == "agent_tail_v7hp1":
         common.update(selection_strategy="agent_tail_v7hp1", agent_profile="hp1_multihop_tail_agent", hard_client_bonus_topk=1)
     elif method == "agent_memory_v7hp1":
