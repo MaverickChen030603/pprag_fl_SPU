@@ -1,4 +1,0 @@
-{
-  "model_state_path": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_budget_aligned/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1/retriever_state_2026-05-27_13-13-42.bin",
-  "hf_model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_budget_aligned/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-27_13-13-42"
-}
