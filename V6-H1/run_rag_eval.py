@@ -23,7 +23,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    output_dir = ensure_dir(args.output_dir)
+    output_dir = ensure_dir(Path(args.output_dir).expanduser().resolve())
     script_path = RAGTEST_DIR / args.script
     model_path = str(Path(args.model).expanduser().resolve())
     command = [args.python, str(script_path), "--model", model_path]
