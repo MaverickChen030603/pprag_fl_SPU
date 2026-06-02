@@ -22,7 +22,7 @@ from report_generator import write_single_run_report
 
 AGENT_STRATEGY_OVERLAYS = {
     "agent_rule_v7": {
-        "selection_strategy": "hypernet_v6",
+        "selection_strategy": "agent_rule_v7",
         "agent_profile": "rule_memory_hardquery",
         "score_mode": "downstream_value",
         "budget_mode": "fixed",
@@ -32,7 +32,7 @@ AGENT_STRATEGY_OVERLAYS = {
         "hard_budget_only": True,
     },
     "agent_bandit_v7": {
-        "selection_strategy": "hypernet_v6",
+        "selection_strategy": "agent_bandit_v7",
         "agent_profile": "bandit_ucb_memory",
         "score_mode": "downstream_value",
         "budget_mode": "fixed",
@@ -167,6 +167,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--adaptive-shrink-threshold", type=float, default=0.42)
     parser.add_argument("--utility-expand-threshold", type=float, default=1.15)
     parser.add_argument("--soft-budget", action="store_true")
+    parser.add_argument("--agent-strategy-mode", choices=["stability_focused", "hard_query_focused", "diversity_focused"], default="stability_focused")
     parser.add_argument("--rawdata-path", default=str(FEDE_DIR / "select_data_hotpot_train_5000.json"))
     parser.add_argument("--rag-dataset", default="hotpot_qa")
     parser.add_argument("--rag-hotpot-split", default="validation")
@@ -243,6 +244,7 @@ def build_config(args: argparse.Namespace) -> UpstreamConfig:
         adaptive_shrink_threshold=args.adaptive_shrink_threshold,
         utility_expand_threshold=args.utility_expand_threshold,
         hard_budget_only=hard_budget_only,
+        agent_strategy_mode=args.agent_strategy_mode,
     )
 
 

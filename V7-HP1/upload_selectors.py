@@ -5,6 +5,11 @@ import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Mapping, Sequence
 
+try:
+    from .agent_core import AgentScorer
+except ImportError:
+    from agent_core import AgentScorer
+
 from budget_allocator import (
     allocate_client_budget,
     allocate_client_budget_v6,
@@ -148,6 +153,10 @@ class UploadSelector:
         adaptive_shrink_threshold: float = 0.42,
         utility_expand_threshold: float = 1.15,
         hard_budget_only: bool = True,
+        history_map: Mapping[str, Mapping[str, float]] | None = None,
+        hard_query_alignment: Mapping[str, float] | None = None,
+        client_rarity_score: float = 0.0,
+        agent_strategy_mode: str = "stability_focused",
     ) -> SelectionResult:
         if self.strategy in {"full", "fedavg_full"}:
             return SelectionResult("full", ["__ALL__"], {block: 1.0 for block in self.block_names}, budget_topk=len(self.block_names))
@@ -225,6 +234,48 @@ class UploadSelector:
         if score_mode in {"value", "downstream_value"}:
             ranking_scores = compute_value_density(scores, block_costs)
         ranked = _rank_by_score(ranking_scores)
+
+        if self.strategy in {"agent_rule_v7", "agent_bandit_v7"}:
+            scorer = AgentScorer(
+                self.block_names,
+                strategy=self.strategy,
+                strategy_mode=agent_strategy_mode,
+            )
+            agent_scores, components = scorer.score_blocks(
+                local_scores=ranking_scores,
+                history=history_map,
+                hard_query_alignment=hard_query_alignment,
+                client_rarity_score=client_rarity_score,
+                client_hardness=client_hardness,
+                current_round=current_round,
+            )
+            ranked = _rank_by_score(agent_scores)
+            if budget_topk <= 0 or budget_topk >= len(self.block_names):
+                blocks = ["__ALL__"]
+            else:
+                chosen = self._apply_layerwise_budget(ranked, budget_topk)
+                blocks = list(chosen[:budget_topk])
+                # Same-Budget note: always_upload is retained for compatibility.
+                # Strict experiments should either count it in top-k or set it empty.
+                for block in self.always_upload:
+                    if block in self.block_names and block not in blocks:
+                        blocks.append(block)
+            avg_instability = sum(c.get("instability_penalty", 0.0) for c in components.values()) / max(len(components), 1)
+            avg_hard = sum(c.get("hard_query_alignment", 0.0) for c in components.values()) / max(len(components), 1)
+            return SelectionResult(
+                self.strategy,
+                blocks,
+                agent_scores,
+                budget_topk=budget_topk,
+                predicted_budget_ratio=float(predicted_budget_ratio or 0.0),
+                metadata={
+                    "client_hardness": float(client_hardness),
+                    "client_rarity_score": float(client_rarity_score),
+                    "agent_instability_penalty_mean": float(avg_instability),
+                    "hard_query_alignment_mean": float(avg_hard),
+                    "same_budget_topk": float(budget_topk),
+                },
+            )
 
         if self.strategy in {"agent_tail_v7hp1", "agent_memory_v7hp1", "agent_oracle_v7hp1"}:
             base_scores = dict(ranking_scores)

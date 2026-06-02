@@ -21,3 +21,13 @@
 - 状态：已后台启动
 - 命令：`HP1_GPU=0 HP1_BATCH_SIZE=1 HP1_ROUNDS=12 HP1_SEED_LIST=0,1,2 ./run_v7_hp1_all.sh full`
 - 日志：`v7_hp1_full.nohup.log` 与 `v7_hp1_all.log`
+
+## V7 agent core 优化
+
+- 时间：2026-06-02
+- 新增 `agent_core.py`：实现 `AgentMemory`、`AgentReward`、`AgentScorer`。
+- `AgentMemory` 支持 utility EMA、hard-query EMA、rarity EMA、selection EMA 与 mask instability penalty。
+- `AgentScorer` 支持 `agent_rule_v7` 与 `agent_bandit_v7`，并提供 `stability_focused`、`hard_query_focused`、`diversity_focused` 三种评分模式。
+- `UploadSelector` 已接入 agent scorer；agent 只改变 block 排序，最终仍由同一个 `budget_topk` 强制裁剪，符合 Same-Budget Protocol。
+- `run_upstream.py` 已修正：`agent_rule_v7` / `agent_bandit_v7` 不再伪装成 `hypernet_v6`，而是真正进入 agent selection strategy。
+- 验证：单元级 scorer/selector 通过，`agent_rule_v7 --dry-run` 显示 `selection_strategy=agent_rule_v7`。

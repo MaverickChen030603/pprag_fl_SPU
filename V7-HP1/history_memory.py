@@ -22,6 +22,9 @@ class BlockRecord:
     downstream_utility_ema: float = 0.0
     hard_query_utility_ema: float = 0.0
     client_hardness_ema: float = 0.0
+    instability_penalty: float = 0.0
+    reward_count: int = 0
+    last_selected_value: float = 0.0
 
 
 @dataclass
@@ -59,6 +62,9 @@ class SelectionMemory:
             importance = float(block_stats.get("l2", 0.0))
             value = float(block_stats.get("mean_l2", 0.0))
             selected = 1.0 if block_name in selected_set else 0.0
+            mask_flip = abs(selected - record.last_selected_value)
+            record.instability_penalty = _ema(record.instability_penalty, mask_flip, self.momentum)
+            record.last_selected_value = selected
             record.importance_ema = _ema(record.importance_ema, importance, self.momentum)
             record.value_ema = _ema(record.value_ema, value, self.momentum)
             record.selected_ema = _ema(record.selected_ema, selected, self.momentum)
@@ -76,6 +82,7 @@ class SelectionMemory:
             record.client_hardness_ema = _ema(record.client_hardness_ema, client_hardness, self.momentum)
             if selected > 0.0:
                 record.selected_count += 1
+                record.reward_count += 1
                 record.last_selected_round = round_idx
 
     def get_block_history(self, client_id: int, block_names: Sequence[str]) -> Dict[str, Dict[str, float]]:
@@ -99,6 +106,8 @@ class SelectionMemory:
                 "downstream_utility_ema": record.downstream_utility_ema,
                 "hard_query_utility_ema": record.hard_query_utility_ema,
                 "client_hardness_ema": record.client_hardness_ema,
+                "instability_penalty": record.instability_penalty,
+                "reward_count": float(record.reward_count),
             }
         return history
 

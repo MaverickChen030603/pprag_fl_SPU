@@ -107,6 +107,7 @@ class Server(BasicServer):
         self.adaptive_shrink_threshold = float(self.option.get("adaptive_shrink_threshold", 0.42))
         self.utility_expand_threshold = float(self.option.get("utility_expand_threshold", 1.15))
         self.hard_budget_only = bool(self.option.get("hard_budget_only", True))
+        self.agent_strategy_mode = str(self.option.get("agent_strategy_mode", "stability_focused"))
         self.task_name = str(self.option.get("task_name", ""))
 
         self.block_map = build_block_map(self.model.state_dict(), self.block_strategy)
@@ -130,8 +131,8 @@ class Server(BasicServer):
 
         self.hypernet = None
         self.hn_optimizer = None
-        if self.selection_strategy in {"hypernet_v2", "hypernet_v3", "hypernet_v5", "hypernet_v6", "agent_tail_v7hp1", "agent_memory_v7hp1", "agent_oracle_v7hp1"}:
-            hypernet_cls = DownstreamAwareHyperNetwork if self.selection_strategy in {"hypernet_v5", "hypernet_v6", "agent_tail_v7hp1", "agent_memory_v7hp1", "agent_oracle_v7hp1"} else ValueAwareHyperNetwork
+        if self.selection_strategy in {"hypernet_v2", "hypernet_v3", "hypernet_v5", "hypernet_v6", "agent_rule_v7", "agent_bandit_v7", "agent_tail_v7hp1", "agent_memory_v7hp1", "agent_oracle_v7hp1"}:
+            hypernet_cls = DownstreamAwareHyperNetwork if self.selection_strategy in {"hypernet_v5", "hypernet_v6", "agent_rule_v7", "agent_bandit_v7", "agent_tail_v7hp1", "agent_memory_v7hp1", "agent_oracle_v7hp1"} else ValueAwareHyperNetwork
             self.hypernet = hypernet_cls(
                 client_num=self.num_clients,
                 block_names=self.block_names,
@@ -161,6 +162,7 @@ class Server(BasicServer):
             "selection_strategy": selection.strategy,
             "selection_budget_topk": selection.budget_topk,
             "predicted_budget_ratio": selection.predicted_budget_ratio,
+            "selection_metadata": getattr(selection, "metadata", {}),
             "block_map": self.block_map,
             "client_id": client_id,
             "__mtype__": mtype,
@@ -180,6 +182,7 @@ class Server(BasicServer):
             "selection_scores": [],
             "selection_budget_topk": [],
             "predicted_budget_ratio": [],
+            "selection_metadata": [],
             "hn_loss": [],
         }
         for pkg in packages_received_from_clients:
@@ -236,6 +239,7 @@ class Server(BasicServer):
                 "selection_scores",
                 "selection_budget_topk",
                 "predicted_budget_ratio",
+                "selection_metadata",
             ]:
                 if key == "client_id":
                     res[key].append(client_id)
@@ -321,6 +325,8 @@ class Server(BasicServer):
                     history_features,
                 )
         client_hardness = 0.0
+        client_rarity_score = 0.0
+        hard_query_alignment = None
         if self.use_history_features and history_map is not None:
             client_hardness = max(
                 [float(history_map.get(block_name, {}).get("client_hardness_ema", 0.0)) for block_name in self.block_names] or [0.0]
@@ -331,6 +337,12 @@ class Server(BasicServer):
             positive_utilities = [value for value in utility_values if value > 0.0]
             if positive_utilities:
                 utility_ratio = max(positive_utilities) / max(sum(positive_utilities) / len(positive_utilities), 1e-8)
+            hard_query_alignment = {
+                block_name: float(history_map.get(block_name, {}).get("hard_query_utility_ema", 0.0))
+                for block_name in self.block_names
+            }
+            rarity_values = [1.0 - float(history_map.get(block_name, {}).get("selection_freq", 0.0)) for block_name in self.block_names]
+            client_rarity_score = max(0.0, min(1.0, 0.50 * client_hardness + 0.50 * (sum(rarity_values) / max(len(rarity_values), 1))))
         return self.selector.select(
             client_id=client_id,
             current_round=self.current_round,
@@ -347,6 +359,10 @@ class Server(BasicServer):
             adaptive_shrink_threshold=self.adaptive_shrink_threshold,
             utility_expand_threshold=self.utility_expand_threshold,
             hard_budget_only=self.hard_budget_only,
+            history_map=history_map,
+            hard_query_alignment=hard_query_alignment,
+            client_rarity_score=client_rarity_score if self.use_client_embedding else 0.0,
+            agent_strategy_mode=self.agent_strategy_mode,
         )
 
     def _full_selection(self):
@@ -369,20 +385,21 @@ class Server(BasicServer):
         selection_details = []
         upload_block_lists = client_updates.get("upload_blocks", [])
         client_ids = client_updates.get("client_id", [])
-        for client_id, blocks, budget_topk, predicted_budget in zip(
+        for idx, (client_id, blocks, budget_topk, predicted_budget) in enumerate(zip(
             client_ids,
             upload_block_lists,
             budget_topks or [self.topk_blocks] * len(client_ids),
             predicted_budgets or [0.0] * len(client_ids),
-        ):
-            selection_details.append(
-                {
-                    "client_id": int(client_id),
-                    "upload_blocks": list(blocks or []),
-                    "budget_topk": int(budget_topk),
-                    "predicted_budget_ratio": float(predicted_budget),
-                }
-            )
+        )):
+            detail = {
+                "client_id": int(client_id),
+                "upload_blocks": list(blocks or []),
+                "budget_topk": int(budget_topk),
+                "predicted_budget_ratio": float(predicted_budget),
+            }
+            if idx < len(selection_metadata) and isinstance(selection_metadata[idx], dict):
+                detail.update(selection_metadata[idx])
+            selection_details.append(detail)
         total_mean_l2 = 0.0
         for stat_map in client_updates.get("stats", []):
             for block_name in self.block_names:
@@ -450,6 +467,7 @@ class Server(BasicServer):
             "adaptive_shrink_threshold": self.adaptive_shrink_threshold,
             "utility_expand_threshold": self.utility_expand_threshold,
             "hard_budget_only": self.hard_budget_only,
+            "agent_strategy_mode": self.agent_strategy_mode,
             "suite_tag": self.suite_tag,
             "task_name": self.task_name,
             "seed": int(self.option.get("seed", 0)),

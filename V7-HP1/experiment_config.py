@@ -81,6 +81,7 @@ class UpstreamConfig:
     adaptive_shrink_threshold: float = 0.48
     utility_expand_threshold: float = 1.30
     hard_budget_only: bool = True
+    agent_strategy_mode: str = "stability_focused"
 
     def to_flgo_option(self) -> Dict:
         gpu_option = [] if self.gpu < 0 else [self.gpu]
@@ -129,6 +130,7 @@ class UpstreamConfig:
             "adaptive_shrink_threshold": self.adaptive_shrink_threshold,
             "utility_expand_threshold": self.utility_expand_threshold,
             "hard_budget_only": self.hard_budget_only,
+            "agent_strategy_mode": self.agent_strategy_mode,
         }
 
     @property
