@@ -1,0 +1,2073 @@
+[
+  {
+    "round": 1,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 1.0,
+    "total_uploaded_params": 547411200,
+    "avg_uploaded_params": 109482240.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.05548733286559582,
+    "avg_budget_topk": 0.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 0.0,
+    "utility_per_payload": 2.781891901015452e-09,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.13487425905790748,
+    "total_uploaded_params": 73831680,
+    "avg_uploaded_params": 14766336.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.03664845284074545,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.2654130965101724,
+    "utility_per_payload": 2.1833512143187295e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.11"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.13487425905790748,
+    "total_uploaded_params": 73831680,
+    "avg_uploaded_params": 14766336.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.01894079577177763,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.0986122886651097,
+    "utility_per_payload": 2.0896457777851036e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.8",
+          "encoder.layer.7"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.7",
+          "encoder.layer.8"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.7",
+          "encoder.layer.8",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.14782224404615765,
+    "total_uploaded_params": 80919552,
+    "avg_uploaded_params": 16183910.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.003737461194396019,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.2637406793288122,
+    "utility_per_payload": 1.7876954348356418e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.8",
+          "encoder.layer.7"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.8",
+          "encoder.layer.7"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "pooler",
+          "encoder.layer.8",
+          "encoder.layer.7"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.003390175150707364,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.475721734636045e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0055370739661157135,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.4577081596522653e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0021281881025061013,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.491071650484669e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.002105185843538493,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.3977076699059798e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0017416374059394002,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.4330461843759623e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.001578189409337938,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.3868615030049493e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0014092849392909556,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4509706377060485e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0012502735946327448,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.3904584419815295e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0009983003430534155,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4772714579272833e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 14,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.002288441779091954,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.463035713590228e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 15,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0017148081678897142,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.3862943611158907,
+    "utility_per_payload": 1.3212563883635064e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 16,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.001748295989818871,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4448831855586302e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 17,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.005600609234534204,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.5535741962273204e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 18,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0019606963731348516,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4994642274695397e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 19,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.001468179834773764,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4616048742416037e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 20,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.001618615386541933,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4522345848557868e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 21,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.002336823719087988,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4708334750166603e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 22,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0011599488672800363,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6238619959221992,
+    "utility_per_payload": 1.4538950782994328e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 23,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0013568086316809059,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4973822283713185e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 24,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.001688550878316164,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.572274735979593e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 25,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "hypernet_v6",
+    "score_mode": "downstream_value",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0015080373384989798,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4487552099550452e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  }
+]

@@ -1,0 +1,172 @@
+{
+  "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+  "top_blocks": [
+    {
+      "block": "pooler",
+      "count": 120
+    },
+    {
+      "block": "encoder.layer.8",
+      "count": 120
+    },
+    {
+      "block": "encoder.layer.7",
+      "count": 120
+    },
+    {
+      "block": "encoder.layer.9",
+      "count": 77
+    },
+    {
+      "block": "encoder.layer.11",
+      "count": 34
+    },
+    {
+      "block": "encoder.layer.6",
+      "count": 4
+    }
+  ],
+  "client_block_counts": [
+    {
+      "client_id": 0,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.9",
+      "count": 14
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.11",
+      "count": 8
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.6",
+      "count": 1
+    },
+    {
+      "client_id": 1,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.9",
+      "count": 22
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.11",
+      "count": 1
+    },
+    {
+      "client_id": 2,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.11",
+      "count": 13
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.9",
+      "count": 9
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.6",
+      "count": 1
+    },
+    {
+      "client_id": 3,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.11",
+      "count": 12
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.9",
+      "count": 10
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.6",
+      "count": 1
+    },
+    {
+      "client_id": 4,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.9",
+      "count": 22
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.6",
+      "count": 1
+    }
+  ],
+  "avg_budget_topk": 2.88
+}

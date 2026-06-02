@@ -1,0 +1,4 @@
+{
+  "model_state_path": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_state_2026-05-25_22-41-15.bin",
+  "hf_model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_22-41-15"
+}

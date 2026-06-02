@@ -1,0 +1,107 @@
+[
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_21-00-20",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_22-41-15",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-26_00-22-38",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/full_k0_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_20-19-33",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/full_k0_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_22-00-43",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/full_k0_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_23-41-24",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/full_k0_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_21-20-24",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s0_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s1_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s1_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s1_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_23-01-32",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s1_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s2_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s2_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s2_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-26_00-42-45",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v3_k3_w1_s2_enc0_score-value_budget-adaptive_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_21-40-41",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s1_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s1_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s1_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_23-21-19",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s1_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-26_01-02-55",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/hypernet-v7_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/random_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_20-40-03",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s0_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/random_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-25_22-21-04",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s1_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  },
+  {
+    "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "relative_run_dir": "num5_dir_a03_imb00_ts0_v6/random_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "model_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1/retriever_hf_2026-05-26_00-01-56",
+    "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/rag_eval_all_v6/v7_main/num5_dir_a03_imb00_ts0_v6/random_k3_w1_s2_enc0_score-importance_budget-fixed_hist5_client1_block1_hard1_util1",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,2087 @@
+[
+  {
+    "round": 1,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 1.0,
+    "total_uploaded_params": 547411200,
+    "avg_uploaded_params": 109482240.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 0.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 0.0,
+    "utility_per_payload": 2.9310894737888052e-09,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "__ALL__"
+        ],
+        "budget_topk": 0,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4607469485873496e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.3547254064034634e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.7193391211654214,
+    "utility_per_payload": 1.2594991254542404e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104268,
+    "utility_per_payload": 1.2313810504098638e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.4197381254630702e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6238619959221992,
+    "utility_per_payload": 1.205483709028279e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6238619959221992,
+    "utility_per_payload": 1.2230630974148723e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.11",
+          "encoder.layer.7",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.7193391211654214,
+    "utility_per_payload": 1.2477225497505637e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.3591871949209037e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.436687277318451e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.586438028201357e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104265,
+    "utility_per_payload": 1.4348236270400043e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 14,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6238619959221992,
+    "utility_per_payload": 1.2423643921624248e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 15,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6238619959221992,
+    "utility_per_payload": 1.3414815550777298e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 16,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.4175902361100258e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 17,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104268,
+    "utility_per_payload": 1.4932490407021978e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 18,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104268,
+    "utility_per_payload": 1.3261047715888243e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 19,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.5434603681416428e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.11",
+          "encoder.layer.7",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 20,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.5265961233162002e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 21,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104268,
+    "utility_per_payload": 1.4471091117043433e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 22,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.19961418399915823,
+    "total_uploaded_params": 109271040,
+    "avg_uploaded_params": 21854208.0,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5113949669994375,
+    "utility_per_payload": 1.5100804740118173e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 23,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.6500244031104268,
+    "utility_per_payload": 1.2456888923747665e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "embeddings",
+          "encoder.layer.7",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 24,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.23021149731682508,
+    "total_uploaded_params": 126020352,
+    "avg_uploaded_params": 25204070.4,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.7193391211654214,
+    "utility_per_payload": 1.3563026290291084e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.6",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.11",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  },
+  {
+    "round": 25,
+    "suite_tag": "v7_main",
+    "task_name": "num5_dir_a03_imb00_ts0_v6",
+    "strategy": "delta_norm",
+    "score_mode": "importance",
+    "budget_mode": "fixed",
+    "topk_blocks": 3,
+    "warmup_rounds": 1,
+    "selected_clients": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "avg_payload_ratio": 0.260808810634492,
+    "total_uploaded_params": 142769664,
+    "avg_uploaded_params": 28553932.8,
+    "total_full_params": 547411200,
+    "avg_hn_loss": 0.0,
+    "avg_budget_topk": 3.0,
+    "avg_predicted_budget_ratio": 0.0,
+    "total_encrypted_bytes_est": 0.0,
+    "selection_entropy": 1.5545472778672047,
+    "utility_per_payload": 1.237263900601166e-08,
+    "selection_details": [
+      {
+        "client_id": 0,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 1,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "embeddings",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 2,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 3,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      },
+      {
+        "client_id": 4,
+        "upload_blocks": [
+          "encoder.layer.8",
+          "encoder.layer.7",
+          "encoder.layer.9",
+          "pooler"
+        ],
+        "budget_topk": 3,
+        "predicted_budget_ratio": 0.0
+      }
+    ]
+  }
+]

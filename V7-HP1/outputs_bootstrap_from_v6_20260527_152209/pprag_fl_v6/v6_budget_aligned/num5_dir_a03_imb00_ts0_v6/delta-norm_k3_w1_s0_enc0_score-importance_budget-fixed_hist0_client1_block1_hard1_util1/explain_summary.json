@@ -1,0 +1,186 @@
+{
+  "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7/outputs/pprag_fl_v6/v7_budget_aligned/num5_dir_a03_imb00_ts0_v6/delta-norm_k3_w1_s0_enc0_score-importance_budget-fixed_hist0_client1_block1_hard1_util1",
+  "top_blocks": [
+    {
+      "block": "encoder.layer.8",
+      "count": 120
+    },
+    {
+      "block": "encoder.layer.7",
+      "count": 120
+    },
+    {
+      "block": "pooler",
+      "count": 120
+    },
+    {
+      "block": "encoder.layer.9",
+      "count": 63
+    },
+    {
+      "block": "encoder.layer.11",
+      "count": 38
+    },
+    {
+      "block": "embeddings",
+      "count": 13
+    },
+    {
+      "block": "encoder.layer.6",
+      "count": 6
+    }
+  ],
+  "client_block_counts": [
+    {
+      "client_id": 0,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 0,
+      "block": "embeddings",
+      "count": 10
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.11",
+      "count": 7
+    },
+    {
+      "client_id": 0,
+      "block": "encoder.layer.9",
+      "count": 7
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.9",
+      "count": 16
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.6",
+      "count": 4
+    },
+    {
+      "client_id": 1,
+      "block": "embeddings",
+      "count": 3
+    },
+    {
+      "client_id": 1,
+      "block": "encoder.layer.11",
+      "count": 1
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.9",
+      "count": 16
+    },
+    {
+      "client_id": 2,
+      "block": "encoder.layer.11",
+      "count": 8
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.11",
+      "count": 21
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.9",
+      "count": 2
+    },
+    {
+      "client_id": 3,
+      "block": "encoder.layer.6",
+      "count": 1
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.8",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.7",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "pooler",
+      "count": 24
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.9",
+      "count": 22
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.11",
+      "count": 1
+    },
+    {
+      "client_id": 4,
+      "block": "encoder.layer.6",
+      "count": 1
+    }
+  ],
+  "avg_budget_topk": 2.88
+}
