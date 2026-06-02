@@ -383,6 +383,9 @@ class Server(BasicServer):
         budget_topks = [int(item) for item in client_updates.get("selection_budget_topk", []) if item is not None]
         predicted_budgets = [float(item) for item in client_updates.get("predicted_budget_ratio", []) if item is not None]
         selection_details = []
+        selection_metadata = client_updates.get("selection_metadata", []) or []
+        if isinstance(selection_metadata, dict):
+            selection_metadata = [selection_metadata]
         upload_block_lists = client_updates.get("upload_blocks", [])
         client_ids = client_updates.get("client_id", [])
         for idx, (client_id, blocks, budget_topk, predicted_budget) in enumerate(zip(

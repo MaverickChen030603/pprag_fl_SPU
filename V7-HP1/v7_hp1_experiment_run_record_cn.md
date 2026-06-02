@@ -31,3 +31,10 @@
 - `UploadSelector` 已接入 agent scorer；agent 只改变 block 排序，最终仍由同一个 `budget_topk` 强制裁剪，符合 Same-Budget Protocol。
 - `run_upstream.py` 已修正：`agent_rule_v7` / `agent_bandit_v7` 不再伪装成 `hypernet_v6`，而是真正进入 agent selection strategy。
 - 验证：单元级 scorer/selector 通过，`agent_rule_v7 --dry-run` 显示 `selection_strategy=agent_rule_v7`。
+
+## 2026-06-02 rare suite crash fix
+
+- 现象：`hp1_rare_bridge_tail` 第一个 run 在 `_log_round()` 触发 `NameError: selection_metadata is not defined`。
+- 原因：client update 中已有 `selection_metadata`，但日志汇总函数没有读取该字段。
+- 修复：在 `V7-HP1/fedrag_selective_upload.py` 的 `_log_round()` 中读取并兜底 `selection_metadata`。
+- 操作：修复后重启 full pipeline；已完成的 `hp1_multihop_hard` 会由 suite runner 自动跳过。
