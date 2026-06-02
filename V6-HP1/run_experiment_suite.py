@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import replace
+from pathlib import Path
 from typing import Iterable
 
 from experiment_config import UpstreamConfig, build_task_name, default_seed_list
@@ -11,20 +12,20 @@ from run_upstream import run
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run V6 experiment suites.")
+    parser = argparse.ArgumentParser(description="Run V6-HP1 Hotpot experiment suites.")
     parser.add_argument(
         "--suite",
-        default="v6_main",
+        default="v6hp1_main",
         choices=[
             "smoke",
-            "v6_main",
-            "v6_budget_aligned",
-            "v6_heterogeneity",
-            "v6_hardquery",
-            "v6_ablation_signal",
-            "v6_ablation_budget",
-            "v6_explain",
-            "all_v6",
+            "v6hp1_main",
+            "v6hp1_budget_aligned",
+            "v6hp1_heterogeneity",
+            "v6hp1_hardquery",
+            "v6hp1_ablation_signal",
+            "v6hp1_ablation_budget",
+            "v6hp1_explain",
+            "all_v6_hp1",
         ],
     )
     parser.add_argument("--rounds", type=int, default=25)
@@ -33,12 +34,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--lr", type=float, default=1e-5)
     parser.add_argument("--gpu", type=int, default=0)
-    parser.add_argument("--experiment-name", default="pprag_fl_v6")
+    parser.add_argument("--experiment-name", default="pprag_fl_v6_hp1")
     parser.add_argument("--partitioner", default="DirichletPartitioner", choices=["IDPartitioner", "DirichletPartitioner"])
     parser.add_argument("--dir-alpha", type=float, default=0.3)
     parser.add_argument("--imbalance", type=float, default=0.0)
     parser.add_argument("--task-seed", type=int, default=0)
     parser.add_argument("--seed-list", default="0,1,2")
+    parser.add_argument("--rawdata-path", default=str(Path(__file__).resolve().parents[1] / "FedE" / "select_data_hotpot_train_5000.json"))
+    parser.add_argument("--rag-dataset", default="hotpot_qa")
+    parser.add_argument("--rag-hotpot-split", default="validation")
+    parser.add_argument("--rag-hotpot-max-examples", type=int, default=1000)
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -56,12 +61,16 @@ def base_config(args: argparse.Namespace) -> UpstreamConfig:
         dirichlet_alpha=args.dir_alpha,
         imbalance=args.imbalance,
         task_seed=args.task_seed,
-        suffix="v6",
+        suffix="v6hp1",
     )
     return UpstreamConfig(
         experiment_name=args.experiment_name,
         suite_tag=args.suite,
         task_name=task_name,
+        rawdata_path=str(Path(args.rawdata_path).expanduser().resolve()),
+        rag_dataset=args.rag_dataset,
+        rag_hotpot_split=args.rag_hotpot_split,
+        rag_hotpot_max_examples=args.rag_hotpot_max_examples,
         num_clients=args.clients,
         num_rounds=args.rounds,
         num_epochs=args.epochs,
@@ -91,7 +100,7 @@ def smoke_suite(base: UpstreamConfig, _seeds: Iterable[int]) -> list[UpstreamCon
     ]
 
 
-def v6_main_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_main_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
     for seed in seeds:
         configs.extend(
@@ -100,22 +109,13 @@ def v6_main_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamCo
                 replace(base, seed=seed, selection_strategy="random", topk_blocks=3, warmup_rounds=1, score_mode="importance", budget_mode="fixed"),
                 replace(base, seed=seed, selection_strategy="delta_norm", topk_blocks=3, warmup_rounds=1, score_mode="importance", budget_mode="fixed"),
                 replace(base, seed=seed, selection_strategy="hypernet_v3", topk_blocks=3, warmup_rounds=1, score_mode="value", budget_mode="adaptive"),
-                replace(
-                    base,
-                    seed=seed,
-                    selection_strategy="hypernet_v6",
-                    topk_blocks=3,
-                    warmup_rounds=1,
-                    score_mode="downstream_value",
-                    budget_mode="fixed",
-                    hard_budget_only=True,
-                ),
+                replace(base, seed=seed, selection_strategy="hypernet_v6", topk_blocks=3, warmup_rounds=1, score_mode="downstream_value", budget_mode="fixed", hard_budget_only=True),
             ]
         )
     return configs
 
 
-def v6_budget_aligned_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_budget_aligned_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
     method_grid = [
         ("random", 3, "importance", "fixed", {}),
@@ -127,9 +127,9 @@ def v6_budget_aligned_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[
             "downstream_value",
             "fixed",
             {
-                "adaptive_expand_threshold": 0.82,
-                "utility_expand_threshold": 1.38,
-                "hard_client_threshold": 0.70,
+                "adaptive_expand_threshold": 0.84,
+                "utility_expand_threshold": 1.42,
+                "hard_client_threshold": 0.72,
                 "hard_client_bonus_topk": 0,
                 "hard_budget_only": True,
             },
@@ -140,7 +140,7 @@ def v6_budget_aligned_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[
             configs.append(
                 replace(
                     base,
-                    suite_tag="v6_budget_aligned",
+                    suite_tag="v6hp1_budget_aligned",
                     seed=seed,
                     selection_strategy=strategy,
                     topk_blocks=topk,
@@ -154,16 +154,16 @@ def v6_budget_aligned_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[
     return configs
 
 
-def v6_heterogeneity_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_heterogeneity_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
-    for alpha in (0.5, 0.3, 0.1, 0.05):
+    for alpha in (0.3, 0.1, 0.05):
         scenario_task = build_task_name(
             num_clients=base.num_clients,
             partitioner_name="DirichletPartitioner",
             dirichlet_alpha=alpha,
             imbalance=base.imbalance,
             task_seed=base.task_seed,
-            suffix="v6",
+            suffix="v6hp1",
         )
         for seed in seeds:
             configs.extend(
@@ -171,25 +171,13 @@ def v6_heterogeneity_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[U
                     replace(base, seed=seed, task_name=scenario_task, partitioner_name="DirichletPartitioner", dirichlet_alpha=alpha, selection_strategy="random", topk_blocks=3, warmup_rounds=1, score_mode="importance", budget_mode="fixed"),
                     replace(base, seed=seed, task_name=scenario_task, partitioner_name="DirichletPartitioner", dirichlet_alpha=alpha, selection_strategy="delta_norm", topk_blocks=3, warmup_rounds=1, score_mode="importance", budget_mode="fixed"),
                     replace(base, seed=seed, task_name=scenario_task, partitioner_name="DirichletPartitioner", dirichlet_alpha=alpha, selection_strategy="hypernet_v3", topk_blocks=3, warmup_rounds=1, score_mode="value", budget_mode="adaptive"),
-                    replace(
-                        base,
-                        seed=seed,
-                        task_name=scenario_task,
-                        partitioner_name="DirichletPartitioner",
-                        dirichlet_alpha=alpha,
-                        selection_strategy="hypernet_v6",
-                        topk_blocks=3,
-                        warmup_rounds=1,
-                        score_mode="downstream_value",
-                        budget_mode="fixed" if alpha >= 0.1 else "adaptive_v6",
-                        hard_budget_only=True,
-                    ),
+                    replace(base, seed=seed, task_name=scenario_task, partitioner_name="DirichletPartitioner", dirichlet_alpha=alpha, selection_strategy="hypernet_v6", topk_blocks=3, warmup_rounds=1, score_mode="downstream_value", budget_mode="fixed", hard_budget_only=True),
                 ]
             )
     return configs
 
 
-def v6_hardquery_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_hardquery_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
     for seed in seeds:
         configs.extend(
@@ -202,7 +190,7 @@ def v6_hardquery_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[Upstr
     return configs
 
 
-def v6_ablation_signal_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_ablation_signal_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
     for seed in seeds:
         configs.extend(
@@ -216,7 +204,7 @@ def v6_ablation_signal_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list
     return configs
 
 
-def v6_ablation_budget_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_ablation_budget_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     configs: list[UpstreamConfig] = []
     for seed in seeds:
         configs.extend(
@@ -229,7 +217,7 @@ def v6_ablation_budget_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list
     return configs
 
 
-def v6_explain_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
+def v6hp1_explain_suite(base: UpstreamConfig, seeds: Iterable[int]) -> list[UpstreamConfig]:
     return [
         replace(base, seed=seed, selection_strategy="hypernet_v6", topk_blocks=3, warmup_rounds=1, score_mode="downstream_value", budget_mode="fixed", layerwise_budget=True)
         for seed in seeds
@@ -246,7 +234,6 @@ def deduplicate(configs: list[UpstreamConfig]) -> list[UpstreamConfig]:
             config.selection_strategy,
             config.topk_blocks,
             config.warmup_rounds,
-            config.estimate_encryption,
             config.score_mode,
             config.budget_mode,
             config.use_client_embedding,
@@ -285,24 +272,24 @@ def build_suite(args: argparse.Namespace) -> list[UpstreamConfig]:
     seeds = parse_seed_list(args.seed_list)
     base = base_config(args)
     suite_configs: list[UpstreamConfig] = []
-    if args.suite == "all_v6":
-        suite_configs.extend(v6_main_suite(replace(base, suite_tag="v6_main"), seeds))
-        suite_configs.extend(v6_budget_aligned_suite(replace(base, suite_tag="v6_budget_aligned"), seeds))
-        suite_configs.extend(v6_heterogeneity_suite(replace(base, suite_tag="v6_heterogeneity"), seeds))
-        suite_configs.extend(v6_hardquery_suite(replace(base, suite_tag="v6_hardquery"), seeds))
-        suite_configs.extend(v6_ablation_signal_suite(replace(base, suite_tag="v6_ablation_signal"), seeds))
-        suite_configs.extend(v6_ablation_budget_suite(replace(base, suite_tag="v6_ablation_budget"), seeds))
-        suite_configs.extend(v6_explain_suite(replace(base, suite_tag="v6_explain"), seeds))
+    if args.suite == "all_v6_hp1":
+        suite_configs.extend(v6hp1_main_suite(replace(base, suite_tag="v6hp1_main"), seeds))
+        suite_configs.extend(v6hp1_budget_aligned_suite(replace(base, suite_tag="v6hp1_budget_aligned"), seeds))
+        suite_configs.extend(v6hp1_heterogeneity_suite(replace(base, suite_tag="v6hp1_heterogeneity"), seeds))
+        suite_configs.extend(v6hp1_hardquery_suite(replace(base, suite_tag="v6hp1_hardquery"), seeds))
+        suite_configs.extend(v6hp1_ablation_signal_suite(replace(base, suite_tag="v6hp1_ablation_signal"), seeds))
+        suite_configs.extend(v6hp1_ablation_budget_suite(replace(base, suite_tag="v6hp1_ablation_budget"), seeds))
+        suite_configs.extend(v6hp1_explain_suite(replace(base, suite_tag="v6hp1_explain"), seeds))
     else:
         builders = {
             "smoke": smoke_suite,
-            "v6_main": v6_main_suite,
-            "v6_budget_aligned": v6_budget_aligned_suite,
-            "v6_heterogeneity": v6_heterogeneity_suite,
-            "v6_hardquery": v6_hardquery_suite,
-            "v6_ablation_signal": v6_ablation_signal_suite,
-            "v6_ablation_budget": v6_ablation_budget_suite,
-            "v6_explain": v6_explain_suite,
+            "v6hp1_main": v6hp1_main_suite,
+            "v6hp1_budget_aligned": v6hp1_budget_aligned_suite,
+            "v6hp1_heterogeneity": v6hp1_heterogeneity_suite,
+            "v6hp1_hardquery": v6hp1_hardquery_suite,
+            "v6hp1_ablation_signal": v6hp1_ablation_signal_suite,
+            "v6hp1_ablation_budget": v6hp1_ablation_budget_suite,
+            "v6hp1_explain": v6hp1_explain_suite,
         }
         suite_configs.extend(builders[args.suite](base, seeds))
     return deduplicate(suite_configs)
@@ -334,7 +321,7 @@ def main() -> int:
 
     write_json(manifest_root / "suite_results.json", results)
     report_path = write_suite_report(args.suite, suite_configs)
-    print(f"V6 suite analysis report written to {report_path}")
+    print(f"V6-HP1 suite analysis report written to {report_path}")
     return 0
 
 

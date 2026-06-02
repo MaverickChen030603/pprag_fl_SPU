@@ -25,3 +25,6 @@ RAGTest/*.txt
 
 *.log
 nohup.out
+V6-HP1/outputs/
+V6-HP1/__pycache__/
+FedE/num5_*_v6hp1/
