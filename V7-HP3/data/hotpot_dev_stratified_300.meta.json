@@ -1,0 +1,16 @@
+{
+  "output": "V7-HP2/data/hotpot_dev_stratified_300.json",
+  "n": 300,
+  "seed": 20260608,
+  "strata_counts": {
+    "no:sp2": 49,
+    "no:sp3_4": 22,
+    "no:sp5p": 5,
+    "span:sp2": 50,
+    "span:sp3_4": 49,
+    "span:sp5p": 49,
+    "yes:sp2": 49,
+    "yes:sp3_4": 25,
+    "yes:sp5p": 2
+  }
+}
