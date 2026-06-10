@@ -1,0 +1,471 @@
+{
+  "archive_time": "2026-06-10T14:42:43",
+  "suite": "hp1_budget_aligned",
+  "n_runs": 12,
+  "methods": [
+    "adaptive_v6",
+    "agent_bandit_v7",
+    "agent_rule_v7",
+    "hypernet_v6"
+  ],
+  "upstream_root": "V7-agent/outputs/pprag_fl_v7_agent/hp1_budget_aligned",
+  "strict_summary_csv": "V7-agent/outputs/hp1_strict_eval/hp1_budget_aligned/hp1_strict_summary.csv",
+  "auto_report": "实验分析报告/V7-agent/v7_agent_auto_analysis_20260610_143930.md",
+  "same_budget": {
+    "adaptive_v6": 3.0,
+    "agent_bandit_v7": 3.0,
+    "agent_rule_v7": 3.0,
+    "hypernet_v6": 3.0
+  },
+  "summary": {
+    "adaptive_v6": {
+      "avg_budget_topk_hp1": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0
+        ]
+      },
+      "bridge_block_recall_hp1": {
+        "mean": 0.5842424242424249,
+        "std": 0.009070684573997453,
+        "min": 0.5745454545454551,
+        "max": 0.596363636363637,
+        "values": [
+          0.5818181818181823,
+          0.5745454545454551,
+          0.596363636363637
+        ]
+      },
+      "early_evidence_recall_hp1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "target_block_recall_hp1": {
+        "mean": 0.29212121212121245,
+        "std": 0.004535342286998726,
+        "min": 0.28727272727272757,
+        "max": 0.2981818181818185,
+        "values": [
+          0.2909090909090912,
+          0.28727272727272757,
+          0.2981818181818185
+        ]
+      },
+      "selection_diversity_hp1": {
+        "mean": 0.43333333333333335,
+        "std": 0.04714045207910316,
+        "min": 0.4,
+        "max": 0.5,
+        "values": [
+          0.4,
+          0.4,
+          0.5
+        ]
+      },
+      "hp1_multihop_score": {
+        "mean": 0.41452121212121235,
+        "std": 0.012823165447130516,
+        "min": 0.4040727272727275,
+        "max": 0.43258181818181846,
+        "values": [
+          0.40690909090909105,
+          0.4040727272727275,
+          0.43258181818181846
+        ]
+      }
+    },
+    "agent_bandit_v7": {
+      "avg_budget_topk_hp1": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0
+        ]
+      },
+      "bridge_block_recall_hp1": {
+        "mean": 0.6048484848484854,
+        "std": 0.011999387801953507,
+        "min": 0.596363636363637,
+        "max": 0.6218181818181824,
+        "values": [
+          0.6218181818181824,
+          0.596363636363637,
+          0.596363636363637
+        ]
+      },
+      "early_evidence_recall_hp1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "target_block_recall_hp1": {
+        "mean": 0.3024242424242427,
+        "std": 0.005999693900976754,
+        "min": 0.2981818181818185,
+        "max": 0.3109090909090912,
+        "values": [
+          0.3109090909090912,
+          0.2981818181818185,
+          0.2981818181818185
+        ]
+      },
+      "selection_diversity_hp1": {
+        "mean": 0.5,
+        "std": 0.08164965809277258,
+        "min": 0.4,
+        "max": 0.6,
+        "values": [
+          0.5,
+          0.6,
+          0.4
+        ]
+      },
+      "hp1_multihop_score": {
+        "mean": 0.4358909090909093,
+        "std": 0.01698725498589815,
+        "min": 0.41258181818181844,
+        "max": 0.45258181818181836,
+        "values": [
+          0.4425090909090911,
+          0.45258181818181836,
+          0.41258181818181844
+        ]
+      }
+    },
+    "agent_rule_v7": {
+      "avg_budget_topk_hp1": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0
+        ]
+      },
+      "bridge_block_recall_hp1": {
+        "mean": 0.5975757575757582,
+        "std": 0.0017141982574219443,
+        "min": 0.596363636363637,
+        "max": 0.6000000000000006,
+        "values": [
+          0.596363636363637,
+          0.596363636363637,
+          0.6000000000000006
+        ]
+      },
+      "early_evidence_recall_hp1": {
+        "mean": 0.19999999999999987,
+        "std": 0.0,
+        "min": 0.19999999999999987,
+        "max": 0.19999999999999987,
+        "values": [
+          0.19999999999999987,
+          0.19999999999999987,
+          0.19999999999999987
+        ]
+      },
+      "target_block_recall_hp1": {
+        "mean": 0.3987878787878785,
+        "std": 0.000857099128710946,
+        "min": 0.39818181818181797,
+        "max": 0.39999999999999974,
+        "values": [
+          0.39818181818181797,
+          0.39818181818181797,
+          0.39999999999999974
+        ]
+      },
+      "selection_diversity_hp1": {
+        "mean": 0.5666666666666667,
+        "std": 0.04714045207910316,
+        "min": 0.5,
+        "max": 0.6,
+        "values": [
+          0.6,
+          0.6,
+          0.5
+        ]
+      },
+      "hp1_multihop_score": {
+        "mean": 0.5083878787878789,
+        "std": 0.008759553095426087,
+        "min": 0.49600000000000016,
+        "max": 0.5145818181818184,
+        "values": [
+          0.5145818181818184,
+          0.5145818181818184,
+          0.49600000000000016
+        ]
+      }
+    },
+    "hypernet_v6": {
+      "avg_budget_topk_hp1": {
+        "mean": 3.0,
+        "std": 0.0,
+        "min": 3.0,
+        "max": 3.0,
+        "values": [
+          3.0,
+          3.0,
+          3.0
+        ]
+      },
+      "bridge_block_recall_hp1": {
+        "mean": 0.5842424242424249,
+        "std": 0.009070684573997453,
+        "min": 0.5745454545454551,
+        "max": 0.596363636363637,
+        "values": [
+          0.5818181818181823,
+          0.5745454545454551,
+          0.596363636363637
+        ]
+      },
+      "early_evidence_recall_hp1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "target_block_recall_hp1": {
+        "mean": 0.29212121212121245,
+        "std": 0.004535342286998726,
+        "min": 0.28727272727272757,
+        "max": 0.2981818181818185,
+        "values": [
+          0.2909090909090912,
+          0.28727272727272757,
+          0.2981818181818185
+        ]
+      },
+      "selection_diversity_hp1": {
+        "mean": 0.43333333333333335,
+        "std": 0.04714045207910316,
+        "min": 0.4,
+        "max": 0.5,
+        "values": [
+          0.4,
+          0.4,
+          0.5
+        ]
+      },
+      "hp1_multihop_score": {
+        "mean": 0.41452121212121235,
+        "std": 0.012823165447130516,
+        "min": 0.4040727272727275,
+        "max": 0.43258181818181846,
+        "values": [
+          0.40690909090909105,
+          0.4040727272727275,
+          0.43258181818181846
+        ]
+      }
+    }
+  },
+  "comparisons_vs_hypernet_v6": {
+    "agent_rule_v7": {
+      "avg_budget_topk_hp1": {
+        "delta": 0.0,
+        "relative_pct": 0.0
+      },
+      "bridge_block_recall_hp1": {
+        "delta": 0.013333333333333308,
+        "relative_pct": 2.282157676348541
+      },
+      "early_evidence_recall_hp1": {
+        "delta": 0.19999999999999987,
+        "relative_pct": null
+      },
+      "target_block_recall_hp1": {
+        "delta": 0.10666666666666608,
+        "relative_pct": 36.51452282157652
+      },
+      "selection_diversity_hp1": {
+        "delta": 0.1333333333333333,
+        "relative_pct": 30.76923076923076
+      },
+      "hp1_multihop_score": {
+        "delta": 0.0938666666666666,
+        "relative_pct": 22.644599099362505
+      }
+    },
+    "agent_bandit_v7": {
+      "avg_budget_topk_hp1": {
+        "delta": 0.0,
+        "relative_pct": 0.0
+      },
+      "bridge_block_recall_hp1": {
+        "delta": 0.020606060606060517,
+        "relative_pct": 3.526970954356827
+      },
+      "early_evidence_recall_hp1": {
+        "delta": 0.0,
+        "relative_pct": null
+      },
+      "target_block_recall_hp1": {
+        "delta": 0.010303030303030258,
+        "relative_pct": 3.526970954356827
+      },
+      "selection_diversity_hp1": {
+        "delta": 0.06666666666666665,
+        "relative_pct": 15.38461538461538
+      },
+      "hp1_multihop_score": {
+        "delta": 0.021369696969696927,
+        "relative_pct": 5.155272238142569
+      }
+    }
+  },
+  "selection_event_count": {
+    "adaptive_v6": 165,
+    "agent_bandit_v7": 165,
+    "agent_rule_v7": 165,
+    "hypernet_v6": 165
+  },
+  "selection_category_counts": {
+    "adaptive_v6": {
+      "bridge": 482,
+      "middle_other": 139
+    },
+    "agent_bandit_v7": {
+      "bridge": 499,
+      "middle_other": 150
+    },
+    "agent_rule_v7": {
+      "bridge": 493,
+      "early": 165,
+      "middle_other": 2
+    },
+    "hypernet_v6": {
+      "bridge": 482,
+      "middle_other": 139
+    }
+  },
+  "top_blocks": {
+    "adaptive_v6": [
+      [
+        "pooler",
+        165
+      ],
+      [
+        "encoder.layer.8",
+        160
+      ],
+      [
+        "encoder.layer.11",
+        153
+      ],
+      [
+        "encoder.layer.7",
+        139
+      ],
+      [
+        "encoder.layer.9",
+        4
+      ]
+    ],
+    "agent_bandit_v7": [
+      [
+        "pooler",
+        165
+      ],
+      [
+        "encoder.layer.8",
+        163
+      ],
+      [
+        "encoder.layer.11",
+        159
+      ],
+      [
+        "encoder.layer.7",
+        149
+      ],
+      [
+        "encoder.layer.9",
+        12
+      ],
+      [
+        "encoder.layer.6",
+        1
+      ]
+    ],
+    "agent_rule_v7": [
+      [
+        "encoder.layer.8",
+        165
+      ],
+      [
+        "pooler",
+        165
+      ],
+      [
+        "encoder.layer.11",
+        163
+      ],
+      [
+        "encoder.layer.0",
+        154
+      ],
+      [
+        "encoder.layer.3",
+        11
+      ],
+      [
+        "encoder.layer.7",
+        2
+      ]
+    ],
+    "hypernet_v6": [
+      [
+        "pooler",
+        165
+      ],
+      [
+        "encoder.layer.8",
+        160
+      ],
+      [
+        "encoder.layer.11",
+        153
+      ],
+      [
+        "encoder.layer.7",
+        139
+      ],
+      [
+        "encoder.layer.9",
+        4
+      ]
+    ]
+  }
+}
