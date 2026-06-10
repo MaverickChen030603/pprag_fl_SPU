@@ -66,8 +66,6 @@ def _command_for_trial(
         str(args.epochs),
         "--batch-size",
         str(args.batch_size),
-        "--lr",
-        str(args.lr),
         "--gpu",
         str(args.gpu),
         "--seed",
@@ -204,4 +202,3 @@ def objective_factory(args: Any):
         return score
 
     return objective
-

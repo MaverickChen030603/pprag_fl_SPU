@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -26,7 +27,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--clients", type=int, default=5)
     parser.add_argument("--epochs", type=int, default=1)
     parser.add_argument("--batch-size", type=int, default=1)
-    parser.add_argument("--lr", type=float, default=1e-5)
     parser.add_argument("--experiment-name", default="pprag_fl_v6_hp1_optuna")
     parser.add_argument("--suite-prefix", default="v6hp1_optuna")
     parser.add_argument("--task-name", default="num5_dir_a03_imb00_ts0_v6hp1")
@@ -66,9 +66,11 @@ def _write_outputs(study) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-    best = study.best_trial if study.best_trial is not None else None
+    complete_trials = [trial for trial in study.trials if trial.value is not None]
+    best = max(complete_trials, key=lambda trial: trial.value) if complete_trials else None
     lines = ["# V6-HP1 Optuna Search Report", ""]
     lines.append(f"- Trials: {len(study.trials)}")
+    lines.append(f"- Completed trials: {len(complete_trials)}")
     if best is not None:
         lines.append(f"- Best trial: {best.number}")
         lines.append(f"- Best objective: {best.value:.6f}")
@@ -107,12 +109,21 @@ def main() -> None:
         sampler=sampler,
         load_if_exists=True,
     )
-    study.optimize(objective_factory(args), n_trials=args.n_trials, gc_after_trial=True)
+    study.optimize(
+        objective_factory(args),
+        n_trials=args.n_trials,
+        gc_after_trial=True,
+        catch=(subprocess.CalledProcessError, RuntimeError),
+    )
     _write_outputs(study)
-    print(f"Best trial: {study.best_trial.number} value={study.best_value:.6f}")
+    complete_trials = [trial for trial in study.trials if trial.value is not None]
+    if complete_trials:
+        best = max(complete_trials, key=lambda trial: trial.value)
+        print(f"Best trial: {best.number} value={best.value:.6f}")
+    else:
+        print("No completed trials yet; wrote failure summary for inspection.")
     print(f"Wrote Optuna outputs under {OUTPUT_ROOT}")
 
 
 if __name__ == "__main__":
     main()
-
