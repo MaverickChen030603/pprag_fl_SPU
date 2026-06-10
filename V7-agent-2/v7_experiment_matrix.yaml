@@ -1,0 +1,149 @@
+# V7 experiment matrix for Agentic Federated RAG.
+# This file is intentionally runner-agnostic. The bootstrap script converts it
+# into V7 suite invocations compatible with the copied V6 pipeline.
+
+project:
+  name: "Agentic Federated RAG"
+  version: "V7"
+  root: "/home/iiserver31/projects/FedE4RAG-main"
+  python: "/home/iiserver31/anaconda3/envs/supv2/bin/python"
+  output_root: "V7/outputs"
+  report_root: "实验分析报告/V7"
+
+core_principles:
+  - same_budget
+  - downstream_utility
+  - agentic_decision
+
+methods:
+  baselines:
+    - random
+    - delta_norm
+    - hypernet_v6
+    - adaptive_v6
+  agentic:
+    - agent_rule_v7
+    - agent_bandit_v7
+    - agent_policy_v7
+  optional:
+    - agent_llm_planner_v7
+
+default_grid:
+  seeds: [0, 1, 2]
+  topk: [3]
+
+suites:
+  v7_main:
+    description: "Standard same-budget agentic upload comparison."
+    methods: [random, delta_norm, hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+
+  v7_budget_aligned:
+    description: "Strict fixed-payload comparison. This is the key V7 suite."
+    methods: [random, delta_norm, hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+    constraints:
+      total_payload: "match_v6_budget_aligned"
+      forbid_budget_expansion: true
+
+  v7_heterogeneity:
+    description: "Non-IID, hard-client, and rare-domain robustness."
+    methods: [random, delta_norm, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+
+  v7_hardquery:
+    description: "Hard-query-aware communication allocation."
+    methods: [hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+
+  v7_hardquery_strong:
+    description: "Stronger hard-query stress setting with fixed payload and no hard-client expansion."
+    methods: [hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+    constraints:
+      hard_query_scale: 4.0
+      hard_client_threshold: 0.50
+      hard_client_bonus_topk: 0
+      forbid_budget_expansion: true
+
+  v7_ablation_signal:
+    description: "Signal contribution ablation."
+    variants:
+      - full_agent
+      - no_downstream_proxy
+      - no_hard_query
+      - no_client_rarity
+      - no_memory
+      - no_redundancy_penalty
+      - no_instability_penalty
+      - current_round_only
+    base_methods: [agent_rule_v7, agent_policy_v7]
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+
+  v7_ablation_agent_level:
+    description: "Passive/reactive/memory/planning agent comparison."
+    variants:
+      - passive_selector
+      - reactive_agent
+      - memory_agent
+      - planning_agent
+      - llm_planner_agent
+    seeds: [0, 1, 2]
+    topk: [3]
+    downstream_eval: true
+
+  v7_cost_efficiency:
+    description: "Compute, wall-clock, payload, and LLM overhead accounting."
+    methods: [agent_rule_v7, agent_bandit_v7, agent_policy_v7, agent_llm_planner_v7]
+    seeds: [0, 1]
+    topk: [3]
+    downstream_eval: true
+
+  v7_explain:
+    description: "Agent decision traces and explanation case studies."
+    methods: [agent_rule_v7, agent_bandit_v7, agent_policy_v7, agent_llm_planner_v7]
+    seeds: [0, 1]
+    topk: [3]
+    downstream_eval: true
+
+first_pass:
+  description: "Recommended smoke-to-signal V7-lite run."
+  suites: [v7_main, v7_budget_aligned, v7_hardquery]
+  methods: [random, delta_norm, hypernet_v6, adaptive_v6, agent_rule_v7, agent_bandit_v7]
+  seeds: [0, 1, 2]
+  topk: [3]
+
+full_pass:
+  suites:
+    - v7_main
+    - v7_budget_aligned
+    - v7_heterogeneity
+    - v7_hardquery
+    - v7_ablation_signal
+    - v7_ablation_agent_level
+    - v7_cost_efficiency
+    - v7_explain
+
+next_pass:
+  description: "Post first-pass signal search after budget and collector fixes."
+  suites: [v7_heterogeneity, v7_ablation_signal, v7_hardquery_strong]
+  expected_upstream_runs: 135
+  expected_downstream_runs: 135
+
+expected_budget:
+  first_pass_upstream_runs: 54
+  first_pass_downstream_runs: 54
+  full_upstream_runs: 148
+  full_downstream_runs: 148
