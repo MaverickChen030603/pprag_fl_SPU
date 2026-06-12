@@ -1,0 +1,23 @@
+[
+  {
+    "comparison": "agent_rule_v7 vs agent_rule_v7_no_prior",
+    "n": 5,
+    "statistic": 0.0,
+    "p_value": 0.0625,
+    "significant": false
+  },
+  {
+    "comparison": "agent_rule_v7 vs agent_rule_v7_no_coverage",
+    "n": 5,
+    "statistic": 0.0,
+    "p_value": 0.0625,
+    "significant": false
+  },
+  {
+    "comparison": "agent_rule_v7 vs agent_rule_v7_no_memory",
+    "n": 5,
+    "statistic": 0.0,
+    "p_value": 1.0,
+    "significant": false
+  }
+]

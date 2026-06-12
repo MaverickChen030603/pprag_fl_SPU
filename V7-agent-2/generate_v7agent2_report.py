@@ -13,6 +13,15 @@ def load_csv_safe(path: Path) -> pd.DataFrame:
     return pd.read_csv(path) if path.exists() else pd.DataFrame()
 
 
+def df_to_markdown_safe(df: pd.DataFrame) -> str:
+    if df.empty:
+        return "_数据待生成_"
+    try:
+        return df.to_markdown(index=False)
+    except ImportError:
+        return "```csv\n" + df.to_csv(index=False) + "```"
+
+
 def main() -> int:
     ablation_df = load_csv_safe(REPORT_DIR / "ablation_summary.csv")
     official_df = load_csv_safe(REPORT_DIR / "official_eval_summary_1000.csv")
@@ -32,11 +41,11 @@ def main() -> int:
         "",
         "## 1. Ablation 结果",
         "",
-        ablation_df.to_markdown(index=False) if not ablation_df.empty else "_数据待生成_",
+        df_to_markdown_safe(ablation_df),
         "",
         "## 2. Official Eval 结果（n=1000，FiD Reader）",
         "",
-        official_df.to_markdown(index=False) if not official_df.empty else "_数据待生成_",
+        df_to_markdown_safe(official_df),
         "",
         "## 3. 结论",
         "",
