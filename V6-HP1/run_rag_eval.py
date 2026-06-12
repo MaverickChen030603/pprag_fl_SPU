@@ -19,6 +19,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset", default="hotpot_qa")
     parser.add_argument("--hotpot-split", default="validation")
     parser.add_argument("--hotpot-max-examples", type=int, default=1000)
+    parser.add_argument("--eval-subset-type", "--eval_subset_type", choices=["all", "hard_only"], default="all")
+    parser.add_argument("--eval-num-examples", "--eval_num_examples", type=int, default=None)
+    parser.add_argument("--hard-query-subset", "--hard_query_subset", default=str(Path(__file__).resolve().parent / "data" / "hotpot_hard_query_subset.json"))
     parser.add_argument("--query-subset", default=None)
     parser.add_argument("--save-per-query", action="store_true")
     parser.add_argument("--per-query-output", default=None)
@@ -32,18 +35,32 @@ def main() -> None:
     script_path = RAGTEST_DIR / args.script
     model_path = str(Path(args.model).expanduser().resolve())
     command = [args.python, str(script_path), "--model", model_path]
-    if args.query_subset:
-        command.extend(["--query-subset", str(Path(args.query_subset).expanduser().resolve())])
+    query_subset = args.query_subset
+    if args.eval_subset_type == "hard_only" and not query_subset:
+        query_subset = args.hard_query_subset
+    if query_subset:
+        command.extend(["--query-subset", str(Path(query_subset).expanduser().resolve())])
     if args.save_per_query:
         per_query_output = str(Path(args.per_query_output or (Path(output_dir) / "per_query_results.jsonl")).expanduser().resolve())
         command.extend(["--save-per-query", "--per-query-output", per_query_output])
     env = os.environ.copy()
     env["RAGTEST_DATASET"] = args.dataset
     env["HOTPOT_SPLIT"] = args.hotpot_split
-    env["HOTPOT_MAX_EXAMPLES"] = str(args.hotpot_max_examples)
+    hotpot_max_examples = args.eval_num_examples if args.eval_num_examples is not None else args.hotpot_max_examples
+    env["HOTPOT_MAX_EXAMPLES"] = str(hotpot_max_examples)
     write_json(
         output_dir / "rag_eval_command.json",
-        {"command": command, "cwd": str(RAGTEST_DIR), "env": {"RAGTEST_DATASET": args.dataset, "HOTPOT_SPLIT": args.hotpot_split, "HOTPOT_MAX_EXAMPLES": args.hotpot_max_examples}},
+        {
+            "command": command,
+            "cwd": str(RAGTEST_DIR),
+            "eval_subset_type": args.eval_subset_type,
+            "query_subset": query_subset,
+            "env": {
+                "RAGTEST_DATASET": args.dataset,
+                "HOTPOT_SPLIT": args.hotpot_split,
+                "HOTPOT_MAX_EXAMPLES": hotpot_max_examples,
+            },
+        },
     )
     if args.dry_run:
         print(" ".join(command))
