@@ -22,14 +22,20 @@ log() {
 }
 
 select_gpu() {
-  nvidia-smi --query-gpu=index,memory.free --format=csv,noheader,nounits 2>/dev/null \
-    | awk -F',' -v min_free="$MIN_FREE_MB" '
+  local busy_uuids
+  busy_uuids="$(nvidia-smi --query-compute-apps=gpu_uuid --format=csv,noheader,nounits 2>/dev/null | sort -u || true)"
+  nvidia-smi --query-gpu=index,uuid,memory.free --format=csv,noheader,nounits 2>/dev/null \
+    | awk -F',' -v min_free="$MIN_FREE_MB" -v busy_uuids="$busy_uuids" '
       {
         gsub(/ /, "", $1);
         gsub(/ /, "", $2);
-        if ($2 >= min_free && $2 > best_free) {
+        gsub(/ /, "", $3);
+        if (index("\n" busy_uuids "\n", "\n" $2 "\n") > 0) {
+          next;
+        }
+        if ($3 >= min_free && $3 > best_free) {
           best_gpu = $1;
-          best_free = $2;
+          best_free = $3;
         }
       }
       END {
