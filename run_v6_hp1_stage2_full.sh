@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON_BIN="${PYTHON_BIN:-$HOME/anaconda3/envs/supv2/bin/python}"
-MIN_FREE_MB="${MIN_FREE_MB:-10000}"
+MIN_FREE_MB="${MIN_FREE_MB:-25000}"
 GPU_POLL_SECONDS="${GPU_POLL_SECONDS:-300}"
 N_TRIALS="${N_TRIALS:-24}"
 ROUNDS="${ROUNDS:-10}"
