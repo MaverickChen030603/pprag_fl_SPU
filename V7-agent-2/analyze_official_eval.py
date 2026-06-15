@@ -8,7 +8,7 @@ import pandas as pd
 from scipy.stats import ttest_rel
 
 BASE = Path(__file__).resolve().parent
-EVAL_DIR = BASE / "outputs" / "hotpot_official_eval" / "hp1_budget_aligned"
+EVAL_DIR = BASE / "outputs" / "hotpot_official_eval" / "v7agent2_all"
 REPORT_DIR = BASE / "实验分析报告" / "V7-agent-2"
 REPORT_DIR.mkdir(parents=True, exist_ok=True)
 METRICS = ["answer_em", "answer_f1", "sp_em", "sp_f1", "joint_em", "joint_f1", "support_title_recall_at_k"]
