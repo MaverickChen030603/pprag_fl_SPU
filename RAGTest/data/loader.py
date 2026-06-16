@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 
 from llama_index.core import Document
+from config import Config
+from data.qa_loader import get_qa_dataset
 
 
 DATA_DIR = Path(__file__).resolve().parent
@@ -42,10 +44,26 @@ def _load_reference_dataset(documents):
     raise FileNotFoundError("No reference dataset found in RAGTest/data. Expected data_50.json or data_100.json.")
 
 
+def _load_hotpot_corpus(documents):
+    qa_dataset = get_qa_dataset("hotpot_qa")
+    title2sentences = qa_dataset.get("title2sentences", {})
+    title2id = qa_dataset.get("title2id", {})
+    for title, ref_id in title2id.items():
+        text = " ".join(title2sentences.get(title, []))
+        if not text.strip():
+            continue
+        document = Document(text=text, metadata={"title": title, "id": ref_id}, doc_id=str(ref_id))
+        documents.append(document)
+
+
 def get_documents():
     documents = []
-    _load_optional_test_corpus(documents)
-    _load_reference_dataset(documents)
+    cfg = Config()
+    if getattr(cfg, "dataset", "json_download") == "hotpot_qa":
+        _load_hotpot_corpus(documents)
+    else:
+        _load_optional_test_corpus(documents)
+        _load_reference_dataset(documents)
     print("len(documents):", len(documents))
     return documents
 

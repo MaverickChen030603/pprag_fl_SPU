@@ -23,6 +23,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--eval-num-examples", "--eval_num_examples", type=int, default=None)
     parser.add_argument("--hard-query-subset", "--hard_query_subset", default=str(Path(__file__).resolve().parent / "data" / "hotpot_hard_query_subset.json"))
     parser.add_argument("--query-subset", default=None)
+    parser.add_argument("--ragtest-persist-dir", default=None)
     parser.add_argument("--save-per-query", action="store_true")
     parser.add_argument("--per-query-output", default=None)
     parser.add_argument("--dry-run", action="store_true")
@@ -48,6 +49,9 @@ def main() -> None:
     env["HOTPOT_SPLIT"] = args.hotpot_split
     hotpot_max_examples = args.eval_num_examples if args.eval_num_examples is not None else args.hotpot_max_examples
     env["HOTPOT_MAX_EXAMPLES"] = str(hotpot_max_examples)
+    env["RAGTEST_N"] = str(hotpot_max_examples)
+    persist_dir = Path(args.ragtest_persist_dir).expanduser().resolve() if args.ragtest_persist_dir else Path(output_dir).resolve() / "ragtest_storage"
+    env["RAGTEST_PERSIST_DIR"] = str(persist_dir)
     write_json(
         output_dir / "rag_eval_command.json",
         {
@@ -59,6 +63,8 @@ def main() -> None:
                 "RAGTEST_DATASET": args.dataset,
                 "HOTPOT_SPLIT": args.hotpot_split,
                 "HOTPOT_MAX_EXAMPLES": hotpot_max_examples,
+                "RAGTEST_N": hotpot_max_examples,
+                "RAGTEST_PERSIST_DIR": str(persist_dir),
             },
         },
     )

@@ -1,0 +1,1169 @@
+{
+  "subset_name": "hotpot_all_1000",
+  "source_per_query": "/home/iiserver31/projects/FedE4RAG-main/V6-HP1/outputs/hard_query_builder/baseline_per_query_results.jsonl",
+  "count": 50,
+  "queries": [
+    {
+      "query_id": "0",
+      "question": "What is the quantity of restructuring costs directly outlined in Pepsico's income statements for FY2022? If restructuring costs are not explicitly outlined then state 0.",
+      "answer": "Pepsico's restructuring costs in FY2022 amounted to $411 million .",
+      "gold_doc_ids": [
+        44482
+      ],
+      "retrieved_doc_ids_top10": [
+        44482,
+        25946,
+        17675
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "1",
+      "question": "How does Boeing's effective tax rate in FY2022 compare to FY2021?",
+      "answer": "Effective tax rate in FY2022 was 0.62%, compared to  -14.76% in FY2021.",
+      "gold_doc_ids": [
+        16828
+      ],
+      "retrieved_doc_ids_top10": [
+        16828,
+        10077,
+        46796
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "2",
+      "question": "As of Q2'2023, is Pfizer spinning off any large business segments?",
+      "answer": "Yes, it's spinning off Upjohn.",
+      "gold_doc_ids": [
+        47082
+      ],
+      "retrieved_doc_ids_top10": [
+        46796,
+        46809,
+        46798
+      ],
+      "gold_rank": 0,
+      "hit@1": 0.0,
+      "hit@3": 0.0,
+      "hit@10": 0.0,
+      "recall@3": 0.0,
+      "recall@10": 0.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.0,
+      "bridge_entity_coverage": 0.0,
+      "difficulty_score": 1.0
+    },
+    {
+      "query_id": "3",
+      "question": "Were there any potential events that are not in Pfizer's standard business operations that substantially increased net income in 2019?",
+      "answer": "Yes, the gain on completion of Consumer Healthcare JV Transaction",
+      "gold_doc_ids": [
+        46796
+      ],
+      "retrieved_doc_ids_top10": [
+        46796,
+        46798,
+        47082
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "4",
+      "question": "What drove the increase in Ulta Beauty's merchandise inventories balance at end of FY2023?",
+      "answer": "Increase in Merchandise inventories balance was driven by the opening of 47 new stores. The answer here assumes FY2023 refers to the 12 months ended on January 28, 2023 (although the company refers to this period as its fiscal 2022.",
+      "gold_doc_ids": [
+        50909
+      ],
+      "retrieved_doc_ids_top10": [
+        50909,
+        50972,
+        50916
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "5",
+      "question": "Has MGM Resorts paid dividends to common shareholders in FY2022?",
+      "answer": "Yes. MGM maintained 0.01$ per share annual dividend through out FY 2022.",
+      "gold_doc_ids": [
+        36321
+      ],
+      "retrieved_doc_ids_top10": [
+        36288,
+        36321,
+        10077
+      ],
+      "gold_rank": 2,
+      "hit@1": 0.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.23500000000000001
+    },
+    {
+      "query_id": "6",
+      "question": "Does Verizon have a reasonably healthy liquidity profile based on its quick ratio for FY 2022? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+      "answer": "No. The quick ratio was approximately 0.54 for Verizon. It indicated that Verizon does not have a healthy liquidity profile.",
+      "gold_doc_ids": [
+        52175
+      ],
+      "retrieved_doc_ids_top10": [
+        52175,
+        52175,
+        52142
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "7",
+      "question": "What are three main companies acquired by Pfizer mentioned in this 10K report?",
+      "answer": "Trillium, Array, and Therachon",
+      "gold_doc_ids": [
+        46809,
+        46810
+      ],
+      "retrieved_doc_ids_top10": [
+        46809,
+        46796,
+        46810
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "8",
+      "question": "Looking at VaR, did the risk that JPM faced in the second fiscal quarter of 2023 decrease compared to the same period in the prior year?",
+      "answer": "Yes. It decreased.",
+      "gold_doc_ids": [
+        31183
+      ],
+      "retrieved_doc_ids_top10": [
+        31183,
+        30157,
+        29004
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "9",
+      "question": "Does Foot Locker's new CEO have previous CEO experience in a similar company to Footlocker?",
+      "answer": "Yes. She was previous CEO of Ulta Beauty which means she had to manage a large retail company that has brick and mortar + online business. So yes she was a CEO in a similar company to Foot Locker before this.",
+      "gold_doc_ids": [
+        24630
+      ],
+      "retrieved_doc_ids_top10": [
+        24630,
+        38818,
+        28962
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "10",
+      "question": "Is CVS Health a capital-intensive business based on FY2022 data?",
+      "answer": "Yes, CVS Health requires an extensive asset base to operate, which is evident from its ROA of only 1.82% in 2022 and 3.39% in 2021, though it should be noted that a significant portion of this asset base is goodwill, and CVS's fixed assets/total assets ratio is on the lower side of 5.6%.",
+      "gold_doc_ids": [
+        22666,
+        22668
+      ],
+      "retrieved_doc_ids_top10": [
+        22666,
+        22668,
+        46798
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "11",
+      "question": "Which of JPM's business segments had the lowest net revenue in 2021 Q1?",
+      "answer": "Corporate. Its net revenue was -$473 million.",
+      "gold_doc_ids": [
+        29004
+      ],
+      "retrieved_doc_ids_top10": [
+        29004,
+        30157,
+        30535
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "12",
+      "question": "Is Verizon a capital intensive business based on FY 2022 data?",
+      "answer": "Yes. Verizon's capital intensity ratio was approximately 2.774729. This means that it took approximately $2.77 of assets to generate $1 of revenue and thus, Verizon can be considered capital intensive.",
+      "gold_doc_ids": [
+        52175,
+        52142
+      ],
+      "retrieved_doc_ids_top10": [
+        52175,
+        52175,
+        52142
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "13",
+      "question": "As of FY 2021, how much did Verizon expect to pay for its retirees in 2024?",
+      "answer": "The estimated pension benefits were $1097 million, and the estimated health care and life insurance benefits were $862 million.",
+      "gold_doc_ids": [
+        52062,
+        52093
+      ],
+      "retrieved_doc_ids_top10": [
+        52093,
+        52142,
+        52175
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 0.5,
+      "recall@10": 0.5,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.5,
+      "bridge_entity_coverage": 0.5,
+      "difficulty_score": 0.425
+    },
+    {
+      "query_id": "14",
+      "question": "Does Adobe have an improving operating margin profile as of FY2022? If operating margin is not a useful metric for a company like this, then state that and explain why.",
+      "answer": "No the operating margins of Adobe have recently declined from 36.8% in FY 2021 to 34.6% in FY2022. A drop by 2.2% in a year.",
+      "gold_doc_ids": [
+        4456
+      ],
+      "retrieved_doc_ids_top10": [
+        4456,
+        4459,
+        3856
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "15",
+      "question": "Are JPM's gross margins historically consistent (not fluctuating more than roughly 2% each year)? If gross margins are not a relevant metric for a company like this, then please state that and explain why.",
+      "answer": "Since JPM is a financial institution, gross margin is not a relevant metric.",
+      "gold_doc_ids": [
+        30535
+      ],
+      "retrieved_doc_ids_top10": [
+        29004,
+        30157,
+        10077
+      ],
+      "gold_rank": 0,
+      "hit@1": 0.0,
+      "hit@3": 0.0,
+      "hit@10": 0.0,
+      "recall@3": 0.0,
+      "recall@10": 0.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.0,
+      "bridge_entity_coverage": 0.0,
+      "difficulty_score": 1.0
+    },
+    {
+      "query_id": "16",
+      "question": "How did JnJ's US sales growth compare to international sales growth in FY2022?",
+      "answer": "US sales increased 3.0% vs international sales decline of 0.6%.",
+      "gold_doc_ids": [
+        28736
+      ],
+      "retrieved_doc_ids_top10": [
+        28786,
+        28736,
+        10077
+      ],
+      "gold_rank": 2,
+      "hit@1": 0.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.23500000000000001
+    },
+    {
+      "query_id": "17",
+      "question": "Is 3M a capital-intensive business based on FY2022 data?",
+      "answer": "No, the company is managing its CAPEX and Fixed Assets pretty efficiently, which is evident from below key metrics:\nCAPEX/Revenue Ratio: 5.1%\nFixed assets/Total Assets: 20%\nReturn on Assets= 12.4%",
+      "gold_doc_ids": [
+        1286,
+        1288,
+        1290
+      ],
+      "retrieved_doc_ids_top10": [
+        1288,
+        1290,
+        624
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 0.6666666666666666,
+      "recall@10": 0.6666666666666666,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.6666666666666666,
+      "bridge_entity_coverage": 0.6666666666666666,
+      "difficulty_score": 0.35
+    },
+    {
+      "query_id": "18",
+      "question": "What is the FY2017 return on assets (ROA) for Coca Cola? ROA is defined as: FY2017 net income / (average total assets between FY2016 and FY2017). Round your answer to two decimal places. Give a response to the question by relying on the details shown in the balance sheet and the P&L statement.",
+      "answer": "0.01",
+      "gold_doc_ids": [
+        17675,
+        17677
+      ],
+      "retrieved_doc_ids_top10": [
+        17675,
+        18653,
+        17677
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "19",
+      "question": "By drawing conclusions from the information stated only in the statement of financial position, what is General Mills's FY2020 working capital ratio? Define working capital ratio as total current assets divided by total current liabilities. Round your answer to two decimal places.",
+      "answer": "0.68",
+      "gold_doc_ids": [
+        25702
+      ],
+      "retrieved_doc_ids_top10": [
+        25702,
+        25950,
+        25946
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "20",
+      "question": "As of May 26, 2023, what is the total amount Pepsico may borrow under its unsecured revolving credit agreements?",
+      "answer": "Total amount Pepsico may borrow under unsecured revolving credit agreements = $8,400,000,000.",
+      "gold_doc_ids": [
+        44949
+      ],
+      "retrieved_doc_ids_top10": [
+        44949,
+        44482,
+        44430
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "21",
+      "question": "We want to calculate a financial metric. Please help us compute it by basing your answers off of the cash flow statement and the income statement. Here's the question: what is the FY2022 retention ratio (using total cash dividends paid and net income attributable to shareholders) for General Mills? Round answer to two decimal places.",
+      "answer": "0.54",
+      "gold_doc_ids": [
+        25946,
+        25950
+      ],
+      "retrieved_doc_ids_top10": [
+        25950,
+        25946,
+        25702
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "22",
+      "question": "What is the quantity of restructuring costs directly outlined in AES Corporation's income statements for FY2022? If restructuring costs are not explicitly outlined then state 0.",
+      "answer": "0",
+      "gold_doc_ids": [
+        6344
+      ],
+      "retrieved_doc_ids_top10": [
+        6344,
+        14030,
+        25946
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 1.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.0
+    },
+    {
+      "query_id": "23",
+      "question": "What was MGM's interest coverage ratio using FY2022 Adjusted EBIT as the numerator and annual Interest Expense as the denominator?",
+      "answer": "As adjusted EBIT is negative, coverage ratio is zero",
+      "gold_doc_ids": [
+        36288
+      ],
+      "retrieved_doc_ids_top10": [
+        36288,
+        36321,
+        22668
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "24",
+      "question": "Using only the information within the balance sheet, how much total assets did Costco have at the end of FY2021? Answer in USD millions.",
+      "answer": "$59268.00",
+      "gold_doc_ids": [
+        20629
+      ],
+      "retrieved_doc_ids_top10": [
+        20629,
+        1288,
+        22668
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "25",
+      "question": "Assume that you are a public equities analyst. Answer the following question by primarily using information that is shown in the balance sheet: what is the year end FY2018 net PPNE for 3M? Answer in USD billions.",
+      "answer": "$8.70",
+      "gold_doc_ids": [
+        624
+      ],
+      "retrieved_doc_ids_top10": [
+        624,
+        1288,
+        1286
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "26",
+      "question": "What is Kraft Heinz's FY2019 inventory turnover ratio? Inventory turnover ratio is defined as: (FY2019 COGS) / (average inventory between FY2018 and FY2019). Round your answer to two decimal places. Please base your judgments on the information provided primarily in the balance sheet and the P&L statement.",
+      "answer": "6.25",
+      "gold_doc_ids": [
+        32261,
+        32263
+      ],
+      "retrieved_doc_ids_top10": [
+        32263,
+        32261,
+        50909
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "27",
+      "question": "How much has the effective tax rate of American Express changed between FY2021 and FY2022?",
+      "answer": "The effective tax rate for American Express has changed/dropped from 24.6% in FY 2021 to 21.6% in FY 2022.",
+      "gold_doc_ids": [
+        10077
+      ],
+      "retrieved_doc_ids_top10": [
+        10077,
+        10129,
+        46798
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "28",
+      "question": "What is Amcor's year end FY2020 net AR (in USD millions)? Address the question by adopting the perspective of a financial analyst who can only use the details shown within the balance sheet.",
+      "answer": "$1616.00",
+      "gold_doc_ids": [
+        7416
+      ],
+      "retrieved_doc_ids_top10": [
+        7416,
+        1288,
+        10077
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "29",
+      "question": "Which debt securities are registered to trade on a national securities exchange under Ulta Beauty's name as of FY2023?",
+      "answer": "There are none",
+      "gold_doc_ids": [
+        50916
+      ],
+      "retrieved_doc_ids_top10": [
+        50916,
+        50972,
+        50909
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "30",
+      "question": "Which business segment of JnJ will be treated as a discontinued operation from August 30, 2023 onward?",
+      "answer": "The Consumer Health business segment will be treated as a discontinued operation from August 30, 2023 onward.",
+      "gold_doc_ids": [
+        28962
+      ],
+      "retrieved_doc_ids_top10": [
+        28962,
+        28786,
+        14030
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "31",
+      "question": "Did Pfizer grow its PPNE between FY20 and FY21?",
+      "answer": "Yes, change in PPNE was positive year over year",
+      "gold_doc_ids": [
+        46798
+      ],
+      "retrieved_doc_ids_top10": [
+        46796,
+        46798,
+        46809
+      ],
+      "gold_rank": 2,
+      "hit@1": 0.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.23500000000000001
+    },
+    {
+      "query_id": "32",
+      "question": "Which debt securities are registered to trade on a national securities exchange under 3M's name as of Q2 of 2023?",
+      "answer": "Following debt securities registered under 3M's name are listed to trade on the New York Stock Exchange:\n-1.500% Notes due 2026 (Trading Symbol: MMM26)\n-1.750% Notes due 2030 (Trading Symbol: MMM30)\n-1.500% Notes due 2031 (Trading Symbol: MMM31)",
+      "gold_doc_ids": [
+        1491
+      ],
+      "retrieved_doc_ids_top10": [
+        1491,
+        1288,
+        624
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "33",
+      "question": "Has Pepsico reported any materially important ongoing legal battles from FY2022 and FY2021?",
+      "answer": "No, Pepsico is not involved in material legal battles.",
+      "gold_doc_ids": [
+        44430
+      ],
+      "retrieved_doc_ids_top10": [
+        44430,
+        44949,
+        44482
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "34",
+      "question": "According to the details clearly outlined within the balance sheet, how much total current assets did Nike have at the end of FY2019? Answer in USD millions.",
+      "answer": "$16525.00",
+      "gold_doc_ids": [
+        38923
+      ],
+      "retrieved_doc_ids_top10": [
+        38923,
+        38818,
+        1288
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "35",
+      "question": "What is the FY2019 fixed asset turnover ratio for Activision Blizzard? Fixed asset turnover ratio is defined as: FY2019 revenue / (average PP&E between FY2018 and FY2019). Round your answer to two decimal places. Base your judgments on the information provided primarily in the statement of income and the statement of financial position.",
+      "answer": "24.26",
+      "gold_doc_ids": [
+        2551,
+        2552
+      ],
+      "retrieved_doc_ids_top10": [
+        2551,
+        2552,
+        14030
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "36",
+      "question": "Does Adobe have an improving Free cashflow conversion as of FY2022?",
+      "answer": "Yes, the FCF conversion (using net income as the denominator) for Adobe has improved by ~13% from 143% in 2021 to 156% in 2022",
+      "gold_doc_ids": [
+        4459
+      ],
+      "retrieved_doc_ids_top10": [
+        4459,
+        3856,
+        4456
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "37",
+      "question": "What drove gross margin change as of the FY2022 for American Express? If gross margin is not a useful metric for a company like this, then please state that and explain why.",
+      "answer": "Performance is not measured through gross margin",
+      "gold_doc_ids": [
+        10129
+      ],
+      "retrieved_doc_ids_top10": [
+        10077,
+        10129,
+        31183
+      ],
+      "gold_rank": 2,
+      "hit@1": 0.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.23500000000000001
+    },
+    {
+      "query_id": "38",
+      "question": "We need to calculate a reasonable approximation (or exact number if possible) of a financial metric. Basing your judgment by information plainly provided in the statement of income, what is Nike's three year average of cost of goods sold as a % of revenue from FY2016 to FY2018? Answer in units of percents and round to one decimal place.",
+      "answer": "55.1%",
+      "gold_doc_ids": [
+        38818
+      ],
+      "retrieved_doc_ids_top10": [
+        38818,
+        38923,
+        14030
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "39",
+      "question": "In 2022 Q2, which of JPM's business segments had the highest net income?",
+      "answer": "Corporate & Investment Bank. Its net income was $3725 million.",
+      "gold_doc_ids": [
+        30157
+      ],
+      "retrieved_doc_ids_top10": [
+        30157,
+        29004,
+        28786
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "40",
+      "question": "What is Coca Cola's FY2022 dividend payout ratio (using total cash dividends paid and net income attributable to shareholders)? Round answer to two decimal places. Answer the question asked by assuming you only have access to information clearly displayed in the cash flow statement and the income statement.",
+      "answer": "0.8",
+      "gold_doc_ids": [
+        18653,
+        18656
+      ],
+      "retrieved_doc_ids_top10": [
+        18653,
+        17675,
+        18656
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "41",
+      "question": "At the Pepsico AGM held on May 3, 2023, what was the outcome of the shareholder vote on the shareholder proposal for a congruency report by Pepsico on net-zero emissions policies?",
+      "answer": "The shareholder proposal for a congruency report by Pepsico on net-zero emissions policies was defeated.",
+      "gold_doc_ids": [
+        44946
+      ],
+      "retrieved_doc_ids_top10": [
+        44946,
+        44949,
+        44482
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "42",
+      "question": "By drawing conclusions from the information stated only in the income statement, what is Amazon's FY2019 net income attributable to shareholders (in USD millions)?",
+      "answer": "$11588.00",
+      "gold_doc_ids": [
+        6851
+      ],
+      "retrieved_doc_ids_top10": [
+        6851,
+        10129,
+        14030
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "43",
+      "question": "What is the FY2017 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places. Please utilize information provided primarily within the balance sheet and the cash flow statement.",
+      "answer": "0.83",
+      "gold_doc_ids": [
+        3852,
+        3856
+      ],
+      "retrieved_doc_ids_top10": [
+        3856,
+        4459,
+        4456
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 0.5,
+      "recall@10": 0.5,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.5,
+      "bridge_entity_coverage": 0.5,
+      "difficulty_score": 0.425
+    },
+    {
+      "query_id": "44",
+      "question": "What was the key agenda of the AMCOR's 8k filing dated 1st July 2022?",
+      "answer": "Amcor Finance (USA), Inc. and Amcor Flexibles North America, Inc., entered into supplemental indentures relating to Guaranteed Senior Notes due 2026 and 2028. This involved the substitution of the Substitute Issuer (Amcor Flexibles North America) for the Former Issuer (Amcor Finance) and the assumption of covenants under the indentures. (In essence a novation agreement)",
+      "gold_doc_ids": [
+        8368
+      ],
+      "retrieved_doc_ids_top10": [
+        8368,
+        7416,
+        14030
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "45",
+      "question": "What are major acquisitions that Ulta Beauty has done in FY2023 and FY2022?",
+      "answer": "Ulta Beauty did not make any acquisitions in FY2023 and FY2022.",
+      "gold_doc_ids": [
+        50972
+      ],
+      "retrieved_doc_ids_top10": [
+        50972,
+        50909,
+        50916
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "46",
+      "question": "What industry does AMCOR primarily operate in?",
+      "answer": "Amcor is a global leader in packaging production for various use cases.",
+      "gold_doc_ids": [
+        8451
+      ],
+      "retrieved_doc_ids_top10": [
+        8451,
+        7416,
+        8368
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    },
+    {
+      "query_id": "47",
+      "question": "From FY21 to FY22, excluding Embedded, in which AMD reporting segment did sales proportionally increase the most?",
+      "answer": "Data Center",
+      "gold_doc_ids": [
+        9838
+      ],
+      "retrieved_doc_ids_top10": [
+        9838,
+        10077,
+        4456
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 1.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.0
+    },
+    {
+      "query_id": "48",
+      "question": "Was there any drop in Cash & Cash equivalents between FY 2023 and Q2 of FY2024?",
+      "answer": "Yes, there was a decline of ~42% between FY2023 and Q2 of FY 2024.",
+      "gold_doc_ids": [
+        14030
+      ],
+      "retrieved_doc_ids_top10": [
+        31183,
+        50909,
+        28736
+      ],
+      "gold_rank": 0,
+      "hit@1": 0.0,
+      "hit@3": 0.0,
+      "hit@10": 0.0,
+      "recall@3": 0.0,
+      "recall@10": 0.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 0.0,
+      "bridge_entity_coverage": 0.0,
+      "difficulty_score": 1.0
+    },
+    {
+      "query_id": "49",
+      "question": "Are JnJ's FY2022 financials that of a high growth company?",
+      "answer": "No, JnJ's FY2022 financials are not of a high growth company as sales grew by 1.3% in FY2022.",
+      "gold_doc_ids": [
+        28786
+      ],
+      "retrieved_doc_ids_top10": [
+        28786,
+        28962,
+        10077
+      ],
+      "gold_rank": 1,
+      "hit@1": 1.0,
+      "hit@3": 1.0,
+      "hit@10": 1.0,
+      "recall@3": 1.0,
+      "recall@10": 1.0,
+      "answer_coverage": 0.0,
+      "support_doc_coverage": 1.0,
+      "bridge_entity_coverage": 1.0,
+      "difficulty_score": 0.2
+    }
+  ]
+}

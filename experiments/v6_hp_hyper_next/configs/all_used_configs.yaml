@@ -1,0 +1,63 @@
+experiment_name: v6_hp_hyper_next
+created_at: "2026-06-16"
+objective:
+  target_payload: 0.070134
+  payload_tolerance: 0.002
+  primary_claim_policy: "Do not claim adaptive budget is independently validated unless it beats fixed under same payload."
+anchor_config:
+  method: V6-HP-hyper
+  strategy: hypernet_v6
+  topk: 2
+  warmup: 0
+  budget_mode: fixed
+  score_mode: value
+  use_utility_memory: false
+  layerwise_budget: true
+  payload: 0.070134
+seeds:
+  - 42
+  - 43
+  - 44
+evaluation_splits:
+  - all_1000
+  - hard_500
+  - hard_1000
+  - full_validation
+paths:
+  root: experiments/v6_hp_hyper_next
+  logs: experiments/v6_hp_hyper_next/logs
+  results: experiments/v6_hp_hyper_next/results
+  reports: experiments/v6_hp_hyper_next/reports
+  configs: experiments/v6_hp_hyper_next/configs
+  subsets: experiments/v6_hp_hyper_next/subsets
+  figures: experiments/v6_hp_hyper_next/figures
+hard_subset_ranking:
+  formula: "0.35*gold_rank_score + 0.25*(1-recall@3) + 0.20*(1-answer_coverage) + 0.10*(1-support_doc_coverage) + 0.10*(1-bridge_entity_coverage)"
+  fallback:
+    answer_coverage: "normalized answer string appears in retrieved contexts"
+    bridge_entity_coverage: "support_doc_coverage when supporting fact titles are unavailable"
+    gold_rank: "hit@10/miss approximation when explicit gold_rank is unavailable"
+same_payload_baseline:
+  methods:
+    - V3
+    - V4
+    - V5
+    - V6-HP-hyper-best
+  target_payload: 0.070134
+  tolerance: 0.002
+v6_ablation:
+  configs:
+    - v6_fixed_anchor
+    - v6_no_layerwise
+    - v6_delta_score
+    - v6_utility_memory_full
+    - v6_utility_memory_ema_05
+    - v6_utility_memory_ema_07
+    - v6_hard_weighting_off
+    - v6_hard_weighting_on
+adaptive_same_payload:
+  configs:
+    - fixed_anchor
+    - adaptive_realloc_same_payload
+    - adaptive_capped_same_payload
+    - adaptive_v6_original

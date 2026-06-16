@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/iiserver31/anaconda3/envs/supv2/bin/python",
+    "/home/iiserver31/projects/FedE4RAG-main/RAGTest/main_100_test.py",
+    "--model",
+    "/home/iiserver31/projects/FedE4RAG-main/V6-HP1/outputs/pprag_fl_v6_hp1_optuna/v6hp1_optuna_t0002/num5_dir_a03_imb00_ts0_v6hp1/hypernet-v6_k2_w0_s0_enc0_score-value_budget-fixed_hist5_client1_block1_hard1_util0/retriever_hf_2026-06-10_16-17-34",
+    "--save-per-query",
+    "--per-query-output",
+    "/home/iiserver31/projects/FedE4RAG-main/experiments/v6_hp_hyper_next/results/baseline_all1500_per_query.jsonl"
+  ],
+  "cwd": "/home/iiserver31/projects/FedE4RAG-main/RAGTest",
+  "eval_subset_type": "all",
+  "query_subset": null,
+  "env": {
+    "RAGTEST_DATASET": "hotpot_qa",
+    "HOTPOT_SPLIT": "validation",
+    "HOTPOT_MAX_EXAMPLES": 1500,
+    "RAGTEST_N": 1500
+  }
+}
