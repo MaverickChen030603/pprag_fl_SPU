@@ -25,6 +25,7 @@ def df_to_markdown_safe(df: pd.DataFrame) -> str:
 def main() -> int:
     ablation_df = load_csv_safe(REPORT_DIR / "ablation_summary.csv")
     official_df = load_csv_safe(REPORT_DIR / "official_eval_summary_1000.csv")
+    dynamic_df = load_csv_safe(REPORT_DIR / "dynamic_strict_summary_agg.csv")
     now = datetime.now().isoformat(timespec="seconds")
 
     lines = [
@@ -43,11 +44,15 @@ def main() -> int:
         "",
         df_to_markdown_safe(ablation_df),
         "",
-        "## 2. Official Eval 结果（n=1000，FiD Reader）",
+        "## 2. Dynamic Strict 结果",
+        "",
+        df_to_markdown_safe(dynamic_df),
+        "",
+        "## 3. Official Eval 结果（n=1000，FiD Reader）",
         "",
         df_to_markdown_safe(official_df),
         "",
-        "## 3. 结论",
+        "## 4. 结论",
         "",
         (
             "_待完整实验完成后填写；若 official eval 未显著提升，"

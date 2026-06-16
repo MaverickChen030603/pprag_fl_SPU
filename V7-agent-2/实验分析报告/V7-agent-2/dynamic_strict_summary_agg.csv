@@ -1,0 +1,2 @@
+method,agent_profile,n,avg_budget_topk,early_recall_mean,bridge_recall_mean,target_recall_mean,diversity_mean,hp1_score_mean
+agent_rule_v7_dynamic,v7agent2_rule_dynamic,5,3.0,0.3454545454545454,0.454545454545454,0.3999999999999997,0.7,0.5243636363636361
