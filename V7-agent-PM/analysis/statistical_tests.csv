@@ -1,1 +1,7 @@
-
+comparison,metric,n,mean_delta,wilcoxon_stat,p_value
+agent_rule_v7_dynamic vs agent_pm_dynamic_full,hp1_multihop_score,30,0.013418181818181885,0.0,1.584089649817868e-05
+agent_rule_v7_dynamic vs agent_pm_bandit_slot,hp1_multihop_score,10,-0.025163636363636322,0.0,0.001953125
+agent_pm_dynamic_full vs agent_pm_dynamic_no_memory,hp1_multihop_score,15,-0.02645090909090917,6.0,0.0020739283941541117
+agent_pm_dynamic_full vs agent_pm_dynamic_no_failure_memory,hp1_multihop_score,15,-0.008116363636363722,33.0,0.12362909241037369
+agent_dynamic_slot vs agent_fixed_slot_1,hp1_multihop_score,5,0.019192727272726907,0.0,0.0625
+agent_dynamic_slot vs agent_fixed_slot_2,hp1_multihop_score,5,0.017774545454545453,0.0,0.0625

@@ -1,0 +1,20 @@
+{
+  "suite": "v7pm_main",
+  "task_name": "num5_dir_a03_imb00_ts0_v7hp1",
+  "alpha": 0.3,
+  "run_name": "agent-rule-v7-dynamic_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist7_client1_block1_hard1_util1_ep1_cov1_mem1_dyn1_ecw000_slotdyn_pmf1r1i1bg1dh0",
+  "method": "agent_rule_v7_dynamic",
+  "agent_profile": "v7agentpm_rule_dynamic",
+  "seed": 2,
+  "avg_budget_topk_hp1": 3.0,
+  "budget_std_hp1": 0.0,
+  "rare_client_budget_hp1": 3.0,
+  "bridge_block_recall_hp1": 0.43636363636363595,
+  "early_evidence_recall_hp1": 0.3636363636363635,
+  "target_block_recall_hp1": 0.39999999999999974,
+  "selection_diversity_hp1": 0.7,
+  "hp1_multihop_score": 0.5229090909090908,
+  "event_count": 55,
+  "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/outputs/pprag_fl_v7agentpm/v7pm_main/num5_dir_a03_imb00_ts0_v7hp1/agent-rule-v7-dynamic_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist7_client1_block1_hard1_util1_ep1_cov1_mem1_dyn1_ecw000_slotdyn_pmf1r1i1bg1dh0",
+  "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/analysis/strict_runs/v7pm_main/num5_dir_a03_imb00_ts0_v7hp1/agent-rule-v7-dynamic_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist7_client1_block1_hard1_util1_ep1_cov1_mem1_dyn1_ecw000_slotdyn_pmf1r1i1bg1dh0"
+}

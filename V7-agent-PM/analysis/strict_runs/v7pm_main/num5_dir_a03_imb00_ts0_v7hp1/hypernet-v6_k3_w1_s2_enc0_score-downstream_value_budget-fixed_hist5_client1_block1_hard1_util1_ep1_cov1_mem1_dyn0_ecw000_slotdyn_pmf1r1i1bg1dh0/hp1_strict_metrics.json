@@ -1,0 +1,20 @@
+{
+  "suite": "v7pm_main",
+  "task_name": "num5_dir_a03_imb00_ts0_v7hp1",
+  "alpha": 0.3,
+  "run_name": "hypernet-v6_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1_ep1_cov1_mem1_dyn0_ecw000_slotdyn_pmf1r1i1bg1dh0",
+  "method": "hypernet_v6",
+  "agent_profile": "hp1_baseline_hypernet_v6",
+  "seed": 2,
+  "avg_budget_topk_hp1": 3.0,
+  "budget_std_hp1": 0.0,
+  "rare_client_budget_hp1": 3.0,
+  "bridge_block_recall_hp1": 0.596363636363637,
+  "early_evidence_recall_hp1": 0.0,
+  "target_block_recall_hp1": 0.2981818181818185,
+  "selection_diversity_hp1": 0.5,
+  "hp1_multihop_score": 0.43258181818181846,
+  "event_count": 55,
+  "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/outputs/pprag_fl_v7agentpm/v7pm_main/num5_dir_a03_imb00_ts0_v7hp1/hypernet-v6_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1_ep1_cov1_mem1_dyn0_ecw000_slotdyn_pmf1r1i1bg1dh0",
+  "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/analysis/strict_runs/v7pm_main/num5_dir_a03_imb00_ts0_v7hp1/hypernet-v6_k3_w1_s2_enc0_score-downstream_value_budget-fixed_hist5_client1_block1_hard1_util1_ep1_cov1_mem1_dyn0_ecw000_slotdyn_pmf1r1i1bg1dh0"
+}

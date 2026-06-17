@@ -1,0 +1,20 @@
+{
+  "suite": "v7pm_memory_ablation",
+  "task_name": "num5_dir_a03_imb00_ts0_v7hp1",
+  "alpha": 0.3,
+  "run_name": "agent-pm-dynamic-no-memory_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist1_client1_block1_hard1_util1_ep1_cov1_mem0_dyn1_ecw000_slotdyn_pmf0r0i0bg1dh0",
+  "method": "agent_pm_dynamic_no_memory",
+  "agent_profile": "v7pm_no_memory",
+  "seed": 0,
+  "avg_budget_topk_hp1": 3.0,
+  "budget_std_hp1": 0.0,
+  "rare_client_budget_hp1": 3.0,
+  "bridge_block_recall_hp1": 0.38909090909090877,
+  "early_evidence_recall_hp1": 0.34545454545454546,
+  "target_block_recall_hp1": 0.36727272727272714,
+  "selection_diversity_hp1": 0.8,
+  "hp1_multihop_score": 0.5188363636363635,
+  "event_count": 55,
+  "run_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/outputs/pprag_fl_v7agentpm/v7pm_memory_ablation/num5_dir_a03_imb00_ts0_v7hp1/agent-pm-dynamic-no-memory_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist1_client1_block1_hard1_util1_ep1_cov1_mem0_dyn1_ecw000_slotdyn_pmf0r0i0bg1dh0",
+  "output_dir": "/home/iiserver31/projects/FedE4RAG-main/V7-agent-PM/analysis/strict_runs/v7pm_memory_ablation/num5_dir_a03_imb00_ts0_v7hp1/agent-pm-dynamic-no-memory_k3_w1_s0_enc0_score-downstream_value_budget-fixed_hist1_client1_block1_hard1_util1_ep1_cov1_mem0_dyn1_ecw000_slotdyn_pmf0r0i0bg1dh0"
+}
