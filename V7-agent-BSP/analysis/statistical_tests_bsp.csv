@@ -1,0 +1,9 @@
+method_a,method_b,metric,n,mean_delta,wilcoxon_p,ci95_low,ci95_high
+agent_pm_bandit_slot,agent_rule_v7_dynamic,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_strict,agent_pm_bandit_slot,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_retrieval,agent_pm_bandit_slot,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_reader,agent_pm_bandit_slot,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_reader,agent_pm_dynamic_full,joint_F1,0,,,,
+agent_bsp_memory_bandit_retrieval,agent_bsp_memory_bandit_no_failure_state,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_retrieval,agent_bsp_memory_bandit_no_rarity_state,hp1_multihop_score,0,,,,
+agent_bsp_memory_bandit_retrieval,agent_bsp_memory_bandit_no_history_state,hp1_multihop_score,0,,,,
