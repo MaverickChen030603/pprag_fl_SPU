@@ -1,0 +1,5 @@
+signal,metric,corr
+support_title_hit,answer_F1,0.11383654814129276
+support_title_hit,support_F1,0.3598342672777
+support_title_hit,joint_F1,0.25339115976864807
+support_title_hit,support_title_hit,1.0

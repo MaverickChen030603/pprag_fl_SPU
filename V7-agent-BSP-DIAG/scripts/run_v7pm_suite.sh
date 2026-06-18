@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+BASE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON_BIN="${PYTHON_BIN:-/home/iiserver31/anaconda3/envs/supv2/bin/python}"
+SUITE="${1:-v7pm_main}"
+SEED_LIST="${SEED_LIST:-0,1,2,3,4}"
+ROUNDS="${ROUNDS:-12}"
+BATCH_SIZE="${BATCH_SIZE:-8}"
+GPU="${GPU:-0}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-pprag_fl_v7agentpm}"
+RAWDATA_PATH="${RAWDATA_PATH:-/home/iiserver31/projects/FedE4RAG-main/FedE/select_data_hotpot_train_5000.json}"
+LOG_DIR="$BASE/runs/logs"; mkdir -p "$LOG_DIR"
+LOG="$LOG_DIR/${SUITE}_$(date '+%Y%m%d_%H%M%S').log"
+echo "[$(date '+%F %T')] START $SUITE seeds=$SEED_LIST rounds=$ROUNDS gpu=$GPU" | tee -a "$LOG"
+"$PYTHON_BIN" "$BASE/run_experiment_suite.py"   --suite "$SUITE" --experiment-name "$EXPERIMENT_NAME" --rounds "$ROUNDS" --clients 5 --epochs 1   --batch-size "$BATCH_SIZE" --gpu "$GPU" --seed-list "$SEED_LIST" --rawdata-path "$RAWDATA_PATH"   --rag-dataset hotpot_qa --rag-hotpot-split validation --rag-hotpot-max-examples 1000 2>&1 | tee -a "$LOG"
+"$PYTHON_BIN" "$BASE/run_hp1_strict_eval.py"   --upstream-root "$BASE/outputs/$EXPERIMENT_NAME/$SUITE"   --output-root "$BASE/analysis/strict_runs/$SUITE" --force 2>&1 | tee -a "$LOG"
+echo "[$(date '+%F %T')] DONE $SUITE" | tee -a "$LOG"
