@@ -1,0 +1,12 @@
+artifact,path,exists,size_bytes,status
+official_summary,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/official_fid_t5_diag_summary.csv,False,0,missing
+strict_hf_final,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/strict_diag_hf_final.csv,False,0,missing
+reader_ordering_verification,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/reader_input_ordering_verification.csv,False,0,missing
+cache_reuse_audit,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/cache_reuse_audit.md,True,359,present
+gold_oracle_effect,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/gold_oracle_debug_effect.csv,True,17452,present
+per_query_alignment,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/per_query_alignment_final.csv,True,27352805,present
+selection_to_qa_correlation,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/selection_to_qa_correlation.csv,True,199,present
+true_subgroup_analysis,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/true_subgroup_analysis_final.csv,True,12419,present
+representative_cases,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/representative_cases_final.md,False,0,missing
+statistical_tests,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/analysis/statistical_tests_final.csv,False,0,missing
+final_landing_report,/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_final_landing_report_20260619.md,False,0,missing
