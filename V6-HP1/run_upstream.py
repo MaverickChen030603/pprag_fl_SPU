@@ -46,8 +46,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--task-seed", type=int, default=0)
     parser.add_argument("--overwrite-task", action="store_true")
     parser.add_argument("--estimate-encryption", action="store_true")
-    parser.add_argument("--score-mode", choices=["importance", "value", "downstream_value"], default="downstream_value")
-    parser.add_argument("--budget-mode", choices=["fixed", "adaptive", "adaptive_v5", "adaptive_v6"], default="fixed")
+    parser.add_argument("--score-mode", choices=["importance", "value", "downstream_value", "delta", "grad_norm"], default="downstream_value")
+    parser.add_argument("--budget-mode", choices=["fixed", "adaptive", "adaptive_v5", "adaptive_v6", "adaptive_realloc"], default="fixed")
     parser.add_argument("--history-window", type=int, default=5)
     parser.add_argument("--disable-client-embedding", action="store_true")
     parser.add_argument("--disable-history-features", action="store_true")
@@ -59,12 +59,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--disable-hard-query-weighting", action="store_true")
     parser.add_argument("--disable-utility-memory", action="store_true")
     parser.add_argument("--hard-query-scale", type=float, default=1.0)
+    parser.add_argument("--hard-weight-alpha", type=float, default=None)
     parser.add_argument("--hard-client-threshold", type=float, default=0.68)
     parser.add_argument("--hard-client-bonus-topk", type=int, default=0)
     parser.add_argument("--adaptive-expand-threshold", type=float, default=0.78)
     parser.add_argument("--adaptive-shrink-threshold", type=float, default=0.48)
     parser.add_argument("--utility-expand-threshold", type=float, default=1.30)
     parser.add_argument("--soft-budget", action="store_true")
+    parser.add_argument("--pooler-cap-ratio", type=float, default=None)
+    parser.add_argument("--exclude-pooler", action="store_true")
     parser.add_argument("--rawdata-path", default=str(FEDE_DIR / "select_data_hotpot_train_5000.json"))
     parser.add_argument("--rag-dataset", default="hotpot_qa")
     parser.add_argument("--rag-hotpot-split", default="validation")
@@ -119,13 +122,15 @@ def build_config(args: argparse.Namespace) -> UpstreamConfig:
         layerwise_budget=args.layerwise_budget,
         use_hard_query_weighting=not args.disable_hard_query_weighting,
         use_utility_memory=not args.disable_utility_memory,
-        hard_query_scale=args.hard_query_scale,
+        hard_query_scale=args.hard_weight_alpha if args.hard_weight_alpha is not None else args.hard_query_scale,
         hard_client_threshold=args.hard_client_threshold,
         hard_client_bonus_topk=args.hard_client_bonus_topk,
         adaptive_expand_threshold=args.adaptive_expand_threshold,
         adaptive_shrink_threshold=args.adaptive_shrink_threshold,
         utility_expand_threshold=args.utility_expand_threshold,
         hard_budget_only=not args.soft_budget,
+        pooler_cap_ratio=args.pooler_cap_ratio,
+        exclude_pooler=args.exclude_pooler,
     )
 
 

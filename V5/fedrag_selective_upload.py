@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import math
 import os
 from collections import OrderedDict
 from datetime import datetime
@@ -71,6 +72,131 @@ except ImportError:
     )
     from upload_selectors import UploadSelector
     from utility_proxy import estimate_block_utility_map, estimate_client_downstream_proxy
+
+
+def _block_layer(block_name: str) -> str:
+    if block_name == "pooler":
+        return "pooler"
+    if block_name == "embeddings":
+        return "embeddings"
+    parts = block_name.split(".")
+    if len(parts) >= 3 and parts[0] == "encoder" and parts[1] == "layer":
+        return f"encoder.layer.{parts[2]}"
+    return block_name.rsplit(".", 1)[0] if "." in block_name else block_name
+
+
+def _mean(values: List[float]) -> float | None:
+    return sum(values) / len(values) if values else None
+
+
+def _std(values: List[float]) -> float | None:
+    if len(values) < 2:
+        return 0.0 if values else None
+    avg = sum(values) / len(values)
+    return math.sqrt(sum((value - avg) ** 2 for value in values) / len(values))
+
+
+def _entropy(labels: List[str]) -> float:
+    if not labels:
+        return 0.0
+    counts: Dict[str, int] = {}
+    for label in labels:
+        counts[label] = counts.get(label, 0) + 1
+    total = float(len(labels))
+    return -sum((count / total) * math.log(count / total + 1e-12) for count in counts.values())
+
+
+def _build_score_log_record(
+    *,
+    run_id: str,
+    method: str,
+    seed: int,
+    subset: str,
+    round_id: int,
+    client_id: int,
+    payload_ratio: float | None,
+    topk: int,
+    budget_mode: str,
+    score_mode: str,
+    layerwise_budget: bool,
+    use_utility_memory: bool,
+    use_hard_query_weighting: bool,
+    adaptive_mode: str,
+    selected_blocks: List[str],
+    score_map: Mapping[str, float] | None,
+    budget_topk: int,
+    predicted_budget_ratio: float | None,
+) -> Dict:
+    score_map = dict(score_map or {})
+    selected_blocks = list(selected_blocks or [])
+    if "__ALL__" in selected_blocks:
+        selected_blocks = list(score_map.keys())
+    selected_set = set(selected_blocks)
+    candidate_scores = [float(value) for value in score_map.values()]
+    selected_scores = [float(score_map[block]) for block in selected_blocks if block in score_map]
+    non_selected_scores = [float(value) for block, value in score_map.items() if block not in selected_set]
+    selected_min = min(selected_scores) if selected_scores else None
+    best_non_selected = max(non_selected_scores) if non_selected_scores else None
+    selected_mean = _mean(selected_scores)
+    non_selected_mean = _mean(non_selected_scores)
+    layer_ids = [_block_layer(block) for block in selected_blocks]
+    layer_summary: Dict[str, Dict[str, float]] = {}
+    for block, score in score_map.items():
+        layer = _block_layer(block)
+        entry = layer_summary.setdefault(layer, {"count": 0, "score_sum": 0.0, "selected_count": 0})
+        entry["count"] += 1
+        entry["score_sum"] += float(score)
+        if block in selected_set:
+            entry["selected_count"] += 1
+    for entry in layer_summary.values():
+        entry["score_mean"] = entry["score_sum"] / max(entry["count"], 1)
+        del entry["score_sum"]
+    return {
+        "run_id": run_id,
+        "method": method,
+        "seed": seed,
+        "subset": subset,
+        "round_id": round_id,
+        "client_id": client_id,
+        "payload_ratio": payload_ratio,
+        "topk": topk,
+        "budget_mode": budget_mode,
+        "score_mode": score_mode,
+        "layerwise_budget": layerwise_budget,
+        "use_utility_memory": use_utility_memory,
+        "use_hard_query_weighting": use_hard_query_weighting,
+        "adaptive_mode": adaptive_mode,
+        "num_candidate_blocks": len(score_map),
+        "num_selected_blocks": len(selected_blocks),
+        "selected_block_ids": selected_blocks,
+        "selected_layer_ids": layer_ids,
+        "selected_block_scores": selected_scores,
+        "candidate_score_mean": _mean(candidate_scores),
+        "candidate_score_std": _std(candidate_scores),
+        "candidate_score_min": min(candidate_scores) if candidate_scores else None,
+        "candidate_score_max": max(candidate_scores) if candidate_scores else None,
+        "selected_score_mean": selected_mean,
+        "selected_score_std": _std(selected_scores),
+        "non_selected_score_mean": non_selected_mean,
+        "non_selected_score_std": _std(non_selected_scores),
+        "score_margin_selected_vs_next": (selected_min - best_non_selected) if selected_min is not None and best_non_selected is not None else None,
+        "score_margin_selected_vs_mean": (selected_mean - non_selected_mean) if selected_mean is not None and non_selected_mean is not None else None,
+        "layer_score_summary": layer_summary,
+        "layer_budget_before_constraint": None,
+        "layer_budget_after_constraint": {layer: layer_ids.count(layer) for layer in sorted(set(layer_ids))},
+        "hard_query_weight_mean": None,
+        "hard_query_weight_std": None,
+        "downstream_value_score_mean": None,
+        "downstream_value_score_std": None,
+        "utility_memory_score_mean": None,
+        "utility_memory_score_std": None,
+        "pooler_candidate_count": 1 if "pooler" in score_map else 0,
+        "pooler_selected_count": selected_blocks.count("pooler"),
+        "encoder_layer8_selected_count": sum(1 for block in selected_blocks if _block_layer(block) == "encoder.layer.8"),
+        "layer_distribution_entropy": _entropy(layer_ids),
+        "budget_topk": budget_topk,
+        "predicted_budget_ratio": predicted_budget_ratio,
+    }
 
 
 class Server(BasicServer):
@@ -144,6 +270,7 @@ class Server(BasicServer):
             self.hn_optimizer = torch.optim.Adam(self.hypernet.parameters(), lr=self.hn_lr)
 
         self.round_records = []
+        self.score_log_records = []
         self._write_run_metadata()
 
     def iterate(self):
@@ -369,18 +496,50 @@ class Server(BasicServer):
         selection_details = []
         upload_block_lists = client_updates.get("upload_blocks", [])
         client_ids = client_updates.get("client_id", [])
-        for client_id, blocks, budget_topk, predicted_budget in zip(
+        selection_scores = client_updates.get("selection_scores", [])
+        score_log_path = Path(self.output_dir) / "score_logging_raw.jsonl"
+        for idx, (client_id, blocks, budget_topk, predicted_budget) in enumerate(zip(
             client_ids,
             upload_block_lists,
             budget_topks or [self.topk_blocks] * len(client_ids),
             predicted_budgets or [0.0] * len(client_ids),
-        ):
+        )):
+            score_map = selection_scores[idx] if idx < len(selection_scores) and isinstance(selection_scores[idx], Mapping) else {}
+            payload_ratio = ratios[idx] if idx < len(ratios) else None
+            score_record = _build_score_log_record(
+                run_id=str(Path(self.output_dir)),
+                method=self.selection_strategy,
+                seed=int(self.option.get("seed", 0)),
+                subset=self.suite_tag,
+                round_id=int(self.current_round),
+                client_id=int(client_id),
+                payload_ratio=payload_ratio,
+                topk=self.topk_blocks,
+                budget_mode=self.budget_mode,
+                score_mode=self.score_mode,
+                layerwise_budget=self.layerwise_budget,
+                use_utility_memory=self.use_utility_memory,
+                use_hard_query_weighting=self.use_hard_query_weighting,
+                adaptive_mode=self.budget_mode if self.budget_mode.startswith("adaptive") else "fixed",
+                selected_blocks=list(blocks or []),
+                score_map=score_map,
+                budget_topk=int(budget_topk),
+                predicted_budget_ratio=float(predicted_budget),
+            )
+            self.score_log_records.append(score_record)
+            append_jsonl(score_log_path, score_record)
             selection_details.append(
                 {
                     "client_id": int(client_id),
                     "upload_blocks": list(blocks or []),
                     "budget_topk": int(budget_topk),
                     "predicted_budget_ratio": float(predicted_budget),
+                    "candidate_score_mean": score_record["candidate_score_mean"],
+                    "selected_score_mean": score_record["selected_score_mean"],
+                    "score_margin_selected_vs_next": score_record["score_margin_selected_vs_next"],
+                    "pooler_selected_count": score_record["pooler_selected_count"],
+                    "encoder_layer8_selected_count": score_record["encoder_layer8_selected_count"],
+                    "layer_distribution_entropy": score_record["layer_distribution_entropy"],
                 }
             )
         total_mean_l2 = 0.0
@@ -474,6 +633,8 @@ class Server(BasicServer):
             hf_model_dir_saved = True
         write_json(Path(self.output_dir) / "round_logs.json", self.round_records)
         write_csv(Path(self.output_dir) / "round_logs.csv", self.round_records)
+        if self.score_log_records:
+            write_csv(Path(self.output_dir) / "score_logging_summary.csv", self.score_log_records)
         if self.hypernet is not None:
             torch.save(
                 {

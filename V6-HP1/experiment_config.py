@@ -80,6 +80,8 @@ class UpstreamConfig:
     adaptive_shrink_threshold: float = 0.48
     utility_expand_threshold: float = 1.30
     hard_budget_only: bool = True
+    pooler_cap_ratio: float | None = None
+    exclude_pooler: bool = False
 
     def to_flgo_option(self) -> Dict:
         gpu_option = [] if self.gpu < 0 else [self.gpu]
@@ -122,6 +124,8 @@ class UpstreamConfig:
             "adaptive_shrink_threshold": self.adaptive_shrink_threshold,
             "utility_expand_threshold": self.utility_expand_threshold,
             "hard_budget_only": self.hard_budget_only,
+            "pooler_cap_ratio": self.pooler_cap_ratio,
+            "exclude_pooler": self.exclude_pooler,
         }
 
     @property

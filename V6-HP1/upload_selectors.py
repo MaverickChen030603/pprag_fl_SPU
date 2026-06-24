@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import random
 import re
+import math
 from dataclasses import dataclass, field
 from typing import Dict, List, Mapping, Sequence
 
@@ -103,6 +104,8 @@ class UploadSelector:
         adaptive_max_topk: int = 7,
         adaptive_scale: float = 1.0,
         layerwise_budget: bool = False,
+        pooler_cap_ratio: float | None = None,
+        exclude_pooler: bool = False,
     ) -> None:
         self.strategy = strategy
         self.block_names = list(block_names)
@@ -114,6 +117,8 @@ class UploadSelector:
         self.adaptive_max_topk = adaptive_max_topk
         self.adaptive_scale = adaptive_scale
         self.layerwise_budget = layerwise_budget
+        self.pooler_cap_ratio = pooler_cap_ratio
+        self.exclude_pooler = exclude_pooler
 
     def _budget_topk(self, predicted_budget_ratio: float | None) -> int:
         if self.budget_mode not in {"adaptive", "adaptive_v5", "adaptive_v6"}:
@@ -130,6 +135,17 @@ class UploadSelector:
         if not self.layerwise_budget:
             return list(ranked_blocks[:budget_topk])
         return allocate_layerwise_budget(list(ranked_blocks), budget_topk)
+
+    def _apply_pooler_control(self, ranked_blocks: Sequence[str], budget_topk: int) -> List[str]:
+        ranked = list(ranked_blocks)
+        if self.exclude_pooler:
+            return [block for block in ranked if block != "pooler"]
+        if self.pooler_cap_ratio is None:
+            return ranked
+        max_pooler = max(0, int(math.floor(float(self.pooler_cap_ratio) * max(budget_topk, 1))))
+        if max_pooler >= 1:
+            return ranked
+        return [block for block in ranked if block != "pooler"]
 
     def select(
         self,
@@ -223,16 +239,23 @@ class UploadSelector:
         else:
             budget_topk = self._budget_topk(predicted_budget_ratio)
         ranking_scores = scores
-        if score_mode in {"value", "downstream_value"}:
+        if score_mode == "delta":
+            ranking_scores = {block: float((last_stats or {}).get(block, {}).get("l2", 0.0)) for block in self.block_names}
+        elif score_mode == "grad_norm":
+            ranking_scores = {
+                block: float((last_stats or {}).get(block, {}).get("mean_l2", (last_stats or {}).get(block, {}).get("l2", 0.0)))
+                for block in self.block_names
+            }
+        elif score_mode in {"value", "downstream_value"}:
             ranking_scores = compute_value_density(scores, block_costs)
-        ranked = _rank_by_score(ranking_scores)
+        ranked = self._apply_pooler_control(_rank_by_score(ranking_scores), budget_topk)
         if budget_topk <= 0 or budget_topk >= len(self.block_names):
             blocks = ["__ALL__"]
         else:
             chosen = self._apply_layerwise_budget(ranked, budget_topk)
             blocks = list(chosen[:budget_topk])
             for block in self.always_upload:
-                if block in self.block_names and block not in blocks:
+                if block in self.block_names and block not in blocks and block in ranked:
                     blocks.append(block)
         return SelectionResult(
             "hypernet_v6" if self.strategy == "hypernet_v6" else ("hypernet_v5" if self.strategy == "hypernet_v5" else "hypernet_v3"),
