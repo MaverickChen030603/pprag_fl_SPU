@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from action_atoms.action_atoms import ActionKind, AtomicAction, ContextState, apply_action, apply_trajectory, legal_actions
+from action_atoms.action_atoms import ActionKind, AtomicAction, ContextState, apply_action, apply_trajectory, legal_actions, shortest_repair_trajectory
 
 
 def state() -> ContextState:
@@ -48,6 +48,17 @@ class ActionAtomTests(unittest.TestCase):
     def test_invalid_existing_replacement_rejected(self) -> None:
         with self.assertRaises(ValueError):
             apply_action(state(), AtomicAction(ActionKind.REPLACE, i=0, doc_id="d1"))
+
+    def test_shortest_repair_witness_is_state_valid(self) -> None:
+        target = ("d6", "d1", "d5", "d3", "d4")
+        actions = shortest_repair_trajectory(state().context, target, max_depth=3)
+        self.assertIsNotNone(actions)
+        self.assertEqual(len(actions), 2)
+        self.assertEqual(apply_trajectory(state(), actions)[-1].context, target)
+
+    def test_unreachable_four_replacements(self) -> None:
+        target = ("d5", "d6", "d7", "d8", "d4")
+        self.assertIsNone(shortest_repair_trajectory(state().context, target, max_depth=3))
 
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 
-from action_atoms.action_atoms import ActionKind, AtomicAction, ContextState, apply_action, legal_actions
+from action_atoms.action_atoms import ActionKind, AtomicAction, ContextState, apply_action, legal_actions, shortest_repair_trajectory
 
 
 @dataclass(frozen=True)
@@ -75,17 +75,38 @@ def top10_subsets(query_id: str, baseline: Sequence[str], docs: Sequence[Doc]) -
     lookup = {doc.doc_id: doc for doc in docs}
     for subset in itertools.combinations([doc.doc_id for doc in docs], 5):
         for order_name, context in fixed_orders(subset, baseline, lookup):
+            witness = shortest_repair_trajectory(baseline, context, max_depth=3)
+            depth = len(witness) if witness is not None else 5
             yield {
                 "query_id": query_id,
-                "trajectory_id": stable_id(query_id, context, 5, f"subset_{order_name}"),
-                "candidate_type": "exhaustive_subset",
+                "trajectory_id": stable_id(query_id, context, depth, f"subset_{order_name}"),
+                "candidate_type": "exhaustive_reachable_trajectory" if witness is not None else "exhaustive_subset",
                 "order_family": order_name,
-                "depth": 5,
-                "actions": [],
+                "depth": depth,
+                "actions": [] if witness is None else [action.to_dict() for action in witness],
                 "context_doc_ids": list(context),
                 "cheap_score": score_context(context, lookup),
                 "is_baseline": tuple(context) == tuple(baseline),
             }
+
+
+def all_single_edits(query_id: str, baseline: Sequence[str], docs: Sequence[Doc]) -> Iterable[dict[str, Any]]:
+    lookup = {doc.doc_id: doc for doc in docs}
+    initial = ContextState(context=tuple(baseline), pool=tuple(doc.doc_id for doc in docs))
+    yield {
+        "query_id": query_id, "trajectory_id": stable_id(query_id, baseline, 0, "baseline"),
+        "candidate_type": "trajectory", "depth": 0, "actions": [], "context_doc_ids": list(baseline),
+        "cheap_score": score_context(baseline, lookup), "is_baseline": True,
+    }
+    allowed = {ActionKind.REPLACE, ActionKind.SWAP, ActionKind.MOVE}
+    for action in legal_actions(initial, allowed=allowed):
+        updated = apply_action(initial, action)
+        yield {
+            "query_id": query_id, "trajectory_id": stable_id(query_id, updated.context, 1, "single"),
+            "candidate_type": "trajectory", "depth": 1, "actions": [action.to_dict()],
+            "context_doc_ids": list(updated.context), "cheap_score": score_context(updated.context, lookup) - 0.01,
+            "is_baseline": False,
+        }
 
 
 def atomic_beam(query_id: str, baseline: Sequence[str], docs: Sequence[Doc], width: int, depth: int) -> Iterable[dict[str, Any]]:
@@ -160,7 +181,7 @@ def main() -> None:
             baseline = [str(value) for value in row["baseline_doc_ids"]]
             generators = [atomic_beam(str(row["query_id"]), baseline, docs, args.beam_width, args.depth)]
             if args.pool_size == 10:
-                generators.append(top10_subsets(str(row["query_id"]), baseline, docs))
+                generators = [all_single_edits(str(row["query_id"]), baseline, docs), top10_subsets(str(row["query_id"]), baseline, docs)]
             for candidate in itertools.chain.from_iterable(generators):
                 candidate.update({
                     "dataset": row.get("dataset", "unknown"),

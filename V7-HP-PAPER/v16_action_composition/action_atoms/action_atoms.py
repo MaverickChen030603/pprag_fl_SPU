@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 from enum import Enum
+import itertools
+from collections import deque
 from typing import Iterable, Sequence
 
 
@@ -170,3 +172,71 @@ def legal_actions(
     if ActionKind.STOP in allowed_set:
         actions.append(AtomicAction(ActionKind.STOP))
     return sorted(actions, key=AtomicAction.key)
+
+
+def _shortest_reorder(source: tuple[str, ...], target: tuple[str, ...], max_steps: int) -> tuple[AtomicAction, ...] | None:
+    if source == target:
+        return ()
+    queue = deque([(source, tuple())])
+    seen = {source}
+    while queue:
+        context, path = queue.popleft()
+        if len(path) >= max_steps:
+            continue
+        candidates = []
+        for i in range(CONTEXT_BUDGET):
+            for j in range(i + 1, CONTEXT_BUDGET):
+                values = list(context); values[i], values[j] = values[j], values[i]
+                candidates.append((tuple(values), AtomicAction(ActionKind.SWAP, i=i, j=j)))
+        for i in range(CONTEXT_BUDGET):
+            for j in range(CONTEXT_BUDGET):
+                if i == j:
+                    continue
+                values = list(context); doc = values.pop(i); values.insert(j, doc)
+                candidates.append((tuple(values), AtomicAction(ActionKind.MOVE, i=i, j=j)))
+        for updated, action in sorted(candidates, key=lambda row: (row[1].key(), row[0])):
+            if updated in seen:
+                continue
+            updated_path = path + (action,)
+            if updated == target:
+                return updated_path
+            seen.add(updated)
+            queue.append((updated, updated_path))
+    return None
+
+
+def shortest_repair_trajectory(
+    baseline: Sequence[str],
+    target: Sequence[str],
+    max_depth: int = 3,
+) -> tuple[AtomicAction, ...] | None:
+    """Find a shortest REPLACE/SWAP/MOVE witness from baseline to target.
+
+    The Phase-A contract intentionally excludes DROP_ADD because its membership
+    effect is already expressible by REPLACE; DROP_ADD remains a legal V16 atom
+    for later matched ablations.
+    """
+    baseline_tuple, target_tuple = tuple(baseline), tuple(target)
+    if len(baseline_tuple) != CONTEXT_BUDGET or len(target_tuple) != CONTEXT_BUDGET:
+        raise ValueError("baseline and target must both contain five documents")
+    if len(set(baseline_tuple)) != CONTEXT_BUDGET or len(set(target_tuple)) != CONTEXT_BUDGET:
+        raise ValueError("baseline and target documents must be unique")
+    removed_positions = [index for index, doc_id in enumerate(baseline_tuple) if doc_id not in target_tuple]
+    additions = [doc_id for doc_id in target_tuple if doc_id not in baseline_tuple]
+    if len(removed_positions) != len(additions) or len(additions) > max_depth:
+        return None
+    best: tuple[AtomicAction, ...] | None = None
+    for assignment in itertools.permutations(additions):
+        values = list(baseline_tuple)
+        replacements = []
+        for position, doc_id in zip(removed_positions, assignment):
+            values[position] = doc_id
+            replacements.append(AtomicAction(ActionKind.REPLACE, i=position, doc_id=doc_id))
+        remaining = max_depth - len(replacements)
+        reorder = _shortest_reorder(tuple(values), target_tuple, remaining)
+        if reorder is None:
+            continue
+        trajectory = tuple(replacements) + reorder
+        if best is None or (len(trajectory), tuple(action.key() for action in trajectory)) < (len(best), tuple(action.key() for action in best)):
+            best = trajectory
+    return best

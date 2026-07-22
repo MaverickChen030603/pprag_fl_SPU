@@ -42,7 +42,7 @@ The primary test is learned composition versus the strongest single-edit baselin
 
 ## Oracle Checkpoint 1
 
-Composition continues as the core method only if at least two datasets show: composition-only positive rate >= 10%, positive mean `StrictSynJoint`, and a paired bootstrap 95% CI whose lower bound exceeds zero. Top-20 beam estimates are explicitly lower bounds on the exhaustive oracle.
+Composition continues as the core method only after every dataset-reader cell contains at least 100 development queries and at least two datasets show: composition-only positive rate >= 10%, positive mean `StrictSynJoint`, and a paired bootstrap 95% CI whose lower bound exceeds zero. Smaller batches are search-integrity smoke tests only. Top-20 beam estimates are explicitly lower bounds on the exhaustive oracle.
 
 ## Learnability Checkpoint 2
 

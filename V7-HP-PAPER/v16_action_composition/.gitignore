@@ -7,6 +7,10 @@ data/**
 retrieval/indexes/
 retrieval/phase_a_smoke/
 oracle_search/phase_a_smoke/
+oracle_search/phase_a_exact/
+oracle_search/phase_a_exact100/
 oracle_search/v15_exploratory_inputs/
 multi_reader/phase_a_smoke/
+multi_reader/phase_a_exact/
+multi_reader/phase_a_exact100/
 evaluation/checkpoints/
