@@ -1,0 +1,11 @@
+data/
+artifacts/
+logs/
+**/__pycache__/
+*.pyc
+partitions/assignments/
+partitions/centroids/
+oracle/phase_a_*/reader_outputs/
+oracle/phase_a_*/contexts/
+oracle/phase_a_*/pools/
+oracle/phase_a_*/results/oracle_action_results.csv

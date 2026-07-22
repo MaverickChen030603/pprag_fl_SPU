@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "scanned": [
+    "retrieval",
+    "routing",
+    "centralized_selector",
+    "federated_training",
+    "personalization",
+    "risk_gate",
+    "communication",
+    "baselines",
+    "evaluation"
+  ],
+  "forbidden": [
+    "sealed_label",
+    "final_test_labels",
+    "is_supporting",
+    "is_support",
+    "gold_answer",
+    "answer_presence",
+    "supporting_facts",
+    "supporting_titles",
+    "reader_generated_answer",
+    "local_training_contexts"
+  ],
+  "findings": []
+}

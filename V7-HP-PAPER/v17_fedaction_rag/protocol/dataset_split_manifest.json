@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "experiment": "V7-HP-PAPER-v17-federated-action-rag",
+  "seed": 20260723,
+  "split_sizes": {
+    "train": 5000,
+    "development": 1000,
+    "calibration": 1000,
+    "final_test": 2000
+  },
+  "history_through": "V16",
+  "final_test_status": "sealed_not_for_development",
+  "datasets": {
+    "hotpotqa": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+      "source_sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc",
+      "source_rows": 90447,
+      "unique_rows_after_question_deduplication": 90439,
+      "duplicate_question_rows_excluded": 8,
+      "excluded_used_ids": 17999,
+      "excluded_used_questions": 18000,
+      "available_after_exclusion": 72439,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "bridge::medium": 2736,
+          "bridge::hard": 672,
+          "comparison::hard": 105,
+          "comparison::medium": 568,
+          "bridge::easy": 796,
+          "comparison::easy": 123
+        },
+        "development": {
+          "comparison::hard": 21,
+          "bridge::medium": 547,
+          "bridge::easy": 159,
+          "bridge::hard": 135,
+          "comparison::easy": 25,
+          "comparison::medium": 113
+        },
+        "calibration": {
+          "bridge::medium": 547,
+          "bridge::easy": 159,
+          "comparison::medium": 114,
+          "bridge::hard": 134,
+          "comparison::easy": 25,
+          "comparison::hard": 21
+        },
+        "final_test": {
+          "bridge::medium": 1095,
+          "comparison::medium": 227,
+          "bridge::hard": 269,
+          "bridge::easy": 318,
+          "comparison::hard": 42,
+          "comparison::easy": 49
+        }
+      },
+      "files": {
+        "train": {
+          "path": "data/hotpotqa/train.jsonl",
+          "sha256": "9ecb580dcf99afbc62c5f4d7b8453965037f928d3512c45427d3746e1c2de58c",
+          "query_fingerprint": "37a8638f579272240f49d11a9495432c9aab45742ec1d47d35e78f4aa7113921"
+        },
+        "development": {
+          "path": "data/hotpotqa/development.jsonl",
+          "sha256": "f9c9fecf79100a6b08766729d3e340e0fc0cec482983bfdb4d585e44eceacd9c",
+          "query_fingerprint": "4e4aa8f7e4c26405894aaa60f729b2431b35b6a120c46aa8e122c21d1148d283"
+        },
+        "calibration": {
+          "path": "data/hotpotqa/calibration.jsonl",
+          "sha256": "c2cd81d9a48e62771e502bc0ed6eaf37ae7157dcd97066a1d48ecd8e77f5cfc3",
+          "query_fingerprint": "859e8f2a8af9aac913a3e36342509b7d87d3f3579c5dd1a938160e170300e3ff"
+        },
+        "final_test": {
+          "input_path": "data/hotpotqa/final_test_inputs.jsonl",
+          "input_sha256": "1cb36ca063652bd32b493a1e95a239021cba83c19dc108275f7a5f6a14cbb087",
+          "sealed_label_path": "data/sealed/hotpotqa_final_test_labels.jsonl",
+          "sealed_label_sha256": "ae9d12ccf4b9d610ab40515e5dca3f64d937af1d3b30048d8a90cbc70eb9981e",
+          "query_fingerprint": "18a995b19df13c866fdf696e682a7b46ff7e1eadfca20e1381f8e1428cf5a209"
+        }
+      }
+    },
+    "2wikimultihopqa": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/data/sources/2wikimultihopqa_train.json",
+      "source_sha256": "b3fddb4d5bb42cd797919cad67616545be51b24740e0a7dabdae7bf76b8f7bfa",
+      "source_rows": 167454,
+      "unique_rows_after_question_deduplication": 167453,
+      "duplicate_question_rows_excluded": 1,
+      "excluded_used_ids": 18638,
+      "excluded_used_questions": 18638,
+      "available_after_exclusion": 148815,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "compositional::hop2": 2342,
+          "comparison::hop2": 1560,
+          "bridge_comparison::hop4": 1022,
+          "inference::hop2": 67,
+          "comparison::hop3": 9
+        },
+        "development": {
+          "comparison::hop2": 312,
+          "compositional::hop2": 469,
+          "bridge_comparison::hop4": 204,
+          "inference::hop2": 13,
+          "comparison::hop3": 2
+        },
+        "calibration": {
+          "comparison::hop2": 312,
+          "compositional::hop2": 469,
+          "bridge_comparison::hop4": 204,
+          "inference::hop2": 13,
+          "comparison::hop3": 2
+        },
+        "final_test": {
+          "compositional::hop2": 937,
+          "comparison::hop2": 624,
+          "bridge_comparison::hop4": 409,
+          "inference::hop2": 27,
+          "comparison::hop3": 3
+        }
+      },
+      "files": {
+        "train": {
+          "path": "data/2wikimultihopqa/train.jsonl",
+          "sha256": "22faf05f44d8bd5e5c811a4fea9bc2068ca59139c153286ec83eec68774331ae",
+          "query_fingerprint": "3b56dfabe124289122ba50d79dc4f1c252e9cea0a09663849df196025fcae2b1"
+        },
+        "development": {
+          "path": "data/2wikimultihopqa/development.jsonl",
+          "sha256": "9529b8a9e04ca7feb7dfeb3c303577adf65950f46d54883180b85e281be1a03e",
+          "query_fingerprint": "425a871e24e64e59bfd604d9e06b0e8342a44669392a636cc56b246a614a0d54"
+        },
+        "calibration": {
+          "path": "data/2wikimultihopqa/calibration.jsonl",
+          "sha256": "fbce1b2b5a6f893841c06f4916a3ab8c3f77aa4ac3ad35158554d194ad74e7d3",
+          "query_fingerprint": "714b6a551622879faf6658fb8518117ecab1a54759cddfda210bfcc97063621c"
+        },
+        "final_test": {
+          "input_path": "data/2wikimultihopqa/final_test_inputs.jsonl",
+          "input_sha256": "09b5568f244a75b7fbeee0aaa3ac3d1c98b352a04a184acb498176b722a07c7f",
+          "sealed_label_path": "data/sealed/2wikimultihopqa_final_test_labels.jsonl",
+          "sealed_label_sha256": "87464ccb0a2c0a2eb33d23a2fb8843f70709adf62d42944dd2f313799a062b1e",
+          "query_fingerprint": "59daba271a439168b63b190cd0ab9457e17ca2b5dc6875357a913e5d08c13dda"
+        }
+      }
+    },
+    "musique": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/sources/musique_official/raw_data/musique_ans_train_official_format.jsonl",
+      "source_sha256": "24be55519b341d8f5ce0c298fcd2f076bfba07b619e83955e2fe39e7264ae504",
+      "source_rows": 19938,
+      "unique_rows_after_question_deduplication": 19896,
+      "duplicate_question_rows_excluded": 42,
+      "excluded_used_ids": 9000,
+      "excluded_used_questions": 9000,
+      "available_after_exclusion": 10896,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "unknown::hop3": 1101,
+          "unknown::hop2": 3605,
+          "unknown::hop4": 294
+        },
+        "development": {
+          "unknown::hop2": 721,
+          "unknown::hop3": 220,
+          "unknown::hop4": 59
+        },
+        "calibration": {
+          "unknown::hop3": 220,
+          "unknown::hop2": 721,
+          "unknown::hop4": 59
+        },
+        "final_test": {
+          "unknown::hop2": 1441,
+          "unknown::hop3": 441,
+          "unknown::hop4": 118
+        }
+      },
+      "files": {
+        "train": {
+          "path": "data/musique/train.jsonl",
+          "sha256": "422d5b47a78f755dbe74f70e50cf37baa550b934015b6c64326b9df981658553",
+          "query_fingerprint": "ffff602999b38d296478fd6d2d20d7aa354377120ca3cc55b3e2c7add46911e5"
+        },
+        "development": {
+          "path": "data/musique/development.jsonl",
+          "sha256": "59ff2470aa34d80a0da8b9f75354a5728dc71e0fe7f5ecc883ccfa8f69a6781f",
+          "query_fingerprint": "d581706ee7a223da6b82f456b50a1920dfd18888295a6482b66e748acf1335be"
+        },
+        "calibration": {
+          "path": "data/musique/calibration.jsonl",
+          "sha256": "b7def1c98bfa2d62027dfd0dac812bc6704aabb95e7857b8424592441a41a856",
+          "query_fingerprint": "a4e454baa2d1d8d376d8afff98992e3f19c5c675d1b48e27baca293ae4c486a5"
+        },
+        "final_test": {
+          "input_path": "data/musique/final_test_inputs.jsonl",
+          "input_sha256": "c71f8fedd2b442bca58e3042c7be82da009cd5f0f1caec0e4313dac6215de2c5",
+          "sealed_label_path": "data/sealed/musique_final_test_labels.jsonl",
+          "sealed_label_sha256": "d1f2aff81a703073f3d4553283eb0c3a19c73a91548a115a02b816c94a4b4704",
+          "query_fingerprint": "711619b2222d281f539f605db83e0f546d5b08b523096c37dbebb8f3fd620c90"
+        }
+      }
+    }
+  }
+}
