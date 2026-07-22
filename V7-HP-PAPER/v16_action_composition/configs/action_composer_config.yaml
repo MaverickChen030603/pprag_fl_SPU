@@ -1,0 +1,46 @@
+experiment: V7-HP-PAPER-v16-synergy-aware-action-composition
+internal_codename: CompoRepair
+formal_name_status: frozen_pending_collision_audit
+seed: 20260722
+
+data:
+  datasets: [hotpotqa, 2wikimultihopqa, musique]
+  split_sizes: {train: 5000, development: 1000, calibration: 1000, final_test: 2000}
+  pool_sizes: [10, 20]
+  context_budget: 5
+
+search:
+  max_trajectory_depth: 3
+  atomic_actions: [KEEP, REPLACE, SWAP, MOVE, DROP_ADD, STOP]
+  top10_orders: [baseline_relative, crossencoder, bridge_first]
+  beam_widths: [8, 16, 32]
+  synergy_epsilons: [0.0, 0.01, 0.02]
+
+readers:
+  primary: google/flan-t5-large
+  secondary: allenai/unifiedqa-v2-t5-large-1363200
+  inference_reader_calls: 1
+
+objectives:
+  primary: answer_preserving_joint
+  development_variants: [joint_oriented, answer_preserving_joint, pareto_multi_objective]
+  robust_beta_grid: [0.0, 0.25, 0.5, 1.0]
+  answer_drop_targets: [0.04, 0.05, 0.08]
+
+models:
+  development_order: [handcrafted_greedy, direct_delta_greedy, imitation, synergy_aware, offline_rl]
+  simple_encoder: deepsets
+  strong_encoder: question_conditioned_set_transformer
+  offline_rl_allowed_only_after_checkpoint_2: true
+
+statistics:
+  bootstrap_resamples: 5000
+  confidence_level: 0.95
+  primary_test: learned_composition_vs_strongest_single_edit_on_joint_f1
+  secondary_correction: benjamini_hochberg
+
+go_no_go_1:
+  minimum_datasets: 2
+  minimum_composition_only_rate: 0.10
+  minimum_mean_strict_synergy_joint: 0.0
+  require_bootstrap_ci_excludes_zero: true

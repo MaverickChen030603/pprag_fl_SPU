@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "scanned": [
+    "retrieval",
+    "action_atoms",
+    "composer",
+    "scorer",
+    "risk_gate",
+    "baselines",
+    "efficiency"
+  ],
+  "forbidden": [
+    "sealed_label",
+    "final_test_labels",
+    "is_supporting",
+    "is_support",
+    "gold_answer",
+    "answer_presence",
+    "supporting_facts",
+    "supporting_titles"
+  ],
+  "findings": []
+}

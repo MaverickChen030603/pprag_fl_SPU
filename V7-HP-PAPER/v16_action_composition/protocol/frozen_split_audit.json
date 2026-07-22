@@ -1,0 +1,122 @@
+{
+  "status": "pass",
+  "datasets": {
+    "hotpotqa": {
+      "counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "bridge::easy": 796,
+          "bridge::medium": 2737,
+          "bridge::hard": 672,
+          "comparison::medium": 567,
+          "comparison::hard": 105,
+          "comparison::easy": 123
+        },
+        "development": {
+          "bridge::medium": 547,
+          "bridge::hard": 134,
+          "bridge::easy": 159,
+          "comparison::medium": 114,
+          "comparison::hard": 21,
+          "comparison::easy": 25
+        },
+        "calibration": {
+          "bridge::medium": 547,
+          "bridge::easy": 159,
+          "comparison::medium": 113,
+          "bridge::hard": 135,
+          "comparison::hard": 21,
+          "comparison::easy": 25
+        },
+        "final_test": {
+          "bridge::medium": 1095,
+          "comparison::easy": 49,
+          "comparison::medium": 227,
+          "bridge::easy": 318,
+          "bridge::hard": 269,
+          "comparison::hard": 42
+        }
+      },
+      "used_id_overlap": 0,
+      "used_question_overlap": 0
+    },
+    "2wikimultihopqa": {
+      "counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "bridge_comparison::hop4": 1022,
+          "comparison::hop2": 1560,
+          "compositional::hop2": 2342,
+          "inference::hop2": 67,
+          "comparison::hop3": 9
+        },
+        "development": {
+          "bridge_comparison::hop4": 204,
+          "comparison::hop2": 312,
+          "compositional::hop2": 469,
+          "inference::hop2": 13,
+          "comparison::hop3": 2
+        },
+        "calibration": {
+          "bridge_comparison::hop4": 204,
+          "compositional::hop2": 469,
+          "comparison::hop2": 312,
+          "comparison::hop3": 2,
+          "inference::hop2": 13
+        },
+        "final_test": {
+          "bridge_comparison::hop4": 409,
+          "comparison::hop2": 624,
+          "compositional::hop2": 937,
+          "inference::hop2": 27,
+          "comparison::hop3": 3
+        }
+      },
+      "used_id_overlap": 0,
+      "used_question_overlap": 0
+    },
+    "musique": {
+      "counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "unknown::hop3": 1101,
+          "unknown::hop4": 294,
+          "unknown::hop2": 3605
+        },
+        "development": {
+          "unknown::hop2": 721,
+          "unknown::hop3": 220,
+          "unknown::hop4": 59
+        },
+        "calibration": {
+          "unknown::hop2": 721,
+          "unknown::hop3": 220,
+          "unknown::hop4": 59
+        },
+        "final_test": {
+          "unknown::hop2": 1442,
+          "unknown::hop3": 440,
+          "unknown::hop4": 118
+        }
+      },
+      "used_id_overlap": 0,
+      "used_question_overlap": 0
+    }
+  },
+  "failures": []
+}

@@ -1,0 +1,12 @@
+**/__pycache__/
+*.pyc
+logs/
+logs_*.log
+data/**
+!data/.gitkeep
+retrieval/indexes/
+retrieval/phase_a_smoke/
+oracle_search/phase_a_smoke/
+oracle_search/v15_exploratory_inputs/
+multi_reader/phase_a_smoke/
+evaluation/checkpoints/

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "experiment": "V7-HP-PAPER-v16-synergy-aware-action-composition",
+  "seed": 20260722,
+  "split_sizes": {
+    "train": 5000,
+    "development": 1000,
+    "calibration": 1000,
+    "final_test": 2000
+  },
+  "final_test_status": "sealed_not_for_development",
+  "datasets": {
+    "hotpotqa": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+      "source_sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc",
+      "source_rows": 90447,
+      "unique_rows_after_question_deduplication": 90439,
+      "duplicate_question_rows_excluded": 8,
+      "excluded_used_ids": 8999,
+      "excluded_used_questions": 9000,
+      "available_after_exclusion": 81439,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "bridge::easy": 796,
+          "bridge::medium": 2737,
+          "bridge::hard": 672,
+          "comparison::medium": 567,
+          "comparison::hard": 105,
+          "comparison::easy": 123
+        },
+        "development": {
+          "bridge::medium": 547,
+          "bridge::hard": 134,
+          "bridge::easy": 159,
+          "comparison::medium": 114,
+          "comparison::hard": 21,
+          "comparison::easy": 25
+        },
+        "calibration": {
+          "bridge::medium": 547,
+          "bridge::easy": 159,
+          "comparison::medium": 113,
+          "bridge::hard": 135,
+          "comparison::hard": 21,
+          "comparison::easy": 25
+        },
+        "final_test": {
+          "bridge::medium": 1095,
+          "comparison::easy": 49,
+          "comparison::medium": 227,
+          "bridge::easy": 318,
+          "bridge::hard": 269,
+          "comparison::hard": 42
+        }
+      },
+      "files": {
+        "train": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/hotpotqa/train.jsonl",
+          "sha256": "548787626c96f9924de07d12b0efc0382589cd5dd849866ccd0c86d1eaed7dcb",
+          "query_fingerprint": "be3f8418743157708b5bc55d07d2f393b8a8fdb78e2686567df048b6d2005f1b"
+        },
+        "development": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/hotpotqa/development.jsonl",
+          "sha256": "bc5fc65fa141676fe8ee9918b4b6c0f4b47a97f8a45e358ffe9f695c6a7ed9d6",
+          "query_fingerprint": "f3bb2c25a86d6752ab1f64162fb195d79a98b82c424f5f5ea464cf3b9f48a3a3"
+        },
+        "calibration": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/hotpotqa/calibration.jsonl",
+          "sha256": "cf9b888613e1c9c70e5fa06c7d18995d18ad88e0b3acde19ca4ef166012db7eb",
+          "query_fingerprint": "7960b6f3c2e3484cb25731048f739bc9eebbcd427267bda82918fc62601ce0bb"
+        },
+        "final_test": {
+          "input_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/hotpotqa/final_test_inputs.jsonl",
+          "input_sha256": "30445b30ea5541eb1132a6e9a12fdcde43c31c9dee21b6ddbe854146983c399d",
+          "sealed_label_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/sealed/hotpotqa_final_test_labels.jsonl",
+          "sealed_label_sha256": "84f4d842bf9a34fe0bb1a29a2d3fb8a52e00339ea77a463a1f61ffcb0115fdb3",
+          "query_fingerprint": "95ae00a49cfa233a24e6f6829f65883b0890760c45fe2162d69cbc4b13819673"
+        }
+      }
+    },
+    "2wikimultihopqa": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/data/sources/2wikimultihopqa_train.json",
+      "source_sha256": "b3fddb4d5bb42cd797919cad67616545be51b24740e0a7dabdae7bf76b8f7bfa",
+      "source_rows": 167454,
+      "unique_rows_after_question_deduplication": 167453,
+      "duplicate_question_rows_excluded": 1,
+      "excluded_used_ids": 9638,
+      "excluded_used_questions": 9638,
+      "available_after_exclusion": 157815,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "bridge_comparison::hop4": 1022,
+          "comparison::hop2": 1560,
+          "compositional::hop2": 2342,
+          "inference::hop2": 67,
+          "comparison::hop3": 9
+        },
+        "development": {
+          "bridge_comparison::hop4": 204,
+          "comparison::hop2": 312,
+          "compositional::hop2": 469,
+          "inference::hop2": 13,
+          "comparison::hop3": 2
+        },
+        "calibration": {
+          "bridge_comparison::hop4": 204,
+          "compositional::hop2": 469,
+          "comparison::hop2": 312,
+          "comparison::hop3": 2,
+          "inference::hop2": 13
+        },
+        "final_test": {
+          "bridge_comparison::hop4": 409,
+          "comparison::hop2": 624,
+          "compositional::hop2": 937,
+          "inference::hop2": 27,
+          "comparison::hop3": 3
+        }
+      },
+      "files": {
+        "train": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/2wikimultihopqa/train.jsonl",
+          "sha256": "b0362b51263d794e349e51d5f0fea917d3db7673d80f99dc0b6901fd92fec5f9",
+          "query_fingerprint": "e66218d4b82a9c6dac42a3a5f50cc54e701c7e7630ae10e2f9dd9788893c83b6"
+        },
+        "development": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/2wikimultihopqa/development.jsonl",
+          "sha256": "ce663aa5ac809ac3f40e43469c22d05a76d21e6e8eae9582dc9c6486f2573361",
+          "query_fingerprint": "cc4ebcd62979f5fab2e67d61c34eb558ccdcd40c682912c20779f7893ba92df0"
+        },
+        "calibration": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/2wikimultihopqa/calibration.jsonl",
+          "sha256": "8580649ce7812fd312827354e7f680bd3d6e6da8dceeb43c8d8a6542d071d5da",
+          "query_fingerprint": "ea7d8dbbba621c2ddbdb08bb04d6ef9527bbf678b3206c0cf1fce1f73b67c46f"
+        },
+        "final_test": {
+          "input_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/2wikimultihopqa/final_test_inputs.jsonl",
+          "input_sha256": "04f0fcbb4aed41c4a0470947f3732e921e0ed27b2c93f9e928c322bf1fe52c0e",
+          "sealed_label_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/sealed/2wikimultihopqa_final_test_labels.jsonl",
+          "sealed_label_sha256": "1e8ee9d74b09806d465b7df8f5b230de8c0f1eb69ff8a2aa4622a3ba749c23ed",
+          "query_fingerprint": "ea6b3461412c71b8f6a9289711665c6ac5b67cedccbda089b7843d18b9184f4d"
+        }
+      }
+    },
+    "musique": {
+      "source": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/sources/musique_official/raw_data/musique_ans_train_official_format.jsonl",
+      "source_sha256": "24be55519b341d8f5ce0c298fcd2f076bfba07b619e83955e2fe39e7264ae504",
+      "source_rows": 19938,
+      "unique_rows_after_question_deduplication": 19896,
+      "duplicate_question_rows_excluded": 42,
+      "excluded_used_ids": 0,
+      "excluded_used_questions": 0,
+      "available_after_exclusion": 19896,
+      "split_counts": {
+        "train": 5000,
+        "development": 1000,
+        "calibration": 1000,
+        "final_test": 2000
+      },
+      "strata": {
+        "train": {
+          "unknown::hop3": 1101,
+          "unknown::hop4": 294,
+          "unknown::hop2": 3605
+        },
+        "development": {
+          "unknown::hop2": 721,
+          "unknown::hop3": 220,
+          "unknown::hop4": 59
+        },
+        "calibration": {
+          "unknown::hop2": 721,
+          "unknown::hop3": 220,
+          "unknown::hop4": 59
+        },
+        "final_test": {
+          "unknown::hop2": 1442,
+          "unknown::hop3": 440,
+          "unknown::hop4": 118
+        }
+      },
+      "files": {
+        "train": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/musique/train.jsonl",
+          "sha256": "8a1f6579f01774f9b100a3b05bab450929fc20a56ed7b68f621987228bffa853",
+          "query_fingerprint": "39c8bbf9dd428f4c9714a6246a34832b03f026679bc04b29718d94dbab9a5c01"
+        },
+        "development": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/musique/development.jsonl",
+          "sha256": "5f379597ce212990e24aff762b4a31deedfd46250e20cab82c8d008169c7bea2",
+          "query_fingerprint": "a3ff82aa48966b8038bb7e7d7c76f2ca222942b27bf4eb3896e70008b916a2c3"
+        },
+        "calibration": {
+          "path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/musique/calibration.jsonl",
+          "sha256": "edd783414b9c1fcfd8c91742b3870f05e256c3c9eaa36f5a35e77bf2d0f02df5",
+          "query_fingerprint": "ea1d85cb5c00f0d1b2ea08a9e542dd325936ea3e97b6f7735a0539053096bc49"
+        },
+        "final_test": {
+          "input_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/musique/final_test_inputs.jsonl",
+          "input_sha256": "881b45d4a61ddf85f8673f051d4fc55cb1d723d8af79567fe140771445e9565a",
+          "sealed_label_path": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/data/sealed/musique_final_test_labels.jsonl",
+          "sealed_label_sha256": "07f128404cfffd97f6ec7316d1f446de875953ef17bf11fb7a08f1b499f179e1",
+          "query_fingerprint": "3dfc48b06f9bc5b8277bfa9a58eb65d5cccd48e245bdc59b072653a4550e72db"
+        }
+      }
+    }
+  }
+}

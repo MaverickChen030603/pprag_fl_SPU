@@ -1,0 +1,7 @@
+dataset,reader,metric,queries,positive_single_rate,positive_composed_rate,composition_only_positive_rate,mean_strict_synergy,median_strict_synergy,strict_synergy_ci_low,strict_synergy_ci_high,synergy_rate_eps_0p0,synergy_rate_eps_0p01,synergy_rate_eps_0p02
+hotpotqa_v15_exploratory,flan,answer,100,0.06,0.14,0.08,0.04552380952380952,0.0,-0.008476190476190474,0.10276190476190478,0.09,0.09,0.09
+hotpotqa_v15_exploratory,flan,sp,100,0.09,0.17,0.08,0.005619047619047615,0.0,-0.009047619047619053,0.021333333333333333,0.1,0.1,0.1
+hotpotqa_v15_exploratory,flan,joint,100,0.1,0.19,0.09,0.011942329346219506,0.0,-0.010938949938949939,0.035153509470443114,0.11,0.11,0.11
+hotpotqa_v15_exploratory,unifiedqa,answer,100,0.03,0.12,0.09,0.061380952380952376,0.0,0.013857142857142856,0.11357142857142857,0.1,0.1,0.1
+hotpotqa_v15_exploratory,unifiedqa,sp,100,0.09,0.17,0.08,0.005619047619047615,0.0,-0.009047619047619053,0.021333333333333333,0.1,0.1,0.1
+hotpotqa_v15_exploratory,unifiedqa,joint,100,0.06,0.15,0.09,0.028399240855762592,0.0,0.003653209109730846,0.059198412698412695,0.11,0.11,0.11
