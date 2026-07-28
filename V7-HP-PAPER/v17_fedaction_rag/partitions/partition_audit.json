@@ -1,0 +1,189 @@
+{
+  "status": "pass",
+  "expected_cells": 18,
+  "observed_cells": 18,
+  "cells": [
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "dirichlet_a0p1",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 5707,
+      "max_client_size": 55642,
+      "max_to_mean_ratio": 3.01353986135182,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "dirichlet_a0p3",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 7049,
+      "max_client_size": 39988,
+      "max_to_mean_ratio": 2.1657279029462737,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "dirichlet_a1p0",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 12828,
+      "max_client_size": 29910,
+      "max_to_mean_ratio": 1.6199090121317157,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "entity_community",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 18087,
+      "max_client_size": 25625,
+      "max_to_mean_ratio": 1.3878357885615251,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "random_control",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 18464,
+      "max_client_size": 18464,
+      "max_to_mean_ratio": 1.0,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "partition": "topic_silo",
+      "documents": 369280,
+      "clients": 20,
+      "min_client_size": 5165,
+      "max_client_size": 25976,
+      "max_to_mean_ratio": 1.40684575389948,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "dirichlet_a0p1",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 10495,
+      "max_client_size": 47782,
+      "max_to_mean_ratio": 1.982824265134586,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "dirichlet_a0p3",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 10670,
+      "max_client_size": 41918,
+      "max_to_mean_ratio": 1.739484063997145,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "dirichlet_a1p0",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 16230,
+      "max_client_size": 34252,
+      "max_to_mean_ratio": 1.4213657178307697,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "entity_community",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 24097,
+      "max_client_size": 24098,
+      "max_to_mean_ratio": 1.0000020748652894,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "random_control",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 24097,
+      "max_client_size": 24098,
+      "max_to_mean_ratio": 1.0000020748652894,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "hotpotqa",
+      "partition": "topic_silo",
+      "documents": 481959,
+      "clients": 20,
+      "min_client_size": 14226,
+      "max_client_size": 38216,
+      "max_to_mean_ratio": 1.5858610379721096,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "dirichlet_a0p1",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 953,
+      "max_client_size": 8532,
+      "max_to_mean_ratio": 2.018237944860377,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "dirichlet_a0p3",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 1134,
+      "max_client_size": 7077,
+      "max_to_mean_ratio": 1.6740588297910088,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "dirichlet_a1p0",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 2189,
+      "max_client_size": 5907,
+      "max_to_mean_ratio": 1.3972962424156408,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "entity_community",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 3255,
+      "max_client_size": 6834,
+      "max_to_mean_ratio": 1.6165773693361247,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "random_control",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 4227,
+      "max_client_size": 4228,
+      "max_to_mean_ratio": 1.0001301020709885,
+      "gold_labels_used": false
+    },
+    {
+      "dataset": "musique",
+      "partition": "topic_silo",
+      "documents": 84549,
+      "clients": 20,
+      "min_client_size": 1370,
+      "max_client_size": 6868,
+      "max_to_mean_ratio": 1.624620042815409,
+      "gold_labels_used": false
+    }
+  ],
+  "warnings": [],
+  "failures": []
+}

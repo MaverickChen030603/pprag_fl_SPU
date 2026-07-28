@@ -20,6 +20,7 @@ class OracleContractTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.analysis = load(ROOT / "oracle" / "03_analyze_federated_oracle.py", "analysis_impl")
+        cls.aggregate = load(ROOT / "oracle" / "04_aggregate_phase_a.py", "aggregate_impl")
 
     def test_fed_gain_uses_best_single_client_or_cross_action(self):
         outcomes = [
@@ -36,6 +37,16 @@ class OracleContractTest(unittest.TestCase):
         low, high = self.analysis.bootstrap_ci([0.1] * 20, 100, 1)
         self.assertAlmostEqual(low, 0.1)
         self.assertAlmostEqual(high, 0.1)
+
+    def test_bh_adjustment_is_monotone_in_rank(self):
+        raw = [0.01, 0.04, 0.03]
+        adjusted = self.aggregate.bh_adjust(raw)
+        ranked = sorted(zip(raw, adjusted))
+        self.assertTrue(all(ranked[index][1] <= ranked[index + 1][1] for index in range(len(ranked) - 1)))
+        self.assertTrue(all(adjusted[index] >= raw[index] for index in range(len(raw))))
+
+    def test_randomization_p_is_one_for_zero_differences(self):
+        self.assertEqual(self.aggregate.paired_randomization_p([0.0] * 20, 100, 7), 1.0)
 
 
 if __name__ == "__main__":

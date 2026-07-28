@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import fcntl
 import hashlib
 import json
 import math
@@ -182,9 +183,18 @@ def stats(labels: np.ndarray, m: int) -> dict[str, Any]:
 
 
 def update_aggregate(path: Path, dataset: str, payload: dict[str, Any]) -> None:
-    current = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {"schema_version": 1, "datasets": {}}
-    current["datasets"][dataset] = payload
-    path.write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a+", encoding="utf-8") as handle:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+        handle.seek(0)
+        content = handle.read().strip()
+        current = json.loads(content) if content else {"schema_version": 1, "datasets": {}}
+        current["datasets"][dataset] = payload
+        handle.seek(0)
+        handle.truncate()
+        handle.write(json.dumps(current, indent=2) + "\n")
+        handle.flush()
+        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def main() -> None:

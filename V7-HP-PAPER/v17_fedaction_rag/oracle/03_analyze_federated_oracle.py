@@ -135,14 +135,23 @@ def main() -> None:
             audit = dispersion[query_id]
             support_clients = {int(value) for value in audit["support_clients"].split("|") if value}
             support_docs = {value for value in audit["support_doc_ids"].split("|") if value}
+            support_doc_clients = {
+                str(doc_id): int(client)
+                for doc_id, client in json.loads(audit["support_doc_client_map"]).items()
+            }
             selected_clients = set(map(int, pool["selected_clients"]))
             returned_docs = {doc["doc_id"] for doc in pool["pool"] if int(doc["client_id"]) in selected_clients}
+            contacted_support_docs = {
+                doc_id for doc_id, client in support_doc_clients.items() if client in selected_clients
+            }
             action_docs = {doc["doc_id"] for doc in pool["pool"][: int(pool["pool_size"])]}
             row_out.update({
                 "cross_client_evidence": int(audit["cross_client_evidence"]),
                 "support_client_count": int(audit["support_client_count"]),
                 "routing_absence": int(not support_clients.issubset(selected_clients)),
-                "local_retrieval_absence": int(bool(support_clients & selected_clients) and not (support_docs & returned_docs)),
+                "local_retrieval_absence": int(
+                    bool(contacted_support_docs) and not contacted_support_docs.issubset(returned_docs)
+                ),
                 "pool_absence": int(not support_docs.issubset(action_docs)),
                 "single_action_absence": int(max(row_out["best_single_client_delta_joint_f1"], row_out["best_single_cross_delta_joint_f1"]) <= 0),
                 "cross_client_composition_absence": int(row_out["best_cross_composition_delta_joint_f1"] <= 0),

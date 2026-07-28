@@ -107,6 +107,7 @@ def main() -> None:
                 break
             docs = documents(row, dataset)
             supports = [doc for doc in docs if doc["support"] and doc["doc_id"] in assignment]
+            gold_supports = [doc for doc in docs if doc["support"]]
             support_clients = [assignment[doc["doc_id"]] for doc in supports]
             unique_support_clients = sorted(set(support_clients))
             counts = Counter(support_clients)
@@ -120,7 +121,9 @@ def main() -> None:
                 "dataset": dataset,
                 "partition": partition,
                 "query_id": qid(row),
+                "gold_support_documents": len(gold_supports),
                 "support_documents": len(supports),
+                "indexed_support_fraction": len(supports) / max(1, len(gold_supports)),
                 "support_client_count": len(unique_support_clients),
                 "all_evidence_one_client": int(len(unique_support_clients) == 1),
                 "evidence_two_clients": int(len(unique_support_clients) == 2),
@@ -131,6 +134,10 @@ def main() -> None:
                 "closest_distractor_client": assignment.get(closest["doc_id"], -1) if closest else -1,
                 "support_clients": "|".join(map(str, unique_support_clients)),
                 "support_doc_ids": "|".join(sorted(doc["doc_id"] for doc in supports)),
+                "support_doc_client_map": json.dumps(
+                    {doc["doc_id"]: assignment[doc["doc_id"]] for doc in supports},
+                    sort_keys=True,
+                ),
             })
             key = (dataset, partition)
             summaries[key]["queries"] += 1

@@ -5,6 +5,7 @@ logs/
 *.pyc
 partitions/assignments/
 partitions/centroids/
+retrieval/local_indexes/
 oracle/phase_a_*/reader_outputs/
 oracle/phase_a_*/contexts/
 oracle/phase_a_*/pools/

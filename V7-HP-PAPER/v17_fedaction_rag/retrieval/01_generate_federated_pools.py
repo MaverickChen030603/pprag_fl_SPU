@@ -92,6 +92,13 @@ def local_sparse_search(
     return output
 
 
+def local_shard_search(connection: sqlite3.Connection, question: str, client_id: int, limit: int) -> list[dict[str, Any]]:
+    output = sparse_search(connection, question, limit)
+    for doc in output:
+        doc["client_id"] = client_id
+    return output
+
+
 def load_assignment(path: Path) -> dict[str, int]:
     return {str(row["doc_id"]): int(row["client_id"]) for row in rows(path)}
 
@@ -156,6 +163,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--partition", required=True)
     parser.add_argument("--assignment", type=Path)
+    parser.add_argument("--local-index-root", type=Path)
     parser.add_argument("--centroids", type=Path)
     parser.add_argument("--origins", type=Path)
     parser.add_argument("--centralized", action="store_true")
@@ -171,15 +179,24 @@ def main() -> None:
     args = parser.parse_args()
     from sentence_transformers import SentenceTransformer
 
-    if not args.centralized and not all((args.assignment, args.centroids, args.origins)):
-        raise ValueError("federated mode requires assignment, centroids, and origins")
+    if not args.centralized and not all((args.centroids, args.origins)):
+        raise ValueError("federated mode requires centroids and origins")
+    if not args.centralized and args.local_index_root is None and args.assignment is None:
+        raise ValueError("federated mode requires --assignment or --local-index-root")
     model = SentenceTransformer(args.encoder, device=args.device)
-    assignment = {} if args.centralized else load_assignment(args.assignment)
+    assignment = {} if args.centralized or args.local_index_root else load_assignment(args.assignment)
     centroids = None if args.centralized else np.load(args.centroids)
     origins = {} if args.centralized else load_origins(args.origins, args.dataset, args.partition, args.split_name)
     connection = sqlite3.connect(args.index)
-    if not args.centralized:
+    local_connections: dict[int, sqlite3.Connection] = {}
+    if not args.centralized and args.local_index_root is None:
         install_client_assignments(connection, assignment)
+    elif not args.centralized:
+        for client in range(len(centroids)):
+            path = args.local_index_root / f"client_{client:02d}.sqlite"
+            if not path.exists():
+                raise FileNotFoundError(path)
+            local_connections[client] = sqlite3.connect(path)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     count, latencies = 0, []
     with args.output.open("w", encoding="utf-8") as handle:
@@ -193,11 +210,15 @@ def main() -> None:
                 if args.centralized:
                     candidates = sparse_search(connection, question, args.sparse_candidates)
                 else:
+                    search = local_shard_search if local_connections else local_sparse_search
                     candidates = [
                         doc
                         for client in range(len(centroids))
-                        for doc in local_sparse_search(
-                            connection, question, client, args.local_sparse_candidates
+                        for doc in search(
+                            local_connections[client] if local_connections else connection,
+                            question,
+                            client,
+                            args.local_sparse_candidates,
                         )
                     ]
                 candidates = rank_candidates(
@@ -272,6 +293,8 @@ def main() -> None:
                 count += 1
         finally:
             connection.close()
+            for local_connection in local_connections.values():
+                local_connection.close()
     manifest = {
         "status": "complete",
         "dataset": args.dataset,
@@ -282,6 +305,7 @@ def main() -> None:
         "context_budget": 5,
         "action_pool_size": args.pool_size,
         "local_sparse_candidates": None if args.centralized else args.local_sparse_candidates,
+        "local_indexes": str(args.local_index_root.resolve()) if args.local_index_root else None,
         "encoder": args.encoder,
         "gold_or_support_injection": False,
         "random_padding": False,

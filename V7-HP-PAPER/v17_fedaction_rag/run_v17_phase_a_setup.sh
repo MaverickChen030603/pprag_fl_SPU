@@ -36,6 +36,10 @@ if [[ "$status" -ne 0 ]]; then
   exit "$status"
 fi
 
+"$PYTHON" "$ROOT/partitions/04_validate_partitions.py" \
+  --partition-root "$ROOT/partitions" \
+  >"$ROOT/logs/partition_audit.log" 2>&1
+
 CUDA_VISIBLE_DEVICES=0 "$PYTHON" "$ROOT/partitions/02_assign_query_origins.py" \
   --partition-root "$ROOT/partitions" --data-root "$ROOT/data" --device cuda \
   >"$ROOT/logs/query_origins.log" 2>&1

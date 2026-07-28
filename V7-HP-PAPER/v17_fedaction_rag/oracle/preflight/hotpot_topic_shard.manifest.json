@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "dataset": "hotpotqa",
+  "partition": "topic_silo",
+  "queries": 1,
+  "client_budget": 3,
+  "local_k": 5,
+  "context_budget": 5,
+  "action_pool_size": 10,
+  "local_sparse_candidates": 20,
+  "local_indexes": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo",
+  "encoder": "BAAI/bge-base-en-v1.5",
+  "gold_or_support_injection": false,
+  "random_padding": false,
+  "mean_retrieval_ms": 3393.57829419896,
+  "output": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/oracle/preflight/hotpot_topic_shard.jsonl"
+}
