@@ -72,7 +72,14 @@ def main() -> None:
     parser.add_argument("--minimum-queries", type=int, default=100)
     args = parser.parse_args()
 
-    rows = [row for path in sorted(args.input_dir.glob("*_per_query.csv")) for row in read_csv(path)]
+    # The routing audit is colocated with reader outputs.  Only reader-backed
+    # per-query files carry the aggregation contract (including ``reader``).
+    result_paths = [
+        path
+        for path in sorted(args.input_dir.glob("*_per_query.csv"))
+        if not path.name.startswith("routing_metrics_")
+    ]
+    rows = [row for path in result_paths for row in read_csv(path)]
     grouped: dict[tuple[str, str, str, int], list[dict[str, str]]] = defaultdict(list)
     for row in rows:
         grouped[(row["dataset"], row["reader"], row["partition"], int(row["client_budget"]))].append(row)
