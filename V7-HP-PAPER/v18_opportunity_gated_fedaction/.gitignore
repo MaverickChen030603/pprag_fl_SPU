@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+checkpoint_a/checkpoint_a_*.csv
+checkpoint_a/checkpoint_a_*.json
+checkpoint_a/checkpoint_a_*.md
+reports/generated/
