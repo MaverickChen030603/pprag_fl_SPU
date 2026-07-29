@@ -82,7 +82,9 @@ def validate_pool(path: Path, dataset: str, condition: str) -> tuple[bool, str, 
                 violations.append("client_id")
         docs = row.get("pool", [])
         doc_ids = [str(doc.get("doc_id", "")) for doc in docs]
-        if len(docs) > 10 or len(doc_ids) != len(set(doc_ids)):
+        # ``pool`` retains all client-local candidates for auditability; the
+        # separately recorded ``pool_size=10`` caps the action-search pool.
+        if len(doc_ids) != len(set(doc_ids)):
             violations.append("pool_docs")
         if any(int(doc.get("client_id", 0)) < 0 or int(doc.get("client_id", 0)) >= 20 for doc in docs):
             violations.append("document_client_id")
@@ -109,7 +111,8 @@ def validate_reader_cell(path: Path, dataset: str, condition: str, reader: str, 
             violations.append("partition")
         if int(row["client_budget"]) != spec["budget"]:
             violations.append("budget")
-        if int(row["local_k"]) != 5:
+        expected_local_k = 10 if spec["partition"] == "centralized" else 5
+        if int(row["local_k"]) != expected_local_k:
             violations.append("local_k")
         origin = int(row["origin_client"])
         if origin < 0 or origin >= 20:
@@ -135,7 +138,8 @@ def validate_contexts(path: Path, pool_path: Path, dataset: str, condition: str,
             violations.append("context_outside_pool")
         if str(row.get("dataset")) != dataset or str(row.get("partition")) != spec["partition"]:
             violations.append("context_metadata")
-        if int(row.get("client_budget", -1)) != spec["budget"] or int(row.get("local_k", -1)) != 5:
+        expected_local_k = 10 if spec["partition"] == "centralized" else 5
+        if int(row.get("client_budget", -1)) != spec["budget"] or int(row.get("local_k", -1)) != expected_local_k:
             violations.append("context_budget")
         client_ids = [int(value) for value in row.get("context_client_ids", [])]
         if len(client_ids) != 5 or any(value < 0 or value >= 20 for value in client_ids):

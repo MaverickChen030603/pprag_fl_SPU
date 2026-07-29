@@ -98,7 +98,9 @@ def main() -> int:
                 unit_positive = low > 0 and float(np.mean(only)) >= 0.10
                 cells.append({
                     "dataset": dataset, "reader": reader, "partition": partition,
-                    "N": len(rows), "Bc": budget, "local_k": 5, "global_pool": 10,
+                    "N": len(rows), "Bc": budget,
+                    "local_k": 10 if partition == "centralized" else 5,
+                    "global_pool": 10,
                     "cross_client_evidence_rate": len(cross) / len(rows) if partition != "centralized" else "",
                     "pool_complete_support_rate": route.get("mean_complete_support_in_action_pool", ""),
                     "best_single_client_delta": mean(rows, "best_single_client_delta_joint_f1"),
