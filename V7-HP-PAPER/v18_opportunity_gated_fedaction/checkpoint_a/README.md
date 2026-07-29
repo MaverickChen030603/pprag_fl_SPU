@@ -3,8 +3,10 @@
 `01_checkpoint_a_integrity_audit.py` is intentionally dormant while V17 runs.
 It verifies the thirty reader-backed cells, N=100 query alignment, partition
 and budget contract, local-k, K=10 candidate pools, document de-duplication,
-client IDs, frozen commit, artifact hashes, and the no-leak audit. It refuses a
-partial phase that lacks the V17 formal decision marker.
+client IDs, frozen commit provenance, artifact hashes, and the no-leak audit.
+It refuses a partial phase that lacks the V17 formal decision marker. The
+`run_provenance.json` file records the formal launch commit, so later V18-only
+documentation commits cannot invalidate an already-running experiment.
 
 After completion, invoke it from the V17 project environment:
 

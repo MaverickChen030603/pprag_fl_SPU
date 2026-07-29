@@ -12,7 +12,6 @@ import argparse
 import csv
 import hashlib
 import json
-import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -57,12 +56,6 @@ def csv_rows(path: Path) -> list[dict[str, str]]:
 
 def add(checks: list[dict[str, Any]], name: str, passed: bool, detail: str) -> None:
     checks.append({"name": name, "passed": bool(passed), "detail": detail})
-
-
-def git_commit(root: Path) -> str:
-    return subprocess.check_output(
-        ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
-    ).strip()
 
 
 def validate_pool(path: Path, dataset: str, condition: str) -> tuple[bool, str, set[str]]:
@@ -177,8 +170,13 @@ def main() -> int:
         (args.output_dir / "checkpoint_a_integrity.md").write_text("# Checkpoint-A Integrity\n\nStatus: **refused_partial_run**\n", encoding="utf-8")
         return 2
 
-    commit = git_commit(args.v17_root.parent.parent)
-    add(checks, "frozen_aggregator_commit", commit.startswith(args.expected_commit), f"observed={commit}; expected_prefix={args.expected_commit}")
+    provenance = phase / "run_provenance.json"
+    provenance_value = "missing"
+    provenance_ok = False
+    if provenance.is_file():
+        provenance_value = str(json.loads(provenance.read_text(encoding="utf-8")).get("formal_start_commit", ""))
+        provenance_ok = provenance_value.startswith(args.expected_commit)
+    add(checks, "frozen_aggregator_commit", provenance_ok, f"run_provenance={provenance_value}; expected_prefix={args.expected_commit}")
     run_config = phase / "frozen_run_config.txt"
     add(checks, "frozen_run_config", run_config.is_file(), str(run_config))
     if run_config.is_file():
