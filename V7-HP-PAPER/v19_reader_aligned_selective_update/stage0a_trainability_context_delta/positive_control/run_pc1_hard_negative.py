@@ -5,7 +5,7 @@ import argparse,csv,json,sys
 from pathlib import Path
 import numpy as np,torch
 from transformers import AutoTokenizer
-V19=Path(__file__).resolve().parents[1];sys.path.insert(0,str(V19/'stage0_full_upload'));sys.path.insert(0,str(V19/'model'))
+V19=Path(__file__).resolve().parents[2];sys.path.insert(0,str(V19/'stage0_full_upload'));sys.path.insert(0,str(V19/'model'))
 from run_stage0_viability import evaluate_pool, make_model, pooled
 from lora_blocks import adapter_state,load_adapter_state,state_bytes
 
