@@ -22,7 +22,10 @@ def main() -> None:
     args = parser.parse_args()
 
     rows = list(csv.DictReader((args.variant_dir / "boundary_audit/pc1_per_query_categories.csv").open(encoding="utf-8")))
-    train = json.loads((args.variant_dir / "training_log.json").read_text(encoding="utf-8"))
+    metric_path = args.variant_dir / "training_log.json"
+    if not metric_path.exists():
+        metric_path = args.variant_dir / "rescore_summary.json"
+    metrics = json.loads(metric_path.read_text(encoding="utf-8"))
     summary: dict[str, Any] = {
         "queries": len(rows),
         "top5_changed_rate": sum(truthy(row["top5_changed"]) for row in rows) / len(rows),
@@ -43,7 +46,13 @@ def main() -> None:
         "boundary_conversion_count": sum(truthy(row["support_entered_top5"]) for row in rows),
     }
     for key in ["loss_first", "loss_last", "adapter_bytes", "support_recall_at_5", "complete_support_at_5"]:
-        summary[key] = train[key]
+        if key in metrics:
+            summary[key] = metrics[key]
+    summary.setdefault("loss_first", "")
+    summary.setdefault("loss_last", "")
+    summary.setdefault("adapter_bytes", metrics.get("adapter_bytes", ""))
+    summary.setdefault("support_recall_at_5", metrics["support_recall_at_5"])
+    summary.setdefault("complete_support_at_5", metrics["complete_support_at_5"])
     summary["support_recall_delta_at_5"] = summary["support_recall_at_5"] - args.baseline_support_recall_at5
     summary["complete_support_delta_at_5"] = summary["complete_support_at_5"] - args.baseline_complete_support_at5
     summary["gate_pass"] = bool(
