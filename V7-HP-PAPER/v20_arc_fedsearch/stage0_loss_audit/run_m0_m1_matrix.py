@@ -210,6 +210,12 @@ def main() -> None:
         local5 = [doc for client in selected for doc in local[client][:5]]
         local10 = [doc for client in selected for doc in local[client][:10]]
         rank_map = {str(doc["doc_id"]): f"{doc['client_id']}:{doc['local_rank']}" for doc in local10}
+        ordered_support = sorted(support)
+        support_rank_values = [rank_map.get(doc) for doc in ordered_support]
+        support_rank_numbers = [int(value.rsplit(":", 1)[1]) for value in support_rank_values if value is not None]
+        support_1_rank = support_rank_values[0] if len(support_rank_values) >= 1 else None
+        support_2_rank = support_rank_values[1] if len(support_rank_values) >= 2 else None
+        worst_support_rank = max(support_rank_numbers) if support_rank_numbers else None
 
         allocations = {
             "A0_equal_5_5_5": allocation_equal(local, selected),
@@ -228,7 +234,10 @@ def main() -> None:
             "selected_client_set_is_frozen_bc3": 1,
             "candidate_materialization": "query_all_diagnostic_only",
             "gold_clients_offline_audit_only": json.dumps(gold_clients),
-            "support_local_ranks": json.dumps({doc: rank_map.get(doc) for doc in sorted(support)}),
+            "support_local_ranks": json.dumps({doc: rank_map.get(doc) for doc in ordered_support}),
+            "support_1_local_rank": support_1_rank,
+            "support_2_local_rank": support_2_rank,
+            "worst_support_rank": worst_support_rank,
             "selected_client_local_complete_at_5": complete(support, local5),
             "selected_client_local_complete_at_10": complete(support, local10),
         })
@@ -259,7 +268,10 @@ def main() -> None:
                 "allocation": allocation,
                 "selected_clients": json.dumps(selected),
                 "gold_clients": json.dumps(gold_clients),
-                "support_local_ranks": json.dumps({doc: rank_map.get(doc) for doc in sorted(support)}),
+                "support_local_ranks": json.dumps({doc: rank_map.get(doc) for doc in ordered_support}),
+                "support_1_local_rank": support_1_rank,
+                "support_2_local_rank": support_2_rank,
+                "worst_support_rank": worst_support_rank,
                 "complete_local5": complete(support, local5),
                 "complete_local10": complete(support, local10),
                 "transmitted_doc_ids": json.dumps([str(doc["doc_id"]) for doc in docs]),
@@ -326,7 +338,7 @@ def main() -> None:
         "best_a0_label_free_merge": {"merge": merge_best["merge"], "complete_merged_at_10": float(merge_best["complete_merged_at_10"])},
         "calibration_rescue_count_for_best": rescues,
         "calibration_harm_count_for_best": harms,
-        "next_gate": "repeat same matrix and compare byte-identical summary before N=300",
+        "next_gate": "use only a separately frozen, cross-dataset replay before any reader evaluation",
     }
     (args.output_dir / "m0_m1_go_no_go.json").write_text(json.dumps(decision, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(decision, indent=2))
