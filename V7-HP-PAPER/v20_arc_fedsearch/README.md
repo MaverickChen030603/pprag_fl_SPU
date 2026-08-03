@@ -9,7 +9,9 @@ The question is instead whether adaptive source routing, source-aware document
 allocation, calibrated merging, and conditional second-round search recover
 more multi-hop evidence than a fixed `Bc=3, local-k=5` federated baseline.
 
-The centralized index is a reference upper bound, not the primary competitor.
+The centralized index is a retrieval reference, not the primary competitor.
+It is not assumed to be an oracle evidence upper bound: that designation is
+reserved for an explicit gold-only offline oracle-local audit.
 The primary comparison is a fixed-budget federated retrieval contract with the
 same mean client contacts and transmitted documents.
 

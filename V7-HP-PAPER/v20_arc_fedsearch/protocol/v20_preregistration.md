@@ -6,6 +6,7 @@ Under data-local and communication-constrained federated search, can adaptive
 source routing, document-budget allocation, score calibration, and conditional
 multi-hop source expansion recover more centralized-reference evidence utility
 than fixed `Bc=3, local-k=5` retrieval at no higher mean communication cost?
+The centralized retrieval run is a reference, not an oracle support upper bound.
 
 ## Stage U0
 
