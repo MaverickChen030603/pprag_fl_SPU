@@ -147,9 +147,16 @@ must retain mean clients contacted <=3 and mean transmitted documents <=15.
 
 ## Active Smoke and Next Gate
 
-`hotpotqa_depth10_n100` is running on GPU 1.  It uses the frozen V17 topic
-router and no reader.  It returns the top 10 local results from every physical
-client, then reruns the loss decomposition with baseline local-k=5 retained.
+`hotpotqa_depth10_n100` completed with the frozen V17 topic router and no
+reader.  It uses all physical client shards only to materialize candidate lists;
+formal metrics consume the same three inherited selected clients per query.
+
+At local-k=5, selected-client complete support is 0.51; at available depth 10
+it is 0.58 (+7pp).  Under A0 equal 5/5/5, 15 transmitted documents retain 0.51
+complete support, raw cross-client Top-10 falls to 0.32, and rank percentile
+recovers 0.46.  The complete matrix selects A1 confidence-proportional
+allocation plus rank percentile merge at 0.49, with two byte-identical replay
+runs.  The next stage is its pre-specified disjoint N=300 confirmation.
 
 The next decision is mechanical:
 
