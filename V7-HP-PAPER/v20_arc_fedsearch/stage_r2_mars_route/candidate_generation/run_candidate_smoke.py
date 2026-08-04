@@ -31,15 +31,23 @@ def main()->None:
  for row in data:
   query=qid(row);v=views(str(row["question"])); strings=[v["full_query"]]+v["entity_views"]+v["clause_views"]+v["relation_views"]; em=model.encode(strings,normalize_embeddings=True,convert_to_numpy=True,show_progress_bar=False); gold=support(row,args.dataset); goldc=sorted({assign[x] for x in gold if x in assign})
   scores={"P0_Q0_single_centroid":[],"P2_lexical":[]}
-  for k in (4,8,16):scores[f"P1_P{k}_multiview"]=[]
+  for k in (4,8,16):
+   scores[f"P1_P{k}_Q0"]=[]
+   scores[f"P1_P{k}_multiview"]=[]
   for client,prof in enumerate(profiles):
    scores["P0_Q0_single_centroid"].append(float(em[0]@np.asarray(prof["p0_single_centroid"])))
    for k in (4,8,16):
-    cent=np.asarray([x["centroid"] for x in prof["p1_multi_prototypes"][str(k)]]); scores[f"P1_P{k}_multiview"].append(float((em@cent.T).max()))
+    cent=np.asarray([x["centroid"] for x in prof["p1_multi_prototypes"][str(k)]])
+    scores[f"P1_P{k}_Q0"].append(float((em[0]@cent.T).max()))
+    scores[f"P1_P{k}_multiview"].append(float((em@cent.T).max()))
    tc=prof["p2_lexical_sketch"]["term_counts"]; qt={x.lower() for s in strings for x in TOKEN.findall(s)}; scores["P2_lexical"].append(sum(math.log1p(tc[t])*math.log((21)/(1+df.get(t,0))) for t in qt if t in tc))
-  candidates={}
-  for name,ss in scores.items(): candidates[name]=[int(x) for x in np.argsort(-np.asarray(ss))]
-  candidates["P3_P8_dense_lexical_union"] = list(dict.fromkeys(candidates["P1_P8_multiview"]+candidates["P2_lexical"]))
+  candidates={name:[int(x) for x in np.argsort(-np.asarray(ss))] for name,ss in scores.items()}
+  # Rank fusion exposes both cards at each L; concatenation would silently make
+  # the first branch occupy every top-L position.
+  for mode in ("Q0", "multiview"):
+   dense=candidates[f"P1_P8_{mode}"]; lexical=candidates["P2_lexical"]
+   dr={client:rank for rank,client in enumerate(dense)}; lr={client:rank for rank,client in enumerate(lexical)}
+   candidates[f"P3_P8_{mode}_lexical_rrf"] = sorted(range(20),key=lambda c:(-(1/(60+dr[c])+1/(60+lr[c])),c))
   qouts.append({"query_id":query,**v})
   for name,ranked in candidates.items():
    for L in ls:
