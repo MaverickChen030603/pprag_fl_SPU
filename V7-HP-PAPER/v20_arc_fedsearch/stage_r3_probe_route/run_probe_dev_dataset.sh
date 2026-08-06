@@ -33,13 +33,14 @@ for RUN in run1 run2; do
   fi
 done
 
-for REL in probe_features/per_query_client_probe.jsonl probe_features/feature_discrimination.csv probe_oracle/probe_upper_bound.csv label_free_baselines/per_query_results.csv label_free_baselines/main_results.csv reports/probe_route_go_no_go.json protocol_no_leak_audit.json; do
-  cmp -s "$STAGE/runs/run1/$DATASET/$REL" "$STAGE/runs/run2/$DATASET/$REL"
-done
+"$PY" "$STAGE/verify_reproducibility.py" \
+  --dataset "$DATASET" \
+  --run1 "$STAGE/runs/run1/$DATASET" \
+  --run2 "$STAGE/runs/run2/$DATASET" \
+  --output "$STAGE/protocol/$DATASET/reproducibility.json"
 
 for AREA in probe_features probe_oracle label_free_baselines reports; do
   mkdir -p "$STAGE/$AREA/$DATASET"
   cp -a "$STAGE/runs/run1/$DATASET/$AREA/." "$STAGE/$AREA/$DATASET/"
 done
 cp -a "$STAGE/runs/run1/$DATASET/protocol_no_leak_audit.json" "$STAGE/protocol/$DATASET/no_leak_audit.json"
-printf '{"dataset":"%s","run1_run2_byte_identical":true,"reader_started":false,"final_test_accessed":false}\n' "$DATASET" > "$STAGE/protocol/$DATASET/reproducibility.json"
