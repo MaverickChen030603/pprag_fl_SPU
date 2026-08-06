@@ -240,12 +240,17 @@ def take_diverse_records(variant: str, client_id: int, docs: list[Document], emb
     vectors: list[np.ndarray] = []
     selected_text: list[str] = []
     for index in indices:
-        unit_type, text = title_unit(docs[index])
-        if not text or near_duplicate(text, selected_text):
-            continue
-        selected_text.append(text)
-        records.append(make_record(variant, client_id, len(records), docs[index], unit_type, text, method, embeddings[index], float(embeddings[index].mean())))
-        vectors.append(embeddings[index])
+        # Preserve the medoid/farthest-first *document* choice.  If two
+        # selected documents have near-identical titles, expose a bounded unit
+        # from the same chosen document instead of silently shrinking capacity.
+        candidates = (title_unit(docs[index]), entity_unit(docs[index]), snippet_unit(docs[index]), relation_unit(docs[index]))
+        for unit_type, text in candidates:
+            if not text or near_duplicate(text, selected_text):
+                continue
+            selected_text.append(text)
+            records.append(make_record(variant, client_id, len(records), docs[index], unit_type, text, method, embeddings[index], float(embeddings[index].mean())))
+            vectors.append(embeddings[index])
+            break
     return records, np.asarray(vectors, dtype=np.float32)
 
 
