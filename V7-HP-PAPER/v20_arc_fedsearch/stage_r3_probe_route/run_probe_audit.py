@@ -322,8 +322,10 @@ def main() -> None:
                     )
                     for document, score in zip(documents, (encodings @ query_embedding).astype(float).tolist()):
                         document["dense_score"] = score
-                dense = sorted(documents, key=lambda doc: (-float(doc["dense_score"]), str(doc["doc_id"])))[:DEPTH]
-                sparse = sorted(documents, key=lambda doc: (-float(doc["sparse_score"]), str(doc["doc_id"])))[:DEPTH]
+                dense_all = sorted(documents, key=lambda doc: (-float(doc["dense_score"]), str(doc["doc_id"])))
+                sparse_all = sorted(documents, key=lambda doc: (-float(doc["sparse_score"]), str(doc["doc_id"])))
+                dense = dense_all[:DEPTH]
+                sparse = sparse_all[:DEPTH]
                 dense_compact = [compact(document, rank, "dense") for rank, document in enumerate(dense)]
                 sparse_compact = [compact(document, rank, "bm25") for rank, document in enumerate(sparse)]
                 dense_scores = [float(document["dense_score"]) for document in dense]
@@ -337,6 +339,10 @@ def main() -> None:
                     )[0]
                     title_similarity = float(query_embedding @ title_embedding)
                 dense_ids, sparse_ids = {str(document["doc_id"]) for document in dense[:3]}, {str(document["doc_id"]) for document in sparse[:3]}
+                dense_rank = {str(document["doc_id"]): rank for rank, document in enumerate(dense_all)}
+                bm25_anchor_percentile = 0.0
+                if sparse_all:
+                    bm25_anchor_percentile = 1.0 - dense_rank[str(sparse_all[0]["doc_id"])] / max(1, len(dense_all) - 1)
                 matched_title_tokens = q_terms & query_terms(str(dense_top["title"]))
                 matched_entities = q_entities & entities(str(dense_top["title"]))
                 shallow[client] = {
@@ -348,10 +354,10 @@ def main() -> None:
                         "dense_top1_top2_margin": (dense_scores[0] - dense_scores[1]) if len(dense_scores) > 1 else 0.0,
                         "dense_score_std": float(np.std(dense_scores)) if dense_scores else 0.0,
                         "dense_score_entropy": entropy(dense_scores),
-                        # The percentile of the strongest dense result within this
-                        # client's fixed depth-10 list; supplied as an explicit
-                        # scalar even though dense Top-1 fixes it at 1.0.
-                        "dense_local_rank_percentile": 1.0 if dense_scores else 0.0,
+                        # Agreement probe: percentile, under dense ranking, of
+                        # this client's BM25 top-1 anchor.  It is informative when
+                        # sparse and dense retrieval disagree, unlike dense top-1.
+                        "dense_local_rank_percentile": bm25_anchor_percentile,
                         "bm25_top1_score": sparse_scores[0] if sparse_scores else 0.0,
                         "bm25_top3_mean": float(np.mean(sparse_scores[:3])) if sparse_scores else 0.0,
                         "bm25_top1_top2_margin": (sparse_scores[0] - sparse_scores[1]) if len(sparse_scores) > 1 else 0.0,
