@@ -82,7 +82,7 @@ def profile_costs(profile_roots: dict[str, Path]) -> tuple[list[dict[str, Any]],
         best_p = 8 if dataset == "2wikimultihopqa" else 16
         for method, units, total_bytes in (
             ("B0_single_centroid", 1, prototype_bytes),
-            ("B1_inherited_multiproto", best_p, best_p * prototype_bytes),
+            ("B1_kmeans_multi_prototype", best_p, best_p * prototype_bytes),
         ):
             method_bytes[(dataset, method)] = float(total_bytes)
             values.append({
