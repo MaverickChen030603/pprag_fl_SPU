@@ -23,7 +23,8 @@ def main() -> None:
     parser.add_argument("--stage-root", type=Path, required=True)
     args = parser.parse_args()
     records = []
-    all_pass = True
+    all_signal_pass = True
+    all_cost_pass = True
     for dataset in ("2wikimultihopqa", "musique"):
         root = args.stage_root / "label_free_baselines" / dataset
         summary = csv_rows(root / "main_results.csv")
@@ -44,6 +45,7 @@ def main() -> None:
         static = next(row for row in discrimination if row["feature"] == "static_score")
         best_feature = max(discrimination, key=lambda row: number(row, "auprc"))
         upper = csv_rows(args.stage_root / "probe_oracle" / dataset / "probe_upper_bound.csv")[0]
+        cost_materially_lower = number(best, "mean_probe_bytes") <= 0.5 * number(best, "mean_document_bytes")
         records.append({
             "dataset": dataset,
             "best_label_free_method": best["method"],
@@ -71,22 +73,33 @@ def main() -> None:
             "mean_document_bytes": best["mean_document_bytes"],
             "mean_probe_latency_ms": best["mean_probe_latency_ms"],
             "mean_deep_retrieval_latency_ms": best["mean_deep_retrieval_latency_ms"],
+            "probe_bytes_materially_lower_than_document_payload": cost_materially_lower,
             "label_free_gate_passed": passed,
             "reader_started": False,
             "final_test_accessed": False,
         })
-        all_pass = all_pass and passed
+        all_signal_pass = all_signal_pass and passed
+        all_cost_pass = all_cost_pass and cost_materially_lower
     args.stage_root.joinpath("reports").mkdir(parents=True, exist_ok=True)
     with (args.stage_root / "reports" / "probe_dev_summary.csv").open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(records[0]))
         writer.writeheader()
         writer.writerows(records)
-    status = "query_time_probe_signal_confirmed" if all_pass else "query_time_probe_failed"
+    status = "query_time_probe_signal_confirmed" if all_signal_pass else "query_time_probe_failed"
+    ranker_permitted = all_signal_pass and all_cost_pass
+    if ranker_permitted:
+        next_step = "lightweight_supervised_probe_ranker"
+    elif all_signal_pass:
+        next_step = "compact_probe_wire_payload_audit_before_ranker"
+    else:
+        next_step = "stop_router_method_line_and_write_bottleneck_audit"
     decision = {
         "stage": "R3_ProbeRoute_FedRAG_Probe_Dev",
         "status": status,
-        "label_free_gate_passed_on_both_datasets": all_pass,
-        "next_step": "lightweight_supervised_probe_ranker" if all_pass else "stop_router_method_line_and_write_bottleneck_audit",
+        "label_free_signal_gate_passed_on_both_datasets": all_signal_pass,
+        "communication_contract_passed_on_both_datasets": all_cost_pass,
+        "supervised_ranker_permitted": ranker_permitted,
+        "next_step": next_step,
         "reader_start_decision": "blocked_before_fresh_holdout",
         "final_test_accessed": False,
         "datasets": records,
@@ -129,7 +142,7 @@ def main() -> None:
         )
     lines.extend([
         "",
-        "The probe payload contains scalar statistics and bounded title/entity summaries only; it contains neither document text nor embeddings. The offline O2 model is a diagnostic upper bound and is not deployed. Because both datasets pass the label-free gate, the permitted next task is a lightweight supervised probe ranker on the frozen Router-Train / Probe-Train contract. Reader evaluation remains prohibited until the separate fresh-holdout gate passes.",
+        "The probe payload contains scalar statistics and bounded title/entity summaries only; it contains neither document text nor embeddings. The offline O2 model is a diagnostic upper bound and is not deployed. The routing signal gate passes on both datasets, but the current verbose probe serialization is not materially smaller than the 15-document payload; therefore a supervised ranker is not yet permitted. The next task is a compact wire-payload audit that leaves routing features and selection rules frozen. Reader evaluation remains prohibited until the separate fresh-holdout gate passes.",
         "",
     ])
     report = "\n".join(lines)
