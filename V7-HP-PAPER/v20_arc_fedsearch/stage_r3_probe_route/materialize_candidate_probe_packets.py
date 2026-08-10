@@ -53,7 +53,7 @@ def doc_entry(doc: dict[str, Any], rank: int) -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", choices=("2wikimultihopqa", "musique"), required=True)
+    parser.add_argument("--dataset", choices=("hotpotqa", "2wikimultihopqa", "musique"), required=True)
     parser.add_argument("--split", type=Path, required=True)
     parser.add_argument("--profiles", type=Path, required=True)
     parser.add_argument("--local-index-root", type=Path, required=True)

@@ -192,7 +192,7 @@ def evaluate(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=("train", "evaluate"), required=True)
-    parser.add_argument("--dataset", choices=("2wikimultihopqa", "musique"), required=True)
+    parser.add_argument("--dataset", choices=("hotpotqa", "2wikimultihopqa", "musique"), required=True)
     parser.add_argument("--split", type=Path, required=True)
     parser.add_argument("--packets", type=Path, required=True)
     parser.add_argument("--assignment", type=Path, required=True)
