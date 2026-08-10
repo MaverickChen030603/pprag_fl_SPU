@@ -1,0 +1,7 @@
+{
+  "status": "ready_for_frozen_reader",
+  "hotpot_transfer_pass": true,
+  "reader_started": false,
+  "final_test_accessed": false,
+  "reason": "2Wiki/MuSiQue R3 holdouts passed; Hotpot frozen transfer non-negative with >=3pp core gain"
+}
