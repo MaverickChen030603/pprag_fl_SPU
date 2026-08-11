@@ -1,0 +1,7 @@
+# Recreated from frozen source data and local indexes during recovery.
+logs/
+smoke/
+resource_profiles/
+protocol/*.json
+protocol/*.jsonl
+train/packets/

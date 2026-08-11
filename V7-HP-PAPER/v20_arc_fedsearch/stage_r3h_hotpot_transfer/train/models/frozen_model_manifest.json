@@ -1,0 +1,160 @@
+{
+  "feature_schema_sha256": "1ccda0d1bc46d509fe733e3fcfd3bdb9c43f574230032c79ba5c00359ea9438f",
+  "models": {
+    "logistic_seed_20260807.pkl": {
+      "sha256": "748c7c7c3f906b9988908704b54ce7bdc24f6898ffe5a3c30220d75a8844778a",
+      "seed": 20260807,
+      "coefficient": [
+        [
+          0.6983287927664837,
+          2.33539220930569,
+          0.2607797336509739,
+          -0.10328773201185076,
+          -0.7801985318130048,
+          -1.0013696271703458,
+          0.03395471130925662,
+          1.2739528283568342,
+          -1.0745752908317368,
+          -0.0028585559065811023,
+          0.14714995034747397,
+          0.07930964101115826,
+          0.02619777127965043,
+          0.34986075309425596,
+          0.0946861230273302,
+          0.07682194691406732,
+          -0.3022977463064938,
+          0.04326393572438362,
+          -0.03336823402822669
+        ]
+      ],
+      "intercept": [
+        -1.5710345322718642
+      ],
+      "feature_names": [
+        "static_score",
+        "dense_top1_score",
+        "dense_top3_mean",
+        "dense_top1_top2_margin",
+        "dense_score_std",
+        "dense_score_entropy",
+        "dense_local_rank_percentile",
+        "bm25_top1_score",
+        "bm25_top3_mean",
+        "bm25_top1_top2_margin",
+        "dense_bm25_top1_same",
+        "dense_bm25_top3_overlap",
+        "dense_sparse_rank_correlation",
+        "matched_query_entity_count",
+        "matched_query_token_count",
+        "matched_title_token_count",
+        "query_title_embedding_similarity",
+        "top3_title_diversity",
+        "top3_entity_diversity"
+      ]
+    },
+    "logistic_seed_20260808.pkl": {
+      "sha256": "4020e9d7d82526ba1eed04a23c089ccf062cf54c26d47fbf6e40d68d039b1c36",
+      "seed": 20260808,
+      "coefficient": [
+        [
+          0.6983287927664837,
+          2.33539220930569,
+          0.2607797336509739,
+          -0.10328773201185076,
+          -0.7801985318130048,
+          -1.0013696271703458,
+          0.03395471130925662,
+          1.2739528283568342,
+          -1.0745752908317368,
+          -0.0028585559065811023,
+          0.14714995034747397,
+          0.07930964101115826,
+          0.02619777127965043,
+          0.34986075309425596,
+          0.0946861230273302,
+          0.07682194691406732,
+          -0.3022977463064938,
+          0.04326393572438362,
+          -0.03336823402822669
+        ]
+      ],
+      "intercept": [
+        -1.5710345322718642
+      ],
+      "feature_names": [
+        "static_score",
+        "dense_top1_score",
+        "dense_top3_mean",
+        "dense_top1_top2_margin",
+        "dense_score_std",
+        "dense_score_entropy",
+        "dense_local_rank_percentile",
+        "bm25_top1_score",
+        "bm25_top3_mean",
+        "bm25_top1_top2_margin",
+        "dense_bm25_top1_same",
+        "dense_bm25_top3_overlap",
+        "dense_sparse_rank_correlation",
+        "matched_query_entity_count",
+        "matched_query_token_count",
+        "matched_title_token_count",
+        "query_title_embedding_similarity",
+        "top3_title_diversity",
+        "top3_entity_diversity"
+      ]
+    },
+    "logistic_seed_20260809.pkl": {
+      "sha256": "49e2a558f83cf3770e4d4717e3dd27bc268a5b782b8897feb21f74a3fdb68720",
+      "seed": 20260809,
+      "coefficient": [
+        [
+          0.6983287927664837,
+          2.33539220930569,
+          0.2607797336509739,
+          -0.10328773201185076,
+          -0.7801985318130048,
+          -1.0013696271703458,
+          0.03395471130925662,
+          1.2739528283568342,
+          -1.0745752908317368,
+          -0.0028585559065811023,
+          0.14714995034747397,
+          0.07930964101115826,
+          0.02619777127965043,
+          0.34986075309425596,
+          0.0946861230273302,
+          0.07682194691406732,
+          -0.3022977463064938,
+          0.04326393572438362,
+          -0.03336823402822669
+        ]
+      ],
+      "intercept": [
+        -1.5710345322718642
+      ],
+      "feature_names": [
+        "static_score",
+        "dense_top1_score",
+        "dense_top3_mean",
+        "dense_top1_top2_margin",
+        "dense_score_std",
+        "dense_score_entropy",
+        "dense_local_rank_percentile",
+        "bm25_top1_score",
+        "bm25_top3_mean",
+        "bm25_top1_top2_margin",
+        "dense_bm25_top1_same",
+        "dense_bm25_top3_overlap",
+        "dense_sparse_rank_correlation",
+        "matched_query_entity_count",
+        "matched_query_token_count",
+        "matched_title_token_count",
+        "query_title_embedding_similarity",
+        "top3_title_diversity",
+        "top3_entity_diversity"
+      ]
+    }
+  },
+  "reader_started": false,
+  "final_test_accessed": false
+}

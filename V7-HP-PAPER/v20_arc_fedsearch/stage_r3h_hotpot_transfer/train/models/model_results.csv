@@ -1,0 +1,4 @@
+dataset,seed,train_queries,candidate_rows,positive_rows,hard_negative_rows,train_auc,train_auprc,model,reader_started
+hotpotqa,20260807,5000,40000,7149,32851,0.9642617598173051,0.8873071630143178,class_balanced_logistic_regression,False
+hotpotqa,20260808,5000,40000,7149,32851,0.9642617598173051,0.8873071630143178,class_balanced_logistic_regression,False
+hotpotqa,20260809,5000,40000,7149,32851,0.9642617598173051,0.8873071630143178,class_balanced_logistic_regression,False

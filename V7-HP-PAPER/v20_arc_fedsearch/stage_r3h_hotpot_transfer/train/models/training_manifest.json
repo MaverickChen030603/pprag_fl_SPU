@@ -1,0 +1,33 @@
+{
+  "dataset": "hotpotqa",
+  "candidate_L": 8,
+  "seeds": [
+    20260807,
+    20260808,
+    20260809
+  ],
+  "feature_names": [
+    "static_score",
+    "dense_top1_score",
+    "dense_top3_mean",
+    "dense_top1_top2_margin",
+    "dense_score_std",
+    "dense_score_entropy",
+    "dense_local_rank_percentile",
+    "bm25_top1_score",
+    "bm25_top3_mean",
+    "bm25_top1_top2_margin",
+    "dense_bm25_top1_same",
+    "dense_bm25_top3_overlap",
+    "dense_sparse_rank_correlation",
+    "matched_query_entity_count",
+    "matched_query_token_count",
+    "matched_title_token_count",
+    "query_title_embedding_similarity",
+    "top3_title_diversity",
+    "top3_entity_diversity"
+  ],
+  "negative_sampling": "all_P0_top8_non_support_clients_only",
+  "reader_started": false,
+  "final_test_accessed": false
+}
