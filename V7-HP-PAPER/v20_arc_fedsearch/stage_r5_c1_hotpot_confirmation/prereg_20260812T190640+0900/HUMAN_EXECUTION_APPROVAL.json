@@ -1,0 +1,10 @@
+{
+  "status": "R5_C1_STAGE_B_APPROVED",
+  "approved_jst": "2026-08-12T19:40:32+09:00",
+  "authorization_source": "user message: 下一步执行",
+  "contract_sha256": "3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd",
+  "scope": "Execute frozen R5-C1 Stage B, then contract-mandated sealed Stage C after Stage B completion checks",
+  "official_test_allowed": false,
+  "configuration_changes_allowed": false,
+  "overwrite_allowed": false
+}
