@@ -44,7 +44,7 @@ def bh(rows_: list[dict[str, Any]]) -> None:
     candidates = [r for r in rows_ if r["metric"] != "joint_f1"]
     ordered = sorted(enumerate(candidates), key=lambda x: x[1]["two_sided_p"])
     m = len(ordered); running = 1.0
-    for rank, (_, row) in reversed(list(enumerate([x[1] for x in ordered], start=1))):
+    for rank, row in reversed(list(enumerate([x[1] for x in ordered], start=1))):
         running = min(running, row["two_sided_p"] * m / rank)
         row["bh_fdr_q"] = running
     for row in rows_:
@@ -91,15 +91,15 @@ def main() -> None:
     invalid = [key for key, values in grouped.items() if set(values) != set(METHODS)]
     if invalid:
         raise ValueError(f"incomplete method set for {len(invalid)} queries; first={invalid[:2]}")
+    cells = sorted({(key[0], key[1]) for key in grouped})
     main_rows = []
-    for dataset, reader, _ in sorted(grouped):
+    for dataset, reader in cells:
         cell = [values for (ds, rd, _), values in grouped.items() if ds == dataset and rd == reader]
         for method in METHODS:
             main_rows.append({"dataset": dataset, "reader": reader, "method": method, "queries": len(cell), **{metric: float(np.mean([float(row[method][metric]) for row in cell])) for metric in METRICS}, "reader_context_complete_support": float(np.mean([float(row[method]["retrieval_complete_support"]) for row in cell]))})
     comparisons = []
     for (dataset, reader, _), values in sorted(grouped.items()):
         pass
-    cells = sorted({(key[0], key[1]) for key in grouped})
     for dataset, reader in cells:
         entries = [values for (ds, rd, _), values in grouped.items() if ds == dataset and rd == reader]
         for method_a, method_b in COMPARISONS:
