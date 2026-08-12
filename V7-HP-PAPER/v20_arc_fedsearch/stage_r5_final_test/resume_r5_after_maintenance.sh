@@ -81,7 +81,8 @@ fi
 for pid in "${pids[@]}"; do wait "$pid"; done
 
 context() {
-  local ds="$1" model="$2" index="$3" output="$RUN/retrieval/${ds}_contexts_unlabeled.jsonl"
+  local ds="$1" model="$2" index="$3"
+  local output="$RUN/retrieval/${ds}_contexts_unlabeled.jsonl"
   if archive_incomplete "$output" 1200 "${ds}_contexts_unlabeled"; then
     return 0
   fi
