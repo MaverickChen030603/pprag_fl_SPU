@@ -33,11 +33,14 @@ def write_csv(path: Path, data: list[dict[str, Any]]) -> None:
         writer.writeheader(); writer.writerows(data)
 
 
-def bootstrap(delta: np.ndarray, seed: int) -> tuple[float, float, float]:
+def bootstrap(delta: np.ndarray, seed: int) -> tuple[float, float, float, float]:
     rng = np.random.default_rng(seed)
     n = len(delta)
     values = np.asarray([delta[rng.integers(0, n, n)].mean() for _ in range(5000)])
-    return float(delta.mean()), float(np.quantile(values, .025)), float(np.quantile(values, .975))
+    lower_tail = int((values <= 0).sum())
+    upper_tail = int((values >= 0).sum())
+    two_sided_p = min(1.0, 2.0 * (min(lower_tail, upper_tail) + 1) / (len(values) + 1))
+    return float(delta.mean()), float(np.quantile(values, .025)), float(np.quantile(values, .975)), two_sided_p
 
 
 def bh(rows_: list[dict[str, Any]]) -> None:
@@ -105,8 +108,8 @@ def main() -> None:
         for method_a, method_b in COMPARISONS:
             for metric in ("answer_f1", "sp_f1", "joint_f1"):
                 delta = np.asarray([float(row[method_a][metric]) - float(row[method_b][metric]) for row in entries])
-                mean, low, high = bootstrap(delta, int(hashlib.sha256(f"{dataset}|{reader}|{method_a}|{method_b}|{metric}".encode()).hexdigest()[:8], 16))
-                comparisons.append({"dataset": dataset, "reader": reader, "comparison": f"{method_a}_vs_{method_b}", "method_a": method_a, "method_b": method_b, "metric": metric, "queries": len(delta), "mean_delta": mean, "ci_low": low, "ci_high": high, "paired_win": int((delta > 0).sum()), "paired_tie": int((delta == 0).sum()), "paired_loss": int((delta < 0).sum()), "two_sided_p": float(2 * min((delta <= 0).mean(), (delta >= 0).mean()))})
+                mean, low, high, p_value = bootstrap(delta, int(hashlib.sha256(f"{dataset}|{reader}|{method_a}|{method_b}|{metric}".encode()).hexdigest()[:8], 16))
+                comparisons.append({"dataset": dataset, "reader": reader, "comparison": f"{method_a}_vs_{method_b}", "method_a": method_a, "method_b": method_b, "metric": metric, "queries": len(delta), "mean_delta": mean, "ci_low": low, "ci_high": high, "paired_win": int((delta > 0).sum()), "paired_tie": int((delta == 0).sum()), "paired_loss": int((delta < 0).sum()), "two_sided_p": p_value})
     bh(comparisons)
     transitions, context_change = [], []
     for dataset, reader in cells:
