@@ -1,0 +1,8 @@
+R5_C1_PREREGISTERED_WAITING_HUMAN_APPROVAL
+
+Content commit: 7d1c2781393f516e62ba6166edae428fe5797238
+Contract SHA-256: 3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd
+Attested JST: 2026-08-12T19:35:20+09:00
+
+Do not run Stage B or Stage C until a separate HUMAN_EXECUTION_APPROVAL.json binds this exact contract SHA-256.
+Formal retrieval, Reader, evaluation, and official test remain untouched.

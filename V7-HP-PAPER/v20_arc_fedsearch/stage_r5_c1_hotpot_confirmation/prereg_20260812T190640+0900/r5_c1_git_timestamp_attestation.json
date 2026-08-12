@@ -1,0 +1,15 @@
+{
+  "attested_jst": "2026-08-12T19:35:20+09:00",
+  "branch": "main",
+  "content_commit": "7d1c2781393f516e62ba6166edae428fe5797238",
+  "content_commit_time": "2026-08-12T19:34:49+09:00",
+  "contract_sha256": "3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd",
+  "formal_evaluation_started": false,
+  "formal_files": [],
+  "formal_reader_started": false,
+  "formal_retrieval_started": false,
+  "official_test_accessed": false,
+  "preregistration_sha256": "33c6f0150375a4a4a0a65dd29d71562dba119a824a7084a40ca1a317eb690acd",
+  "stage_a_output_manifest_sha256": "3a41acf0821419f9299135b60b3f10ab3db2bf16b58d5d7a41f3eddbecf5145b",
+  "status": "R5_C1_PREREGISTERED_WAITING_HUMAN_APPROVAL"
+}
