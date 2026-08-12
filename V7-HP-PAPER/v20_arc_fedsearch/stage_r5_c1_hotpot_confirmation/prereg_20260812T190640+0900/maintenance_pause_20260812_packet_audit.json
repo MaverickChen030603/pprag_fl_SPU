@@ -1,0 +1,20 @@
+{
+  "all_members_stopped": true,
+  "captured_jst": "2026-08-12T19:44:45+09:00",
+  "contract_sha256": "3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd",
+  "inherited_routes_rows": 4200,
+  "official_test_accessed": false,
+  "packet_bad_rows": [],
+  "packet_bytes": 1742144,
+  "packet_path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/formal_execution/retrieval/hotpotqa_probe_packets.jsonl",
+  "packet_rows": 54,
+  "packet_sha256": "c7925df66a333e89800ea55cb3cba81aee6d3b0d03fff4d43ed58b4afe6018c1",
+  "packet_unique_query_ids": 54,
+  "process_members_after_sigstop": [
+    "354262  354262 Ts         03:44 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/run_r5_c1_stage_b.sh",
+    "354555  354262 Tl         03:25 /home/iiserver31/anaconda3/envs/supv2/bin/python /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_materialize_candidate_probe_packets.py --dataset hotpotqa --split /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_query_manifest_label_free.jsonl --profiles /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/resource_profiles/client_profiles.json --local-index-root /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo --inherited-routes /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/formal_execution/retrieval/hotpotqa_inherited_routes.jsonl --output /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/formal_execution/retrieval/hotpotqa_probe_packets.jsonl --device cuda"
+  ],
+  "reason": "planned server maintenance",
+  "resume_allowed_only_by_frozen_checksum_validation": true,
+  "stage_b_pgid": 354262
+}
