@@ -1,0 +1,53 @@
+{
+  "contract_sha256": "64910409d243bffccb2efcf6d1b02507152c42243543b6a505f88a53f3c7dd22",
+  "created_jst": "2026-08-12T19:33:10+09:00",
+  "forbidden": [
+    "official test access",
+    "centralized primary",
+    "UnifiedQA",
+    "second Reader",
+    "subgroup success gates",
+    "overwrite or post-result tuning"
+  ],
+  "schema_version": "v20-r5-c1-expected-artifacts-1",
+  "stage_b": [
+    {
+      "path": "formal_execution/retrieval/hotpotqa_inherited_routes.jsonl",
+      "rows": 4200
+    },
+    {
+      "path": "formal_execution/retrieval/hotpotqa_probe_packets.jsonl",
+      "rows": 4200
+    },
+    {
+      "path": "formal_execution/retrieval/hotpotqa_contexts_unlabeled.jsonl",
+      "rows": 8400
+    },
+    {
+      "path": "formal_execution/reader_predictions/flan_unscored.jsonl",
+      "rows": 8400,
+      "unique_key": [
+        "query_id",
+        "method"
+      ]
+    },
+    {
+      "atomic": true,
+      "path": "formal_execution/reader_predictions/flan_unscored.complete.json"
+    },
+    {
+      "path": "formal_execution/checksums/predictions.sha256",
+      "rows": 1
+    }
+  ],
+  "stage_c": [
+    {
+      "complete_even_if_negative": true,
+      "path": "formal_execution/evaluation/r5_c1_results.json"
+    },
+    {
+      "path": "formal_execution/evaluation/r5_c1_per_query.jsonl",
+      "rows": 8400
+    }
+  ]
+}

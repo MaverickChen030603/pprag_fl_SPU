@@ -1,0 +1,19 @@
+{
+  "canonicalization": "Unicode NFKC, trim, lowercase, strip leading hotpotqa:/ hotpot:/ hotpotqa| hotpot| prefix; punctuation otherwise preserved",
+  "created_jst": "2026-08-12T19:17:44+09:00",
+  "dataset": "hotpotqa",
+  "eligible_n": 69147,
+  "forbidden_fields_in_label_free_manifest": [],
+  "label_free_manifest_path": "r5_c1_query_manifest_label_free.jsonl",
+  "label_free_manifest_sha256": "3c10940a73576b994c7cfb69c883a5cf60d0929207a00050e278a8afeabac092",
+  "query_ids_path": "r5_c1_query_ids_4200.txt",
+  "query_ids_sha256": "6e7e39e64b0b70ad7c76fe5e15ee982a95115c446e5b51e0dfe70f8034faf912",
+  "salt": "v20-r5-c1-hotpot-confirmation-20260812",
+  "schema_version": "v20-r5-c1-hotpot-split-1",
+  "selected_n": 4200,
+  "selection_key": "SHA256(salt || '\\t' || canonical_query_id), ascending; query_id ascending only as collision tie-break",
+  "source_n": 90447,
+  "source_partition": "official distractor train",
+  "source_path": "V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+  "source_sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc"
+}

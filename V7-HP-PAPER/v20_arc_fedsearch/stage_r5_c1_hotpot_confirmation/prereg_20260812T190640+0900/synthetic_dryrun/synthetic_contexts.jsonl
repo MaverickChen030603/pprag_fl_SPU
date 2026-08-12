@@ -1,0 +1,8 @@
+{"method": "federated_baseline", "query_id": "synthetic-0", "reader_context_docs": [{"doc_id": "synthetic-doc-0", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "logistic_proberoute", "query_id": "synthetic-0", "reader_context_docs": [{"doc_id": "synthetic-doc-0", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "federated_baseline", "query_id": "synthetic-1", "reader_context_docs": [{"doc_id": "synthetic-doc-1", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "logistic_proberoute", "query_id": "synthetic-1", "reader_context_docs": [{"doc_id": "synthetic-doc-1", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "federated_baseline", "query_id": "synthetic-2", "reader_context_docs": [{"doc_id": "synthetic-doc-2", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "logistic_proberoute", "query_id": "synthetic-2", "reader_context_docs": [{"doc_id": "synthetic-doc-2", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "federated_baseline", "query_id": "synthetic-3", "reader_context_docs": [{"doc_id": "synthetic-doc-3", "text": "Synthetic sentence.", "title": "Synthetic title"}]}
+{"method": "logistic_proberoute", "query_id": "synthetic-3", "reader_context_docs": [{"doc_id": "synthetic-doc-3", "text": "Synthetic sentence.", "title": "Synthetic title"}]}

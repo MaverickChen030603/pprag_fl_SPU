@@ -1,0 +1,386 @@
+{
+  "checks": {
+    "all_required_artifacts_exist": true,
+    "bge_cache_ready": true,
+    "firewall_pass": true,
+    "flan_cache_ready": true,
+    "flan_revision_exact": true,
+    "local_index_hashes_match_manifest": true,
+    "logistic_contract_exact": true,
+    "old_process_group_stopped": true,
+    "power_reaudit_pass": true,
+    "r4_declared_hashes_match": true,
+    "split_disjointness_pass": true
+  },
+  "code": [
+    {
+      "bytes": 5358,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_build_inherited_routes.py",
+      "sha256": "4f599dabd1b3a9c3fc03a8056079ff5055fe705580555eac75a68867969a0e2f"
+    },
+    {
+      "bytes": 11209,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_materialize_candidate_probe_packets.py",
+      "sha256": "5f7ebe8fd3aefb33c8c64700c36b6ed02f1aa54b0744594b34e91e4b30c49db7"
+    },
+    {
+      "bytes": 5999,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_materialize_contexts.py",
+      "sha256": "15b17f91c7b16679b433ea5aecfe5003f6f625732597d5e70ecb466b2bf897bf"
+    },
+    {
+      "bytes": 8743,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_reader_unscored.py",
+      "sha256": "78da96d779ed9d37b4199df12efb65089f965cc5b0a31eb0adf749ae1b4a3478"
+    },
+    {
+      "bytes": 8545,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/r5_c1_sealed_evaluator.py",
+      "sha256": "a32733137122c8ebe9a2f7e47376b625fc211a25ef58ce0151abf6e731d0f256"
+    },
+    {
+      "bytes": 3032,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/run_r5_c1_stage_b.sh",
+      "sha256": "c48628a902ee0091268fe72e0e712842df529ca888714c57a34280f68872fadf"
+    },
+    {
+      "bytes": 1879,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/code/run_r5_c1_stage_c.sh",
+      "sha256": "28c30d1afeefc41f77dc33b5c47c6e73ea1a928ef4634851b365474025e8cf2b"
+    }
+  ],
+  "created_jst": "2026-08-12T19:33:55+09:00",
+  "frozen_inputs": [
+    {
+      "bytes": 567601742,
+      "path": "V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+      "sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc"
+    },
+    {
+      "bytes": 481632256,
+      "path": "V7-HP-PAPER/v15_robust_context_repair/retrieval/indexes/hotpotqa.sqlite",
+      "sha256": "815147ae102f7822f1e934290426a074c2b9f2f9f2b763483038c9558e1e58d1"
+    },
+    {
+      "bytes": 88432789,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation/p0_readiness_20260812T184600+0900/historical_query_usage_ledger.csv",
+      "sha256": "cc4ed00728fdc7f57ca8e7ee12d8fb63d52870e27efb6cc7b0293d2190342aa3"
+    },
+    {
+      "bytes": 1906,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation/p0_readiness_20260812T184600+0900/historical_query_usage_summary.json",
+      "sha256": "94be8e48d78f4affc709da52827a444b6536476590c1cb2417fcab9a9f37deea"
+    },
+    {
+      "bytes": 2108,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/models/logistic_seed_20260807.pkl",
+      "sha256": "0d07b5cd47c3b6c666c6a1fd70c1ca9e4185307bece207d43b8b6b21ecdcc166"
+    },
+    {
+      "bytes": 803,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/models/training_manifest.json",
+      "sha256": "94a03754c7e43d256c97ce8e4301c1c92bcd4bf748bb0a1fd7ebe42d5e3427db"
+    },
+    {
+      "bytes": 341807,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/resource_profiles/client_profiles.json",
+      "sha256": "e3b4cafd26bbbdef77993cfd90d5065c88ef40c259a27409c3eb69a5e5937b36"
+    },
+    {
+      "bytes": 3087,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/protocol/reader_protocol_frozen.json",
+      "sha256": "44cb088cd705503269503f9336453bc3cc65ac7cef471686ede83bc6ae7c6ce9"
+    },
+    {
+      "bytes": 179,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/protocol/reader_prompt_template.txt",
+      "sha256": "069d4e6ed8c75e99d43dcd46e2a34f8a964e3ffeae4f2839ce78e6c85d856b40"
+    },
+    {
+      "bytes": 1839,
+      "path": "V7-HP-PAPER/v16_action_composition/evaluation/checkpoints/hotpotqa_support.joblib",
+      "sha256": "97ef3a57c65c5030259494cb292f98af2e33cc7c0d08fd5a73d1f7dfad533b12"
+    },
+    {
+      "bytes": 5927,
+      "path": "V7-HP-PAPER/v16_action_composition/evaluation/eval_common.py",
+      "sha256": "0d7760878f4ce76d080ff16f7d74482625e0eb5f923148c7b65a60ee6dce967b"
+    },
+    {
+      "bytes": 61568,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/partitions/centroids/hotpotqa/topic_silo_m20.npy",
+      "sha256": "aa0a175a1afe94adeb110e36b088cb2ad0204b5fce074218a9e3bd3d866dcfa0"
+    },
+    {
+      "bytes": 29163769,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/partitions/assignments/hotpotqa/topic_silo_m20.jsonl",
+      "sha256": "474cbe75e632582ab277a69947b8e8eac72840a151358494a323a0150962225e"
+    },
+    {
+      "bytes": 13664570,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/partitions/client_query_distribution.csv",
+      "sha256": "e2d7c9c0146f21f9b56193ae31171e5d582ca12020a30a1c7cd497f041619170"
+    },
+    {
+      "bytes": 5783,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/manifest.json",
+      "sha256": "ef9cc56177bab922da219fad7d0dc97d0b889ee5cdf00f0b5da5bc9e4b8aa435"
+    }
+  ],
+  "local_indexes": [
+    {
+      "actual_sha256": "837797b657d3726b677d4c1973eab6df7dbfe7476ffec9344cbaaeee44511bff",
+      "expected_sha256": "837797b657d3726b677d4c1973eab6df7dbfe7476ffec9344cbaaeee44511bff",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_00.sqlite"
+    },
+    {
+      "actual_sha256": "13155ed36920a4f5b94d74b2a14889ca2d61aabf121c378f6242240c9ce9baba",
+      "expected_sha256": "13155ed36920a4f5b94d74b2a14889ca2d61aabf121c378f6242240c9ce9baba",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_01.sqlite"
+    },
+    {
+      "actual_sha256": "b77fa6aeaf32606643eef82e4caf14ce460a06cb120e1d4835baf96be361071e",
+      "expected_sha256": "b77fa6aeaf32606643eef82e4caf14ce460a06cb120e1d4835baf96be361071e",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_02.sqlite"
+    },
+    {
+      "actual_sha256": "3d1f7a71ffb42850f360860fcbf5823eff505c600d816ad994009371c9b1800a",
+      "expected_sha256": "3d1f7a71ffb42850f360860fcbf5823eff505c600d816ad994009371c9b1800a",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_03.sqlite"
+    },
+    {
+      "actual_sha256": "65352efabe729634f9ad7fd16048c3cd0fb66b620231cc534c373a8ba809154d",
+      "expected_sha256": "65352efabe729634f9ad7fd16048c3cd0fb66b620231cc534c373a8ba809154d",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_04.sqlite"
+    },
+    {
+      "actual_sha256": "1388b27be1a9f760d35cf6429824687e817dc5f16dc626a61db46a732c10ace1",
+      "expected_sha256": "1388b27be1a9f760d35cf6429824687e817dc5f16dc626a61db46a732c10ace1",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_05.sqlite"
+    },
+    {
+      "actual_sha256": "4cf42d894e42777b11c1f4f007c442d91b4b0d11756152c8b55885759c0c9d5d",
+      "expected_sha256": "4cf42d894e42777b11c1f4f007c442d91b4b0d11756152c8b55885759c0c9d5d",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_06.sqlite"
+    },
+    {
+      "actual_sha256": "4b4ffa2b8418a969bb057ff7160b97e65948e5066e2e28a73e532170636ca5f2",
+      "expected_sha256": "4b4ffa2b8418a969bb057ff7160b97e65948e5066e2e28a73e532170636ca5f2",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_07.sqlite"
+    },
+    {
+      "actual_sha256": "68cdce027062096fcfdb2d634982849fa9a97792563a0e94560e62c9881afad5",
+      "expected_sha256": "68cdce027062096fcfdb2d634982849fa9a97792563a0e94560e62c9881afad5",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_08.sqlite"
+    },
+    {
+      "actual_sha256": "7063cc2310eb162ccf353480067573bed92cff708c06e06b29f3e45061dc8932",
+      "expected_sha256": "7063cc2310eb162ccf353480067573bed92cff708c06e06b29f3e45061dc8932",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_09.sqlite"
+    },
+    {
+      "actual_sha256": "367be8dd274d770d7faa2430db95ed93de7562ae39ceb474f3ef4a5a5d6e2afc",
+      "expected_sha256": "367be8dd274d770d7faa2430db95ed93de7562ae39ceb474f3ef4a5a5d6e2afc",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_10.sqlite"
+    },
+    {
+      "actual_sha256": "3712672c1e3ddcc45c016b1178c69059db9ff41d5218afc0acdf239f77c153ac",
+      "expected_sha256": "3712672c1e3ddcc45c016b1178c69059db9ff41d5218afc0acdf239f77c153ac",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_11.sqlite"
+    },
+    {
+      "actual_sha256": "6d8249022fb336b81ec5fac4da413ef65e3ad06bddde2274d69a212c195faf73",
+      "expected_sha256": "6d8249022fb336b81ec5fac4da413ef65e3ad06bddde2274d69a212c195faf73",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_12.sqlite"
+    },
+    {
+      "actual_sha256": "bd803219aeb6ed99d547f62dc6860a30748fc37469947d14ebab3e7e4ff85237",
+      "expected_sha256": "bd803219aeb6ed99d547f62dc6860a30748fc37469947d14ebab3e7e4ff85237",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_13.sqlite"
+    },
+    {
+      "actual_sha256": "b977ebb18d24eb41a4e486e628cbe4ab1235faed76d9c1af49a8f821501c050c",
+      "expected_sha256": "b977ebb18d24eb41a4e486e628cbe4ab1235faed76d9c1af49a8f821501c050c",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_14.sqlite"
+    },
+    {
+      "actual_sha256": "c09d56e1f8ab026a216f10f4ab92b9b96b74f829b267e5cabf2ddf695a8280e5",
+      "expected_sha256": "c09d56e1f8ab026a216f10f4ab92b9b96b74f829b267e5cabf2ddf695a8280e5",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_15.sqlite"
+    },
+    {
+      "actual_sha256": "2f31450e7bfe91e4b0300b1cff7f64bb334495ef1534f1b8934ed6b78281ccff",
+      "expected_sha256": "2f31450e7bfe91e4b0300b1cff7f64bb334495ef1534f1b8934ed6b78281ccff",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_16.sqlite"
+    },
+    {
+      "actual_sha256": "03ce3e442a86df0082aa6ff1c61ff193d77199a2803e05dd55cce8fce2c31e12",
+      "expected_sha256": "03ce3e442a86df0082aa6ff1c61ff193d77199a2803e05dd55cce8fce2c31e12",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_17.sqlite"
+    },
+    {
+      "actual_sha256": "a2321e8e9dde1f0aae7e0951696700c7457108b26430ec2be9f08df12a0986d2",
+      "expected_sha256": "a2321e8e9dde1f0aae7e0951696700c7457108b26430ec2be9f08df12a0986d2",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_18.sqlite"
+    },
+    {
+      "actual_sha256": "5b7600099851f7a8aec2c0cfb76bed667bcc2223c4db2def87f40effbc33e19d",
+      "expected_sha256": "5b7600099851f7a8aec2c0cfb76bed667bcc2223c4db2def87f40effbc33e19d",
+      "match": true,
+      "path": "V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo/client_19.sqlite"
+    }
+  ],
+  "logistic": {
+    "checks": {
+      "C_1": true,
+      "class_weight_balanced": true,
+      "feature_names_match_manifest": true,
+      "ranker_feature_count_19": true,
+      "seed_20260807": true,
+      "solver_liblinear": true,
+      "wire_probe_feature_count_18_plus_server_static": true
+    },
+    "feature_names": [
+      "static_score",
+      "dense_top1_score",
+      "dense_top3_mean",
+      "dense_top1_top2_margin",
+      "dense_score_std",
+      "dense_score_entropy",
+      "dense_local_rank_percentile",
+      "bm25_top1_score",
+      "bm25_top3_mean",
+      "bm25_top1_top2_margin",
+      "dense_bm25_top1_same",
+      "dense_bm25_top3_overlap",
+      "dense_sparse_rank_correlation",
+      "matched_query_entity_count",
+      "matched_query_token_count",
+      "matched_title_token_count",
+      "query_title_embedding_similarity",
+      "top3_title_diversity",
+      "top3_entity_diversity"
+    ],
+    "parameters": {
+      "C": 1.0,
+      "class_weight": "balanced",
+      "random_state": 20260807,
+      "solver": "liblinear"
+    }
+  },
+  "model_caches": {
+    "bge_base_en_v1_5": {
+      "all_targets_exist": true,
+      "bytes": 438994950,
+      "descriptor_sha256": "d0185602b0d42fed1e9023bfaa1badaf738ac741895084c3f3d978fc1825c432",
+      "exists": true,
+      "files": 11,
+      "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+      "snapshot": "/home/iiserver31/.cache/huggingface/hub/models--BAAI--bge-base-en-v1.5/snapshots/a5beb1e3e68b9ab74eb54cfd186867f64f240e1a"
+    },
+    "flan_t5_large": {
+      "all_targets_exist": true,
+      "bytes": 3135890073,
+      "descriptor_sha256": "b854f77c07a29935070af96c41cb7031d50941d1dcba23c8f0deef9d05f48614",
+      "exists": true,
+      "files": 7,
+      "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+      "snapshot": "/home/iiserver31/.cache/huggingface/hub/models--google--flan-t5-large/snapshots/0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a"
+    }
+  },
+  "old_r5_process_group": {
+    "all_survivors_stopped": true,
+    "member_count": 8,
+    "members": [
+      {
+        "detail": "T    Wed Aug 12 18:21:58 2026 bash -c cd /home/iiserver31/projects/FedE4RAG-main && nohup bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh > V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/r5_full.nohup.log 2>&1 < /dev/null & echo R5_PID=$!",
+        "pgid": 332002,
+        "pid": 332003
+      },
+      {
+        "detail": "T    Wed Aug 12 18:21:58 2026 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh",
+        "pgid": 332002,
+        "pid": 332004
+      },
+      {
+        "detail": "T    Wed Aug 12 18:50:35 2026 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh",
+        "pgid": 332002,
+        "pid": 336780
+      },
+      {
+        "detail": "T    Wed Aug 12 18:50:35 2026 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh",
+        "pgid": 332002,
+        "pid": 336781
+      },
+      {
+        "detail": "T    Wed Aug 12 18:50:35 2026 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh",
+        "pgid": 332002,
+        "pid": 336782
+      },
+      {
+        "detail": "Tl   Wed Aug 12 18:50:35 2026 /home/iiserver31/anaconda3/envs/supv2/bin/python /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/01_generate_federated_pools.py --dataset hotpotqa --split /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/hotpotqa_final_test_inputs_n300.jsonl --index /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/retrieval/indexes/hotpotqa.sqlite --output /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_centralized.jsonl --partition centralized --centralized --pool-size 10 --sparse-candidates 5000 --device cuda",
+        "pgid": 332002,
+        "pid": 336783
+      },
+      {
+        "detail": "Tl   Wed Aug 12 18:50:35 2026 /home/iiserver31/anaconda3/envs/supv2/bin/python /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/01_generate_federated_pools.py --dataset 2wikimultihopqa --split /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/2wikimultihopqa_final_test_inputs_n300.jsonl --index /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v15_robust_context_repair/retrieval/indexes/2wikimultihopqa.sqlite --output /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_centralized.jsonl --partition centralized --centralized --pool-size 10 --sparse-candidates 5000 --device cuda",
+        "pgid": 332002,
+        "pid": 336784
+      },
+      {
+        "detail": "Tl   Wed Aug 12 18:50:35 2026 /home/iiserver31/anaconda3/envs/supv2/bin/python /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/01_generate_federated_pools.py --dataset musique --split /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/musique_final_test_inputs_n300.jsonl --index /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v16_action_composition/retrieval/indexes/musique.sqlite --output /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_centralized.jsonl --partition centralized --centralized --pool-size 10 --sparse-candidates 5000 --device cuda",
+        "pgid": 332002,
+        "pid": 336785
+      }
+    ],
+    "pgid": 332002
+  },
+  "r4_declared_hash_checks": [
+    {
+      "actual_sha256": "069d4e6ed8c75e99d43dcd46e2a34f8a964e3ffeae4f2839ce78e6c85d856b40",
+      "expected_sha256": "069d4e6ed8c75e99d43dcd46e2a34f8a964e3ffeae4f2839ce78e6c85d856b40",
+      "match": true,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/protocol/reader_prompt_template.txt"
+    },
+    {
+      "actual_sha256": "60bc8aa78096aaa328ed09a0e7cb1ad3f2444de9bbfd3f10d52ccbc294551e41",
+      "expected_sha256": "60bc8aa78096aaa328ed09a0e7cb1ad3f2444de9bbfd3f10d52ccbc294551e41",
+      "match": true,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/code/run_r4_frozen_generation.py"
+    },
+    {
+      "actual_sha256": "a05bfc2e07e1f4825444a2fc440382610040f2e5b4269d6125037cfc01b4c6e9",
+      "expected_sha256": "a05bfc2e07e1f4825444a2fc440382610040f2e5b4269d6125037cfc01b4c6e9",
+      "match": true,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/code/materialize_r4_u1_contexts.py"
+    },
+    {
+      "actual_sha256": "8eef289f227baee0530a42336bc8379502668e71456281024ae6b410da1da5b9",
+      "expected_sha256": "8eef289f227baee0530a42336bc8379502668e71456281024ae6b410da1da5b9",
+      "match": true,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/code/run_r4_sealed_evaluation.py"
+    }
+  ],
+  "status": "pass",
+  "telemetry": "nvidia-smi NVML driver/library mismatch recorded; no GPU used in Stage A; future Stage B requires torch CUDA, tensor smoke, device/memory, and cache checks",
+  "wire_payload_accounting": "592 B/query = 16-byte query header + 8 candidates x 72 bytes (18 float32); static_score is coordinator-resident and is the 19th ranker input, not retransmitted"
+}

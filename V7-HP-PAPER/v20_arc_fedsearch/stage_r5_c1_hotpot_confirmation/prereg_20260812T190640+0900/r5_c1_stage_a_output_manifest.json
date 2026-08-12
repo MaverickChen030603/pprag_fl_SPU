@@ -1,0 +1,98 @@
+{
+  "created_jst": "2026-08-12T19:33:55+09:00",
+  "formal_files": [],
+  "git_commit": "recorded in post-commit attestation",
+  "outputs": [
+    {
+      "bytes": 7824,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/old_r5_execution_snapshot.json",
+      "sha256": "f8a8a5e26b3cb2c7d562e9a5038e8503d9d144f1b8fd6e4ae97997330c042892"
+    },
+    {
+      "bytes": 782,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/old_r5_abort_audit.md",
+      "sha256": "7cca9770cc6af9d91b217058048fd7dd7a99f77193895dac5975413b8227dcff"
+    },
+    {
+      "bytes": 1221,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_hotpot_exclusion_manifest.json",
+      "sha256": "970dc6ef2b0898671d577569fd85f837909c429805079c4c179adbb59a5a8661"
+    },
+    {
+      "bytes": 18151779,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_hotpot_exclusion_rows.csv",
+      "sha256": "da5af311b3a9c13128a2df388565b956c3fdb80f97f57a8c19588cc1ff6b949a"
+    },
+    {
+      "bytes": 909,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_candidate_source_audit.json",
+      "sha256": "0a424cbfb602e1c23cebb21131cc3098f5ab3eda2e33e92807fec482715fa43d"
+    },
+    {
+      "bytes": 105000,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_query_ids_4200.txt",
+      "sha256": "6e7e39e64b0b70ad7c76fe5e15ee982a95115c446e5b51e0dfe70f8034faf912"
+    },
+    {
+      "bytes": 676430,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_query_manifest_label_free.jsonl",
+      "sha256": "3c10940a73576b994c7cfb69c883a5cf60d0929207a00050e278a8afeabac092"
+    },
+    {
+      "bytes": 1112,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_split_manifest.json",
+      "sha256": "ae49585dde0c3c33dab90155dd54ce3cbe2dd0ae6516156029f0853d5fad2ea9"
+    },
+    {
+      "bytes": 935,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_power_reaudit.md",
+      "sha256": "d5e527eb0339542da5be72fbee70d538941fe90bfbee95cb0f54eedff31b17ca"
+    },
+    {
+      "bytes": 2150,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_power_reaudit.json",
+      "sha256": "cf16295ec0ee81d9f619506cb2552c0f713a76198cbaf12be600d11edd155c94"
+    },
+    {
+      "bytes": 4035,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_preregistration.md",
+      "sha256": "33c6f0150375a4a4a0a65dd29d71562dba119a824a7084a40ca1a317eb690acd"
+    },
+    {
+      "bytes": 5917,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_execution_contract.json",
+      "sha256": "3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd"
+    },
+    {
+      "bytes": 1332,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_expected_artifact_manifest.json",
+      "sha256": "1e0b305d0337abcfb371c3d089b7d6e2f9047626641285b45167c3bc277e905e"
+    },
+    {
+      "bytes": 1169,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_label_firewall_audit.json",
+      "sha256": "0410124f5a0e1d3c3ce0444045a28e0df4d913c8ace642549c810abe193aed14"
+    },
+    {
+      "bytes": 804,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_split_disjointness_audit.json",
+      "sha256": "88de3c8fbe9d0a4868d41ae79b4f54596085ce9d4d0e2bdc789d606bd6f77a82"
+    },
+    {
+      "bytes": 764,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_synthetic_dryrun_audit.json",
+      "sha256": "70f6361c9729d68f8a527a6d91541cfc191ed22cefffbe76f136b61644b547db"
+    },
+    {
+      "bytes": 19630,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/r5_c1_artifact_freeze_audit.json",
+      "sha256": "7b2fab0be5472237c54ea9451086974425fb165fea2e0fcc44a57e8a5458e1a8"
+    },
+    {
+      "bytes": 617,
+      "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/v20_r5_c1_prereg_progress_20260812T193358+0900.md",
+      "sha256": "be7f92a3484f41f25908c7fc7e6bc9cfd81e78895763b3d5698a33088bfa2482"
+    }
+  ],
+  "status": "R5_C1_PREREGISTERED_WAITING_HUMAN_APPROVAL"
+}

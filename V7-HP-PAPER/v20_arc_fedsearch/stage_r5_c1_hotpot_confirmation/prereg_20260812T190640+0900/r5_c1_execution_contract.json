@@ -1,0 +1,133 @@
+{
+  "approval": "Do not execute Stage B until HUMAN_EXECUTION_APPROVAL.json has status R5_C1_STAGE_B_APPROVED and binds this contract SHA-256",
+  "artifact_freeze_audit_sha256": "7b2fab0be5472237c54ea9451086974425fb165fea2e0fcc44a57e8a5458e1a8",
+  "candidate_source": {
+    "partition": "official_train",
+    "path": "V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+    "sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc"
+  },
+  "claim_boundary": "new sealed HotpotQA confirmation holdout; not official final test; R4 remains exploratory-only and outside the primary multiplicity family",
+  "created_jst": "2026-08-12T19:33:55+09:00",
+  "dataset": "hotpotqa",
+  "label_firewall": {
+    "official_test_allowed": false,
+    "stage_a": "question-only projection; no formal retrieval/Reader/evaluation",
+    "stage_b": "8,400 unscored predictions; no evaluator import or gold access; stop after checksum-bound atomic completion",
+    "stage_c": "gold access only after completion, prediction/context/split hash, cardinality, uniqueness, and key checks"
+  },
+  "label_firewall_audit_sha256": "0410124f5a0e1d3c3ce0444045a28e0df4d913c8ace642549c810abe193aed14",
+  "mechanical_gate": {
+    "R5_C1_CONFIRMED": "mean > 0 and CI low > 0",
+    "R5_C1_HARM": "CI high < 0",
+    "R5_C1_NULL_OR_MIXED": "mean <= 0 and CI low <= 0 <= CI high",
+    "R5_C1_POSITIVE_INCONCLUSIVE": "mean > 0 and CI low <= 0 <= CI high"
+  },
+  "power_reaudit_sha256": "cf16295ec0ee81d9f619506cb2552c0f713a76198cbaf12be600d11edd155c94",
+  "primary": {
+    "baseline": "frozen inherited federated baseline/H0",
+    "bootstrap_repetitions": 5000,
+    "bootstrap_seed": 20260812,
+    "ci": "95% percentile paired bootstrap",
+    "comparison": "Logistic ProbeRoute minus inherited baseline",
+    "method": "frozen Logistic ProbeRoute",
+    "metric": "query-level Joint F1",
+    "multiplicity": "one primary comparison; no FDR",
+    "reader": "google/flan-t5-large",
+    "reader_revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+    "success": "mean_delta_joint_f1 > 0 and joint_f1_ci_low > 0",
+    "test": "two-sided plus-one corrected",
+    "unit": "query"
+  },
+  "reader": {
+    "batch_size": 4,
+    "context_max_chars": 4000,
+    "decoding": {
+      "do_sample": false,
+      "greedy": true,
+      "max_new_tokens": 32,
+      "num_beams": 1
+    },
+    "dtype": "CUDA float16",
+    "input_max_tokens": 1024,
+    "model": "google/flan-t5-large",
+    "prompt_sha256": "069d4e6ed8c75e99d43dcd46e2a34f8a964e3ffeae4f2839ce78e6c85d856b40",
+    "revision": "0613663d0d48ea86ba8cb3d7a44f0f65dc596a2a",
+    "seed": 20260812,
+    "support_checkpoint": "V7-HP-PAPER/v16_action_composition/evaluation/checkpoints/hotpotqa_support.joblib",
+    "support_checkpoint_sha256": "97ef3a57c65c5030259494cb292f98af2e33cc7c0d08fd5a73d1f7dfad533b12",
+    "support_fallback": "frozen threshold and deterministic top-two minimum fallback",
+    "truncation": "right"
+  },
+  "recovery": {
+    "formal_output_overwrite": "forbidden",
+    "partial_outputs": "preserve; resume only where checksum-bound runner explicitly supports it",
+    "prediction_completion": "atomic marker only after exactly 8,400 unique method-query keys",
+    "stage_c_rerun": "forbidden if evaluation output directory contains files"
+  },
+  "retrieval": {
+    "bge_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+    "candidate_top_l": 8,
+    "documents_per_client": 5,
+    "inherited_route": {
+      "algorithm": "exact V17 origin RNG replay, consume frozen V17 final segment, extend same stream in C1 hash order",
+      "seed": 20260723,
+      "selected_clients": 3,
+      "temperature": 0.15
+    },
+    "local_depth": 10,
+    "merge": "stable raw dense score then doc_id, global Top-10",
+    "probe_wire": "18 float32 returned features per candidate; 592 B/query; no text/title/passage ID/embedding/gold/answer/Reader feedback",
+    "ranker": {
+      "C": 1.0,
+      "class_weight": "balanced",
+      "seed": 20260807,
+      "solver": "liblinear"
+    },
+    "ranker_checkpoint": "V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/models/logistic_seed_20260807.pkl",
+    "ranker_checkpoint_sha256": "0d07b5cd47c3b6c666c6a1fd70c1ca9e4185307bece207d43b8b6b21ecdcc166",
+    "ranker_inputs": [
+      "static_score",
+      "dense_top1_score",
+      "dense_top3_mean",
+      "dense_top1_top2_margin",
+      "dense_score_std",
+      "dense_score_entropy",
+      "dense_local_rank_percentile",
+      "bm25_top1_score",
+      "bm25_top3_mean",
+      "bm25_top1_top2_margin",
+      "dense_bm25_top1_same",
+      "dense_bm25_top3_overlap",
+      "dense_sparse_rank_correlation",
+      "matched_query_entity_count",
+      "matched_query_token_count",
+      "matched_title_token_count",
+      "query_title_embedding_similarity",
+      "top3_title_diversity",
+      "top3_entity_diversity"
+    ],
+    "reader_context": "first five frozen-order documents; no fill and no Reader-aware rerank",
+    "transmitted_documents": 15
+  },
+  "schema_version": "v20-r5-c1-sealed-confirmation-contract-1",
+  "secondary": [
+    "Answer EM/F1",
+    "SP/Evidence EM/F1",
+    "Joint EM",
+    "complete-support rate",
+    "rescue/harm/unchanged support transitions",
+    "win/tie/loss"
+  ],
+  "split": {
+    "historical_overlap": 0,
+    "logistic_train_5000_overlap": 0,
+    "n": 4200,
+    "old_r5_hotpot_300_overlap": 0,
+    "query_ids_sha256": "6e7e39e64b0b70ad7c76fe5e15ee982a95115c446e5b51e0dfe70f8034faf912",
+    "question_only_manifest_sha256": "3c10940a73576b994c7cfb69c883a5cf60d0929207a00050e278a8afeabac092",
+    "salt": "v20-r5-c1-hotpot-confirmation-20260812",
+    "selection": "ascending SHA256(salt || tab || canonical_query_id), query_id only as collision tie-break"
+  },
+  "status": "R5_C1_PREREGISTERED_WAITING_HUMAN_APPROVAL",
+  "synthetic_dryrun_audit_sha256": "70f6361c9729d68f8a527a6d91541cfc191ed22cefffbe76f136b61644b547db"
+}

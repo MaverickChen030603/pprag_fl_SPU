@@ -1,0 +1,213 @@
+{
+  "captured_jst": "2026-08-12T19:17:44+09:00",
+  "evaluator_or_report_artifacts": [],
+  "evaluator_started": false,
+  "files": [
+    {
+      "bytes": 826,
+      "line_count": 17,
+      "mtime_jst": "2026-08-12T19:08:59+09:00",
+      "path": "ABORTED_PRECONTRACT_DO_NOT_SCORE.md",
+      "sha256": "a105416f4032e82864f0c198739ce84e56637bc6422cec73c79be5713c819dd5"
+    },
+    {
+      "bytes": 576,
+      "mtime_jst": "2026-08-12T18:22:05+09:00",
+      "path": "cost/r5_cost_contract.json",
+      "sha256": "cd868b2eee8d497dbf4d06a7c465d55c49d0b40c920fbaa97de09a3ae9e83914"
+    },
+    {
+      "bytes": 3725,
+      "line_count": 47,
+      "mtime_jst": "2026-08-12T18:36:01+09:00",
+      "path": "logs/2wiki_packets.log",
+      "sha256": "daf81a4c2c338bc0283b52a59791083f64c1b692fd7f4b71c16a4ca345db0969"
+    },
+    {
+      "bytes": 826,
+      "line_count": 6,
+      "mtime_jst": "2026-08-12T18:50:44+09:00",
+      "path": "logs/2wikimultihopqa_central.log",
+      "sha256": "8b05a046fcbcb1ddd136fb4dabc8ac7e73e7efdcde7a5a13c134f258cd60d1cc"
+    },
+    {
+      "bytes": 893,
+      "line_count": 11,
+      "mtime_jst": "2026-08-12T18:22:27+09:00",
+      "path": "logs/hotpot_origin_replay.log",
+      "sha256": "2bb07d48fba8cc9c761fe6b2c6a5f6db6b9416a704f69c7f9a66adbe1541e261"
+    },
+    {
+      "bytes": 3500,
+      "line_count": 47,
+      "mtime_jst": "2026-08-12T18:50:35+09:00",
+      "path": "logs/hotpot_packets.log",
+      "sha256": "b61787857d73a9f56877d75a6d0bf273781314dce2df842ee8c9a199ec980e06"
+    },
+    {
+      "bytes": 826,
+      "line_count": 6,
+      "mtime_jst": "2026-08-12T18:50:44+09:00",
+      "path": "logs/hotpotqa_central.log",
+      "sha256": "8b05a046fcbcb1ddd136fb4dabc8ac7e73e7efdcde7a5a13c134f258cd60d1cc"
+    },
+    {
+      "bytes": 826,
+      "line_count": 6,
+      "mtime_jst": "2026-08-12T18:50:44+09:00",
+      "path": "logs/musique_central.log",
+      "sha256": "8b05a046fcbcb1ddd136fb4dabc8ac7e73e7efdcde7a5a13c134f258cd60d1cc"
+    },
+    {
+      "bytes": 3468,
+      "line_count": 47,
+      "mtime_jst": "2026-08-12T18:34:08+09:00",
+      "path": "logs/musique_packets.log",
+      "sha256": "69cff571491f61a3c41903a40e5ebec67552bb5cdc54a3669fdd421305ba70c1"
+    },
+    {
+      "bytes": 130,
+      "line_count": 5,
+      "mtime_jst": "2026-08-12T18:22:05+09:00",
+      "path": "logs/r5_full.nohup.log",
+      "sha256": "a188a0b0db2a55afab38b4161b89ffcec3ed8b9be85b13d8b792ba931c94f647"
+    },
+    {
+      "bytes": 1157771,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:13:44+09:00",
+      "path": "protocol/2wikimultihopqa_final_test_inputs_n300.jsonl",
+      "sha256": "77e98091283bd615bcb4b17628d5832963c9b1f80ed6bfb2e430fa59426942fd"
+    },
+    {
+      "bytes": 35897,
+      "mtime_jst": "2026-08-12T18:13:52+09:00",
+      "path": "protocol/final_test_sample_manifest.json",
+      "sha256": "578bc070ce89b73b1e863627cf3c4bf936d1d97982030fb2b287417242ca05f8"
+    },
+    {
+      "bytes": 1878122,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:13:44+09:00",
+      "path": "protocol/hotpotqa_final_test_inputs_n300.jsonl",
+      "sha256": "e2a3bd025d3fb4c7e660425a51c8b1f0d2f92b79f9372bd8d872897e2f8c6b2b"
+    },
+    {
+      "bytes": 3323267,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:13:44+09:00",
+      "path": "protocol/musique_final_test_inputs_n300.jsonl",
+      "sha256": "e76eb965ac18193c2ed57374dfac2d85533137733496ee88f15506f18d97e08b"
+    },
+    {
+      "bytes": 1806,
+      "mtime_jst": "2026-08-12T18:13:52+09:00",
+      "path": "protocol/no_leak_audit.json",
+      "sha256": "01c5fcd6333741480a6e5520a9bf7c3143e62f7454ffa4dde653fe71ec299e17"
+    },
+    {
+      "bytes": 619,
+      "line_count": 10,
+      "mtime_jst": "2026-08-12T18:13:52+09:00",
+      "path": "protocol/r5_final_test_unseal_audit.md",
+      "sha256": "0073a0cd84677dbe42ac20e7dd720b313dda198ae4a7db22442a4daeb0c9b9e2"
+    },
+    {
+      "bytes": 30690,
+      "mtime_jst": "2026-08-12T18:22:05+09:00",
+      "path": "protocol/r5_frozen_artifact_manifest.json",
+      "sha256": "0fa6f363f1577f3da16cae74ed8484fc7ca8b95ef5698aaf652d452eea97db33"
+    },
+    {
+      "bytes": 790,
+      "line_count": 11,
+      "mtime_jst": "2026-08-12T18:13:52+09:00",
+      "path": "protocol/r5_preregistration.md",
+      "sha256": "6e85ce3e733f3a5cc571a18e9616e8563ca3dfd9e1207d53fc4c4d0d51793961"
+    },
+    {
+      "bytes": 734035,
+      "line_count": 98,
+      "mtime_jst": "2026-08-12T19:07:57+09:00",
+      "path": "retrieval/2wikimultihopqa_centralized.jsonl",
+      "sha256": "317f2cba2771e0570c59e9ba5c4ab0434c853e08d0f05cd5d50e183364f30ca6"
+    },
+    {
+      "bytes": 9756335,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:36:01+09:00",
+      "path": "retrieval/2wikimultihopqa_probe_packets.jsonl",
+      "sha256": "f8ce9f32e3d151785cf593cc75a6d5a6c0442e9e6b9006671587724177bc497e"
+    },
+    {
+      "bytes": 391,
+      "mtime_jst": "2026-08-12T18:36:01+09:00",
+      "path": "retrieval/2wikimultihopqa_probe_packets.manifest.json",
+      "sha256": "6f27f4d4a2a8afeee7650d14530814dd071329cffdfdcc717fce13c1e6dfd414"
+    },
+    {
+      "bytes": 706547,
+      "line_count": 88,
+      "mtime_jst": "2026-08-12T19:07:55+09:00",
+      "path": "retrieval/hotpotqa_centralized.jsonl",
+      "sha256": "b041794f4ec9fcda2db64bf4fef564f8c501790888ab556869cf1a6a2843655b"
+    },
+    {
+      "bytes": 101688,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:22:27+09:00",
+      "path": "retrieval/hotpotqa_inherited_routes.jsonl",
+      "sha256": "8bc7eb6b99cbc5613382784bb5413b573521eeea3cdb67fcc17de2315db8c7aa"
+    },
+    {
+      "bytes": 133,
+      "mtime_jst": "2026-08-12T18:22:27+09:00",
+      "path": "retrieval/hotpotqa_inherited_routes.manifest.json",
+      "sha256": "13af302120e3cc00d05df9419095a8cfbdaf9f685b0fbbb5349462c221c89d7e"
+    },
+    {
+      "bytes": 9646403,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:50:35+09:00",
+      "path": "retrieval/hotpotqa_probe_packets.jsonl",
+      "sha256": "6a7073175f4b911ffcb310fc58edded406cd7dc093aff66ea06cc17d8b93e256"
+    },
+    {
+      "bytes": 376,
+      "mtime_jst": "2026-08-12T18:50:35+09:00",
+      "path": "retrieval/hotpotqa_probe_packets.manifest.json",
+      "sha256": "13e3947bcdbf23d9f7d2e725e3913ad77f81da54b16ba9923aa85c5816f7112d"
+    },
+    {
+      "bytes": 785278,
+      "line_count": 92,
+      "mtime_jst": "2026-08-12T19:07:52+09:00",
+      "path": "retrieval/musique_centralized.jsonl",
+      "sha256": "211d47d82064b1018f4293a66388e98dab676101f1a952b3ed0662bce62a77d6"
+    },
+    {
+      "bytes": 9364342,
+      "line_count": 300,
+      "mtime_jst": "2026-08-12T18:34:08+09:00",
+      "path": "retrieval/musique_probe_packets.jsonl",
+      "sha256": "3c02533103e08bbba0303dbc0c5252ca7abec0ab9bbdf24157aaeac368dde1fd"
+    },
+    {
+      "bytes": 375,
+      "mtime_jst": "2026-08-12T18:34:08+09:00",
+      "path": "retrieval/musique_probe_packets.manifest.json",
+      "sha256": "6d68fec2a1ecedbd82d7553f3dda33bc34c68971589f6d90a85a37c29f313b56"
+    }
+  ],
+  "historical_label_access_evidence": false,
+  "historical_label_access_reason": "runner was blocked in Phase 1b before sequential Phase 2 Reader and Phase 3 evaluator; no Reader/evaluator artifacts exist",
+  "label_paths_opened_by_this_audit": false,
+  "old_r5_root": "/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812",
+  "phase_at_stop": "Phase 1b centralized retrieval",
+  "process_group": 332002,
+  "reader_artifacts": [],
+  "reader_started": false,
+  "start_time_jst": "2026-08-12T18:21:58+09:00",
+  "stop_action_log": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/prereg_20260812T190640+0900/snapshots/old_r5_stop_action.log",
+  "stop_result": "SIGSTOP confirmed; SIGTERM sent; alive after 30 seconds and kept STOPPED; no SIGKILL"
+}

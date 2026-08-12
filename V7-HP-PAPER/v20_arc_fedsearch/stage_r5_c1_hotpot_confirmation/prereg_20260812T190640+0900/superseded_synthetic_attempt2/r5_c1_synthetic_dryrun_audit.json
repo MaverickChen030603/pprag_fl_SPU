@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "atomic_completion_marker": true,
+    "checksum_tamper_detection": true,
+    "duplicate_detection": true,
+    "forbidden_field_rejection": true,
+    "generation_evaluation_physical_separation": true,
+    "gold_access_guard_without_completion": true,
+    "missing_detection": true,
+    "no_gpu_used": true,
+    "no_models_loaded": true,
+    "no_real_r5_c1_questions_used": true,
+    "no_retriever_loaded": true,
+    "partial_failure_has_no_completion_marker": true,
+    "resume_checksum": true,
+    "schema_whitelist": true
+  },
+  "evaluator_sha256": "090a2133ecf9f9576a6111e45f5263c9f6645d71ecd912aee32f20cb2012ab16",
+  "formal_output_paths_touched": false,
+  "status": "pass",
+  "synthetic_prediction_count": 8,
+  "synthetic_query_count": 4
+}

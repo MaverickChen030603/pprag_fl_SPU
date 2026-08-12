@@ -1,0 +1,462 @@
+ M RAGTest/config.py
+ D SUP_V1/.DS_Store
+ D SUP_V1/__init__.py
+ D SUP_V1/config_sup_v1_example.py
+ D SUP_V1/fedrag_hn_selective.py
+ D SUP_V1/hypernetwork.py
+ D SUP_V1/main_sup_v1.py
+ D SUP_V1/pptx_deck/build_pprag_fl_deck.js
+ D SUP_V1/pptx_deck/package-lock.json
+ D SUP_V1/pptx_deck/package.json
+ D SUP_V1/pptx_deck/pptxgenjs_helpers/layout.js
+ D SUP_v2/README.md
+ D SUP_v2/__init__.py
+ D SUP_v2/experiment_config.py
+ D SUP_v2/fedrag_selective_upload.py
+ D SUP_v2/finalize_pipeline.py
+ D SUP_v2/hypernetwork.py
+ D SUP_v2/metrics.py
+ D SUP_v2/report_generator.py
+ D SUP_v2/requirements_sup_v2.txt
+ D SUP_v2/run_all_rag_eval.py
+ D SUP_v2/run_experiment_suite.py
+ D SUP_v2/run_rag_eval.py
+ D SUP_v2/run_upstream.py
+ D SUP_v2/summarize_results.py
+ D SUP_v2/upload_selectors.py
+ D SUP_v3/README.md
+ D SUP_v3/__init__.py
+ D SUP_v3/experiment_config.py
+ D SUP_v3/fedrag_selective_upload.py
+ D SUP_v3/finalize_pipeline.py
+ D SUP_v3/hypernetwork.py
+ D SUP_v3/metrics.py
+ D SUP_v3/report_generator.py
+ D SUP_v3/requirements_sup_v2.txt
+ D SUP_v3/run_all_rag_eval.py
+ D SUP_v3/run_experiment_suite.py
+ D SUP_v3/run_rag_eval.py
+ D SUP_v3/run_upstream.py
+ D SUP_v3/summarize_results.py
+ D SUP_v3/upload_selectors.py
+ M V3/README.md
+ M V7-agent-BSP-DIAG/analysis/cache_reuse_audit.md
+ M V7-agent-BSP-DIAG/analysis/gold_oracle_debug_effect.csv
+ M V7-agent-BSP-DIAG/analysis/official_fid_t5_diag_all_runs.csv
+ M V7-agent-BSP-DIAG/analysis/official_metadata_audit_current.csv
+ M V7-agent-BSP-DIAG/analysis/per_query_alignment_final.csv
+ M V7-agent-BSP-DIAG/analysis/reader_sensitivity_summary_final.csv
+ M V7-agent-BSP-DIAG/analysis/run_failure_audit.md
+ M V7-agent-BSP-DIAG/analysis/selection_to_qa_correlation.csv
+ M V7-agent-BSP-DIAG/analysis/strict_diagnostic_diag_seed_level.csv
+ M V7-agent-BSP-DIAG/analysis/strict_diagnostic_diag_summary.csv
+ M V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_current_closure_audit_20260619.md
+ M V7-agent-BSP/analysis/memory_state_ablation.csv
+ M V7-agent-BSP/analysis/official_fid_t5_all_runs.csv
+ M V7-agent-BSP/analysis/official_fid_t5_method_balanced.csv
+ M V7-agent-BSP/analysis/per_query_alignment.csv
+ M V7-agent-BSP/analysis/reader_sensitivity_summary.csv
+ M V7-agent-BSP/analysis/representative_cases_bsp.md
+ M V7-agent-BSP/analysis/statistical_tests_bsp.csv
+ M V7-agent-BSP/analysis/strict_diagnostic_bsp_seed_level.csv
+ M V7-agent-BSP/analysis/strict_diagnostic_bsp_summary.csv
+ M V7-agent-BSP/analysis/true_subgroup_analysis.csv
+ M V7-agent-BSP/reports/v7_agent_bsp_complete_report_20260617.md
+ M experiments/v6_hp_hyper_next/reports/hard_subset_stats.md
+ M experiments/v6_hp_hyper_next/reports/method_identity_audit_after_ablation_report.md
+ M experiments/v6_hp_hyper_next/reports/score_logging_report.md
+ M experiments/v6_hp_hyper_next/results/hard_subset_stats.csv
+ M experiments/v6_hp_hyper_next/subsets/hotpot_all_1000.json
+ M experiments/v6_hp_hyper_next/subsets/hotpot_easy_1000.json
+ M experiments/v6_hp_hyper_next/subsets/hotpot_full_eval.json
+ M experiments/v6_hp_hyper_next/subsets/hotpot_hard_1000.json
+ M experiments/v6_hp_hyper_next/subsets/hotpot_hard_500.json
+ M experiments/v6_hp_hyper_next/subsets/hotpot_medium_1000.json
+?? ._V3
+?? ._V4
+?? ._V5
+?? ._V7-HP-PAPER
+?? FedE/num5_dir_a005_imb00_ts0_v6h1/
+?? FedE/num5_dir_a005_imb00_ts0_v7/
+?? FedE/num5_dir_a005_imb00_ts0_v7h1/
+?? FedE/num5_dir_a005_imb00_ts0_v7hp1/
+?? FedE/num5_dir_a01_imb00_ts0_v6h1/
+?? FedE/num5_dir_a01_imb00_ts0_v7/
+?? FedE/num5_dir_a01_imb00_ts0_v7h1/
+?? FedE/num5_dir_a01_imb00_ts0_v7hp1/
+?? FedE/num5_dir_a03_imb00_ts0_v6h1/
+?? FedE/num5_dir_a03_imb00_ts0_v7/
+?? FedE/num5_dir_a03_imb00_ts0_v7h1/
+?? FedE/num5_dir_a03_imb00_ts0_v7hp1/
+?? FedE/num5_dir_a03_imb00_ts0_v7hp2/
+?? FedE/num5_dir_a03_imb00_ts0_v7hp3/
+?? FedE/num5_dir_a05_imb00_ts0_v6h1/
+?? FedE/num5_dir_a05_imb00_ts0_v7/
+?? FedE/select_data_hotpot_train_5000.json
+?? FedE/select_data_hotpot_train_5000.meta.json
+?? RAGTest/V6-H1/
+?? V3/._README.md
+?? V3/.___init__.py
+?? V3/._budget_allocator.py
+?? V3/._experiment_config.py
+?? V3/._explain_analyzer.py
+?? V3/._fedrag_selective_upload.py
+?? V3/._finalize_pipeline.py
+?? V3/._history_memory.py
+?? V3/._hypernetwork.py
+?? V3/._metrics.py
+?? V3/._report_generator.py
+?? V3/._requirements_sup_v2.txt
+?? V3/._requirements_v3.txt
+?? V3/._run_all_rag_eval.py
+?? V3/._run_experiment_suite.py
+?? V3/._run_rag_eval.py
+?? V3/._run_upstream.py
+?? V3/._summarize_results.py
+?? V3/._upload_selectors.py
+?? V3/._v3_complete_experiment_analysis_cn.md
+?? V3/._v3_complete_experiment_record_cn.md
+?? V4/._README.md
+?? V4/.___init__.py
+?? V4/._budget_allocator.py
+?? V4/._downstream_sampler.py
+?? V4/._experiment_config.py
+?? V4/._explain_analyzer.py
+?? V4/._fedrag_selective_upload.py
+?? V4/._finalize_pipeline.py
+?? V4/._hardness_estimator.py
+?? V4/._history_memory.py
+?? V4/._hypernetwork.py
+?? V4/._metrics.py
+?? V4/._report_generator.py
+?? V4/._requirements_sup_v2.txt
+?? V4/._requirements_v3.txt
+?? V4/._requirements_v4.txt
+?? V4/._run_all_rag_eval.py
+?? V4/._run_experiment_suite.py
+?? V4/._run_rag_eval.py
+?? V4/._run_upstream.py
+?? V4/._summarize_results.py
+?? V4/._upload_selectors.py
+?? V4/._utility_proxy.py
+?? V4/._v4_complete_experiment_analysis_cn.md
+?? V4/._v4_complete_experiment_record_cn.md
+?? V4/v4_complete_experiment_analysis_cn.md
+?? V4/v4_complete_experiment_record_cn.md
+?? V5/._README.md
+?? V5/.___init__.py
+?? V5/._budget_allocator.py
+?? V5/._downstream_sampler.py
+?? V5/._experiment_config.py
+?? V5/._explain_analyzer.py
+?? V5/._fedrag_selective_upload.py
+?? V5/._finalize_pipeline.py
+?? V5/._hardness_estimator.py
+?? V5/._history_memory.py
+?? V5/._hypernetwork.py
+?? V5/._metrics.py
+?? V5/._report_generator.py
+?? V5/._requirements_sup_v2.txt
+?? V5/._requirements_v3.txt
+?? V5/._requirements_v4.txt
+?? V5/._run_all_rag_eval.py
+?? V5/._run_experiment_suite.py
+?? V5/._run_rag_eval.py
+?? V5/._run_upstream.py
+?? V5/._summarize_results.py
+?? V5/._upload_selectors.py
+?? V5/._utility_proxy.py
+?? V6-H1/hard_queries/
+?? V6-H1/outputs/
+?? V6-HP1-OPTUNA/outputs/
+?? V6-HP1-OPTUNA/outputs_stage2/
+?? V6-HP1-OPTUNA/v6_hp1_optuna_complete_experiment_report_cn.md
+?? V6-HP1/._experiment_config.py
+?? V6-HP1/._fedrag_selective_upload.py
+?? V6-HP1/._run_upstream.py
+?? V6-HP1/._upload_selectors.py
+?? V6-HP1/data/
+?? V6-HP1/v6_hp1_complete_experiment_analysis_cn.md
+?? V6-HP1/v6_hp1_complete_experiment_record_cn.md
+?? V7-H1/outputs/
+?? V7-H1/outputs_bootstrap_from_v6_20260527_152209/
+?? V7-HP-PAPER/._build_candidate_contexts.py
+?? V7-HP-PAPER/._diagnose_selector_failures.py
+?? V7-HP-PAPER/._outputs
+?? V7-HP-PAPER/._reports
+?? V7-HP-PAPER/._run_support_insertion_selector_v1.py
+?? V7-HP-PAPER/._run_v7_hp_paper_selector_v1.sh
+?? V7-HP-PAPER/._train_reader_safety_predictor_v2.py
+?? V7-HP-PAPER/advisor_discussion_rp/
+?? V7-HP-PAPER/build_candidate_contexts.py
+?? V7-HP-PAPER/cross_dataset_validation/
+?? V7-HP-PAPER/diagnose_selector_failures.py
+?? V7-HP-PAPER/final_paper_writing_pack/
+?? V7-HP-PAPER/high_tier_extension/
+?? V7-HP-PAPER/main_conference_upgrade_v3/
+?? V7-HP-PAPER/opportunity_aware_semantic_generation_v4/
+?? V7-HP-PAPER/outputs/
+?? V7-HP-PAPER/paper_finalization/
+?? V7-HP-PAPER/paper_integration_after_2wiki/
+?? V7-HP-PAPER/paper_reviewer_proof_pack/
+?? V7-HP-PAPER/reports/
+?? V7-HP-PAPER/review_driven_revision_v5/
+?? V7-HP-PAPER/run_support_insertion_selector_v1.py
+?? V7-HP-PAPER/run_v7_hp_paper_selector_v1.sh
+?? V7-HP-PAPER/selector_v2/
+?? V7-HP-PAPER/selector_v2_1/
+?? V7-HP-PAPER/selector_v2_2/
+?? V7-HP-PAPER/selector_v2_3/
+?? V7-HP-PAPER/submission_revision_v2/
+?? V7-HP-PAPER/train_reader_safety_predictor_v2.py
+?? V7-HP-PAPER/v15_robust_context_repair/
+?? V7-HP-PAPER/v17_fedaction_rag/oracle/phase_a_checkpoint100/
+?? V7-HP-PAPER/v17_fedaction_rag/oracle/phase_a_smoke20/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/model/block_payload_table.csv
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/model/block_schema.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/protocol/dataset_manifest.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/protocol/final_seal_manifest.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/protocol/no_leak_audit.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0_full_upload/preflight_hotpot_fedavg/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0_full_upload/preflight_hotpot_frozen/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0_full_upload/smoke_hotpotqa_seed20260731/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/audit/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/hard_negatives/hard_negative_manifest.jsonl
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/hard_negatives/hard_negative_statistics.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/positive_control/pc1_audit_inputs/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/positive_control/pc1_hard_negative/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/positive_control/pc1_ranking_audit/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/reader_diagnostic/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/reader_gate/reader_start_decision.json
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/reader_gate/stage0a_context_delta_gate.md
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/stage0a_trainability_context_delta/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0a_trainability_context_delta/training_signal/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0b_top5_boundary_crossing/boundary_audit/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0b_top5_boundary_crossing/pc2a_boundary_negatives/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0b_top5_boundary_crossing/pc2b_multi_positive/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0b_top5_boundary_crossing/retrieval_confirmation/
+?? V7-HP-PAPER/v19_reader_aligned_selective_update/stage0b_top5_boundary_crossing/training_audit/
+?? V7-HP-PAPER/v20_arc_fedsearch/._stage_remp_evidence_memory
+?? V7-HP-PAPER/v20_arc_fedsearch/hotpot_error_analysis/
+?? V7-HP-PAPER/v20_arc_fedsearch/logs/
+?? V7-HP-PAPER/v20_arc_fedsearch/multidataset_depth_calibration/
+?? V7-HP-PAPER/v20_arc_fedsearch/remp_stage_bundle.tgz
+?? V7-HP-PAPER/v20_arc_fedsearch/reports/multidataset_retrieval_go_no_go.md
+?? V7-HP-PAPER/v20_arc_fedsearch/reports/next_module_decision.md
+?? V7-HP-PAPER/v20_arc_fedsearch/reports/reader_start_decision.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/2wikimultihopqa_inherited_n100/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/hotpotqa_depth10_n100/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/hotpotqa_depth10_n300/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/hotpotqa_inherited_n100/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/hotpotqa_m0_m1_n100/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/hotpotqa_m0_m1_n300/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/musique_inherited_n100/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage0_loss_audit/run_hotpotqa_m0_m1_matrix.sh
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_ctd_csr/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_lr_memory_local_recovery/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2_mars_route/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2_mars_route/musique/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a5_candidate_compression/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a5_candidate_compression/musique/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/candidate_generation/per_query_client_ranks.jsonl
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/candidate_generation/recovery_dev/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/candidate_generation/recovery_dev_results.csv
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/efficiency/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/logs/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/memory_profiles/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/memory_profiles/musique/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/protocol/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/protocol/musique/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/protocol/no_leak_audit.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/protocol/recovery_split_manifest.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/reports/next_method_decision.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/reports/reader_start_decision.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2a6_resource_memory/reports/recovery_go_no_go.md
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r2b0_subset_attainability/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/communication/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/holdout/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/holdout/cost_matched/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/holdout/inherited_b3_routes.jsonl
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/holdout/inherited_b3_routes.manifest.json
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/holdout/main_results/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/models/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/packets/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/protocol/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/resource_profiles/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/label_free_baselines/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/probe_features/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/probe_oracle/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/protocol/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/protocol/musique/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/ranker_training/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/reports/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/runs/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/centralized_reference/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/flan/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/gap_recovery/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/input_manifests/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/mechanism/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/protocol/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/provenance_seal_20260812/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/provenance_seal_20260812_incomplete_attempt1/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/provenance_seal_20260812_superseded_attempt2/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/reports/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/statistics/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/u1_20260812/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r4_frozen_reader/unifiedqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r5_c1_hotpot_confirmation/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_remp_evidence_memory/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_u1_factorized_audit/2wikimultihopqa/
+?? V7-HP-PAPER/v20_arc_fedsearch/stage_u1_factorized_audit/musique/
+?? V7-HP-PAPER/v4_final_submission_refinement/
+?? V7-HP-PAPER/v4_submission_completion/
+?? V7-HP-PAPER/v5_final_review_optimized_submission/
+?? V7-HP-PAPER/v5_review_final_polish/
+?? V7-HP-PAPER/v7_sigirap_targeted_strengthening/
+?? V7-HP-PAPER/v8_sigirap_final_story_reframing/
+?? V7-HP-PAPER/v9_sigirap_review_closure/
+?? V7-HP1/outputs/
+?? V7-HP2/data/hotpot_dev_stratified_300.json
+?? V7-HP2/outputs/
+?? V7-HP3/data/hotpot_dev_stratified_300.json
+?? V7-HP3/data/hotpot_recoverable_hard100.json
+?? V7-HP3/logs/
+?? V7-HP3/outputs/
+?? V7-HP3/requirements_sup_v2.txt
+?? V7-HP3/requirements_v3.txt
+?? V7-HP3/requirements_v4.txt
+?? V7-HP3/v7_experiment_matrix.yaml
+?? V7-HP4/
+?? V7-agent-2/outputs/
+?? V7-agent-2/v7_agent2_all.pid
+?? V7-agent-2/v7_agent2_all_gpu1.pid
+?? V7-agent-2/v7_agent2_all_gpu1_resume.pid
+?? V7-agent-2/v7_agent2_dynamic_gpu0.pid
+?? V7-agent-2/v7_agent2_official_29_cpu.pid
+?? V7-agent-BSP-DIAG/analysis/reader_input_ordering_verification.csv
+?? V7-agent-BSP-DIAG/analysis/strict_runs/
+?? V7-agent-BSP-DIAG/debug_reader_inputs/
+?? V7-agent-BSP-DIAG/eval_outputs/
+?? V7-agent-BSP-DIAG/outputs/
+?? V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_current_progress_report_20260629.md
+?? V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_current_progress_report_20260703.md
+?? V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_recovery_report_20260706.md
+?? V7-agent-BSP-DIAG/reports/v7_agent_bsp_diag_recovery_report_20260707.md
+?? V7-agent-BSP-DIAG/runs/
+?? V7-agent-BSP/analysis/strict_runs/
+?? V7-agent-BSP/eval_outputs/
+?? V7-agent-BSP/outputs/
+?? V7-agent-BSP/reports/v7_agent_bsp_current_progress_report_20260618.md
+?? V7-agent-BSP/runs/
+?? V7-agent-PM/eval_outputs/
+?? V7-agent-PM/outputs/
+?? V7-agent-PM/runs/
+?? V7-agent/outputs/
+?? V7/outputs/
+?? V7/outputs_bootstrap_from_v6_20260527_152209/
+?? V7_local_plan/
+?? config.py
+?? data/
+?? experiments/v6_hp_hyper_next/._collect_score_logging.py
+?? experiments/v6_hp_hyper_next/._run_method_identity_audit_after_ablation.py
+?? experiments/v6_hp_hyper_next/._run_scorelog_anchor_hard1000.sh
+?? experiments/v6_hp_hyper_next/._run_selection_diversity_ablation.sh
+?? experiments/v6_hp_hyper_next/collect_next_benchmark_result.py
+?? experiments/v6_hp_hyper_next/logs/ablation_resume_from_layerwise_20260706_131022.pid
+?? experiments/v6_hp_hyper_next/logs/ablation_resume_from_score_grad_norm_20260707_133856.pid
+?? experiments/v6_hp_hyper_next/logs/b3_multiseed_ablation_sequence_20260629_135708.pid
+?? experiments/v6_hp_hyper_next/logs/build_baseline_all1500_v2.pid
+?? experiments/v6_hp_hyper_next/logs/build_baseline_all1500_v3.pid
+?? experiments/v6_hp_hyper_next/logs/latest_subset_smoke_dir.txt
+?? experiments/v6_hp_hyper_next/logs/resume_after_hf504_20260703_142000.pid
+?? experiments/v6_hp_hyper_next/logs/same_payload_b1_all1000_20260617_194248.pid
+?? experiments/v6_hp_hyper_next/logs/same_payload_b1_all1000_20260617_194351.pid
+?? experiments/v6_hp_hyper_next/logs/same_payload_b2_hard1000_20260618_185840.pid
+?? experiments/v6_hp_hyper_next/reports/._current_progress_report_2026-06-19_selection_diagnosis.md
+?? experiments/v6_hp_hyper_next/reports/._method_identity_audit_after_ablation_report.md
+?? experiments/v6_hp_hyper_next/reports/._paper_landing_diagnosis_report.md
+?? experiments/v6_hp_hyper_next/reports/._score_logging_report.md
+?? experiments/v6_hp_hyper_next/reports/b3_multiseed_ablation_sequence_20260629_135708.md
+?? experiments/v6_hp_hyper_next/reports/current_progress_report_2026-06-16.md
+?? experiments/v6_hp_hyper_next/reports/current_progress_report_2026-06-17.md
+?? experiments/v6_hp_hyper_next/reports/current_progress_report_2026-06-18.md
+?? experiments/v6_hp_hyper_next/reports/current_progress_report_next.md
+?? experiments/v6_hp_hyper_next/reports/disk_cleanup_manifest.md
+?? experiments/v6_hp_hyper_next/reports/layerwise_ablation_report.md
+?? experiments/v6_hp_hyper_next/reports/method_identity_audit_report.md
+?? experiments/v6_hp_hyper_next/reports/pooler_ablation_report.md
+?? experiments/v6_hp_hyper_next/reports/resume_after_hf504_20260703_142000.md
+?? experiments/v6_hp_hyper_next/reports/same_payload_baseline_report.md
+?? experiments/v6_hp_hyper_next/reports/same_payload_baseline_summary.csv
+?? experiments/v6_hp_hyper_next/reports/score_mode_ablation_report.md
+?? experiments/v6_hp_hyper_next/reports/subset_smoke_report.md
+?? experiments/v6_hp_hyper_next/results/._method_identity_audit_after_ablation_raw.jsonl
+?? experiments/v6_hp_hyper_next/results/._method_identity_audit_after_ablation_summary.csv
+?? experiments/v6_hp_hyper_next/results/._score_logging_raw.jsonl
+?? experiments/v6_hp_hyper_next/results/._score_logging_summary.csv
+?? experiments/v6_hp_hyper_next/results/adaptive_ablation_resume_from_score_grad_norm_20260707_133856/
+?? experiments/v6_hp_hyper_next/results/adaptive_realloc_pilot_raw.csv
+?? experiments/v6_hp_hyper_next/results/baseline_all1500_v2_per_query.jsonl
+?? experiments/v6_hp_hyper_next/results/baseline_all1500_v2_rag_eval/
+?? experiments/v6_hp_hyper_next/results/baseline_all1500_v3_per_query.jsonl
+?? experiments/v6_hp_hyper_next/results/baseline_all1500_v3_rag_eval/
+?? experiments/v6_hp_hyper_next/results/hard_weight_ablation_raw.csv
+?? experiments/v6_hp_hyper_next/results/hard_weight_ablation_resume_from_score_grad_norm_20260707_133856/
+?? experiments/v6_hp_hyper_next/results/layerwise_ablation_raw.csv
+?? experiments/v6_hp_hyper_next/results/layerwise_ablation_resume_from_layerwise_20260706_131022/
+?? experiments/v6_hp_hyper_next/results/layerwise_ablation_summary.csv
+?? experiments/v6_hp_hyper_next/results/method_identity_audit_after_ablation_raw.jsonl
+?? experiments/v6_hp_hyper_next/results/method_identity_audit_after_ablation_summary.csv
+?? experiments/v6_hp_hyper_next/results/method_identity_audit_raw.jsonl
+?? experiments/v6_hp_hyper_next/results/method_identity_audit_summary.csv
+?? experiments/v6_hp_hyper_next/results/pooler_ablation_raw.csv
+?? experiments/v6_hp_hyper_next/results/pooler_ablation_resume_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/pooler_ablation_summary.csv
+?? experiments/v6_hp_hyper_next/results/same_payload_b2_hard1000_20260618_185840/
+?? experiments/v6_hp_hyper_next/results/same_payload_b2_hard1000_raw.csv
+?? experiments/v6_hp_hyper_next/results/same_payload_b3_hard500_raw.csv
+?? experiments/v6_hp_hyper_next/results/same_payload_b3_hotpot_hard_500_s42_20260629_135708/
+?? experiments/v6_hp_hyper_next/results/same_payload_baseline_b1_20260617_194351/
+?? experiments/v6_hp_hyper_next/results/same_payload_baseline_raw.csv
+?? experiments/v6_hp_hyper_next/results/same_payload_baseline_summary.csv
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_all_1000_s43_20260629_135708/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_all_1000_s44_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_hard_1000_s43_20260629_135708/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_hard_1000_s43_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_hard_1000_s44_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_hard_500_s43_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_hotpot_hard_500_s44_20260703_142000/
+?? experiments/v6_hp_hyper_next/results/same_payload_multiseed_raw.csv
+?? experiments/v6_hp_hyper_next/results/score_logging_raw.jsonl
+?? experiments/v6_hp_hyper_next/results/score_logging_summary.csv
+?? experiments/v6_hp_hyper_next/results/score_mode_ablation_raw.csv
+?? experiments/v6_hp_hyper_next/results/score_mode_ablation_resume_from_layerwise_20260706_131022/
+?? experiments/v6_hp_hyper_next/results/score_mode_ablation_summary.csv
+?? experiments/v6_hp_hyper_next/results/scorelog_anchor_hard1000_20260620_221612/
+?? experiments/v6_hp_hyper_next/results/scorelog_anchor_hard1000_raw.csv
+?? experiments/v6_hp_hyper_next/results/subset_smoke_20260617_193626/
+?? experiments/v6_hp_hyper_next/results/subset_smoke_raw.csv
+?? experiments/v6_hp_hyper_next/run_ablation_resume_from_layerwise.sh
+?? experiments/v6_hp_hyper_next/run_ablation_resume_from_score_grad_norm.sh
+?? experiments/v6_hp_hyper_next/run_b3_multiseed_ablation_sequence.sh
+?? experiments/v6_hp_hyper_next/run_method_identity_audit.py
+?? experiments/v6_hp_hyper_next/run_resume_after_hf504.sh
+?? experiments/v6_hp_hyper_next/run_same_payload_baseline_b1.sh
+?? experiments/v6_hp_hyper_next/subsets/smoke_all_50.json
+?? experiments/v6_hp_hyper_next/subsets/smoke_hard_50.json
+?? experiments/v6_hp_hyper_next/v3_v4_v5_code_20260617_194322.tar.gz
+?? loader.py
+?? notebooks/
+?? pipelines/
+?? qa_loader.py
+?? src/
+?? tests/
+?? v6_hp1_optuna.pid
+?? v6_hp1_stage2_full.pid
+?? v6_hp_hyper_selection_diag_patch.tgz
+?? v7_agent_budget.pid
+?? v7_agent_official_eval.pid
+?? v7_hp1_full.pid
+?? "\345\256\236\351\252\214\345\275\222\346\241\243/"

@@ -1,0 +1,3 @@
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-0"}
+{"method": "logistic_proberoute", "predicted_answer": "synthetic answer 0", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-0"}
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-1"}

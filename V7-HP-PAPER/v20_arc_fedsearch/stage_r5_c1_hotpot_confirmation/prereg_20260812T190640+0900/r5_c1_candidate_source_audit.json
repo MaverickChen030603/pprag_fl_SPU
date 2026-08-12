@@ -1,0 +1,32 @@
+{
+  "created_jst": "2026-08-12T19:17:43+09:00",
+  "dataset": "hotpotqa",
+  "eligible_n": 69147,
+  "eligible_sufficient": true,
+  "forbidden_value_fields_accessed": false,
+  "forbidden_value_fields_written": false,
+  "official_dev_used": false,
+  "official_test_used": false,
+  "schema_names_only": [
+    "answer",
+    "context",
+    "id",
+    "level",
+    "query_id",
+    "question",
+    "supporting_facts",
+    "type"
+  ],
+  "source_bytes": 567601742,
+  "source_duplicate_rows": 0,
+  "source_kind": "official HotpotQA distractor training partition",
+  "source_path": "V7-HP-PAPER/v15_robust_context_repair/data/sources/hotpotqa_distractor_train.jsonl",
+  "source_sha256": "205173be35443520aa89478ad7b1084a9be4f8ae4f542672c18cc25b5add1cdc",
+  "source_unique_n": 90447,
+  "synthetic_or_rewritten_queries_used": false,
+  "target_n": 4200,
+  "whitelist_projection_fields": [
+    "query_id",
+    "question"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "analytic_n": {
+    "half_smallest_planning_effect_n": 4110,
+    "macro_effect_n": 217,
+    "smallest_cell_effect_n": 1028
+  },
+  "cells": [
+    {
+      "cell": "hotpotqa/flan",
+      "mean": 0.03740274540274541,
+      "n": 300,
+      "sd": 0.15403090975984537
+    },
+    {
+      "cell": "hotpotqa/unifiedqa",
+      "mean": 0.03285978835978836,
+      "n": 300,
+      "sd": 0.14716582576613702
+    },
+    {
+      "cell": "2wikimultihopqa/flan",
+      "mean": 0.0631945516945517,
+      "n": 300,
+      "sd": 0.20301980498693595
+    },
+    {
+      "cell": "2wikimultihopqa/unifiedqa",
+      "mean": 0.054742063492063495,
+      "n": 300,
+      "sd": 0.19532138772710142
+    },
+    {
+      "cell": "musique/flan",
+      "mean": 0.02605603282735066,
+      "n": 300,
+      "sd": 0.12339441885787807
+    },
+    {
+      "cell": "musique/unifiedqa",
+      "mean": 0.017745310245310245,
+      "n": 300,
+      "sd": 0.11468629418841246
+    }
+  ],
+  "conservative_sd_cell": {
+    "cell": "2wikimultihopqa/flan",
+    "mean": 0.0631945516945517,
+    "n": 300,
+    "sd": 0.20301980498693595
+  },
+  "conservative_sd_rule": "maximum query-level paired-delta SD across six R4 cells",
+  "contract_n": 4200,
+  "contract_n_not_changed": true,
+  "created_jst": "2026-08-12T19:17:44+09:00",
+  "empirical_residual_power_simulation": {
+    "method": "5000 Monte Carlo bootstrap resamples from centered residuals of the max-SD query-level cell, shifted by the frozen planning effect; success when two-sided normal CI lower bound exceeds zero",
+    "n_4110_power": 0.8044,
+    "n_4200_power": 0.8174,
+    "repetitions": 5000,
+    "seed": 20260812
+  },
+  "implementation_error_found": false,
+  "macro_average_effect": 0.03866674867030165,
+  "p0_n_reproduced_exactly": true,
+  "p0_reported_n": 4110,
+  "planning_effect": 0.008872655122655122,
+  "planning_effect_rule": "50% shrinkage of smallest positive cell mean",
+  "smallest_cell": {
+    "cell": "musique/unifiedqa",
+    "mean": 0.017745310245310245,
+    "n": 300,
+    "sd": 0.11468629418841246
+  },
+  "target_power": 0.8,
+  "two_sided_alpha": 0.05,
+  "unit": "query-level paired Logistic-minus-baseline Joint-F1 delta"
+}

@@ -1,0 +1,8 @@
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-0"}
+{"method": "logistic_proberoute", "predicted_answer": "synthetic answer 0", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-0"}
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-1"}
+{"method": "logistic_proberoute", "predicted_answer": "synthetic answer 1", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-1"}
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-2"}
+{"method": "logistic_proberoute", "predicted_answer": "synthetic answer 2", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-2"}
+{"method": "federated_baseline", "predicted_answer": "wrong", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-3"}
+{"method": "logistic_proberoute", "predicted_answer": "synthetic answer 3", "predicted_support": [["synthetic title", 0]], "query_id": "synthetic-3"}

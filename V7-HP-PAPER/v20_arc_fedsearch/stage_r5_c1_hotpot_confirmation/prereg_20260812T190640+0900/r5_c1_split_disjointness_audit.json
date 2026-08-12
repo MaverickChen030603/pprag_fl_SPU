@@ -1,0 +1,17 @@
+{
+  "all_required_overlaps_zero": true,
+  "created_jst": "2026-08-12T19:17:44+09:00",
+  "label_free_manifest_sha256": "3c10940a73576b994c7cfb69c883a5cf60d0929207a00050e278a8afeabac092",
+  "labels_opened_by_stage_a": false,
+  "query_id_order_sha256": "6e7e39e64b0b70ad7c76fe5e15ee982a95115c446e5b51e0dfe70f8034faf912",
+  "selected_n": 4200,
+  "selected_outside_official_train": 0,
+  "selected_unique_n": 4200,
+  "selected_vs_logistic_train_5000_overlap": 0,
+  "selected_vs_old_r5_hotpot_300_overlap": 0,
+  "selected_vs_p0_historical_overlap": 0,
+  "selection_key": "SHA256(salt || '\\t' || canonical_query_id), ascending; query_id ascending only as collision tie-break",
+  "selection_salt": "v20-r5-c1-hotpot-confirmation-20260812",
+  "selection_uses_outcome_features": false,
+  "stable_ordering": true
+}

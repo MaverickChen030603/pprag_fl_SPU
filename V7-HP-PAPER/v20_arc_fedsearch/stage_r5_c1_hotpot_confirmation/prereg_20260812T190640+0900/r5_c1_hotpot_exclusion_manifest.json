@@ -1,0 +1,30 @@
+{
+  "all_unique_exclusion_n": 21300,
+  "canonicalization": "Unicode NFKC, trim, lowercase, strip leading hotpotqa:/ hotpot:/ hotpotqa| hotpot| prefix; punctuation otherwise preserved",
+  "created_jst": "2026-08-12T19:17:43+09:00",
+  "eligible_unique_n": 69147,
+  "exclusion_rows": 67988,
+  "historical_unique_exclusion_n": 21300,
+  "p0_ledger": {
+    "category_row_counts": {
+      "ledger:case-analysis": 56,
+      "ledger:final": 300,
+      "ledger:reader-eval": 14573,
+      "ledger:retrieval-eval": 4497,
+      "ledger:threshold-selection": 10303,
+      "ledger:train": 20159,
+      "ledger:usage-unresolved": 12800
+    },
+    "expected_sha256": "cc4ed00728fdc7f57ca8e7ee12d8fb63d52870e27efb6cc7b0293d2190342aa3",
+    "hash_verified": true,
+    "path": "V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation/p0_readiness_20260812T184600+0900/historical_query_usage_ledger.csv",
+    "sha256": "cc4ed00728fdc7f57ca8e7ee12d8fb63d52870e27efb6cc7b0293d2190342aa3"
+  },
+  "source_overlap_by_explicit_category": {
+    "explicit_logistic_train_5000": 5000,
+    "old_r5_precontract_hotpot_300": 300,
+    "p0_historical": 21300
+  },
+  "source_unique_n": 90447,
+  "unknown_dataset_ids_matching_source_are_excluded": true
+}

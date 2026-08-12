@@ -1,0 +1,28 @@
+{
+  "checks": {
+    "formal_output_paths_empty": true,
+    "official_test_forbidden": true,
+    "old_r5_evaluator_not_started": true,
+    "old_r5_label_access_evidence_false": true,
+    "old_r5_reader_not_started": true,
+    "stage_a_labels_opened_false": true,
+    "stage_a_manifest_schema_question_only": true,
+    "stage_b_generation_declares_gold_false": true,
+    "stage_b_reader_does_not_import_evaluator": true,
+    "stage_b_reader_has_no_gold_path_argument": true,
+    "stage_c_checks_completion_before_gold_open": true,
+    "stage_c_checks_prediction_context_split_hashes": true,
+    "stage_c_requires_8400_unique_predictions": true,
+    "synthetic_dryrun_pass": true
+  },
+  "created_jst": "2026-08-12T19:33:55+09:00",
+  "formal_files": [],
+  "official_test_opened": false,
+  "physical_stages": {
+    "A": "question-only split, preregistration, dependency audit, synthetic-only dry-run",
+    "B": "label-free retrieval/context/generation; evaluator import and gold access forbidden",
+    "C": "independent sealed evaluator; gold opens only after 8,400 unique predictions and checksum-bound completion"
+  },
+  "r5_c1_labels_opened": false,
+  "status": "pass"
+}
