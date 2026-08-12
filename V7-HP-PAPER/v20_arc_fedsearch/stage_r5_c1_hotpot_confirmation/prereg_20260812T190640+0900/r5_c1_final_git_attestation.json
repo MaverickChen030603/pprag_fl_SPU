@@ -1,0 +1,14 @@
+{
+  "abort_marker_commit": "2172697ab1c585a934ffe636c14bdee301c0924e",
+  "abort_marker_sha256": "a105416f4032e82864f0c198739ce84e56637bc6422cec73c79be5713c819dd5",
+  "approval_gate_commit": "3b3cb2f921bf969ecc4fd08b4324b57673027bec",
+  "attested_jst": "2026-08-12T19:36:18+09:00",
+  "contract_sha256": "3c91002ba32d65e2b0672208de5ba0a73dab51560c9dfece330171a9e3edebdd",
+  "formal_files": [],
+  "formal_retrieval_reader_evaluation_started": false,
+  "human_approval_present": false,
+  "official_test_accessed": false,
+  "prereg_content_commit": "7d1c2781393f516e62ba6166edae428fe5797238",
+  "preregistration_sha256": "33c6f0150375a4a4a0a65dd29d71562dba119a824a7084a40ca1a317eb690acd",
+  "status": "R5_C1_PREREGISTERED_WAITING_HUMAN_APPROVAL"
+}
