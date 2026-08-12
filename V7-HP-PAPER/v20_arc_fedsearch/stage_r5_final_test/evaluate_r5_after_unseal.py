@@ -213,7 +213,7 @@ def main() -> None:
         consistency.append({"dataset": row["dataset"], "reader": row["reader"], "r4_delta_joint": float(old["mean_delta"]), "r5_delta_joint": row["mean_delta"], "same_direction": (float(old["mean_delta"]) >= 0) == (row["mean_delta"] >= 0)})
     by_dataset = defaultdict(list)
     for row in primary: by_dataset[row["dataset"]].append(row)
-    positive_datasets = sum(np.mean([value["mean_delta"] for value in values]) > 0 for values in by_dataset.values())
+    positive_datasets = int(sum(np.mean([value["mean_delta"] for value in values]) > 0 for values in by_dataset.values()))
     macro_joint = float(np.mean([row["mean_delta"] for row in primary]))
     clearly_negative = any(all(row["ci_high"] < 0 for row in values) for values in by_dataset.values())
     primary_transitions = [row for row in transitions if row["comparison"].startswith("logistic")]
@@ -224,7 +224,7 @@ def main() -> None:
     harm_n = sum(int(row["n"]) for row in harm if row["reader"] == "flan")
     rescue_joint = float(np.mean([row["delta_joint_f1"] for row in rescue])) if rescue else 0.0
     answer_primary = [row for row in comparisons if row["method_a"] == "logistic_proberoute" and row["method_b"] == "federated_baseline" and row["metric"] == "answer_f1"]
-    systematic_answer_harm = np.mean([row["mean_delta"] for row in answer_primary]) < 0 and sum(row["mean_delta"] < 0 for row in answer_primary) >= 4
+    systematic_answer_harm = bool(np.mean([row["mean_delta"] for row in answer_primary]) < 0 and sum(row["mean_delta"] < 0 for row in answer_primary) >= 4)
     if positive_datasets >= 2 and macro_joint > 0 and not clearly_negative and rescue_n > harm_n and rescue_joint > 0 and not systematic_answer_harm:
         decision = "final_test_strongly_confirmed"
     elif positive_datasets >= 2 and macro_joint > 0 and not clearly_negative and not systematic_answer_harm:
