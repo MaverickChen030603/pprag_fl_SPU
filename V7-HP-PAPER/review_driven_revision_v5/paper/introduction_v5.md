@@ -1,0 +1,21 @@
+# Pair-Complementary Context Actions for Multi-Hop Question Answering
+
+## 1. Introduction
+
+Multi-hop question answering is often described as a retrieval problem, but the reader consumes an ordered, budget-limited context rather than an abstract set of relevant documents. A useful context must expose complementary evidence, retain the wording needed to express the answer, and place the hops in an order that a fixed reader can use. Adding one individually relevant document can still make an answer worse if it displaces an answer-bearing anchor or separates two facts that must be read together.
+
+This observation creates a limit for post-retrieval selectors. A selector chooses among actions proposed by a generator; it cannot select a repair that was never proposed. We call the difference between the actions available and the actions needed by the reader the **candidate-opportunity gap**. It is a concrete instance of the policy-action-to-reader gap: changes in an upstream score matter only when they produce a context whose evidence and wording cross the downstream reader's reasoning threshold.
+
+Our earlier heuristic action expansion made this limitation visible. Nearly doubling the action table produced only a small increase in the number of queries with any safe, positive alternative. The problem was not simply insufficient action count. Independent insertions and replacements repeatedly proposed documents that were query-relevant but not complementary to one another, while unrestricted replacements could discard the baseline passage that supplied answer wording.
+
+We therefore organize generation around **pair complementarity** and **bounded two-document chains**. The generator asks whether two candidate documents jointly cover different hops, then inserts the pair while preserving high-value baseline anchors. It does not synthesize evidence and does not alter the corpus-scale retriever. Its output is a small family of auditable context actions over one already retrieved local pool.
+
+Generation alone is insufficient because even a plausible chain can hurt the reader. A separate selector predicts answer safety and positive reader utility. It uses an action only within a calibrated coverage budget; otherwise it returns the unchanged Top-5 baseline. This fallback makes the method a selective intervention system rather than a replacement retriever.
+
+All learned components use a five-fold outer protocol. Generator and selector models are fit on outer-training queries, thresholds and coverage are chosen from inner out-of-fold predictions, and each outer-test query is touched only by frozen models. Target-query answers, support labels, reader outcomes, and oracle action quality are absent at inference. The 3,000-query confirmatory holdout is evaluated without retuning.
+
+The aggregate gains are deliberately reported as modest. On 3,000 same-source holdout queries, the system improves all three F1 metrics by less than one absolute point. The effect is concentrated on the contexts it edits: direct paired accounting shows substantially larger Answer, SP, and Joint gains among selected interventions and exactly zero change on fallbacks. This conditional view is paired with online cost rather than offered as a substitute for population results.
+
+Cross-dataset behavior is a boundary, not a victory claim. A frozen 2Wiki transfer is non-significant, leaves support nearly flat, and increases selected answer-drop. We preserve that result and separately test whether a small target-train calibration set can repair the safety gate while leaving the generator, reader, prompt, and action families frozen. The two settings are reported separately.
+
+Our contributions are: (1) the candidate-opportunity formulation; (2) a pair-complementary generator whose main structural operation is a bounded two-document chain; (3) anchor-preserving, reader-safe selective intervention under fully nested evaluation; and (4) a review-driven empirical account that includes exact conditional effects, equal-budget compression controls, Full-to-Lite simplification, deployment cost, and transfer calibration. The scope is bounded post-retrieval context organization, not open-domain retrieval or streaming index maintenance.

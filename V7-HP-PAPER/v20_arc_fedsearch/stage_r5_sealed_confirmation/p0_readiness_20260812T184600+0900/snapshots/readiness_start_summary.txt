@@ -1,0 +1,7 @@
+created_jst=2026-08-12T18:46:00+09:00
+p0=/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation/p0_readiness_20260812T184600+0900
+branch=main
+head=5520039b448bc1798bdbb5a6c79202b7edcd3785
+git_status_lines=461
+process_lines=935
+nvidia_exit=18

@@ -1,0 +1,22 @@
+# Submission Readiness Report
+
+- budget_matched_recomp_complete: `True`
+- lite_method_complete: `True`
+- lite_noninferior: `False`
+- lite_point_estimate_noninferior: `False`
+- online_cost_measured: `False`
+- offline_cost_measured: `False`
+- selected_query_effect_reported: `True`
+- 2wiki_fewshot_calibration_complete: `True`
+- 2wiki_answer_drop_reduced: `False`
+- pool_scope_clearly_defined: `True`
+- claims_revised: `True`
+- final_level: `main_conference_ready_with_review_risk`
+- recommended_title: `Pair-Complementary Context Actions for Multi-Hop Question Answering`
+- main_method_variant: `full_v4`
+- one_sentence_claim: `Pair-complementary bounded context actions plus reader-safe fallback produce modest same-source gains, larger gains on edited contexts, and an explicit quality-cost trade-off.`
+- population_level_effect: `0.0064496293380081815`
+- selected_query_effect: `0.024998563325613107`
+- online_cost: `{'system': 'full_v4', 'final_reader_latency_seconds': {'mean': 0.1419106861134491, 'p50': 0.12254400801612064, 'p95': 0.2148095723823644}, 'context_generator_latency': '[NEEDS MEASUREMENT]', 'end_to_end_total': '[NEEDS MEASUREMENT]'}`
+- external_transfer_claim: `Zero-shot 2Wiki transfer is weak, and few-shot safety calibration does not reach the pre-specified answer-drop target.`
+- recommended_venue_tier: `main_conference_ready_with_review_risk`

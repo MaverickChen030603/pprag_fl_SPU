@@ -2,6 +2,8 @@
 
 ## Scope
 
-- Audited methods: 0
+- Audited methods: 1
 
-No score logging records were found. Run `run_scorelog_anchor_hard1000.sh` or `run_selection_diversity_ablation.sh` first.
+| method | block Jaccard | layer Jaccard | entropy | pooler ratio | layer8 ratio | JS divergence | MRR delta | F1 delta | payload delta | diverse? |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| hypernet_v6 |  |  | 0.6931471805579453 | 0.5000 | 0.4600 |  |  |  |  | False |

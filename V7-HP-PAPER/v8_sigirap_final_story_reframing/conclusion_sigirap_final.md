@@ -1,0 +1,6 @@
+## 9. Conclusion
+
+Multi-hop context intervention is limited jointly by the actions made available and the ability of a frozen selector to identify useful, answer-compatible choices. Full expands the bounded action set with pair-complementary, anchor-preserving contexts and improves Answer and Joint F1 over the frozen baseline on two same-source holdouts. A protocol-matched CrossEncoder reranker instead attains higher SP and Joint F1 at lower latency than Full, while lowering Answer F1 below baseline. Full is therefore a distinct answer-oriented operating point among the evaluated systems and metrics, not a universally superior reranker.
+
+The retrospective oracle further shows substantial selector regret within the available action set, while the decomposition also identifies many queries with no training-positive action. Full incurs 1.52x baseline post-retrieval latency, pair-score pruning saves little, and frozen 2Wiki transfer remains non-significant. The contribution is a fully nested method and analysis of candidate availability, selective realization, and measured answer-evidence-risk-cost trade-offs under a bounded same-source protocol. It does not establish a per-query harm guarantee, corpus-scale efficiency, or cross-domain reliability.
+

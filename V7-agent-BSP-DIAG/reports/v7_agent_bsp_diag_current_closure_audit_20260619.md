@@ -1,22 +1,22 @@
 # V7-agent-BSP-DIAG Run / Closure Audit
 
-Generated: 2026-06-22 16:30:05 
+Generated: 2026-07-03 14:13:58 
 Project: `/home/iiserver31/projects/FedE4RAG-main/V7-agent-BSP-DIAG`
 
 ## Process State
 
 ```text
 PID    PPID STAT     ELAPSED %CPU %MEM   RSS CMD
-  97504       1 S     3-21:27:01  0.0  0.0  2880 bash -c bash scripts/run_v7bspdiag_suite.sh v7bspdiag_hf && bash scripts/run_v7bspdiag_official_fid.sh && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/export_reader_inputs_diag.py --methods hypernet_v6,agent_rule_v7_dynamic,agent_pm_bandit_slot,agent_bsp_memory_bandit_retrieval,agent_bsp_hf_bandit_strict,agent_bsp_hf_bandit_retrieval --seeds 0,1,2,3,4 --sample-size 50 --orderings retrieval_score,agent_priority,gold_oracle_debug --device cpu && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/analyze_v7bspdiag.py && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/generate_v7bspdiag_report.py
+  97504       1 S    14-19:10:54  0.0  0.0  2880 bash -c bash scripts/run_v7bspdiag_suite.sh v7bspdiag_hf && bash scripts/run_v7bspdiag_official_fid.sh && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/export_reader_inputs_diag.py --methods hypernet_v6,agent_rule_v7_dynamic,agent_pm_bandit_slot,agent_bsp_memory_bandit_retrieval,agent_bsp_hf_bandit_strict,agent_bsp_hf_bandit_retrieval --seeds 0,1,2,3,4 --sample-size 50 --orderings retrieval_score,agent_priority,gold_oracle_debug --device cpu && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/analyze_v7bspdiag.py && /home/iiserver31/anaconda3/envs/supv2/bin/python scripts/generate_v7bspdiag_report.py
 ERROR: Command '['ps', '-p', '155141', '-o', 'pid,ppid,stat,etime,%cpu,%mem,rss,cmd']' returned non-zero exit status 1.
 ```
 
 ## Current Official FiD/T5 State
 
-- official metrics completed: 6/40
+- official metrics completed: 24/40
 - current output dir exists: True
 - current output dir size bytes: 2946392
-- prediction files: 6
+- prediction files: 24
 - reader input files: 0
 
 The first official FiD/T5 run has exceeded the 3-hour slow-run threshold, but the Python process is still CPU-active. This audit does not terminate it. The current implementation writes predictions and metrics only after the run finishes, so file-growth checks are not sufficient by themselves.

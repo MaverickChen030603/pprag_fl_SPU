@@ -1,1 +1,10 @@
-# HotpotQA Difficulty-Ranked Subset Statistics\n\n## Warnings\n\n- Only 50 candidate rows are available; hard_1000 uses all available rows sorted by difficulty.\n\n| subset | num_examples | avg_gold_rank | hit@1 | hit@3 | hit@10 | answer_cov | support_cov | diff_mean | diff_std |\n| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |\n| hotpot_easy_1000 | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n| hotpot_medium_1000 | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n| hotpot_hard_500 | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n| hotpot_hard_1000 | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n| hotpot_all_1000 | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n| hotpot_full_eval | 50 | 1.0200 | 0.8600 | 0.9400 | 0.9400 | 0.0400 | 0.9133 | 0.2548 | 0.1989 |\n
+# HotpotQA Difficulty-Ranked Subset Statistics
+
+| subset | num_examples | avg_gold_rank | hit@1 | hit@3 | hit@10 | answer_cov | support_cov | diff_mean | diff_std |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| hotpot_easy_1000 | 1000 | 1.0940 | 0.9240 | 1.0000 | 1.0000 | 0.7440 | 1.0000 | 0.0545 | 0.0862 |
+| hotpot_medium_1000 | 1000 | 1.0940 | 0.9240 | 1.0000 | 1.0000 | 0.5060 | 0.9940 | 0.1048 | 0.0977 |
+| hotpot_hard_500 | 500 | 1.0700 | 0.6840 | 0.8480 | 0.8480 | 0.1680 | 0.7110 | 0.3574 | 0.2712 |
+| hotpot_hard_1000 | 1000 | 1.1290 | 0.7660 | 0.9240 | 0.9240 | 0.3280 | 0.8555 | 0.2332 | 0.2380 |
+| hotpot_all_1000 | 1000 | 1.0920 | 0.8420 | 0.9530 | 0.9530 | 0.5530 | 0.9075 | 0.1523 | 0.2166 |
+| hotpot_full_eval | 1500 | 1.0860 | 0.8440 | 0.9493 | 0.9493 | 0.5520 | 0.9037 | 0.1555 | 0.2233 |

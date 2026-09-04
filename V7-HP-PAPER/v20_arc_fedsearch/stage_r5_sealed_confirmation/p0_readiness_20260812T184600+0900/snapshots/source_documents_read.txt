@@ -1,0 +1,85 @@
+---R5 RECOMMENDATION (FULL)---
+# R5 recommendation
+
+R4 status: `probe_route_end_to_end_confirmed`. Final test remains sealed; R4 does not unseal it.
+---R4 PREREGISTRATION---
+# V20 Stage R4 Reader Preregistration
+
+- Data: the three frozen R3 N=300 holdouts, unchanged query IDs.
+- Conditions: federated baseline, label-free ProbeRoute, logistic ProbeRoute, and centralized retrieval reference.
+- Primary outcome: query-level Joint F1, Logistic ProbeRoute versus federated baseline.
+- Readers: frozen FLAN-T5-Large and UnifiedQA-T5-Large under the audit contract.
+- Statistics: 5,000 paired bootstrap resamples; Joint primary uncorrected, remaining paired tests BH-FDR reported.
+- Reader evaluation never changes packets, clients, raw merge, context K, prompt, decoder, or retrieval configuration.
+---R4 GO/NO-GO---
+# V20 R4 Frozen Dual-Reader Go/No-Go
+
+**Final status:** `probe_route_end_to_end_confirmed`
+
+R4 evaluated frozen R3 contexts only. The centralized retrieval reference is a same-contract reference, not an upper bound.
+
+## Primary Joint F1 comparisons
+- 2wikimultihopqa / flan: +0.0632 [+0.0404, +0.0862], W/T/L=47/247/6
+- 2wikimultihopqa / unifiedqa: +0.0547 [+0.0331, +0.0773], W/T/L=47/245/8
+- hotpotqa / flan: +0.0374 [+0.0205, +0.0551], W/T/L=33/258/9
+- hotpotqa / unifiedqa: +0.0329 [+0.0168, +0.0494], W/T/L=32/254/14
+- musique / flan: +0.0261 [+0.0132, +0.0410], W/T/L=21/273/6
+- musique / unifiedqa: +0.0177 [+0.0056, +0.0309], W/T/L=15/280/5
+---R4 CLAIM BOUNDARY---
+{
+  "allowed_claims": [
+    "A complete 7,200-row three-dataset dual-reader artifact exists and its aggregate statistics are independently reproducible.",
+    "All six observed Logistic-ProbeRoute-vs-federated-baseline Joint-F1 deltas are positive in this artifact.",
+    "The model prompts reconstruct exactly from contexts that contain no gold-answer or gold-support fields.",
+    "The result is valid as exploratory/transfer evidence subject to the recorded procedural limitations."
+  ],
+  "prohibited_claims": [
+    "Strictly confirmatory R4 under the latest Hotpot-only pre-outcome contract.",
+    "Strict prediction-before-label-access or physically separated generation/evaluation.",
+    "R4_PROBE_ROUTE_END_TO_END_CONFIRMED as an audit-grade confirmatory conclusion.",
+    "R5 readiness inferred from R4 performance alone."
+  ],
+  "provenance_grade": "C",
+  "r5_decision_required": "Choose explicitly between accepting R4 as exploratory evidence or rerunning confirmatory R4 on a newly sealed label-firewalled split. R5 may not be used to rescue R4 validity.",
+  "r5_preregistration_ready": false,
+  "r5_source_conflicts": [
+    "reports/r5_final_test_recommendation.md inherits probe_route_end_to_end_confirmed, while this seal grades R4 exploratory-only.",
+    "The recommendation does not freeze a final split, sample size, gate, script, or dry-run audit.",
+    "No non-conflicting file authorizes inventing those R5 fields in this provenance turn."
+  ],
+  "status": "R4_VALID_EXPLORATORY_ONLY"
+}
+---R4 PROVENANCE REPORT---
+# V20 R4 Provenance Audit Report
+
+## Final Classification
+
+**C — `R4_VALID_EXPLORATORY_ONLY`**
+
+The 7,200-row output is complete, internally consistent, context-aligned, and statistically reproducible. It is not audit-grade confirmatory R4 because the actual root runner accessed labels before/during generation and mixed prediction with evaluation, and because the resumed three-dataset execution did not honor the later Hotpot-only pre-outcome operational contract.
+
+## Artifact Integrity
+
+- Predictions: 7200/7200 rows; 24/24 cells; 300 rows per cell.
+- Primary keys: 7200 unique; duplicate keys: 0.
+- Input-hash reconstruction mismatches: 0.
+- Output-hash mismatches: 0.
+- Context alignment mismatches: 0.
+- Wholesale cross-method prediction copies detected: False.
+- Formal resume cache rows: 0 for both readers, inferred exactly from the first `completed=4` progress record with batch size 4.
+
+## Generation and Labels
+
+The contexts themselves are clean: no gold-answer/support fields were found, and every stored reader input hash reconstructs from question plus context. Nevertheless, `run_r4_reader.py` loads label-bearing manifests before generation, resolves `gold_row` before decoding each batch, computes official metrics immediately, and appends gold, prediction, and metrics together. Thus content leakage into the prompt was not detected, but the strict label firewall and prediction seal were not satisfied.
+
+## Scope and Timeline
+
+The original three-dataset protocol and runner predate outcomes. A later 16:21 JST directive narrowed confirmatory R4 to HotpotQA and stopped the old central jobs. Those jobs resumed at an unknown time/by an unresolved actor and completed. U1 began after the final root predictions and produced no formal reader output; it cannot explain or legitimize the earlier 7,200 rows.
+
+## Statistics
+
+The independent recomputation matches all 24 main rows and 54 paired-bootstrap rows at 1e-12. Logistic ProbeRoute versus federated baseline Joint F1 is positive in 6/6 observed cells. Macro deltas are Answer F1 +0.037664735591, SP F1 +0.075071428571, and Joint F1 +0.038666748670.
+
+## R5 Decision
+
+`R5_PREREGISTRATION_READY = false`. The existing R5 recommendation is a short status artifact, not a complete preregistration, and it relies on a stronger R4 claim than this audit permits. Before R5, the project must explicitly choose either exploratory acceptance or a new sealed confirmatory R4 split. No R5 final test should be opened to resolve this provenance question.

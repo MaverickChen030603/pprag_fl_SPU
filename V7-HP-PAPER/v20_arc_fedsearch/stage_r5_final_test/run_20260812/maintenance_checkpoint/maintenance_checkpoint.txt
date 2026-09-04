@@ -1,0 +1,38 @@
+checkpoint_time_utc=2026-08-12T10:44:58Z
+scientific_base_commit=13091c6deb6b3868705a49041e89f578f14b4e0e
+execution_commit=5520039b448bc1798bdbb5a6c79202b7edcd3785
+resume_commit=c20ba1c0b3bf0e609f2bce4caec6c64977969987
+labels_opened=false
+reader_started=false
+evaluator_started=false
+reason=server_maintenance_sigstop_sigterm
+rows:
+     300 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_probe_packets.jsonl
+     300 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_probe_packets.jsonl
+     300 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_probe_packets.jsonl
+     300 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_inherited_routes.jsonl
+      98 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_centralized.jsonl
+      88 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_centralized.jsonl
+      92 V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_centralized.jsonl
+    1478 total
+sha256:
+01c5fcd6333741480a6e5520a9bf7c3143e62f7454ffa4dde653fe71ec299e17  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/no_leak_audit.json
+578bc070ce89b73b1e863627cf3c4bf936d1d97982030fb2b287417242ca05f8  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/final_test_sample_manifest.json
+0fa6f363f1577f3da16cae74ed8484fc7ca8b95ef5698aaf652d452eea97db33  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/r5_frozen_artifact_manifest.json
+f8ce9f32e3d151785cf593cc75a6d5a6c0442e9e6b9006671587724177bc497e  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_probe_packets.jsonl
+6a7073175f4b911ffcb310fc58edded406cd7dc093aff66ea06cc17d8b93e256  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_probe_packets.jsonl
+3c02533103e08bbba0303dbc0c5252ca7abec0ab9bbdf24157aaeac368dde1fd  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_probe_packets.jsonl
+8bc7eb6b99cbc5613382784bb5413b573521eeea3cdb67fcc17de2315db8c7aa  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_inherited_routes.jsonl
+317f2cba2771e0570c59e9ba5c4ab0434c853e08d0f05cd5d50e183364f30ca6  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_centralized.jsonl
+b041794f4ec9fcda2db64bf4fef564f8c501790888ab556869cf1a6a2843655b  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_centralized.jsonl
+211d47d82064b1018f4293a66388e98dab676101f1a952b3ed0662bce62a77d6  V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_centralized.jsonl
+process_state_before_cleanup:
+    PID    PPID STAT     ELAPSED     TIME CMD
+ 332003       1 T       01:22:59 00:00:00 bash -c cd /home/iiserver31/projects/FedE4RAG-main && nohup bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh > V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/r5_full.nohup.log 2>&1 < /dev/null & echo R5_PID=$!
+ 332004  332003 T       01:22:59 00:00:00 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh
+ 336780  332004 T          54:22 00:00:00 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh
+ 336781  332004 T          54:22 00:00:00 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh
+ 336782  332004 T          54:22 00:00:00 bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh
+ 336783  336780 Z          54:22 00:40:02 [pt_main_thread] <defunct>
+ 336784  336781 Z          54:22 00:41:41 [pt_main_thread] <defunct>
+ 336785  336782 Z          54:22 00:40:39 [pt_main_thread] <defunct>

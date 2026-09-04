@@ -1,0 +1,1 @@
+MAX_QUERIES=100;PHASE_TAG=phase_a_checkpoint100;BATCH_SIZE=32;LOCAL_SPARSE_CANDIDATES=20;readers=flan,unifiedqa;datasets=hotpotqa,2wikimultihopqa,musique;conditions=centralized,topic_silo_bc2,topic_silo,entity_community,random_control

@@ -1,0 +1,2 @@
+f"Answer the question using only the context. Return a short answer.\n\nQuestion: {question}\n\nContext:\n{context[:max_chars]}\n\nAnswer:"
+f"{question} \n {context[:max_chars]}"

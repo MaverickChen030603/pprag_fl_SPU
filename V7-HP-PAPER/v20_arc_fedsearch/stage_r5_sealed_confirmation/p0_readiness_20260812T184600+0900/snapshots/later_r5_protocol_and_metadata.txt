@@ -1,0 +1,50 @@
+---LATER R5 PREREGISTRATION---
+# V20 Stage R5 Preregistration
+
+- Nature: one-shot confirmatory evaluation; method development is closed.
+- Data: V17 untouched train-derived final split, deterministic hash sample N=300/dataset.
+- Methods: federated baseline, label-free ProbeRoute, logistic ProbeRoute, centralized retrieval reference.
+- Primary: Logistic ProbeRoute minus federated baseline Joint F1.
+- Readers: frozen FLAN-T5-Large and UnifiedQA-T5-Large.
+- Statistics: 5,000 paired bootstrap resamples; primary Joint uncorrected; Answer/SP secondary BH-FDR.
+- SP is context-level and reader-independent because both readers share the frozen V16 support predictor.
+- Labels may be opened only after all 7,200 unscored predictions pass checksum validation.
+- No observed result may trigger tuning, replacement, or rerun.
+---LATER R5 UNSEAL AUDIT---
+# R5-P0 Final-Test Unseal Audit
+
+**Decision:** `pass_for_unlabeled_phases`; labels remain sealed.
+
+- Frozen scientific commit: `13091c6deb6b3868705a49041e89f578f14b4e0e`.
+- Audited 148 R2--R4 structured artifacts; final-query overlap is 0 for all datasets.
+- V17 final inputs contain query/corpus fields only; sealed labels were checked by path, mode and SHA-256 only.
+- Frozen sample: N=300/dataset, label-free hash selection retained in source order.
+- This is a train-derived untouched held-out split, not an official hidden test.
+- Authorization covers Phase 1 retrieval and Phase 2 unscored reader inference only.
+---R5 DIRECTORY METADATA ONLY---
+2026-08-12T18:13:44.6142559550+0900|1878122|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/hotpotqa_final_test_inputs_n300.jsonl
+2026-08-12T18:13:44.7102587980+0900|1157771|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/2wikimultihopqa_final_test_inputs_n300.jsonl
+2026-08-12T18:13:44.8982643660+0900|3323267|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/musique_final_test_inputs_n300.jsonl
+2026-08-12T18:13:52.4944893600+0900|1806|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/no_leak_audit.json
+2026-08-12T18:13:52.4944893600+0900|35897|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/final_test_sample_manifest.json
+2026-08-12T18:13:52.4944893600+0900|619|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/r5_final_test_unseal_audit.md
+2026-08-12T18:13:52.4944893600+0900|790|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/r5_preregistration.md
+2026-08-12T18:22:05.2650787750+0900|130|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/r5_full.nohup.log
+2026-08-12T18:22:05.2650787750+0900|30690|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/r5_frozen_artifact_manifest.json
+2026-08-12T18:22:05.2730790100+0900|576|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/cost/r5_cost_contract.json
+2026-08-12T18:22:27.1777272740+0900|101688|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_inherited_routes.jsonl
+2026-08-12T18:22:27.1777272740+0900|133|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_inherited_routes.manifest.json
+2026-08-12T18:22:27.1937277470+0900|893|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/hotpot_origin_replay.log
+2026-08-12T18:34:08.6744080480+0900|9364342|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_probe_packets.jsonl
+2026-08-12T18:34:08.6784081670+0900|375|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/musique_probe_packets.manifest.json
+2026-08-12T18:34:08.6904085190+0900|3468|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/musique_packets.log
+2026-08-12T18:36:01.4817300210+0900|9756335|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_probe_packets.jsonl
+2026-08-12T18:36:01.4857301390+0900|391|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/2wikimultihopqa_probe_packets.manifest.json
+2026-08-12T18:36:01.4937303760+0900|3725|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/2wiki_packets.log
+2026-08-12T18:46:12.4796886030+0900|2431|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/hotpot_packets.log
+2026-08-12T18:46:39.8604931040+0900|7037982|/home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_probe_packets.jsonl
+---R5-RELATED PROCESSES FROM START SNAPSHOT---
+ 332003       1 Wed Aug 12 18:21:58 2026 S    bash -c cd /home/iiserver31/projects/FedE4RAG-main && nohup bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh > V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/logs/r5_full.nohup.log 2>&1 < /dev/null & echo R5_PID=$!
+ 332004  332003 Wed Aug 12 18:21:58 2026 S    bash V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_r5_full.sh
+ 334651  332004 Wed Aug 12 18:36:01 2026 Rl   /home/iiserver31/anaconda3/envs/supv2/bin/python /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/materialize_candidate_probe_packets.py --dataset hotpotqa --split /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/protocol/hotpotqa_final_test_inputs_n300.jsonl --profiles /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/resource_profiles/client_profiles.json --local-index-root /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/hotpotqa/topic_silo --inherited-routes /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_inherited_routes.jsonl --output /home/iiserver31/projects/FedE4RAG-main/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_final_test/run_20260812/retrieval/hotpotqa_probe_packets.jsonl --device cuda --resume
+ 336118  336117 Wed Aug 12 18:45:59 2026 Ss   bash -lc set -euo pipefail ROOT=/home/iiserver31/projects/FedE4RAG-main BASE=$ROOT/V7-HP-PAPER/v20_arc_fedsearch/stage_r5_sealed_confirmation STAMP=$(date +%Y%m%dT%H%M%S%z) P0=$BASE/p0_readiness_$STAMP test ! -e "$P0" mkdir -p "$P0/snapshots" cd "$ROOT" git branch --show-current >"$P0/snapshots/git_branch.txt" git rev-parse HEAD >"$P0/snapshots/git_head.txt" git status --short >"$P0/snapshots/git_status_short.txt" ps -eo pid,ppid,lstart,stat,args >"$P0/snapshots/process_snapshot.txt" (nvidia-smi -q >"$P0/snapshots/nvidia_smi_q.txt" 2>"$P0/snapshots/nvidia_smi_q.stderr"; printf '%s\n' "$?" >"$P0/snapshots/nvidia_smi_q.exit") || true {  printf 'created_jst=%s\n' "$(date --iso-8601=seconds)"  printf 'p0=%s\n' "$P0"  printf 'branch=%s\n' "$(cat "$P0/snapshots/git_branch.txt")"  printf 'head=%s\n' "$(cat "$P0/snapshots/git_head.txt")"  printf 'git_status_lines=%s\n' "$(wc -l <"$P0/snapshots/git_status_short.txt")"  printf 'process_lines=%s\n' "$(wc -l <"$P0/snapshots/process_snapshot.txt")"  printf 'nvidia_exit=%s\n' "$(cat "$P0/snapshots/nvidia_smi_q.exit" 2>/dev/null || echo unavailable)" } | tee "$P0/snapshots/readiness_start_summary.txt" printf '%s\n' "$P0" 

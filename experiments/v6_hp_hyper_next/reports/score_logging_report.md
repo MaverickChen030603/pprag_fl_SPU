@@ -2,16 +2,14 @@
 
 ## Scope
 
-- Score records: 150
-- Summary groups: 3
+- Score records: 100
+- Summary groups: 1
 
 ## Summary Table
 
 | method | subset | records | jaccard vs anchor | JS divergence | avg margin | pooler ratio | layer8 ratio | entropy |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| hypernet_v4 | hotpot_hard_1000 | 50 | 1.0 | 0.06238648654591139 | -1.0179465077437653 | 0.5000 | 0.4600 | 0.6931471805579453 |
-| hypernet_v5 | hotpot_hard_1000 | 50 | 1.0 | 0.06238648654591139 | -1.017946490202394 | 0.5000 | 0.4600 | 0.6931471805579453 |
-| hypernet_v6 | hotpot_hard_1000 | 50 | 1.0 | 0.0 | -1.592493506663876 | 0.5000 | 0.4600 | 0.6931471805579453 |
+| hypernet_v6 | hotpot_hard_1000 | 100 | 1.0 | 0.0 | -1.5924961043145385 | 0.5000 | 0.4600 | 0.6931471805579453 |
 
 ## Diagnostic Answers
 

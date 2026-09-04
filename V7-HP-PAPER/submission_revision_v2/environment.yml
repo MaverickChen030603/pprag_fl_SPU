@@ -1,0 +1,21 @@
+name: v7-hp-paper-submission-v2
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pip
+  - numpy=1.26.4
+  - scipy=1.15.3
+  - scikit-learn=1.7.2
+  - matplotlib=3.10.9
+  - pip:
+      - torch==2.3.1
+      - transformers==4.41.2
+      - datasets==4.8.5
+      - sentencepiece==0.2.1
+      - tokenizers==0.19.1
+      - accelerate==1.13.0
+# Historical environment snapshot. CUDA build observed: torch 2.3.1+cu121.
+# Exact google/flan-t5-large model/tokenizer revisions were not logged.

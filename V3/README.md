@@ -100,6 +100,33 @@ python V3/finalize_pipeline.py \
   --force-rag
 ```
 
+### 9. 无人值守总控脚本
+
+如果希望整个 V3 流程自动串行执行，而不是每个 suite 手动接续，可以直接运行：
+
+```bash
+bash run_v3_all.sh
+```
+
+这个脚本会自动：
+
+1. 按顺序运行 `v3_main -> v3_budget -> v3_heterogeneity -> v3_ablation_feature -> v3_ablation_budget -> v3_explain`
+2. 每套 suite 完成后自动执行 `finalize_pipeline.py`
+3. 自动补下游 `RAGTest`
+4. 最后统一执行 `all_v3 finalize`
+
+常用环境变量：
+
+```bash
+GPU_ID=0 BATCH_SIZE=1 SEED_LIST=0,1,2 bash run_v3_all.sh
+```
+
+如果要强制重跑下游评测：
+
+```bash
+FORCE_RAG=1 bash run_v3_all.sh
+```
+
 ## 输出位置
 
 - 上游输出：`V3/outputs/pprag_fl_v3/...`

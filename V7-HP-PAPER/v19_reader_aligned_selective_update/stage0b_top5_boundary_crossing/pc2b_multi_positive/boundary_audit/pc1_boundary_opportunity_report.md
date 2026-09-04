@@ -1,0 +1,28 @@
+# PC-1 Boundary Opportunity Audit
+
+Queries audited: 100
+Top-10/20 changed queries: 49
+Support-promoting among Top-10/20 changed: 3 / 49
+Queries with support already in rank 6-10: 12
+BoundaryOpportunity@5 (threshold=0.02): 4 / 100
+BoundaryConversionRate: 1 / 12
+UsefulTop5ChangeRate: 1 / 100
+HarmfulTop5ChangeRate: 0 / 100
+Support rank improved/worsened documents: 7 / 0
+
+## Category Counts
+
+| Category | Count |
+|---|---:|
+| C_deep_support | 45 |
+| D_irrelevant_reorder | 54 |
+| E_top5_beneficial_swap | 1 |
+
+## Answers Required by Stage 0B-1
+
+1. In the Top-10/20 changed set, 3 of 49 queries show support-promoting movement or support-score gain.
+2. 12 queries have at least one gold/support document at baseline rank 6-10.
+3. The rank-5 boundary appears usable only when BoundaryOpportunity@5 is non-trivial; inspect `rank5_rank10_margin.csv` before training.
+4. The two Top-5 change cases are summarized by category: useful=1, harmful=0, other=5.
+
+No reader gate decision is made by this audit.

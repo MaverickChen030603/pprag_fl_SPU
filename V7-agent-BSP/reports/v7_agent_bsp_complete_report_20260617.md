@@ -24,7 +24,7 @@ Action: `early_slot_num`, `bridge_guard`, `target_slot_num`, and exploration lev
 
 ## 6. Strict Diagnostic Summary
 
-Could not read strict_diagnostic_bsp_summary.csv: No columns to parse from file
+Could not read strict_diagnostic_bsp_summary.csv: Missing optional dependency 'tabulate'.  Use pip or conda to install tabulate.
 
 ## 7. Method-Balanced True FiD/T5 Eval
 

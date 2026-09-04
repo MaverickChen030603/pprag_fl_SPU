@@ -1,0 +1,10 @@
+variant: PC-2A
+single_changed_factor: boundary_hard_negative_curriculum
+steps: 24
+batch_size: 8
+learning_rate: 0.0002
+lora_rank: 8
+lora_alpha: 16.0
+payload: unchanged_from_pc1
+reader: disabled
+calibration_final_labels: not_read
