@@ -1,0 +1,54 @@
+{
+  "experiment": "b3_ragroute_protocol_adapted_on_revealed_r5",
+  "timestamp": "2026-09-16",
+  "evidence_role": "retrospective_post_hoc_r5_revealed",
+  "claim_restriction": "diagnostic_only_not_fresh_confirmation",
+  "purpose": "Add a faithful external routing-family comparison without changing the frozen R5 retrieval or Reader contract.",
+  "method": {
+    "name": "b3_ragroute_protocol_adapted",
+    "external_reference": "RAGRoute",
+    "feature_contract": [
+      "BGE query embedding",
+      "full-client BGE source centroid",
+      "client-ID one-hot"
+    ],
+    "model": "one-hidden-layer MLP (128 ReLU units)",
+    "training_label": "whether a client contains at least one mapped support document",
+    "training_data": "5,000 public source-order training rows after exclusion of all R5 query IDs",
+    "inference_candidate_restriction": "rank only the already frozen static Top-8, select deterministic Top-3",
+    "explicit_exclusions": [
+      "18-float probe features",
+      "R5 answers or supporting labels",
+      "Reader reward training",
+      "set-level complementarity objective"
+    ]
+  },
+  "encoder": {
+    "name": "BAAI/bge-base-en-v1.5",
+    "revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+    "centroid_construction": "normalize CLS embedding per full assigned document, mean per client, then L2 normalize"
+  },
+  "frozen_retrieval_and_reader_contract": {
+    "candidate_clients": 8,
+    "selected_clients": 3,
+    "local_depth": 10,
+    "documents_per_client": 5,
+    "transmitted_documents": 15,
+    "raw_score_merge_top_k": 10,
+    "reader_context_top_k": 5,
+    "readers": ["FLAN-T5-Large", "UnifiedQA-T5-Large"],
+    "reader_decoding": "greedy, max 32 new tokens, input max 1024 tokens, existing 4000-character cap"
+  },
+  "comparisons": [
+    "B3 minus historical M2 logistic ProbeRoute",
+    "B3 minus regenerated B0 static Top-3"
+  ],
+  "statistical_protocol": "paired 5,000-resample bootstrap on the same 300 queries per dataset-reader stratum",
+  "required_artifacts": [
+    "training split manifests with R5 zero-overlap assertions",
+    "full-client centroid manifests",
+    "unlabeled routes and contexts before Reader invocation",
+    "Reader completion markers with labels_loaded=false",
+    "post-unseal evaluation manifest and per-query paired comparison table"
+  ]
+}
