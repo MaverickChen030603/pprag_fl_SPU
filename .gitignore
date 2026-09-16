@@ -28,3 +28,6 @@ nohup.out
 V6-HP1/outputs/
 V6-HP1/__pycache__/
 FedE/num5_*_v6hp1/
+
+# Submission-baseline inputs, model caches, and generated runs.
+experiments/proberoute_submission_baselines_*/
