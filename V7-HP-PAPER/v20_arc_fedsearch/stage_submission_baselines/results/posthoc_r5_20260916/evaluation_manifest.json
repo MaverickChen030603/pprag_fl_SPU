@@ -1,0 +1,34 @@
+{
+  "status": "complete_posthoc_evaluation",
+  "evidence_role": "retrospective_post_hoc_r5_revealed",
+  "claim_restriction": "diagnostic_only_not_fresh_confirmation",
+  "contexts_sha256": "af227a242d08fb8d9c7d3c7535620aca9705d6936ad9d4d4b780926e4ff26f58",
+  "prediction_sha256": {
+    "flan": "1c180edcd01750f58adda95006f6e333aad5c6f62d6e1d4bba266ba230905b84",
+    "unifiedqa": "9a39da0b820e521d896cfb2562793c81beddd1ab27f19b1653ef85ded976eda6"
+  },
+  "rows": 37800,
+  "methods": [
+    "b0_static_top3",
+    "b1_random_top3_seed_00",
+    "b1_random_top3_seed_01",
+    "b1_random_top3_seed_02",
+    "b1_random_top3_seed_03",
+    "b1_random_top3_seed_04",
+    "b1_random_top3_seed_05",
+    "b1_random_top3_seed_06",
+    "b1_random_top3_seed_07",
+    "b1_random_top3_seed_08",
+    "b1_random_top3_seed_09",
+    "b1_random_top3_seed_10",
+    "b1_random_top3_seed_11",
+    "b1_random_top3_seed_12",
+    "b1_random_top3_seed_13",
+    "b1_random_top3_seed_14",
+    "b1_random_top3_seed_15",
+    "b1_random_top3_seed_16",
+    "b1_random_top3_seed_17",
+    "b1_random_top3_seed_18",
+    "b1_random_top3_seed_19"
+  ]
+}

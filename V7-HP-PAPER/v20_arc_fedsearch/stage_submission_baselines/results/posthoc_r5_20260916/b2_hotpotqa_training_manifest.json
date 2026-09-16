@@ -1,0 +1,21 @@
+{
+  "status": "trained_not_evaluated",
+  "dataset": "hotpotqa",
+  "model": "static_only_logistic",
+  "seed": 20260807,
+  "queries": 5000,
+  "queries_with_mapped_support_client": 5000,
+  "candidate_rows": 40000,
+  "positive_rows": 7149,
+  "feature_count": 1,
+  "feature_names": [
+    "static_score"
+  ],
+  "train_auc": 0.8208341295269362,
+  "train_auprc": 0.548747030385548,
+  "split_sha256": "9ecb580dcf99afbc62c5f4d7b8453965037f928d3512c45427d3746e1c2de58c",
+  "packets_sha256": "52cfe4b05a26e08255bb251ae43cf6a1a9f8b2220937ae7bc0237341a3cc4cfe",
+  "assignment_sha256": "474cbe75e632582ab277a69947b8e8eac72840a151358494a323a0150962225e",
+  "model_sha256": "ed783039a08d992490368e40f37aab2937a292c20c02fe80d7b580f9550b60e4",
+  "test_or_confirmation_labels_used": false
+}

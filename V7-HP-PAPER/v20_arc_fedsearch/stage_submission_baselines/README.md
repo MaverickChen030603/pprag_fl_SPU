@@ -37,3 +37,12 @@ The Reader runner deduplicates identical `(dataset, query_id, context_hash)`
 inputs and then maps the deterministic prediction back to every method/seed.
 This changes neither prompts nor outputs and avoids repeated GPU work when
 different random seeds produce the same Top-5 context.
+
+## Completed R5 diagnostic run
+
+The completed 2026-09-16 post-hoc run is summarized under
+`results/posthoc_r5_20260916/`. The directory contains compact aggregate
+tables, manifests, audits, and human-readable records only. Full materialized
+contexts, per-query scores, Reader predictions, logs, and fitted model files
+remain in the external experiment archive recorded in
+`experiment_record_20260916.md`.

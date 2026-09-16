@@ -1,0 +1,21 @@
+{
+  "status": "trained_not_evaluated",
+  "dataset": "musique",
+  "model": "static_only_logistic",
+  "seed": 20260807,
+  "queries": 5000,
+  "queries_with_mapped_support_client": 5000,
+  "candidate_rows": 40000,
+  "positive_rows": 8808,
+  "feature_count": 1,
+  "feature_names": [
+    "static_score"
+  ],
+  "train_auc": 0.7465095926486426,
+  "train_auprc": 0.48217915937528644,
+  "split_sha256": "422d5b47a78f755dbe74f70e50cf37baa550b934015b6c64326b9df981658553",
+  "packets_sha256": "d1de03a6f4dc710c6f7ce8617011c17762a86fd45231655893d8370019c6391c",
+  "assignment_sha256": "a2f0e17029f27da9340010ed05501fdf2baf621b5ef83c8ceb7a33ea8219b723",
+  "model_sha256": "9355868bb31798b5acfad35c3533138a63311df58189d1e67011c128ce96db1d",
+  "test_or_confirmation_labels_used": false
+}

@@ -1,0 +1,21 @@
+{
+  "status": "trained_not_evaluated",
+  "dataset": "2wikimultihopqa",
+  "model": "static_only_logistic",
+  "seed": 20260807,
+  "queries": 5000,
+  "queries_with_mapped_support_client": 5000,
+  "candidate_rows": 40000,
+  "positive_rows": 8804,
+  "feature_count": 1,
+  "feature_names": [
+    "static_score"
+  ],
+  "train_auc": 0.6554033830249676,
+  "train_auprc": 0.3748663080866146,
+  "split_sha256": "22faf05f44d8bd5e5c811a4fea9bc2068ca59139c153286ec83eec68774331ae",
+  "packets_sha256": "87a653c971ecd43d0e767810bf49de0139218eb6cc075fc024ebc7c07a55c512",
+  "assignment_sha256": "75b4e9bc06854488a26403fb98b29c21d258db1c73fcf87d78afa7eb09a39245",
+  "model_sha256": "fefef079f8467c64eaf9d7614f4cdd8bbc45cebb148a5ef41565f9a39371d7ad",
+  "test_or_confirmation_labels_used": false
+}

@@ -1,0 +1,24 @@
+{
+  "status": "pass_all_contexts_equivalent",
+  "interpretation": "B2 applies a positive monotonic transform to the sole static score, so its ranking, contexts, frozen Reader predictions, and metrics are B0-equivalent.",
+  "reader_rerun_required": false,
+  "b0_sha256": "af227a242d08fb8d9c7d3c7535620aca9705d6936ad9d4d4b780926e4ff26f58",
+  "b2_sha256": "ae74cc209eec2fca87a37b0b5fd769fdc81bb0439eb016528ba2837b162c01f3",
+  "datasets": {
+    "hotpotqa": {
+      "queries": 300,
+      "route_matches": 300,
+      "context_matches": 300
+    },
+    "2wikimultihopqa": {
+      "queries": 300,
+      "route_matches": 300,
+      "context_matches": 300
+    },
+    "musique": {
+      "queries": 300,
+      "route_matches": 300,
+      "context_matches": 300
+    }
+  }
+}
