@@ -93,6 +93,7 @@ def main() -> None:
     parser.add_argument("--assignment", type=Path, required=True)
     parser.add_argument("--centroids", type=Path, required=True)
     parser.add_argument("--r5-packets", type=Path, required=True)
+    parser.add_argument("--r5-inputs", type=Path, required=True)
     parser.add_argument("--model", required=True)
     parser.add_argument("--revision", required=True)
     parser.add_argument("--v16-eval", type=Path, required=True)
@@ -131,8 +132,11 @@ def main() -> None:
     train_probabilities = classifier.predict_proba(train_x)[:, 1]
 
     packets = list(rows(args.r5_packets))
+    r5_inputs = {query_id(row): row for row in rows(args.r5_inputs)}
     packet_ids = [str(row["query_id"]) for row in packets]
-    r5_embeddings = encode(tokenizer, encoder, [str(row["question"]) for row in packets], args.device, args.batch_size)
+    if len(packet_ids) != 300 or set(packet_ids) != set(r5_inputs):
+        raise ValueError("frozen R5 packets and unlabeled inputs must have the same 300 query IDs")
+    r5_embeddings = encode(tokenizer, encoder, [str(r5_inputs[str(row["query_id"])]["question"]) for row in packets], args.device, args.batch_size)
     r5_x = features(r5_embeddings, centroids)
     all_scores = classifier.predict_proba(r5_x)[:, 1].reshape(len(packets), clients)
     routes = []
@@ -178,6 +182,7 @@ def main() -> None:
         "assignment_sha256": sha256(args.assignment),
         "train_sha256": sha256(args.train),
         "r5_packets_sha256": sha256(args.r5_packets),
+        "r5_inputs_sha256": sha256(args.r5_inputs),
         "r5_routes_sha256": sha256(route_path),
         "model_sha256": sha256(model_path),
         "train_auc": float(roc_auc_score(target, train_probabilities)),

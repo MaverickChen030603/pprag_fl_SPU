@@ -56,7 +56,7 @@ pids=()
 for dataset in hotpotqa 2wikimultihopqa musique; do
   route_dir="$RUN/routes/$dataset"
   if [[ ! -f "$route_dir/training_and_route_manifest.json" ]]; then
-    CUDA_VISIBLE_DEVICES="${GPU[$dataset]}" HF_HOME="$HF_CACHE" "$PY" "$CODE/train_ragroute_b3.py" --dataset "$dataset" --train "$RUN/training_data/$dataset/router_train_public.jsonl" --assignment "$V17/partitions/assignments/$dataset/topic_silo_m20.jsonl" --centroids "$RUN/centroids/$dataset/source_centroids.npy" --r5-packets "$INPUT/retrieval/${dataset}_probe_packets.jsonl" --model "$MODEL" --revision "$REVISION" --v16-eval "$V16_EVAL" --output-dir "$route_dir" --device cuda 2>&1 | tee "$RUN/logs/train_${dataset}.log" &
+    CUDA_VISIBLE_DEVICES="${GPU[$dataset]}" HF_HOME="$HF_CACHE" "$PY" "$CODE/train_ragroute_b3.py" --dataset "$dataset" --train "$RUN/training_data/$dataset/router_train_public.jsonl" --assignment "$V17/partitions/assignments/$dataset/topic_silo_m20.jsonl" --centroids "$RUN/centroids/$dataset/source_centroids.npy" --r5-packets "$INPUT/retrieval/${dataset}_probe_packets.jsonl" --r5-inputs "$INPUT/protocol/${dataset}_final_test_inputs_n300.jsonl" --model "$MODEL" --revision "$REVISION" --v16-eval "$V16_EVAL" --output-dir "$route_dir" --device cuda 2>&1 | tee "$RUN/logs/train_${dataset}.log" &
     pids+=("$!")
   fi
 done
