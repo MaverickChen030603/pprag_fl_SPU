@@ -17,6 +17,17 @@ The frozen methods in this batch are:
   equivalence audit determines whether its one-dimensional monotonic ranking
   makes it identical to B0 before any duplicate Reader run is scheduled.
 
+The next, independently auditable external baseline is
+`b3_ragroute_protocol_adapted`.  It follows the RAGRoute feature family
+(query BGE embedding, full-client BGE source centroid, and client-ID one-hot)
+with a shallow MLP.  It is trained only on a public non-R5 prefix with
+support-client labels, then ranks clients only inside the already frozen R5
+static Top-8.  It does not consume the 18-float probe.  `run_ragroute_b3.sh`
+builds full (not sampled) source centroids, trains B3, materializes its
+unlabeled contexts, invokes the two frozen Readers, and scores only after both
+Reader output manifests validate.  The run remains a retrospective diagnostic
+because R5 was already revealed.
+
 Both baselines preserve local depth 10, five transmitted documents per selected
 client, raw-score merge Top-10, and Reader Top-5. They do not transmit the
 18-dimensional probe, so their routing probe cost is zero bytes.
