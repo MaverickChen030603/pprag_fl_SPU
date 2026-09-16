@@ -1,0 +1,59 @@
+{
+  "status": "frozen_before_posthoc_baseline_execution",
+  "frozen_date": "2026-09-15",
+  "evidence_role": "retrospective_post_hoc_r5_revealed",
+  "claim_restriction": "diagnostic_only_not_fresh_confirmation",
+  "datasets": [
+    "hotpotqa",
+    "2wikimultihopqa",
+    "musique"
+  ],
+  "queries_per_dataset": 300,
+  "methods": {
+    "B0": "b0_static_top3",
+    "B1": "b1_random_top3_seed_{seed:02d}"
+  },
+  "random_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "fixed_contract": {
+    "candidate_clients": 8,
+    "selected_clients": 3,
+    "local_depth": 10,
+    "documents_per_client": 5,
+    "transmitted_documents": 15,
+    "raw_score_merge_top_k": 10,
+    "reader_context_top_k": 5,
+    "probe_bytes": 0
+  },
+  "selection_rule": "SHA256(seed|query_id|client_id) ascending",
+  "reader_contract": {
+    "models": [
+      "google/flan-t5-large",
+      "allenai/unifiedqa-v2-t5-large-1363200"
+    ],
+    "greedy": true,
+    "max_new_tokens": 32,
+    "max_input_tokens": 1024,
+    "context_character_limit": 4000
+  }
+}
