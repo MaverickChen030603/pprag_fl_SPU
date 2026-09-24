@@ -154,7 +154,8 @@ def main() -> None:
     parser.add_argument("--output-root", type=Path, required=True)
     args = parser.parse_args()
     root, base, out = (value.resolve() for value in (args.repo_root, args.base, args.output_root))
-    if out.exists() and any(out.iterdir()):
+    allowed_existing = {Path(__file__).name, "__pycache__"}
+    if out.exists() and any(path.name not in allowed_existing for path in out.iterdir()):
         raise FileExistsError(f"refusing to overwrite recovery output: {out}")
     for name in ("historical_manifests", "provenance", "overlap_audit", "protocol", "reports"):
         (out / name).mkdir(parents=True, exist_ok=True)
