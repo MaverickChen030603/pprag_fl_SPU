@@ -60,6 +60,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--inherited-routes", type=Path)
     parser.add_argument("--device", default="cuda")
+    parser.add_argument("--model-revision", help="Optional immutable Hugging Face revision for confirmatory runs.")
     parser.add_argument("--sparse-candidates", type=int, default=100)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--limit", type=int, help="smoke-only query limit; never use for formal packets")
@@ -75,7 +76,9 @@ def main() -> None:
     inherited_routes = load_routes(args.inherited_routes)
     completed = {str(item["query_id"]) for item in rows(args.output)} if args.resume and args.output.exists() else set()
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    model = SentenceTransformer("BAAI/bge-base-en-v1.5", device=args.device)
+    model = SentenceTransformer(
+        "BAAI/bge-base-en-v1.5", device=args.device, revision=args.model_revision
+    )
     connections = {client: sqlite3.connect(args.local_index_root / f"client_{client:02d}.sqlite") for client in range(CLIENTS)}
     started, emitted = time.perf_counter(), 0
     try:
