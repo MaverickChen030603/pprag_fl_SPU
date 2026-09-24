@@ -71,6 +71,22 @@ def profile_path(asset_root: Path, dataset: str) -> Path:
     return asset_root / f"V7-HP-PAPER/v20_arc_fedsearch/stage_r2_mars_route/{dataset}/resource_profiles/client_profiles.json"
 
 
+def local_index_files(root: Path, expected_manifest: str) -> dict[str, Any]:
+    manifest_path = root / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.is_file() else {}
+    expected_files = manifest.get("files", {})
+    files = {
+        str(client): check(root / f"client_{int(client):02d}.sqlite", value.get("sha256"))
+        for client, value in expected_files.items()
+    }
+    return {
+        "manifest": check(manifest_path, expected_manifest),
+        "expected_client_count": len(expected_files),
+        "all_clients_match": len(files) == 20 and all(item["match"] for item in files.values()),
+        "clients": files,
+    }
+
+
 def git(repo: Path, *args: str) -> str:
     return subprocess.check_output(["git", "-C", str(repo), *args], text=True).strip()
 
@@ -94,14 +110,22 @@ def main() -> None:
             "m2_model": check(args.base / f"inputs/models/{dataset}/logistic_seed_20260807.pkl", EXPECTED["m2"][dataset]),
             "p0_centroid": check(asset_root / f"V7-HP-PAPER/v17_fedaction_rag/partitions/centroids/{dataset}/topic_silo_m20.npy", EXPECTED["p0_centroids"][dataset]),
             "p0_profile": check(profile_path(asset_root, dataset), EXPECTED["profiles"][dataset]),
-            "local_index_manifest": check(asset_root / f"V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/{dataset}/topic_silo/manifest.json", EXPECTED["local_manifests"][dataset]),
+            "local_indexes": local_index_files(
+                asset_root / f"V7-HP-PAPER/v17_fedaction_rag/retrieval/local_indexes/{dataset}/topic_silo",
+                EXPECTED["local_manifests"][dataset],
+            ),
             "b3_model": check(args.base / f"runs/ragroute_b3_r5_posthoc_20260916/routes/{dataset}/ragroute_mlp.pkl", None),
             "b3_centroid": check(args.base / f"runs/ragroute_b3_r5_posthoc_20260916/centroids/{dataset}/source_centroids.npy", None),
         }
     checks = []
     for dataset, value in entries.items():
         checks.append(value["manifest_rows"] == 500)
-        checks.extend(item["match"] for key, item in value.items() if isinstance(item, dict))
+        checks.extend(
+            item["match"] for key, item in value.items()
+            if isinstance(item, dict) and "match" in item
+        )
+        checks.append(value["local_indexes"]["all_clients_match"])
+        checks.append(value["local_indexes"]["manifest"]["match"])
     freshness_rows = overlap.get("datasets", [])
     zero_overlap = (
         overlap.get("status") == "pass"
