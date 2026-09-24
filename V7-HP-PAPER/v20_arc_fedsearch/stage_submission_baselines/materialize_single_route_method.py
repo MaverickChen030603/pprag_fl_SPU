@@ -13,7 +13,6 @@ from typing import Any
 from materialize_posthoc_baselines import (
     context_hash,
     lookup_documents,
-    raw_merge,
     rows,
     sha256,
 )
@@ -33,9 +32,26 @@ def atomic_json(path: Path, value: Any) -> None:
     os.replace(temporary, path)
 
 
+def raw_merge_variable(packet: dict[str, Any], clients: list[int]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    transmitted = [
+        dict(document)
+        for client in clients
+        for document in packet["local_dense_docs_top10"][str(client)][:5]
+    ]
+    expected = 5 * len(clients)
+    if len(transmitted) != expected:
+        raise ValueError(f"expected {expected} transmitted documents, found {len(transmitted)}")
+    merged = sorted(
+        transmitted,
+        key=lambda document: (-float(document["dense_score"]), str(document["doc_id"])),
+    )[:10]
+    return transmitted, merged
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--method", required=True)
+    parser.add_argument("--client-budget", type=int, default=3)
     parser.add_argument("--input-root", type=Path, required=True)
     parser.add_argument("--index-root", type=Path, required=True)
     parser.add_argument("--route-root", type=Path, required=True)
@@ -77,9 +93,12 @@ def main() -> None:
                         int(item["client_id"])
                         for item in packets[qid]["p0_candidate_records"]
                     }
-                    if len(clients) != 3 or not set(clients).issubset(candidates):
-                        raise ValueError(f"{dataset}/{qid}: route violates Top-8/Top-3")
-                    transmitted, merged = raw_merge(packets[qid], clients)
+                    if args.client_budget > 0:
+                        if len(clients) != args.client_budget or not set(clients).issubset(candidates):
+                            raise ValueError(f"{dataset}/{qid}: route violates Top-8/Top-{args.client_budget}")
+                    elif sorted(clients) != list(range(20)):
+                        raise ValueError(f"{dataset}/{qid}: all-client route must select clients 0..19")
+                    transmitted, merged = raw_merge_variable(packets[qid], clients)
                     documents = lookup_documents(
                         connection, [str(item["doc_id"]) for item in merged[:5]]
                     )
@@ -104,10 +123,10 @@ def main() -> None:
                                 "reader_context_docs": documents,
                                 "context_hash": context_hash(question, documents),
                                 "candidate_clients": 8,
-                                "client_budget": 3,
+                                "client_budget": len(clients),
                                 "local_depth": 10,
                                 "documents_per_client": 5,
-                                "transmission_budget": 15,
+                                "transmission_budget": 5 * len(clients),
                                 "global_pool_size": 10,
                                 "reader_context_k": 5,
                                 "probe_bytes": 0,
