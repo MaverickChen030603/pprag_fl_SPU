@@ -1,0 +1,42 @@
+{
+  "status": "pass",
+  "selection_salt": "v20-c1-fresh-confirmation-20260924-v1",
+  "datasets": [
+    {
+      "dataset": "hotpotqa",
+      "candidate_n": 500,
+      "probe_train_overlap_n": 0,
+      "method_selection_overlap_n": 0,
+      "r3_overlap_n": 0,
+      "r4_overlap_n": 0,
+      "r5_overlap_n": 0,
+      "historical_union_overlap_n": 0,
+      "normalized_question_overlap_n": 0,
+      "freshness_pass": true
+    },
+    {
+      "dataset": "2wikimultihopqa",
+      "candidate_n": 500,
+      "probe_train_overlap_n": 0,
+      "method_selection_overlap_n": 0,
+      "r3_overlap_n": 0,
+      "r4_overlap_n": 0,
+      "r5_overlap_n": 0,
+      "historical_union_overlap_n": 0,
+      "normalized_question_overlap_n": 0,
+      "freshness_pass": true
+    },
+    {
+      "dataset": "musique",
+      "candidate_n": 500,
+      "probe_train_overlap_n": 0,
+      "method_selection_overlap_n": 0,
+      "r3_overlap_n": 0,
+      "r4_overlap_n": 0,
+      "r5_overlap_n": 0,
+      "historical_union_overlap_n": 0,
+      "normalized_question_overlap_n": 0,
+      "freshness_pass": true
+    }
+  ]
+}

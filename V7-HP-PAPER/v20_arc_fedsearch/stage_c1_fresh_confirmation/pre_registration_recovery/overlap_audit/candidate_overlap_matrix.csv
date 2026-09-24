@@ -1,0 +1,4 @@
+dataset,candidate_n,probe_train_overlap_n,method_selection_overlap_n,r3_overlap_n,r4_overlap_n,r5_overlap_n,historical_union_overlap_n,normalized_question_overlap_n,freshness_pass
+hotpotqa,500,0,0,0,0,0,0,0,True
+2wikimultihopqa,500,0,0,0,0,0,0,0,True
+musique,500,0,0,0,0,0,0,0,True

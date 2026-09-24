@@ -1,0 +1,20 @@
+{
+  "M2": "standardized class-balanced Logistic Regression; static_score plus 18 frozen query-time local probe features",
+  "routing_contract": {
+    "P": 8,
+    "B": 3,
+    "docs_per_client": 5,
+    "transmitted_docs": 15,
+    "merge": "raw_dense_top10",
+    "reader_context_k": 5
+  },
+  "baselines": [
+    "B0 Static Top-3",
+    "B1 Random Top-3",
+    "B3 RAGRoute-style baseline",
+    "B6 Dense Centroid Top-3",
+    "B4a All-candidate Top-8 high-cost reference"
+  ],
+  "B2p": "B2p_unavailable_due_to_missing_training_packets",
+  "methods_mutable": false
+}

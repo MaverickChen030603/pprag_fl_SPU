@@ -1,0 +1,14 @@
+{
+  "status": "ready_for_one_shot_fresh_confirmation",
+  "m2_probe_train_confidence": {
+    "hotpotqa": "A",
+    "2wikimultihopqa": "A",
+    "musique": "A"
+  },
+  "b2p": "B2p_unavailable_due_to_missing_training_packets",
+  "retrieval_started": false,
+  "reader_started": false,
+  "labels_scored": false,
+  "freshness_audit_pass": true,
+  "manifest_sha256": "6c98872e701c955c711b61b4d834839419238cf0a47bc38d939fc5130addc409"
+}
