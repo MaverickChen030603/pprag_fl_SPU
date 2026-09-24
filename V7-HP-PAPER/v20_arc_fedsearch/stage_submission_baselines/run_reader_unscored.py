@@ -70,6 +70,11 @@ def main() -> None:
     parser.add_argument("--reader", choices=tuple(MODELS), required=True)
     parser.add_argument("--contexts", type=Path, required=True)
     parser.add_argument("--sample-root", type=Path, required=True)
+    parser.add_argument(
+        "--source-file-pattern",
+        default="{dataset}_final_test_inputs_n300.jsonl",
+        help="Label-free source filename pattern under --sample-root.",
+    )
     parser.add_argument("--v16-eval", type=Path, required=True)
     parser.add_argument("--cache-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -100,6 +105,8 @@ def main() -> None:
             query_id(row): row
             for row in rows(
                 args.sample_root / f"{dataset}_final_test_inputs_n300.jsonl"
+                if args.source_file_pattern == "{dataset}_final_test_inputs_n300.jsonl"
+                else args.sample_root / args.source_file_pattern.format(dataset=dataset)
             )
         }
         for dataset in DATASETS
