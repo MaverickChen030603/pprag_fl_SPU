@@ -44,8 +44,11 @@ def main():
     source={qid(x):x for x in read_json_rows(a.source)}
     if len(ids)!=5000 or not ids <= set(source): raise ValueError("historical IDs missing or not exactly 5000")
     ordered=sorted((source[x] for x in ids),key=lambda x:qid(x))
-    profile=json.loads(a.p0_profiles.read_text())["profiles"]
-    p0=np.asarray([profile[str(c)]["p0_single_centroid"] for c in range(20)],dtype=np.float32)
+    profile_rows=json.loads(a.p0_profiles.read_text())["profiles"]
+    profile={int(row["client_id"]): row for row in profile_rows}
+    if set(profile) != set(range(20)):
+        raise ValueError("P0 profile does not contain exactly global clients 0..19")
+    p0=np.asarray([profile[c]["p0_single_centroid"] for c in range(20)],dtype=np.float32)
     centroids=np.load(a.feature_centroids).astype(np.float32)
     if p0.shape!=(20,768) or centroids.shape!=(20,768): raise ValueError("expected 20x768 profiles/centroids")
     assignment={str(x["doc_id"]):int(x["client_id"]) for x in read_json_rows(a.assignment)}
