@@ -84,7 +84,16 @@ def main() -> None:
                 continue
             rank = hashlib.sha256(f"{SALT}|{dataset}|{identifier}".encode()).hexdigest()
             eligible.append((rank, index, identifier, digest))
-        sample = sorted(eligible)[:500]
+        # Keep the evaluation population text-unique as well as ID-unique.
+        sample: list[tuple[str, int, str, str]] = []
+        selected_questions: set[str] = set()
+        for candidate in sorted(eligible):
+            if candidate[3] in selected_questions:
+                continue
+            sample.append(candidate)
+            selected_questions.add(candidate[3])
+            if len(sample) == 500:
+                break
         if len(sample) != 500:
             raise ValueError(f"{dataset}: insufficient unused public training queries")
         selected[dataset] = [
