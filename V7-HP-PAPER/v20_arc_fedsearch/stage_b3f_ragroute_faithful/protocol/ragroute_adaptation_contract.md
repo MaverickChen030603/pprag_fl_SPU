@@ -1,6 +1,6 @@
 # B3F RAGRoute Protocol-Adaptation Contract
 
-**Status:** `blocked_historical_p0_candidate_packets_unrecovered`  
+**Status:** `p0_universe_recovered_pending_training_manifest`  
 **Issued:** 2026-09-28  
 **Scope:** This contract governs B3F only. It does not alter M2, C1, C2, R5, or any revealed result.
 
@@ -35,18 +35,11 @@ It is the same source-presence supervision available to M2, but is not a Reader 
 - Model selection: validation accuracy at deterministic query-level Router-Dev split; report other classification metrics but do not select on them.
 - Seeds: 0, 1, 2; use their probability mean for both evaluation variants; report seed stability without selecting the best seed.
 
-## Blocking condition and required recovery
+## Historical P0 recovery and remaining gate
 
-The recovered historical manifest proves 5,000 training query IDs and 40,000 M2 candidate rows per dataset, but explicitly records `candidate_packets_recovered: false`. It also states that missing candidate packets make B2p unavailable. The local server search found no frozen P0 profile/packet artifact sufficient to prove the exact per-query Top-8 membership.
+The recovered historical manifest proves 5,000 training query IDs and 40,000 M2 candidate rows per dataset, while recording `candidate_packets_recovered: false`. The original query packet files remain unavailable. However, a versioned frozen P0 profile asset, exact BGE revision/pooling/ranking implementation, and independent label-free validation now recover the candidate universe. `historical_p0_recovery_audit.md` and `historical_p0_profile_validation.json` record this provenance; exact Top-8 order matched for all 1,000 C1/C2 packet queries in each dataset.
 
-Consequently, B3F **must not** train on all 20 clients, infer candidates from P0 rank positions, or regenerate Top-8 using a newly chosen centroid/profile. Any of those would violate the specified matched candidate universe and turn a purported controlled comparison into a changed training problem.
-
-To clear this block, recover one of the following with an immutable provenance record:
-
-1. the original historical P0 Top-8 packet files; or
-2. the versioned P0 source-centroid/profile artifact, BGE revision, pooling and deterministic ranking code sufficient to regenerate and hash-identically validate the historical Top-8 membership against an independent record.
-
-Until then, no B3F model, threshold route, Reader output, or C1/C2 post-hoc result will be produced. The correct present state is neither `ragroute_reproduction_failed` nor `ragroute_fidelity_ambiguity`; it is a fairness-preserving data-provenance block.
+B3F **must not** use the previously tested and rejected retrospective B3 full-client centroids to define P0. It must use only the recovered frozen P0 profiles with the recorded hashes. Before training, the historical ID manifests, profile assets, routing feature centroids, query-level Router-Dev split, and all model settings must be committed in a machine-readable training manifest. Until that manifest exists, no model, route, Reader output, or B3F-Fresh result may be generated.
 
 ## Future blind evaluation requirement
 

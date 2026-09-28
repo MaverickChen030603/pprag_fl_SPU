@@ -1,0 +1,49 @@
+{
+  "stage": "V20-B3F",
+  "status": "frozen_before_feature_materialization",
+  "purpose": "protocol-faithful, candidate-matched RAGRoute comparison",
+  "datasets": ["hotpotqa", "2wikimultihopqa", "musique"],
+  "training_population": {
+    "source": "recovered V17 Probe-Train manifest",
+    "queries_per_dataset": 5000,
+    "candidates_per_query": 8,
+    "candidate_rows_per_dataset": 40000,
+    "candidate_universe": "recovered frozen P0 Top-8; stable descending dot product of normalized BGE CLS query embedding and p0_single_centroid"
+  },
+  "feature_vector": {
+    "ordered_components": ["BGE(q)", "client local-corpus BGE centroid", "global client-ID one-hot"],
+    "forbidden_components": ["ProbeRoute 18-d probe", "P0 static score", "P0 rank", "local retrieval score", "BM25", "support statistic", "Reader output", "C1/C2/B3F-Fresh labels"],
+    "feature_dimension": 1556
+  },
+  "target": "one iff the candidate client contains at least one canonical supporting document",
+  "router_dev_split": {
+    "unit": "query",
+    "rule": "smallest SHA256(v20-b3f-router-dev-20260928-v1|dataset|query_id) ranks form a 500-query validation set; remaining 4500 queries form training",
+    "validation_queries_per_dataset": 500,
+    "training_queries_per_dataset": 4500,
+    "selection_metric": "validation accuracy"
+  },
+  "model": {
+    "architecture": "D -> 256 -> 128 -> 1",
+    "blocks": "Linear, LayerNorm, ReLU, Dropout(0.4) for hidden layers",
+    "scaler": "StandardScaler fit on the 4500-query training rows only",
+    "loss": "BCEWithLogitsLoss(pos_weight=N_negative/N_positive)",
+    "optimizer": "Adam(lr=1e-3, weight_decay=1e-5)",
+    "scheduler": "CyclicLR(base_lr=1e-3,max_lr=5e-3,step_size_up=10,mode=triangular2,cycle_momentum=false), then official StepLR(step_size=50,gamma=0.05) after epoch 115",
+    "gradient_clip_norm": 1.0,
+    "epochs": 150,
+    "seeds": [0, 1, 2],
+    "inference": "arithmetic mean of sigmoid probabilities across all three seed checkpoints"
+  },
+  "routing": {
+    "fixed3": "top three mean probabilities; global client-ID ascending tie-break",
+    "original_threshold": "all P0 candidates with mean probability > 0.5; no fallback",
+    "downstream": "depth 10; five documents per selected client; raw dense merge Top-10; frozen Reader Top-5"
+  },
+  "fresh_evaluation": {
+    "sample_size_per_dataset": 500,
+    "labels_unsealed": false,
+    "no_threshold_or_hyperparameter_tuning": true,
+    "readers": ["FLAN-T5-Large", "UnifiedQA-T5-Large"]
+  }
+}
