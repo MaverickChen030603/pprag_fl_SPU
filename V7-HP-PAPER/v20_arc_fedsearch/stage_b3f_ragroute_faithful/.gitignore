@@ -1,0 +1,12 @@
+# Official sources are retrieved and frozen locally; the manifest records their immutable IDs and hashes.
+official_source/ragroute/
+official_source/*.pdf
+
+# Large experiment artifacts are kept out of the source repository.
+features/*.parquet
+training/*.parquet
+models/*.pt
+models/*.pkl
+fixed3/*.jsonl
+threshold/*.jsonl
+readers/*.jsonl

@@ -1,0 +1,39 @@
+{
+  "retrieved_at_jst": "2026-09-28",
+  "repository": {
+    "url": "https://github.com/sacs-epfl/ragroute",
+    "head": "77c163f14855e3b412891fc97339986f0a640d79",
+    "head_date": "2026-04-09T00:44:59+02:00",
+    "historical_training_commit": "a374c83b94749c01e03db9ed7c183dbed9317c49",
+    "historical_training_date": "2025-05-28T13:00:51+02:00",
+    "post_paper_architecture_change_commit": "5c169f5bf80dedbafec740b904c99900c8026034"
+  },
+  "paper": {
+    "title": "Efficient Federated Search for Retrieval-Augmented Generation using Lightweight Routing",
+    "arxiv_id": "2502.19280",
+    "arxiv_version": "v2",
+    "arxiv_updated": "2026-04-09T13:52:15Z",
+    "arxiv_published": "2025-02-26T16:36:24Z",
+    "pdf_source": "https://infoscience.epfl.ch/server/api/core/bitstreams/b07c4ece-7f4c-4ae3-8644-9c4b9c134ad5/content",
+    "pdf_sha256": "5ad8afac083ef776b42ab9bd2e0b9ef9ad7f33d1d4b38212f44131e799c09fe2"
+  },
+  "files": [
+    {
+      "path": "official_source/ragroute/README.md",
+      "sha256": "1e9594da95509c49cc7141019e042716d82c34b1867d748be7a87c82fbd728bd"
+    },
+    {
+      "path": "official_source/ragroute/ragroute/router.py",
+      "sha256": "758372e7fb74954795de54ba81ac71c4431faa0e007ccfdacf4f8da8061610e6"
+    },
+    {
+      "path": "official_source/ragroute/scripts/train/train_feb4rag_router.py",
+      "sha256": "a6082c4c90c587d7a03d07a74381b1a44dd5a6641aa36570b62d665837087f5d"
+    },
+    {
+      "path": "official_source/ragroute/scripts/train/train_medrag_router.py",
+      "sha256": "d4b89f1db9c5fe022aa90c275cf0f9b954feaf7fe85eeedb0e227430a04f823b"
+    }
+  ],
+  "audit_decision": "ragroute_architecture_resolved_from_official_history"
+}
