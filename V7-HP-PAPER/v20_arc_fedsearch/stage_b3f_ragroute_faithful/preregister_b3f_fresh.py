@@ -59,8 +59,9 @@ def main() -> None:
     parser.add_argument("--c2-stage", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    if args.output.exists():
-        raise FileExistsError(args.output)
+    manifest_path = args.output / "protocol/b3f_fresh_split_manifest.json"
+    if manifest_path.exists():
+        raise FileExistsError(manifest_path)
 
     historical = json.loads((args.c1_stage / "pre_registration_recovery/historical_manifests/historical_exclusion_union.json").read_text(encoding="utf-8"))["datasets"]
     c1 = manifest_entries(args.c1_stage / "pre_registration_recovery/protocol/c1_fresh_split_manifest.json")
@@ -109,9 +110,9 @@ def main() -> None:
             "pass": len(ids) == 500 and len(hashes) == 500 and not (ids & excluded_ids) and not (hashes & excluded_questions),
         })
 
-    args.output.mkdir(parents=True)
+    args.output.mkdir(parents=True, exist_ok=True)
     protocol = args.output / "protocol"
-    protocol.mkdir()
+    protocol.mkdir(exist_ok=True)
     manifest = {
         "stage": "V20-B3F-Fresh",
         "status": "frozen_before_retrieval",
