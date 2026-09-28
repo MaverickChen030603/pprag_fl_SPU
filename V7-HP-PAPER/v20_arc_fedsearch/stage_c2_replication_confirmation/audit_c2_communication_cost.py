@@ -60,14 +60,17 @@ def main() -> None:
             dataset = row["dataset"]
             documents = list(row["transmitted_doc_ids"])
             document_bytes = sum(payload_bytes(connections[dataset], doc_id, caches[dataset]) for doc_id in documents)
-            probe_json = 0
+            probe_metadata = 0
             probe_float32 = 0
             if row["method"] == M2:
                 # The frozen C2 contract defines eight 18-float packets: 8 * 18 * 4.
                 probe_float32 = 8 * 18 * 4
                 packet = packets[dataset][str(row["query_id"])]
-                probe_json = len(json.dumps(
-                    {"query_id": packet["query_id"], "p0_candidate_records": packet["p0_candidate_records"]},
+                # Do not serialize local Top-10 bookkeeping: it is not part of the
+                # 18-float probe packet.  This is a transparent header diagnostic,
+                # not a claim about a deployed wire format.
+                probe_metadata = len(json.dumps(
+                    {"dataset": packet["dataset"], "query_id": packet["query_id"], "client_ids": packet["p0_candidate_clients"]},
                     separators=(",", ":"), sort_keys=True,
                 ).encode("utf-8"))
             costs.append({
@@ -77,9 +80,9 @@ def main() -> None:
                 "documents": len(documents),
                 "document_utf8_payload_bytes": document_bytes,
                 "probe_float32_bytes": probe_float32,
-                "probe_json_diagnostic_bytes": probe_json,
+                "probe_protocol_metadata_diagnostic_bytes": probe_metadata,
                 "minimum_total_bytes": document_bytes + probe_float32,
-                "json_diagnostic_total_bytes": document_bytes + probe_json,
+                "diagnostic_total_bytes": document_bytes + probe_float32 + probe_metadata,
             })
     finally:
         for connection in connections.values():
@@ -99,7 +102,7 @@ def main() -> None:
             "queries": len(values),
             **{key: sum(float(row[key]) for row in values) / len(values) for key in (
                 "documents", "document_utf8_payload_bytes", "probe_float32_bytes",
-                "probe_json_diagnostic_bytes", "minimum_total_bytes", "json_diagnostic_total_bytes",
+                "probe_protocol_metadata_diagnostic_bytes", "minimum_total_bytes", "diagnostic_total_bytes",
             )},
         })
     write_csv(output / "communication_cost_summary.csv", summary)
@@ -108,7 +111,7 @@ def main() -> None:
         "label_accessed": False,
         "document_serialization": "UTF-8(title + newline + text)",
         "m2_probe_float32_bytes_per_query": 576,
-        "protocol_overhead": "Not asserted as a wire-level byte count; JSON diagnostic is reported separately.",
+        "protocol_overhead": "Not asserted as a wire-level byte count; a JSON encoding of dataset, query ID, and eight client IDs is reported separately.",
         "rows": len(costs),
     }, indent=2) + "\n", encoding="utf-8")
 
