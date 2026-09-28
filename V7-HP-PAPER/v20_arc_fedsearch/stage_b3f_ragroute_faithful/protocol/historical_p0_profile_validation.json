@@ -1,0 +1,31 @@
+{
+  "status": "complete",
+  "label_accessed": false,
+  "encoder_revision": "a5beb1e3e68b9ab74eb54cfd186867f64f240e1a",
+  "datasets": {
+    "hotpotqa": {
+      "queries": 1000,
+      "top8_exact_matches": 1000,
+      "top8_exact_all": true,
+      "max_static_score_abs_error": 1.341104507446289e-06,
+      "profile_path": "/srv/lab/projects/jiankangchen/pprag_fl_SPU/experiments/proberoute_submission_baselines_20260915/inputs/c1_frozen_assets/V7-HP-PAPER/v20_arc_fedsearch/stage_r3_probe_route/hotpot_transfer/resource_profiles/client_profiles.json",
+      "profile_sha256": "e3b4cafd26bbbdef77993cfd90d5065c88ef40c259a27409c3eb69a5e5937b36"
+    },
+    "2wikimultihopqa": {
+      "queries": 1000,
+      "top8_exact_matches": 1000,
+      "top8_exact_all": true,
+      "max_static_score_abs_error": 1.1324882507324219e-06,
+      "profile_path": "/srv/lab/projects/jiankangchen/pprag_fl_SPU/experiments/proberoute_submission_baselines_20260915/inputs/c1_frozen_assets/V7-HP-PAPER/v20_arc_fedsearch/stage_r2_mars_route/2wikimultihopqa/resource_profiles/client_profiles.json",
+      "profile_sha256": "e2c601c8fe90878bc318d9f7e5761009cbf7f14b8675e70837e64306dafa41cb"
+    },
+    "musique": {
+      "queries": 1000,
+      "top8_exact_matches": 1000,
+      "top8_exact_all": true,
+      "max_static_score_abs_error": 1.1920928955078125e-06,
+      "profile_path": "/srv/lab/projects/jiankangchen/pprag_fl_SPU/experiments/proberoute_submission_baselines_20260915/inputs/c1_frozen_assets/V7-HP-PAPER/v20_arc_fedsearch/stage_r2_mars_route/musique/resource_profiles/client_profiles.json",
+      "profile_sha256": "1ed9982cef993429d1c0c83984312d8df4be285f6c7eec1a627966c726d71930"
+    }
+  }
+}
