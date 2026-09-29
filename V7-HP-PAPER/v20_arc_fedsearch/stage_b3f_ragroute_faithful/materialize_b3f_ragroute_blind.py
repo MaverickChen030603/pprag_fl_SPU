@@ -136,6 +136,12 @@ def lookup(connection: sqlite3.Connection, ids: list[str]) -> list[dict[str, str
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base", type=Path, required=True)
+    parser.add_argument(
+        "--retrieval-root",
+        type=Path,
+        required=True,
+        help="Frozen experiment root containing the historical RAGRoute centroids.",
+    )
     parser.add_argument("--stage", type=Path, required=True)
     parser.add_argument("--device", default="cuda")
     args = parser.parse_args()
@@ -160,7 +166,8 @@ def main() -> None:
                 raise ValueError(f"{dataset}: frozen blind inputs and packets disagree")
             embeddings = encode(tokenizer, encoder, [str(row["question"]) for row in blind], args.device)
             centroids = np.load(
-                args.base / f"runs/ragroute_b3_r5_posthoc_20260916/centroids/{dataset}/source_centroids.npy"
+                args.retrieval_root
+                / f"runs/ragroute_b3_r5_posthoc_20260916/centroids/{dataset}/source_centroids.npy"
             ).astype(np.float32)
             clients = int(centroids.shape[0])
             if clients != 8:
