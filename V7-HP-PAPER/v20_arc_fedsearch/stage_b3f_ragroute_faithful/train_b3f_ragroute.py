@@ -4,6 +4,14 @@ from __future__ import annotations
 import argparse, hashlib, json, random
 from pathlib import Path
 import numpy as np
+from torch import nn
+
+class B3FRouter(nn.Module):
+    """Paper-era RAGRoute MLP shared by frozen training and blind inference."""
+    def __init__(self, dim):
+        super().__init__()
+        self.network=nn.Sequential(nn.Linear(dim,256),nn.LayerNorm(256),nn.ReLU(),nn.Dropout(.4),nn.Linear(256,128),nn.LayerNorm(128),nn.ReLU(),nn.Dropout(.4),nn.Linear(128,1))
+    def forward(self,v): return self.network(v).squeeze(-1)
 
 def split_indices(query_ids, dataset):
     unique=sorted(set(map(str,query_ids)))
@@ -25,7 +33,6 @@ def main():
     import torch
     from sklearn.metrics import average_precision_score,roc_auc_score
     from sklearn.preprocessing import StandardScaler
-    from torch import nn
     from torch.utils.data import DataLoader,TensorDataset
     contract=json.loads(a.contract.read_text())
     if contract["model"]["seeds"]!=[0,1,2] or contract["model"]["epochs"]!=150: raise ValueError("frozen contract mismatch")
@@ -35,14 +42,10 @@ def main():
     scaler=StandardScaler().fit(x[train]); tx=scaler.transform(x[train]).astype(np.float32); vx=scaler.transform(x[valid]).astype(np.float32); ty,vy=y[train],y[valid]
     pos,neg=float(ty.sum()),float(len(ty)-ty.sum())
     if not pos or not neg: raise ValueError("one-class historical labels")
-    class Router(nn.Module):
-        def __init__(self,dim):
-            super().__init__(); self.network=nn.Sequential(nn.Linear(dim,256),nn.LayerNorm(256),nn.ReLU(),nn.Dropout(.4),nn.Linear(256,128),nn.LayerNorm(128),nn.ReLU(),nn.Dropout(.4),nn.Linear(128,1))
-        def forward(self,v): return self.network(v).squeeze(-1)
     a.output_dir.mkdir(parents=True); np.savez_compressed(a.output_dir/"scaler.npz",mean=scaler.mean_.astype(np.float32),scale=scaler.scale_.astype(np.float32))
     device=torch.device(a.device); summaries=[]
     for seed in (0,1,2):
-        set_seed(seed); model=Router(x.shape[1]).to(device); loss_fn=nn.BCEWithLogitsLoss(pos_weight=torch.tensor(neg/pos,device=device)); opt=torch.optim.Adam(model.parameters(),lr=1e-3,weight_decay=1e-5); cyclic=torch.optim.lr_scheduler.CyclicLR(opt,base_lr=1e-3,max_lr=5e-3,step_size_up=10,mode="triangular2",cycle_momentum=False); step=torch.optim.lr_scheduler.StepLR(opt,step_size=50,gamma=.05)
+        set_seed(seed); model=B3FRouter(x.shape[1]).to(device); loss_fn=nn.BCEWithLogitsLoss(pos_weight=torch.tensor(neg/pos,device=device)); opt=torch.optim.Adam(model.parameters(),lr=1e-3,weight_decay=1e-5); cyclic=torch.optim.lr_scheduler.CyclicLR(opt,base_lr=1e-3,max_lr=5e-3,step_size_up=10,mode="triangular2",cycle_momentum=False); step=torch.optim.lr_scheduler.StepLR(opt,step_size=50,gamma=.05)
         loader=DataLoader(TensorDataset(torch.from_numpy(tx),torch.from_numpy(ty)),batch_size=a.batch_size,shuffle=True,num_workers=0); best_acc,best_epoch,best_state=-1.,-1,None
         for epoch in range(150):
             model.train()
