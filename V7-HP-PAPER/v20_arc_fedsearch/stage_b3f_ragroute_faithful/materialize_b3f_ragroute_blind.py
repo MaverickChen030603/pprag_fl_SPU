@@ -170,8 +170,10 @@ def main() -> None:
                 / f"runs/ragroute_b3_r5_posthoc_20260916/centroids/{dataset}/source_centroids.npy"
             ).astype(np.float32)
             clients = int(centroids.shape[0])
-            if clients != 8:
-                raise ValueError(f"{dataset}: expected eight source centroids, found {clients}")
+            # The MLP was trained over all federated sources (20); P0 exposes a
+            # frozen Top-8 subset of those source IDs for each fresh query.
+            if clients < 8:
+                raise ValueError(f"{dataset}: fewer than eight global source centroids")
             models, mean, scale = load_ensemble(args.stage / f"models/{dataset}", args.device)
             selected_counts = {"ragroute_fixed3": [], "ragroute_original_threshold": []}
             index = sqlite3.connect(
