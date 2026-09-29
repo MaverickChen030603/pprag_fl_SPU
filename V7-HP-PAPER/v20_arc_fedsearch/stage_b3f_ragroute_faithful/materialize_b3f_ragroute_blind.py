@@ -177,7 +177,8 @@ def main() -> None:
             models, mean, scale = load_ensemble(args.stage / f"models/{dataset}", args.device)
             selected_counts = {"ragroute_fixed3": [], "ragroute_original_threshold": []}
             index = sqlite3.connect(
-                f"file:{args.base / f'inputs/indexes/{dataset}.sqlite'}?mode=ro", uri=True
+                f"file:{args.retrieval_root / f'inputs/indexes/{dataset}.sqlite'}?mode=ro",
+                uri=True,
             )
             try:
                 for position, source in enumerate(blind):
