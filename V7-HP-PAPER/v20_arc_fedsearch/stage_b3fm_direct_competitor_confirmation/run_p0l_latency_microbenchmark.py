@@ -142,7 +142,7 @@ class Harness:
             result, elapsed = self.timed(lambda c=client: self.retrieve_client(dataset, c, question, q_emb))
             local[client], times = result, times + [elapsed]
         terms, q_entities = self.query_terms(question), self.entities(question)
-        title_embeddings = self.model.encode([str(local[c][0]["title"]) if local[c] else "" for c in candidates], normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)
+        title_embeddings = self.model.encode([str(local[c][0][0]["title"]) if local[c][0] else "" for c in candidates], normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)
         records = []
         for index, client in enumerate(candidates):
             dense, sparse = local[client]
