@@ -31,8 +31,10 @@ def main():
   out.append({'dataset':d,'query_id':q,'method':m,'selected_clients':len(sel),'documents':len(docids),'query_request_bytes':req_bytes,'probe_float32_bytes':probe_resp,'probe_protocol_header_bytes':resp_head,'request_protocol_header_bytes':req_head,'deep_request_incremental_bytes':deep_incremental,'document_utf8_payload_bytes':docbytes,'deep_return_header_bytes':deep_head,'application_total_bytes':req_bytes+probe_resp+resp_head+req_head+docbytes+deep_head,'request_reuse':probe,'wire_level_measurement':'unavailable_shared_memory_filesystem_simulation'})
  for v in db.values():v.close()
  write(cost/'per_query_communication_compute_audit.csv',out);summary=[]
- for k,v in sorted(__import__('itertools').groupby(sorted(out,key=lambda z:(z['dataset'],z['method'])),key=lambda z:(z['dataset'],z['method']))):
-  z=list(v);summary.append({'dataset':k[0],'method':k[1],'queries':len(z),**{f'mean_{f}':float(np.mean([x[f] for x in z])) for f in ('selected_clients','documents','query_request_bytes','probe_float32_bytes','document_utf8_payload_bytes','application_total_bytes')}})
+ groups=defaultdict(list)
+ for row in out: groups[(row['dataset'],row['method'])].append(row)
+ for k,z in sorted(groups.items()):
+  summary.append({'dataset':k[0],'method':k[1],'queries':len(z),**{f'mean_{f}':float(np.mean([x[f] for x in z])) for f in ('selected_clients','documents','query_request_bytes','probe_float32_bytes','document_utf8_payload_bytes','application_total_bytes')}})
  write(cost/'communication_compute_audit.csv',summary)
  lat=[]
  for d in DATASETS:
