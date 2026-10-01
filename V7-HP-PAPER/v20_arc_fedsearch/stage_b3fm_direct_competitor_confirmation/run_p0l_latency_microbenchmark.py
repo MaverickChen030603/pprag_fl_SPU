@@ -199,6 +199,12 @@ def route_time(h: Harness, dataset: str, method: str, packet: dict[str, Any], qu
         components["query_embedding"] = q_emb
         static, components["router_inference_ms"] = h.timed(lambda: sorted(packet["p0_candidate_records"], key=lambda x: int(x["static_candidate_rank"]))[:3])
         components["computed_selection"] = [int(x["client_id"]) for x in static]
+    elif method == "b4a_all_candidate_top8_high_cost_reference":
+        # B4a has no learned router: it deterministically deep-retrieves all P0 candidates.
+        q_emb, components["query_embedding_ms"] = h.timed(lambda: h.embed(question))
+        components["query_embedding"] = q_emb
+        _, components["router_inference_ms"] = h.timed(lambda: list(candidates))
+        components["computed_selection"] = list(candidates)
     else:
         q_emb, components["query_embedding_ms"] = h.timed(lambda: h.embed(question))
         components["query_embedding"] = q_emb
