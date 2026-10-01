@@ -124,25 +124,41 @@ class Harness:
     def embed(self, question: str) -> np.ndarray:
         return self.model.encode([question], normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)[0].astype(np.float32)
 
-    def retrieve_client(self, dataset: str, client: int, question: str, q_emb: np.ndarray) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-        # Matches the frozen packet path: sparse top-100 then BGE dense rerank.
-        documents = self.sparse_search(self.connections[dataset][client], question, 100)
-        if not documents:
-            return [], []
-        embeddings = self.model.encode([f"{doc['title']}. {doc['text']}" for doc in documents], normalize_embeddings=True, convert_to_numpy=True, batch_size=256, show_progress_bar=False)
-        for document, score in zip(documents, (embeddings @ q_emb).astype(float).tolist()):
-            document["dense_score"] = score
-        dense = sorted(documents, key=lambda doc: (-float(doc["dense_score"]), str(doc["doc_id"])))[:10]
-        sparse = sorted(documents, key=lambda doc: (-float(doc["sparse_score"]), str(doc["doc_id"])))[:10]
-        return dense, sparse
+    def retrieve_clients(self, dataset: str, clients: list[int], question: str, q_emb: np.ndarray) -> tuple[dict[int, tuple[list[dict[str, Any]], list[dict[str, Any]]]], list[float]]:
+        """Match frozen packet materialization: sparse per client, one BGE batch per query.
 
-    def probe(self, dataset: str, candidates: list[int], question: str, q_emb: np.ndarray) -> tuple[list[dict[str, Any]], list[float]]:
-        local, times = {}, []
-        for client in candidates:
-            result, elapsed = self.timed(lambda c=client: self.retrieve_client(dataset, c, question, q_emb))
-            local[client], times = result, times + [elapsed]
+        The frozen system executes local sparse searches serially in this simulator,
+        then encodes the combined candidate documents in one BGE batch.  The shared
+        dense-batch time is allocated by candidate-document count for per-client
+        compute accounting; wall-clock serial work remains exactly its measured sum.
+        """
+        by_client, sparse_ms, flat, sizes = {}, [], [], []
+        for client in clients:
+            values, elapsed = self.timed(lambda c=client: self.sparse_search(self.connections[dataset][c], question, 100))
+            by_client[client] = values
+            sparse_ms.append(elapsed)
+            flat.extend(values)
+            sizes.append(len(values))
+        if flat:
+            embeddings, dense_ms = self.timed(lambda: self.model.encode([f"{doc['title']}. {doc['text']}" for doc in flat], normalize_embeddings=True, convert_to_numpy=True, batch_size=256, show_progress_bar=False))
+            for document, score in zip(flat, (embeddings @ q_emb).astype(float).tolist()):
+                document["dense_score"] = score
+        else:
+            dense_ms = 0.0
+        total_docs = max(1, sum(sizes))
+        local, client_ms = {}, []
+        for client, elapsed, count in zip(clients, sparse_ms, sizes):
+            values = by_client[client]
+            dense = sorted(values, key=lambda doc: (-float(doc["dense_score"]), str(doc["doc_id"])))[:10]
+            sparse = sorted(values, key=lambda doc: (-float(doc["sparse_score"]), str(doc["doc_id"])))[:10]
+            local[client] = (dense, sparse)
+            client_ms.append(elapsed + dense_ms * count / total_docs)
+        return local, client_ms
+
+    def probe(self, dataset: str, candidates: list[int], question: str, q_emb: np.ndarray) -> tuple[list[dict[str, Any]], list[float], float]:
+        local, times = self.retrieve_clients(dataset, candidates, question, q_emb)
         terms, q_entities = self.query_terms(question), self.entities(question)
-        title_embeddings = self.model.encode([str(local[c][0][0]["title"]) if local[c][0] else "" for c in candidates], normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)
+        title_embeddings, title_feature_ms = self.timed(lambda: self.model.encode([str(local[c][0][0]["title"]) if local[c][0] else "" for c in candidates], normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False))
         records = []
         for index, client in enumerate(candidates):
             dense, sparse = local[client]
@@ -169,7 +185,7 @@ class Harness:
                 "query_title_embedding_similarity": float(q_emb @ title_embeddings[index]),
                 "top3_title_diversity": self.title_diversity(titles), "top3_entity_diversity": self.entity_diversity(titles),
             })
-        return records, times
+        return records, times, title_feature_ms
 
     def rag_scores(self, dataset: str, candidates: list[int], q_emb: np.ndarray) -> np.ndarray:
         models, mean, scale = self.rag[dataset]
@@ -210,9 +226,11 @@ def route_time(h: Harness, dataset: str, method: str, packet: dict[str, Any], qu
         components["query_embedding"] = q_emb
         if method == "m2_logistic_proberoute":
             _, components["request_serialization_ms"] = h.timed(lambda: json.dumps({"question": question, "candidate_clients": candidates}, separators=(",", ":")))
-            (records, probe_times), feature_ms = h.timed(lambda: h.probe(dataset, candidates, question, q_emb))
-            # Feature time includes extraction/title embeddings; client times are retained separately.
-            components["feature_assembly_ms"] = feature_ms - sum(probe_times)
+            records, probe_times, title_feature_ms = h.probe(dataset, candidates, question, q_emb)
+            # Probe client times include sparse retrieval plus their allocated share
+            # of the one frozen-system BGE batch. Feature work is timed separately.
+            _, array_feature_ms = h.timed(lambda: np.asarray([[float(x[k]) for k in FEATURES] for x in records], dtype=np.float32))
+            components["feature_assembly_ms"] = title_feature_ms + array_feature_ms
             components["probe_client_times_ms"] = probe_times
             _, components["probe_aggregation_ms"] = h.timed(lambda: np.asarray([[float(x[k]) for k in FEATURES] for x in records], dtype=np.float32))
             features = np.asarray([[float(x["static_score"]), *[float(x[k]) for k in FEATURES]] for x in packet["p0_candidate_records"]], dtype=np.float32)
@@ -234,9 +252,8 @@ def run_method(h: Harness, dataset: str, method: str, packet: dict[str, Any], ex
     # Deep retrieval is deliberately separate from probe retrieval: current implementation does not reuse it.
     deep_docs, deep_times = {}, []
     q_emb = components.pop("query_embedding")
-    for client in selected:
-        value, elapsed = h.timed(lambda c=client, e=q_emb: h.retrieve_client(dataset, c, question, e))
-        deep_docs[client], deep_times = value[0], deep_times + [elapsed]
+    retrieved, deep_times = h.retrieve_clients(dataset, selected, question, q_emb)
+    deep_docs = {client: retrieved[client][0] for client in selected}
     _, serialization_ms = h.timed(lambda: json.dumps([[str(doc["doc_id"]) for doc in deep_docs[c][:5]] for c in selected], separators=(",", ":")))
     def merge():
         values = [doc for client in selected for doc in deep_docs[client][:5]]
